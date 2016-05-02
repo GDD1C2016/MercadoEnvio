@@ -59,5 +59,14 @@ namespace WindowsFormsApplication1.Properties {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuario o contraseña invalidos.
+        /// </summary>
+        internal static string ErrorLogin {
+            get {
+                return ResourceManager.GetString("ErrorLogin", resourceCulture);
+            }
+        }
     }
 }

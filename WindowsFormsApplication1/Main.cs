@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using WindowsFormsApplication1.Properties;
 
 namespace WindowsFormsApplication1
 {
@@ -14,6 +15,11 @@ namespace WindowsFormsApplication1
         public Main()
         {
             InitializeComponent();
+        }
+
+        private void BtnEntrar_Click(object sender, EventArgs e)
+        {
+            LabelErrorLogin.Text = Resources.ErrorLogin;
         }
     }
 }
