@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsApplication1
+﻿namespace MercadoEnvio.Login
 {
     partial class Main
     {

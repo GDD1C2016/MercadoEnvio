@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1.ABM_Rubro
+namespace MercadoEnvio.ABM_Rubro
 {
     public partial class Form1 : Form
     {

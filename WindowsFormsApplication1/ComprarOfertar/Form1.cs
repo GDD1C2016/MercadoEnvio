@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WindowsFormsApplication1.ComprarOfertar
+namespace MercadoEnvio.ComprarOfertar
 {
     public partial class Form1 : Form
     {
