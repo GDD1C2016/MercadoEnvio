@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace MercadoEnvio.ABM_Rol
 {
-    public partial class Form1 : Form
+    public partial class AltaRol : Form
     {
-        public Form1()
+        public AltaRol()
         {
             InitializeComponent();
         }

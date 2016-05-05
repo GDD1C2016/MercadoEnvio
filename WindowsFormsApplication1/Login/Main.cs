@@ -30,6 +30,7 @@ namespace MercadoEnvio.Login
             else
             {
                 LabelErrorLogin.Text = Resources.ErrorLogin;
+                errorCount += 1;
             }
         }
     }
