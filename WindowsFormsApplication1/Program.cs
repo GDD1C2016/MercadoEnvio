@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using MercadoEnvio.ABM_Rol;
 using MercadoEnvio.Login;
 
 namespace MercadoEnvio
@@ -17,7 +16,7 @@ namespace MercadoEnvio
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainRol());
+            Application.Run(new Main());
         }
     }
 }
