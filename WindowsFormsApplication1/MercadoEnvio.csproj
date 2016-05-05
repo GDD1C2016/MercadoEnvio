@@ -90,6 +90,7 @@
     <Compile Include="Facturas\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DataBaseHelper.cs" />
     <Compile Include="Helpers\EncryptHelper.cs" />
     <Compile Include="Generar Publicación\Form1.cs">
       <SubType>Form</SubType>

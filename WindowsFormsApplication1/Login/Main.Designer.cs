@@ -48,7 +48,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(284, 195);
+            this.groupBox1.Size = new System.Drawing.Size(294, 195);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login";
@@ -70,7 +70,7 @@
             this.TxtPassword.Location = new System.Drawing.Point(69, 78);
             this.TxtPassword.Name = "TxtPassword";
             this.TxtPassword.PasswordChar = '*';
-            this.TxtPassword.Size = new System.Drawing.Size(167, 20);
+            this.TxtPassword.Size = new System.Drawing.Size(177, 20);
             this.TxtPassword.TabIndex = 3;
             // 
             // TxtUsername
@@ -80,7 +80,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtUsername.Location = new System.Drawing.Point(69, 38);
             this.TxtUsername.Name = "TxtUsername";
-            this.TxtUsername.Size = new System.Drawing.Size(167, 20);
+            this.TxtUsername.Size = new System.Drawing.Size(177, 20);
             this.TxtUsername.TabIndex = 2;
             // 
             // label2
@@ -107,7 +107,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnEntrar.Location = new System.Drawing.Point(69, 201);
             this.BtnEntrar.Name = "BtnEntrar";
-            this.BtnEntrar.Size = new System.Drawing.Size(167, 23);
+            this.BtnEntrar.Size = new System.Drawing.Size(177, 23);
             this.BtnEntrar.TabIndex = 1;
             this.BtnEntrar.Text = "Entrar";
             this.BtnEntrar.UseVisualStyleBackColor = true;
@@ -117,12 +117,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ClientSize = new System.Drawing.Size(294, 241);
             this.Controls.Add(this.BtnEntrar);
             this.Controls.Add(this.groupBox1);
-            this.MaximumSize = new System.Drawing.Size(310, 320);
-            this.MinimumSize = new System.Drawing.Size(300, 280);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Main";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mercado Envio";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
