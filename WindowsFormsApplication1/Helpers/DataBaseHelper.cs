@@ -101,7 +101,7 @@ namespace MercadoEnvio.Helpers
         #endregion
 
         #region data methods
-        public DataTable ObtenerDatosComoDataTable(string storeProcedure)
+        public DataTable GetDataAsTable(string storeProcedure)
         {
             SqlCommand sqlCommand;
             SqlDataAdapter sqlAdapter;
@@ -147,7 +147,46 @@ namespace MercadoEnvio.Helpers
             }
         }
 
-        public object EjecutarInstruccion(ExecutionType execType, string storeProcedure, List<SqlParameter> parameters)
+        public DataTable GetDataAsTable(string storeProcedure, List<SqlParameter> parameters)
+        {
+            SqlCommand sqlCommand = new SqlCommand();
+            SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
+            DataTable sqlTable = new DataTable();
+            try
+            {
+                if (Connection != null && Connection.State != ConnectionState.Open)
+                {
+                    Connection.Open();
+                }
+
+                sqlCommand.CommandText = storeProcedure;
+                sqlCommand.Connection = Connection;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                foreach (SqlParameter sqlPrm in parameters)
+                {
+                    sqlCommand.Parameters.Add(sqlPrm);
+                }
+
+                sqlAdapter.Fill(sqlTable);
+                return sqlTable;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error al obtener tabla");
+            }
+            finally
+            {
+                if (Connection != null && Connection.State == ConnectionState.Open)
+                {
+                    Connection.Close();
+                }
+                sqlCommand.Dispose();
+                sqlAdapter.Dispose();
+            }
+        }
+
+        public object ExectInstruction(ExecutionType execType, string storeProcedure, List<SqlParameter> parameters)
         {
             object result = null;
             SqlCommand sqlCommand = new SqlCommand();
@@ -199,45 +238,6 @@ namespace MercadoEnvio.Helpers
                     }
                 }
                 sqlCommand.Dispose();
-            }
-        }
-
-        public DataTable ObtenerDatosComoDataTable(string storeProcedure, List<SqlParameter> parameters)
-        {
-            SqlCommand sqlCommand = new SqlCommand();
-            SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
-            DataTable sqlTable = new DataTable();
-            try
-            {
-                if (Connection != null && Connection.State != ConnectionState.Open)
-                {
-                    Connection.Open();
-                }
-
-                sqlCommand.CommandText = storeProcedure;
-                sqlCommand.Connection = Connection;
-                sqlCommand.CommandType = CommandType.StoredProcedure;
-
-                foreach (SqlParameter sqlPrm in parameters)
-                {
-                    sqlCommand.Parameters.Add(sqlPrm);
-                }
-
-                sqlAdapter.Fill(sqlTable);
-                return sqlTable;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Error al obtener tabla");
-            }
-            finally
-            {
-                if (Connection != null && Connection.State == ConnectionState.Open)
-                {
-                    Connection.Close();
-                }
-                sqlCommand.Dispose();
-                sqlAdapter.Dispose();
             }
         }
 

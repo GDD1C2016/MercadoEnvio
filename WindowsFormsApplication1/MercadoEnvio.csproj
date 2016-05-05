@@ -38,6 +38,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -84,6 +85,8 @@
     <Compile Include="ComprarOfertar\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataManagers\DataManagerUsuario.cs" />
+    <Compile Include="Entidades\Login.cs" />
     <Compile Include="Facturas\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +121,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\UsuarioService.cs" />
     <EmbeddedResource Include="Login\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>

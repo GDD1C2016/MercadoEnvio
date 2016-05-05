@@ -8,7 +8,7 @@ namespace MercadoEnvio.Helpers
 {
     public class EncryptHelper
     {
-        public static string Sha256Encrypt(string text)
+        public string Sha256Encrypt(string text)
         {
             UTF8Encoding encoder = new UTF8Encoding();
             SHA256Managed sha256Hasher = new SHA256Managed();
@@ -16,7 +16,7 @@ namespace MercadoEnvio.Helpers
             return ByteArrayToString(hashedDataBytes);
         }
 
-        public static string ByteArrayToString(byte[] inputArray)
+        private string ByteArrayToString(byte[] inputArray)
         {
             StringBuilder output = new StringBuilder("");
             foreach (byte t in inputArray)
