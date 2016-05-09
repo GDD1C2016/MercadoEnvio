@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using MercadoEnvio.Properties;
 
 namespace MercadoEnvio.Helpers
 {
@@ -44,7 +45,7 @@ namespace MercadoEnvio.Helpers
             }
             catch (Exception ex)
             {
-                throw new Exception("No se pudo conectar a la BD");
+                throw new Exception(Resources.ErrorBD, ex);
             }
         }
 
@@ -63,7 +64,7 @@ namespace MercadoEnvio.Helpers
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al crear transacción");
+                throw new Exception(Resources.ErrorTrans,ex);
             }
         }
 
@@ -78,7 +79,7 @@ namespace MercadoEnvio.Helpers
             }
             catch (Exception ex)
             {
-                throw new Exception("Error en el rollback de la transacción");
+                throw new Exception(Resources.ErrorTrans, ex);
             }
         }
 
@@ -95,7 +96,7 @@ namespace MercadoEnvio.Helpers
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al finalizar la transacción");
+                throw new Exception(Resources.ErrorTrans, ex);
             }
         }
         #endregion
@@ -128,7 +129,7 @@ namespace MercadoEnvio.Helpers
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener tabla");
+                throw new Exception(Resources.ErrorTable,ex);
             }
             finally
             {
@@ -173,7 +174,7 @@ namespace MercadoEnvio.Helpers
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al obtener tabla");
+                throw new Exception(Resources.ErrorTable, ex);
             }
             finally
             {
@@ -226,7 +227,7 @@ namespace MercadoEnvio.Helpers
             catch (Exception ex)
             {
                 RollbackTransaction();
-                throw new Exception("Error al ejecutar la instrucción del Stored Procedure");
+                throw new Exception(Resources.ErrorSP,ex);
             }
             finally
             {
@@ -259,7 +260,7 @@ namespace MercadoEnvio.Helpers
             }
             catch (Exception ex)
             {
-                throw new Exception("Error al finalizar la conexión con la BD");
+                throw new Exception(Resources.ErrorBD,ex);
             }
         }
 

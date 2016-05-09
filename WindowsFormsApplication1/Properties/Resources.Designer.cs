@@ -61,11 +61,47 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No se pudo conectar a la BD.
+        /// </summary>
+        internal static string ErrorBD {
+            get {
+                return ResourceManager.GetString("ErrorBD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usuario o contraseña invalidos.
         /// </summary>
         internal static string ErrorLogin {
             get {
                 return ResourceManager.GetString("ErrorLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error al ejecutar SP.
+        /// </summary>
+        internal static string ErrorSP {
+            get {
+                return ResourceManager.GetString("ErrorSP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error en el manejo de data-table.
+        /// </summary>
+        internal static string ErrorTable {
+            get {
+                return ResourceManager.GetString("ErrorTable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error en la transacción.
+        /// </summary>
+        internal static string ErrorTrans {
+            get {
+                return ResourceManager.GetString("ErrorTrans", resourceCulture);
             }
         }
     }
