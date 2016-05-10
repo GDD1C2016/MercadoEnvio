@@ -14,7 +14,7 @@ namespace MercadoEnvio.DataManagers
         public static Entidades.Login Login(string user, string passWord)
         {
             DataBaseHelper db = null;
-            DataTable res;
+            object res;
             SqlParameter userParameter;
             SqlParameter passWordParameter;
             List<SqlParameter> parameters = new List<SqlParameter>();
@@ -32,8 +32,19 @@ namespace MercadoEnvio.DataManagers
                 parameters.Add(passWordParameter);
 
                 db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
-                res = db.GetDataAsTable("[TABLA]", parameters);
+                db.Connection.Open();
 
+                res = db.ExectInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_Login", parameters);
+                if ((int) res == 1)
+                {
+                    login.LoginSuccess = true;
+                    db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_ResetCountLogin", new List<SqlParameter>());
+                }
+                else
+                {
+                    login.LoginSuccess = false;
+                    db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_IncrementCountLogin", new List<SqlParameter>());
+                }
                 return login;
             }
             catch (Exception ex)

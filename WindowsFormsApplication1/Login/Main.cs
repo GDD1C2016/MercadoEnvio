@@ -25,12 +25,11 @@ namespace MercadoEnvio.Login
 
             if (login.LoginSuccess)
             {
-                
+                MessageBox.Show("Exito!");
             }
             else
             {
                 LabelErrorLogin.Text = Resources.ErrorLogin;
-                errorCount += 1;
             }
         }
     }
