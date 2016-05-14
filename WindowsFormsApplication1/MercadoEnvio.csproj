@@ -163,7 +163,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\MasterDBA.sql" />
+    <Content Include="Scripts\MASTERDBA - Carga Inicial.sql" />
+    <Content Include="Scripts\MASTERDBA - Creacion Tablas.sql" />
     <Content Include="Scripts\SP\SP_Login.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
