@@ -13,7 +13,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-CREATE PROCEDURE [dbo].[SP_Login] 
+CREATE PROCEDURE [MASTERDBA].[SP_Login] 
 	-- Add the parameters for the stored procedure here
 	@Usuario nvarchar(50), 
 	@Password nvarchar(255)
