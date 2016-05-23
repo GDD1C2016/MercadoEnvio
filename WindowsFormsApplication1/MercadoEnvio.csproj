@@ -83,6 +83,7 @@
     </Compile>
     <Compile Include="DataManagers\DataManagerUsuario.cs" />
     <Compile Include="Entidades\Login.cs" />
+    <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Facturas\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,7 +148,10 @@
   <ItemGroup>
     <Content Include="Scripts\MASTERDBA - Carga Inicial.sql" />
     <Content Include="Scripts\MASTERDBA - Creacion Tablas.sql" />
+    <Content Include="Scripts\SP\SP_BloqUser.sql" />
+    <Content Include="Scripts\SP\SP_IncrementCountLogin.sql" />
     <Content Include="Scripts\SP\SP_Login.sql" />
+    <Content Include="Scripts\SP\SP_ResetCountLogin.sql" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ABM Rol\" />

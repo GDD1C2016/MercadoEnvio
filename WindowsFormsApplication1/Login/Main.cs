@@ -29,7 +29,18 @@ namespace MercadoEnvio.Login
             }
             else
             {
-                LabelErrorLogin.Text = Resources.ErrorLogin;
+                LabelErrorLogin.Text = login.ErrorMessage;
+                
+                if (login.Usuario != null && login.Usuario.Estado.Equals("B"))
+                {
+                    LabelCantIntentos.Text = Resources.UsuarioBloqueado;
+
+                }
+                else
+                {
+                    if(login.Usuario != null)
+                    LabelCantIntentos.Text = Resources.IntentosRestantes + (3 - login.Usuario.CantIntentos);
+                }
             }
         }
     }

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using MercadoEnvio.Helpers;
 using System.Configuration;
+using MercadoEnvio.Entidades;
 
 namespace MercadoEnvio.DataManagers
 {
@@ -19,6 +20,7 @@ namespace MercadoEnvio.DataManagers
             SqlParameter passWordParameter;
             List<SqlParameter> parameters = new List<SqlParameter>();
             Entidades.Login login = new Entidades.Login();
+            Usuario usuarioEntidad = new Usuario();
 
             try
             {
@@ -34,16 +36,50 @@ namespace MercadoEnvio.DataManagers
                 db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
                 db.Connection.Open();
 
-                res = db.ExectInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_Login", parameters);
-                if ((int) res == 1)
+                DataTable resAux = db.GetDataAsTable("SP_Login", parameters);
+                foreach (DataRow row in resAux.Rows)
                 {
-                    login.LoginSuccess = true;
-                    db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_ResetCountLogin", new List<SqlParameter>());
+                    usuarioEntidad.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
+                    usuarioEntidad.CantIntentos = Convert.ToByte(row["CantIntentos"]);
+                    usuarioEntidad.Estado = Convert.ToString(row["Estado"]);
+                    usuarioEntidad.Password = Convert.ToString(row["PassEncr"]);
+                    usuarioEntidad.UserName = Convert.ToString(row["UserName"]);
+                }
+
+                if (usuarioEntidad.IdUsuario == 0)
+                {
+                    login.LoginSuccess = false;
+                    login.ErrorMessage = "El usuario no existe";
                 }
                 else
                 {
-                    login.LoginSuccess = false;
-                    db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_IncrementCountLogin", new List<SqlParameter>());
+                    if(usuarioEntidad.Estado != "H")
+                    {
+                        login.LoginSuccess = false;
+                        login.ErrorMessage = "Usuario bloqueado. Contacte al administrador";
+                    }
+                    else if (usuarioEntidad.Password.Equals(passWord))
+                    {
+                        ResetearContadorUsuario(user,db);
+
+                        usuarioEntidad.CantIntentos = 0;
+                        login.Usuario = usuarioEntidad;
+                        login.LoginSuccess = true;
+                    }
+                    else
+                    {
+                        res = IncrementarContadorUsuario(user, db);
+                        
+                        login.LoginSuccess = false;
+                        usuarioEntidad.CantIntentos = (byte)res;
+                        login.ErrorMessage = "Contraseña Incorrecta";
+
+                        if (usuarioEntidad.CantIntentos >= 3)
+                        {
+                            BloquearUsuario(user, db);
+                        }
+                        login.Usuario = usuarioEntidad;
+                    }
                 }
                 return login;
             }
@@ -55,6 +91,39 @@ namespace MercadoEnvio.DataManagers
             {
                 db.EndConnection();
             }
+        }
+
+        private static void BloquearUsuario(string user, DataBaseHelper db)
+        {
+            List<SqlParameter> paramUsuario = new List<SqlParameter>();
+            SqlParameter usuario;
+            usuario = new SqlParameter("@Usuario", SqlDbType.NVarChar);
+            usuario.Value = user;
+            paramUsuario.Add(usuario);
+
+            db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_BloqUser", paramUsuario);
+        }
+
+        private static object IncrementarContadorUsuario(string user, DataBaseHelper db)
+        {
+            List<SqlParameter> paramUsuario = new List<SqlParameter>();
+            SqlParameter usuario;
+            usuario = new SqlParameter("@Usuario", SqlDbType.NVarChar);
+            usuario.Value = user;
+            paramUsuario.Add(usuario);
+
+            return db.ExectInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_IncrementCountLogin", paramUsuario);
+        }
+
+        private static void ResetearContadorUsuario(string user, DataBaseHelper db)
+        {
+            List<SqlParameter> paramUsuario = new List<SqlParameter>();
+            SqlParameter usuario;
+            usuario = new SqlParameter("@Usuario", SqlDbType.NVarChar);
+            usuario.Value = user;
+            paramUsuario.Add(usuario);
+
+            db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_ResetCountLogin", paramUsuario);
         }
     }
 }

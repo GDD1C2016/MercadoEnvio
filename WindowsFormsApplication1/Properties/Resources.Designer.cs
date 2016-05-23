@@ -104,5 +104,23 @@ namespace MercadoEnvio.Properties {
                 return ResourceManager.GetString("ErrorTrans", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Intentos restantes: .
+        /// </summary>
+        internal static string IntentosRestantes {
+            get {
+                return ResourceManager.GetString("IntentosRestantes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Usuario bloqueado. Contacte al administrador.
+        /// </summary>
+        internal static string UsuarioBloqueado {
+            get {
+                return ResourceManager.GetString("UsuarioBloqueado", resourceCulture);
+            }
+        }
     }
 }
