@@ -29,14 +29,16 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.BtnSeleccionar = new System.Windows.Forms.Button();
+            this.TxtFiltroFuncionalidad = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtFiltroNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.TxtFiltroFuncionalidad = new System.Windows.Forms.TextBox();
-            this.BtnSeleccionar = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
+            this.BtnAgregar = new System.Windows.Forms.Button();
+            this.BtnBorrar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -55,6 +57,25 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de Búsqueda";
+            // 
+            // BtnSeleccionar
+            // 
+            this.BtnSeleccionar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.BtnSeleccionar.Location = new System.Drawing.Point(431, 24);
+            this.BtnSeleccionar.Name = "BtnSeleccionar";
+            this.BtnSeleccionar.Size = new System.Drawing.Size(191, 23);
+            this.BtnSeleccionar.TabIndex = 4;
+            this.BtnSeleccionar.Text = "Seleccionar";
+            this.BtnSeleccionar.UseVisualStyleBackColor = true;
+            // 
+            // TxtFiltroFuncionalidad
+            // 
+            this.TxtFiltroFuncionalidad.Location = new System.Drawing.Point(283, 26);
+            this.TxtFiltroFuncionalidad.Name = "TxtFiltroFuncionalidad";
+            this.TxtFiltroFuncionalidad.ReadOnly = true;
+            this.TxtFiltroFuncionalidad.Size = new System.Drawing.Size(142, 20);
+            this.TxtFiltroFuncionalidad.TabIndex = 3;
             // 
             // label2
             // 
@@ -81,31 +102,12 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
-            // TxtFiltroFuncionalidad
-            // 
-            this.TxtFiltroFuncionalidad.Location = new System.Drawing.Point(283, 26);
-            this.TxtFiltroFuncionalidad.Name = "TxtFiltroFuncionalidad";
-            this.TxtFiltroFuncionalidad.ReadOnly = true;
-            this.TxtFiltroFuncionalidad.Size = new System.Drawing.Size(142, 20);
-            this.TxtFiltroFuncionalidad.TabIndex = 3;
-            // 
-            // BtnSeleccionar
-            // 
-            this.BtnSeleccionar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSeleccionar.Location = new System.Drawing.Point(431, 24);
-            this.BtnSeleccionar.Name = "BtnSeleccionar";
-            this.BtnSeleccionar.Size = new System.Drawing.Size(191, 23);
-            this.BtnSeleccionar.TabIndex = 4;
-            this.BtnSeleccionar.Text = "Seleccionar";
-            this.BtnSeleccionar.UseVisualStyleBackColor = true;
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 100);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(610, 349);
+            this.dataGridView1.Size = new System.Drawing.Size(610, 311);
             this.dataGridView1.TabIndex = 1;
             // 
             // BtnLimpiar
@@ -126,11 +128,31 @@
             this.BtnBuscar.Text = "Buscar";
             this.BtnBuscar.UseVisualStyleBackColor = true;
             // 
+            // BtnAgregar
+            // 
+            this.BtnAgregar.Location = new System.Drawing.Point(13, 426);
+            this.BtnAgregar.Name = "BtnAgregar";
+            this.BtnAgregar.Size = new System.Drawing.Size(185, 23);
+            this.BtnAgregar.TabIndex = 4;
+            this.BtnAgregar.Text = "Agregar";
+            this.BtnAgregar.UseVisualStyleBackColor = true;
+            // 
+            // BtnBorrar
+            // 
+            this.BtnBorrar.Location = new System.Drawing.Point(431, 426);
+            this.BtnBorrar.Name = "BtnBorrar";
+            this.BtnBorrar.Size = new System.Drawing.Size(191, 23);
+            this.BtnBorrar.TabIndex = 5;
+            this.BtnBorrar.Text = "Borrar";
+            this.BtnBorrar.UseVisualStyleBackColor = true;
+            // 
             // MainRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 461);
+            this.Controls.Add(this.BtnBorrar);
+            this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.dataGridView1);
@@ -157,5 +179,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.Button BtnBuscar;
+        private System.Windows.Forms.Button BtnAgregar;
+        private System.Windows.Forms.Button BtnBorrar;
     }
 }
