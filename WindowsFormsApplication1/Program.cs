@@ -17,8 +17,7 @@ namespace MercadoEnvio
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Main());
-            Application.Run(new MainRol());
+            Application.Run(new Main());
         }
     }
 }
