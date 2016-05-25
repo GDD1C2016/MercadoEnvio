@@ -132,4 +132,10 @@
   <data name="ErrorTrans" xml:space="preserve">
     <value>Error en la transacción</value>
   </data>
+  <data name="IntentosRestantes" xml:space="preserve">
+    <value>Intentos restantes: </value>
+  </data>
+  <data name="UsuarioBloqueado" xml:space="preserve">
+    <value>Usuario bloqueado. Contacte al administrador</value>
+  </data>
 </root>

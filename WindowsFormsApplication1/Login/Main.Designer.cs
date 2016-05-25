@@ -35,11 +35,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnEntrar = new System.Windows.Forms.Button();
+            this.LabelCantIntentos = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.LabelCantIntentos);
             this.groupBox1.Controls.Add(this.LabelErrorLogin);
             this.groupBox1.Controls.Add(this.TxtPassword);
             this.groupBox1.Controls.Add(this.TxtUsername);
@@ -57,7 +59,7 @@
             // 
             this.LabelErrorLogin.AutoSize = true;
             this.LabelErrorLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LabelErrorLogin.Location = new System.Drawing.Point(66, 123);
+            this.LabelErrorLogin.Location = new System.Drawing.Point(66, 125);
             this.LabelErrorLogin.Name = "LabelErrorLogin";
             this.LabelErrorLogin.Size = new System.Drawing.Size(0, 13);
             this.LabelErrorLogin.TabIndex = 4;
@@ -113,6 +115,15 @@
             this.BtnEntrar.UseVisualStyleBackColor = true;
             this.BtnEntrar.Click += new System.EventHandler(this.BtnEntrar_Click);
             // 
+            // LabelCantIntentos
+            // 
+            this.LabelCantIntentos.AutoSize = true;
+            this.LabelCantIntentos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.LabelCantIntentos.Location = new System.Drawing.Point(66, 148);
+            this.LabelCantIntentos.Name = "LabelCantIntentos";
+            this.LabelCantIntentos.Size = new System.Drawing.Size(0, 13);
+            this.LabelCantIntentos.TabIndex = 5;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -139,6 +150,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnEntrar;
         private System.Windows.Forms.Label LabelErrorLogin;
+        private System.Windows.Forms.Label LabelCantIntentos;
     }
 }
 
