@@ -17,5 +17,13 @@ namespace MercadoEnvio.ABM_Rol
             InitializeComponent();
         }
 
+        private void MainRol_Load(object sender, EventArgs e)
+        {
+            DgRoles.DataSource = DataManagers.DataManagerRoles.GetAllData();
+        }
+
+        private void BtnBorrar_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

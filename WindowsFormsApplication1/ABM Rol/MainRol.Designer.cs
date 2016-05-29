@@ -34,13 +34,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.TxtFiltroNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DgRoles = new System.Windows.Forms.DataGridView();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnBorrar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgRoles)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -102,13 +102,18 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Nombre";
             // 
-            // dataGridView1
+            // DgRoles
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 100);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(610, 311);
-            this.dataGridView1.TabIndex = 1;
+            this.DgRoles.AllowUserToAddRows = false;
+            this.DgRoles.AllowUserToDeleteRows = false;
+            this.DgRoles.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.DgRoles.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgRoles.Location = new System.Drawing.Point(12, 100);
+            this.DgRoles.Name = "DgRoles";
+            this.DgRoles.ReadOnly = true;
+            this.DgRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgRoles.Size = new System.Drawing.Size(610, 311);
+            this.DgRoles.TabIndex = 1;
             // 
             // BtnLimpiar
             // 
@@ -145,25 +150,27 @@
             this.BtnBorrar.TabIndex = 5;
             this.BtnBorrar.Text = "Borrar";
             this.BtnBorrar.UseVisualStyleBackColor = true;
+            this.BtnBorrar.Click += new System.EventHandler(this.BtnBorrar_Click);
             // 
             // MainRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 461);
+            this.Controls.Add(this.DgRoles);
             this.Controls.Add(this.BtnBorrar);
             this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.BtnLimpiar);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox1);
             this.MaximumSize = new System.Drawing.Size(650, 500);
             this.MinimumSize = new System.Drawing.Size(650, 500);
             this.Name = "MainRol";
             this.Text = "MainRol";
+            this.Load += new System.EventHandler(this.MainRol_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgRoles)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -176,10 +183,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button BtnSeleccionar;
         private System.Windows.Forms.TextBox TxtFiltroFuncionalidad;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DgRoles;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.Button BtnBorrar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idRolDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
     }
 }

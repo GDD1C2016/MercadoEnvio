@@ -113,7 +113,7 @@ namespace MercadoEnvio.Helpers
 
             try
             {
-                if (Connection != null)
+                if (Connection != null && Connection.State != ConnectionState.Open)
                 {
                     Connection.Open();
                 }

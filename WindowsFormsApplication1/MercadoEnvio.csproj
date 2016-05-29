@@ -93,6 +93,7 @@
     <Compile Include="ComprarOfertar\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataManagers\DataManagerRoles.cs" />
     <Compile Include="DataManagers\DataManagerUsuario.cs" />
     <Compile Include="Entidades\Login.cs" />
     <Compile Include="Entidades\Usuario.cs" />
@@ -130,6 +131,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\RolerServices.cs" />
     <Compile Include="Servicios\UsuarioService.cs" />
     <EmbeddedResource Include="ABM Rol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>
@@ -167,6 +169,7 @@
     <Content Include="Scripts\MASTERDBA - Carga Inicial.sql" />
     <Content Include="Scripts\MASTERDBA - Creacion Tablas.sql" />
     <Content Include="Scripts\SP\SP_BloqUser.sql" />
+    <Content Include="Scripts\SP\SP_GetRoles.sql" />
     <Content Include="Scripts\SP\SP_IncrementCountLogin.sql" />
     <Content Include="Scripts\SP\SP_Login.sql" />
     <Content Include="Scripts\SP\SP_ResetCountLogin.sql" />
