@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ComboFuncionalidad = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtFiltroNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -37,7 +38,6 @@
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnBorrar = new System.Windows.Forms.Button();
-            this.ComboFuncionalidad = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgRoles)).BeginInit();
             this.SuspendLayout();
@@ -55,6 +55,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de Búsqueda";
+            // 
+            // ComboFuncionalidad
+            // 
+            this.ComboFuncionalidad.FormattingEnabled = true;
+            this.ComboFuncionalidad.Location = new System.Drawing.Point(390, 26);
+            this.ComboFuncionalidad.Name = "ComboFuncionalidad";
+            this.ComboFuncionalidad.Size = new System.Drawing.Size(232, 21);
+            this.ComboFuncionalidad.TabIndex = 3;
             // 
             // label2
             // 
@@ -111,6 +119,7 @@
             this.BtnBuscar.TabIndex = 3;
             this.BtnBuscar.Text = "Buscar";
             this.BtnBuscar.UseVisualStyleBackColor = true;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // BtnAgregar
             // 
@@ -130,14 +139,6 @@
             this.BtnBorrar.Text = "Borrar";
             this.BtnBorrar.UseVisualStyleBackColor = true;
             this.BtnBorrar.Click += new System.EventHandler(this.BtnBorrar_Click);
-            // 
-            // ComboFuncionalidad
-            // 
-            this.ComboFuncionalidad.FormattingEnabled = true;
-            this.ComboFuncionalidad.Location = new System.Drawing.Point(390, 26);
-            this.ComboFuncionalidad.Name = "ComboFuncionalidad";
-            this.ComboFuncionalidad.Size = new System.Drawing.Size(232, 21);
-            this.ComboFuncionalidad.TabIndex = 3;
             // 
             // MainRol
             // 

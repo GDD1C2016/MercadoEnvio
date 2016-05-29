@@ -29,5 +29,14 @@ namespace MercadoEnvio.ABM_Rol
         private void BtnBorrar_Click(object sender, EventArgs e)
         {
         }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            string filtroNombre = string.Empty;
+            string filtroFuncionalidad = string.Empty;
+
+            filtroNombre = TxtFiltroNombre.Text;
+            filtroFuncionalidad = ComboFuncionalidad.SelectedItem.ToString();
+        }
     }
 }
