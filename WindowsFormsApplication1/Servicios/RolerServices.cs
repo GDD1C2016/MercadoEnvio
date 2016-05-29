@@ -4,6 +4,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MercadoEnvio.Entidades;
 
 namespace MercadoEnvio.Servicios
 {
@@ -12,6 +13,11 @@ namespace MercadoEnvio.Servicios
         public static DataTable GetAllData()
         {
             return DataManagers.DataManagerRoles.GetAllData();
+        }
+
+        public static List<Funcionalidad> GetAllFuncionalidades()
+        {
+            return DataManagers.DataManagerRoles.GetAllFuncionalidades();
         }
     }
 }

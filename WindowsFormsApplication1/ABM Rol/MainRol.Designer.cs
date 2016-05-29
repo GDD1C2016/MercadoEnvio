@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.BtnSeleccionar = new System.Windows.Forms.Button();
-            this.TxtFiltroFuncionalidad = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtFiltroNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,14 +37,14 @@
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnBorrar = new System.Windows.Forms.Button();
+            this.ComboFuncionalidad = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgRoles)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.BtnSeleccionar);
-            this.groupBox1.Controls.Add(this.TxtFiltroFuncionalidad);
+            this.groupBox1.Controls.Add(this.ComboFuncionalidad);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.TxtFiltroNombre);
             this.groupBox1.Controls.Add(this.label1);
@@ -58,29 +56,10 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de Búsqueda";
             // 
-            // BtnSeleccionar
-            // 
-            this.BtnSeleccionar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnSeleccionar.Location = new System.Drawing.Point(431, 24);
-            this.BtnSeleccionar.Name = "BtnSeleccionar";
-            this.BtnSeleccionar.Size = new System.Drawing.Size(191, 23);
-            this.BtnSeleccionar.TabIndex = 4;
-            this.BtnSeleccionar.Text = "Seleccionar";
-            this.BtnSeleccionar.UseVisualStyleBackColor = true;
-            // 
-            // TxtFiltroFuncionalidad
-            // 
-            this.TxtFiltroFuncionalidad.Location = new System.Drawing.Point(283, 26);
-            this.TxtFiltroFuncionalidad.Name = "TxtFiltroFuncionalidad";
-            this.TxtFiltroFuncionalidad.ReadOnly = true;
-            this.TxtFiltroFuncionalidad.Size = new System.Drawing.Size(142, 20);
-            this.TxtFiltroFuncionalidad.TabIndex = 3;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(204, 29);
+            this.label2.Location = new System.Drawing.Point(311, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 2;
@@ -90,7 +69,7 @@
             // 
             this.TxtFiltroNombre.Location = new System.Drawing.Point(57, 26);
             this.TxtFiltroNombre.Name = "TxtFiltroNombre";
-            this.TxtFiltroNombre.Size = new System.Drawing.Size(141, 20);
+            this.TxtFiltroNombre.Size = new System.Drawing.Size(248, 20);
             this.TxtFiltroNombre.TabIndex = 1;
             // 
             // label1
@@ -152,6 +131,14 @@
             this.BtnBorrar.UseVisualStyleBackColor = true;
             this.BtnBorrar.Click += new System.EventHandler(this.BtnBorrar_Click);
             // 
+            // ComboFuncionalidad
+            // 
+            this.ComboFuncionalidad.FormattingEnabled = true;
+            this.ComboFuncionalidad.Location = new System.Drawing.Point(390, 26);
+            this.ComboFuncionalidad.Name = "ComboFuncionalidad";
+            this.ComboFuncionalidad.Size = new System.Drawing.Size(232, 21);
+            this.ComboFuncionalidad.TabIndex = 3;
+            // 
             // MainRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -181,8 +168,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox TxtFiltroNombre;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button BtnSeleccionar;
-        private System.Windows.Forms.TextBox TxtFiltroFuncionalidad;
         private System.Windows.Forms.DataGridView DgRoles;
         private System.Windows.Forms.Button BtnLimpiar;
         private System.Windows.Forms.Button BtnBuscar;
@@ -191,5 +176,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn idRolDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ComboBox ComboFuncionalidad;
     }
 }

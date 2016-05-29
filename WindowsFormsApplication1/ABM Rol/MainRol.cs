@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MercadoEnvio.Servicios;
 
 namespace MercadoEnvio.ABM_Rol
 {
@@ -19,7 +20,10 @@ namespace MercadoEnvio.ABM_Rol
 
         private void MainRol_Load(object sender, EventArgs e)
         {
-            DgRoles.DataSource = DataManagers.DataManagerRoles.GetAllData();
+            DgRoles.DataSource = RolerServices.GetAllData();
+            
+            ComboFuncionalidad.DataSource = DataManagers.DataManagerRoles.GetAllFuncionalidades();
+            ComboFuncionalidad.DisplayMember = "Descripcion";
         }
 
         private void BtnBorrar_Click(object sender, EventArgs e)
