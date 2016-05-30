@@ -10,7 +10,7 @@ namespace MercadoEnvio.Servicios
 {
     public class RolerServices
     {
-        public static DataTable GetAllData()
+        public static List<Rol> GetAllData()
         {
             return DataManagers.DataManagerRoles.GetAllData();
         }

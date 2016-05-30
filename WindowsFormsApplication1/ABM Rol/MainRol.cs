@@ -21,8 +21,28 @@ namespace MercadoEnvio.ABM_Rol
 
         private void MainRol_Load(object sender, EventArgs e)
         {
-            DgRoles.DataSource = RolerServices.GetAllData();
+            #region armadoDeGrillaFuncionalidad
 
+            BindingList<Rol> dataSource = new BindingList<Rol>(RolerServices.GetAllData());
+            BindingSource bs = new BindingSource();
+            bs.DataSource = dataSource;
+
+            DgRoles.AutoGenerateColumns = false;
+            DgRoles.ColumnCount = 1;
+
+            DgRoles.Columns[0].HeaderText = "Rol";
+            DgRoles.Columns[0].Name = "Descripcion";
+            DgRoles.Columns[0].DataPropertyName = "Descripcion";
+
+            DgRoles.Columns[1].HeaderText = "Estado";
+            DgRoles.Columns[1].Name = "Estado";
+            DgRoles.Columns[1].DataPropertyName = "Estado";
+
+            DgRoles.DataSource = bs;
+            #endregion
+            
+            //DgRoles.DataSource = RolerServices.GetAllData();
+            #region armadoCombo
             Funcionalidad funcionalidadTodos = new Funcionalidad { Descripcion = "--Todas--", IdFuncionalidad = 0 };
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolerServices.GetAllFuncionalidades());
             funcionalidades.Add(funcionalidadTodos);
@@ -31,6 +51,7 @@ namespace MercadoEnvio.ABM_Rol
             ComboFuncionalidad.DataSource = funcionalidades;
             ComboFuncionalidad.DisplayMember = "Descripcion";
             ComboFuncionalidad.DropDownStyle = ComboBoxStyle.DropDownList;
+            #endregion
         }
 
         private void BtnBorrar_Click(object sender, EventArgs e)
@@ -53,7 +74,10 @@ namespace MercadoEnvio.ABM_Rol
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
-            DgRoles.DataSource = new List<Rol>();
+            BindingSource bs = new BindingSource();
+            bs = DgRoles.DataSource as BindingSource;
+            bs.Clear();
+            //DgRoles.DataSource = new List<Rol>();
         }
     }
 }

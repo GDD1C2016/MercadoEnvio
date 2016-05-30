@@ -13,7 +13,7 @@ namespace MercadoEnvio.DataManagers
 {
     public class DataManagerRoles
     {
-        public static DataTable GetAllData()
+        public static List<Rol> GetAllData()
         {
             DataBaseHelper db = null;
             db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
@@ -21,7 +21,19 @@ namespace MercadoEnvio.DataManagers
             using (db.Connection)
             {
                 DataTable res = db.GetDataAsTable("SP_GetRoles");
-                return res;
+                List<Rol> listRoles = new List<Rol>();
+                foreach (DataRow row in res.Rows)
+                {
+                    var rol = new Rol
+                    {
+                        Descripcion = Convert.ToString(row["Descripcion"]),
+                        Estado = Convert.ToString(row["Estado"]),
+                        IdRol = Convert.ToInt32(row["IdRol"]),
+                    };
+                    listRoles.Add(rol);
+                }
+                //return res;
+                return listRoles;
             }
         }
 
