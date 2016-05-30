@@ -28,7 +28,7 @@ namespace MercadoEnvio.ABM_Rol
             bs.DataSource = dataSource;
 
             DgRoles.AutoGenerateColumns = false;
-            DgRoles.ColumnCount = 1;
+            DgRoles.ColumnCount = 2;
 
             DgRoles.Columns[0].HeaderText = "Rol";
             DgRoles.Columns[0].Name = "Descripcion";
@@ -69,15 +69,20 @@ namespace MercadoEnvio.ABM_Rol
             filtroFuncionalidad = ((Funcionalidad) ComboFuncionalidad.SelectedItem).IdFuncionalidad;
             filtroEstado = TxtFiltroEstado.Text;
 
-            DgRoles.DataSource = RolerServices.FindRoles(filtroNombre, filtroFuncionalidad, filtroEstado);
+            BindingList<Rol> dataSource = new BindingList<Rol>(RolerServices.FindRoles(filtroNombre, filtroFuncionalidad, filtroEstado));
+            BindingSource bs = new BindingSource();
+            bs.DataSource = dataSource;
+
+            DgRoles.DataSource = bs;
         }
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
+            BindingList<Rol> dataSource = new BindingList<Rol>();
             BindingSource bs = new BindingSource();
-            bs = DgRoles.DataSource as BindingSource;
-            bs.Clear();
-            //DgRoles.DataSource = new List<Rol>();
+            bs.DataSource = dataSource;
+
+            DgRoles.DataSource = bs;
         }
     }
 }

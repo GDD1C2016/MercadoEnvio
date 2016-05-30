@@ -60,7 +60,7 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
-        public static DataTable FindRoles(string filtroNombre, int filtroFuncionalidad, string filtroEstado)
+        public static List<Rol> FindRoles(string filtroNombre, int filtroFuncionalidad, string filtroEstado)
         {
             DataBaseHelper db = null;
             db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
@@ -86,7 +86,20 @@ namespace MercadoEnvio.DataManagers
             using (db.Connection)
             {
                 DataTable res = db.GetDataAsTable("SP_FindRoles", parameters);
-                return res;
+                List<Rol> roles = new List<Rol>();
+                foreach (DataRow row in res.Rows)
+                {
+                    var rol = new Rol
+                    {
+                        IdRol = Convert.ToInt32(row["IdRol"]),
+                        Descripcion = Convert.ToString(row["Descripcion"]),
+                        Estado = Convert.ToString(row["Estado"]),
+                    };
+
+                    roles.Add(rol);
+                }
+
+                return roles;
             }
         }
     }
