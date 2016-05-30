@@ -19,5 +19,10 @@ namespace MercadoEnvio.Servicios
         {
             return DataManagers.DataManagerRoles.GetAllFuncionalidades();
         }
+
+        public static DataTable FindRoles(string filtroNombre, int filtroFuncionalidad, string filtroEstado)
+        {
+            return DataManagers.DataManagerRoles.FindRoles(filtroNombre, filtroFuncionalidad, filtroEstado);
+        }
     }
 }

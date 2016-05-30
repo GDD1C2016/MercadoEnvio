@@ -61,6 +61,24 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advertencia.
+        /// </summary>
+        internal static string Advertencia {
+            get {
+                return ResourceManager.GetString("Advertencia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La FUNCIONALIDAD que se quiere agregar, ya existe.
+        /// </summary>
+        internal static string ErrorAgregarFuncionalidad {
+            get {
+                return ResourceManager.GetString("ErrorAgregarFuncionalidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No se pudo conectar a la BD.
         /// </summary>
         internal static string ErrorBD {
@@ -70,11 +88,47 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El campo DESCRIPCIÓN no puede estar vacío.
+        /// </summary>
+        internal static string ErrorDescripcionVacia {
+            get {
+                return ResourceManager.GetString("ErrorDescripcionVacia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El campo ESTADO no puede estar vacío.
+        /// </summary>
+        internal static string ErrorEstadoVacio {
+            get {
+                return ResourceManager.GetString("ErrorEstadoVacio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error al Guardar.
+        /// </summary>
+        internal static string ErrorGuardado {
+            get {
+                return ResourceManager.GetString("ErrorGuardado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usuario o contraseña invalidos.
         /// </summary>
         internal static string ErrorLogin {
             get {
                 return ResourceManager.GetString("ErrorLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El ROL debe tener almenos una FUNCIONALIDAD.
+        /// </summary>
+        internal static string ErrorRolSinFuncionalidad {
+            get {
+                return ResourceManager.GetString("ErrorRolSinFuncionalidad", resourceCulture);
             }
         }
         

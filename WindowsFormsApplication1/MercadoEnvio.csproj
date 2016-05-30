@@ -97,6 +97,7 @@
     <Compile Include="DataManagers\DataManagerUsuario.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Login.cs" />
+    <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Facturas\Form1.cs">
       <SubType>Form</SubType>
@@ -170,6 +171,7 @@
     <Content Include="Scripts\MASTERDBA - Carga Inicial.sql" />
     <Content Include="Scripts\MASTERDBA - Creacion Tablas.sql" />
     <Content Include="Scripts\SP\SP_BloqUser.sql" />
+    <Content Include="Scripts\SP\SP_FindRoles.sql" />
     <Content Include="Scripts\SP\SP_GetFuncionalidades.sql" />
     <Content Include="Scripts\SP\SP_GetRoles.sql" />
     <Content Include="Scripts\SP\SP_IncrementCountLogin.sql" />

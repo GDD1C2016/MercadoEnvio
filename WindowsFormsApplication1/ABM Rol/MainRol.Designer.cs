@@ -38,12 +38,16 @@
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnBorrar = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.TxtFiltroEstado = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgRoles)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.TxtFiltroEstado);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.ComboFuncionalidad);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.TxtFiltroNombre);
@@ -59,15 +63,15 @@
             // ComboFuncionalidad
             // 
             this.ComboFuncionalidad.FormattingEnabled = true;
-            this.ComboFuncionalidad.Location = new System.Drawing.Point(390, 26);
+            this.ComboFuncionalidad.Location = new System.Drawing.Point(431, 26);
             this.ComboFuncionalidad.Name = "ComboFuncionalidad";
-            this.ComboFuncionalidad.Size = new System.Drawing.Size(232, 21);
+            this.ComboFuncionalidad.Size = new System.Drawing.Size(191, 21);
             this.ComboFuncionalidad.TabIndex = 3;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(311, 29);
+            this.label2.Location = new System.Drawing.Point(352, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 2;
@@ -77,7 +81,7 @@
             // 
             this.TxtFiltroNombre.Location = new System.Drawing.Point(57, 26);
             this.TxtFiltroNombre.Name = "TxtFiltroNombre";
-            this.TxtFiltroNombre.Size = new System.Drawing.Size(248, 20);
+            this.TxtFiltroNombre.Size = new System.Drawing.Size(187, 20);
             this.TxtFiltroNombre.TabIndex = 1;
             // 
             // label1
@@ -110,6 +114,7 @@
             this.BtnLimpiar.TabIndex = 2;
             this.BtnLimpiar.Text = "Limpiar";
             this.BtnLimpiar.UseVisualStyleBackColor = true;
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // BtnBuscar
             // 
@@ -139,6 +144,22 @@
             this.BtnBorrar.Text = "Borrar";
             this.BtnBorrar.UseVisualStyleBackColor = true;
             this.BtnBorrar.Click += new System.EventHandler(this.BtnBorrar_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(250, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Estado";
+            // 
+            // TxtFiltroEstado
+            // 
+            this.TxtFiltroEstado.Location = new System.Drawing.Point(296, 26);
+            this.TxtFiltroEstado.Name = "TxtFiltroEstado";
+            this.TxtFiltroEstado.Size = new System.Drawing.Size(50, 20);
+            this.TxtFiltroEstado.TabIndex = 5;
             // 
             // MainRol
             // 
@@ -178,5 +199,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
         private System.Windows.Forms.ComboBox ComboFuncionalidad;
+        private System.Windows.Forms.TextBox TxtFiltroEstado;
+        private System.Windows.Forms.Label label3;
     }
 }

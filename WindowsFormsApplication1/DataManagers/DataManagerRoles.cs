@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -44,6 +45,36 @@ namespace MercadoEnvio.DataManagers
                 }
 
                 return listFuncionalidades;
+            }
+        }
+
+        public static DataTable FindRoles(string filtroNombre, int filtroFuncionalidad, string filtroEstado)
+        {
+            DataBaseHelper db = null;
+            db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            SqlParameter nombreParameter;
+            SqlParameter funcionalidadParameter;
+            SqlParameter estadoParameter;
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            nombreParameter = new SqlParameter("@FiltroNombre", SqlDbType.NVarChar);
+            nombreParameter.Value = filtroNombre.Trim();
+
+            funcionalidadParameter = new SqlParameter("@FiltroFuncionalidad", SqlDbType.Int);
+            funcionalidadParameter.Value = filtroFuncionalidad;
+
+            estadoParameter = new SqlParameter("@FiltroEstado", SqlDbType.NVarChar);
+            estadoParameter.Value = filtroEstado;
+
+            parameters.Add(nombreParameter);
+            parameters.Add(funcionalidadParameter);
+            parameters.Add(estadoParameter);
+
+            using (db.Connection)
+            {
+                DataTable res = db.GetDataAsTable("SP_FindRoles", parameters);
+                return res;
             }
         }
     }
