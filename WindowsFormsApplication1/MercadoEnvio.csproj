@@ -168,8 +168,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Scripts\MASTERDBA - Carga Inicial.sql" />
-    <Content Include="Scripts\MASTERDBA - Creacion Tablas.sql" />
+    <Content Include="Scripts\MASTERDBA - Carga Inicial v2.sql" />
+    <Content Include="Scripts\MASTERDBA - Creacion Tablas v2.sql" />
     <Content Include="Scripts\SP\SP_BloqUser.sql" />
     <Content Include="Scripts\SP\SP_FindRoles.sql" />
     <Content Include="Scripts\SP\SP_GetFuncionalidades.sql" />
