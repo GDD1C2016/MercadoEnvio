@@ -175,6 +175,7 @@
     <Content Include="Scripts\SP\SP_FindRoles.sql" />
     <Content Include="Scripts\SP\SP_GetFuncionalidades.sql" />
     <Content Include="Scripts\SP\SP_GetRoles.sql" />
+    <Content Include="Scripts\SP\SP_GetRolesFuncionalidades.sql" />
     <Content Include="Scripts\SP\SP_IncrementCountLogin.sql" />
     <Content Include="Scripts\SP\SP_Login.sql" />
     <Content Include="Scripts\SP\SP_ResetCountLogin.sql" />

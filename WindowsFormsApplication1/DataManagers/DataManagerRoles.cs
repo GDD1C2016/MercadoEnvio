@@ -30,11 +30,36 @@ namespace MercadoEnvio.DataManagers
                         Descripcion = Convert.ToString(row["Descripcion"]),
                         Activo = Convert.ToBoolean(row["Activo"]),
                     };
+
+                    rol.Funcionalidades = GetFuncionalidadesRol(rol.IdRol, db);
+
                     listRoles.Add(rol);
                 }
 
                 return listRoles;
             }
+        }
+
+        private static List<Funcionalidad> GetFuncionalidadesRol(int idRol, DataBaseHelper db)
+        {
+            List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
+            List<Funcionalidad> funcionalidadesAux = new List<Funcionalidad>(GetAllFuncionalidades());
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            SqlParameter idRolParameter;
+
+            idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
+            idRolParameter.Value = idRol;
+
+            parameters.Add(idRolParameter);
+
+            DataTable res = db.GetDataAsTable("SP_GetRolesFuncionalidades", parameters);
+            foreach (DataRow row in res.Rows)
+            {
+                var idFuncionalidad = Convert.ToInt32(row["IdFuncionalidad"]);
+                funcionalidades.Add(funcionalidadesAux.Find(x=>x.IdFuncionalidad == idFuncionalidad));
+            }
+
+            return funcionalidades;
         }
 
         public static List<Funcionalidad> GetAllFuncionalidades()

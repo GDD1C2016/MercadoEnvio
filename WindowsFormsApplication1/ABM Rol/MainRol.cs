@@ -96,9 +96,25 @@ namespace MercadoEnvio.ABM_Rol
             DgRoles.DataSource = bs;
         }
 
-        private void TxtFiltroNombre_TextChanged(object sender, EventArgs e)
+        private void BtnEditar_Click(object sender, EventArgs e)
         {
+            Rol rolSeleccionado = new Rol();
 
+            if (DgRoles.SelectedRows.Count > 0)
+            {
+                BindingSource bs = new BindingSource();
+                bs = DgRoles.DataSource as BindingSource;
+                rolSeleccionado = (Rol)bs.List[bs.Position];
+            }
+
+            var altaRol = new AltaRol(rolSeleccionado);
+            altaRol.ShowDialog();
+        }
+
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            var altaRol = new AltaRol(new Rol());
+            altaRol.ShowDialog();
         }
     }
 }

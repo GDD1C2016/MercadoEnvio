@@ -101,7 +101,6 @@
             this.TxtFiltroNombre.Name = "TxtFiltroNombre";
             this.TxtFiltroNombre.Size = new System.Drawing.Size(145, 20);
             this.TxtFiltroNombre.TabIndex = 1;
-            this.TxtFiltroNombre.TextChanged += new System.EventHandler(this.TxtFiltroNombre_TextChanged);
             // 
             // label1
             // 
@@ -153,6 +152,7 @@
             this.BtnAgregar.TabIndex = 4;
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = true;
+            this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
             // BtnBorrar
             // 
@@ -172,6 +172,7 @@
             this.BtnEditar.TabIndex = 6;
             this.BtnEditar.Text = "Editar";
             this.BtnEditar.UseVisualStyleBackColor = true;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // MainRol
             // 

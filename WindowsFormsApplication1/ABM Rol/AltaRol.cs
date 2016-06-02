@@ -11,33 +11,14 @@ namespace MercadoEnvio.ABM_Rol
 {
     public partial class AltaRol : Form
     {
-        public AltaRol()
+        public AltaRol(Rol rol)
         {
             InitializeComponent();
-        }
-
-        private void AltaRol_Load(object sender, EventArgs e)
-        {
-            List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolesServices.GetAllFuncionalidades());
-            ComboFuncionalidad.DataSource = funcionalidades;
-            ComboFuncionalidad.DisplayMember = "Descripcion";
-            ComboFuncionalidad.DropDownStyle = ComboBoxStyle.DropDownList;
-
-
-            #region armadoComboEstado
-            Estado estadoHabilitado = new Estado { Valor = true };
-            Estado estadoDeshabilitado = new Estado { Valor = false };
-            List<Estado> estados = new List<Estado>();
-            estados.Add(estadoHabilitado);
-            estados.Add(estadoDeshabilitado);
-
-            ComboEstado.DataSource = estados;
-            ComboEstado.DisplayMember = "Descripcion";
-            ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-            #endregion
+            
+            TxtNombre.Text = rol.Descripcion;
 
             #region armadoDeGrillaFuncionalidad
-            BindingList<Funcionalidad> dataSource = new BindingList<Funcionalidad>();
+            BindingList<Funcionalidad> dataSource = new BindingList<Funcionalidad>(rol.Funcionalidades);
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
 
@@ -50,6 +31,27 @@ namespace MercadoEnvio.ABM_Rol
 
             DgFuncionalidades.DataSource = bs;
             #endregion
+
+            #region armadoComboEstado
+            Estado estadoHabilitado = new Estado { Valor = true };
+            Estado estadoDeshabilitado = new Estado { Valor = false };
+            List<Estado> estados = new List<Estado>();
+            estados.Add(estadoHabilitado);
+            estados.Add(estadoDeshabilitado);
+
+            ComboEstado.DataSource = estados;
+            ComboEstado.DisplayMember = "Descripcion";
+            ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboEstado.SelectedItem = rol.Activo;
+            #endregion
+        }
+
+        private void AltaRol_Load(object sender, EventArgs e)
+        {
+            List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolesServices.GetAllFuncionalidades());
+            ComboFuncionalidad.DataSource = funcionalidades;
+            ComboFuncionalidad.DisplayMember = "Descripcion";
+            ComboFuncionalidad.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
