@@ -31,7 +31,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaRol));
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.TxtEstado = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -43,6 +42,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.ComboFuncionalidad = new System.Windows.Forms.ComboBox();
             this.BtnQuitar = new System.Windows.Forms.Button();
+            this.ComboEstado = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgFuncionalidades)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -60,7 +60,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.TxtEstado);
+            this.groupBox1.Controls.Add(this.ComboEstado);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.TxtNombre);
             this.groupBox1.Controls.Add(this.label1);
@@ -72,17 +72,10 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Campos";
             // 
-            // TxtEstado
-            // 
-            this.TxtEstado.Location = new System.Drawing.Point(455, 23);
-            this.TxtEstado.Name = "TxtEstado";
-            this.TxtEstado.Size = new System.Drawing.Size(187, 20);
-            this.TxtEstado.TabIndex = 4;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(409, 26);
+            this.label2.Location = new System.Drawing.Point(452, 26);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 13);
             this.label2.TabIndex = 3;
@@ -186,6 +179,14 @@
             this.BtnQuitar.UseVisualStyleBackColor = true;
             this.BtnQuitar.Click += new System.EventHandler(this.BtnQuitar_Click);
             // 
+            // ComboEstado
+            // 
+            this.ComboEstado.FormattingEnabled = true;
+            this.ComboEstado.Location = new System.Drawing.Point(498, 23);
+            this.ComboEstado.Name = "ComboEstado";
+            this.ComboEstado.Size = new System.Drawing.Size(76, 21);
+            this.ComboEstado.TabIndex = 11;
+            // 
             // AltaRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -223,11 +224,11 @@
         private System.Windows.Forms.Button BtnSeleccionar;
         private System.Windows.Forms.Button BtnGuardar;
         private System.Windows.Forms.Button BtnCancelar;
-        private System.Windows.Forms.TextBox TxtEstado;
         private System.Windows.Forms.DataGridView DgFuncionalidades;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox ComboFuncionalidad;
         private System.Windows.Forms.Button BtnQuitar;
+        private System.Windows.Forms.ComboBox ComboEstado;
     }
 }

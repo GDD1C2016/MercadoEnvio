@@ -17,7 +17,7 @@ namespace MercadoEnvio.DataManagers
         {
             DataBaseHelper db = null;
             db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
-            
+
             using (db.Connection)
             {
                 DataTable res = db.GetDataAsTable("SP_GetRoles");
@@ -107,6 +107,30 @@ namespace MercadoEnvio.DataManagers
 
                 return roles;
             }
+        }
+
+        public static void SaveNewRol(Rol newRol)
+        {
+            DataBaseHelper db = null;
+            db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            SqlParameter descripcionParameter;
+            SqlParameter funcionalidadParameter;
+            SqlParameter estadoParameter;
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
+            descripcionParameter.Value = newRol.Descripcion.Trim();
+
+            funcionalidadParameter = new SqlParameter("@Funcionalidad", SqlDbType.Int);
+            //funcionalidadParameter.Value = newRol.f
+
+            estadoParameter = new SqlParameter("@Estado", SqlDbType.Bit);
+            estadoParameter.Value = newRol.Activo;
+
+            parameters.Add(descripcionParameter);
+            parameters.Add(funcionalidadParameter);
+            parameters.Add(estadoParameter);
         }
     }
 }

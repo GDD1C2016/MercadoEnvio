@@ -23,6 +23,19 @@ namespace MercadoEnvio.ABM_Rol
             ComboFuncionalidad.DisplayMember = "Descripcion";
             ComboFuncionalidad.DropDownStyle = ComboBoxStyle.DropDownList;
 
+
+            #region armadoComboEstado
+            Estado estadoHabilitado = new Estado { Valor = true };
+            Estado estadoDeshabilitado = new Estado { Valor = false };
+            List<Estado> estados = new List<Estado>();
+            estados.Add(estadoHabilitado);
+            estados.Add(estadoDeshabilitado);
+
+            ComboEstado.DataSource = estados;
+            ComboEstado.DisplayMember = "Descripcion";
+            ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            #endregion
+
             #region armadoDeGrillaFuncionalidad
             BindingList<Funcionalidad> dataSource = new BindingList<Funcionalidad>();
             BindingSource bs = new BindingSource();
@@ -50,19 +63,14 @@ namespace MercadoEnvio.ABM_Rol
             }
             else
             {
-                bool activo;
-
-                if (TxtEstado.Text == "Habilitado") // TODO Implementar COMBO-BOX
-                    activo = true;
-                else
-                    activo = false;
-
                 Rol newRol = new Rol
                 {
                     Descripcion = TxtNombre.Text.Trim(),
-                    Activo = activo,
+                    Activo = ((Estado)ComboEstado.SelectedItem).Valor,
                     Funcionalidades = GetFuncionalidadesFromDg()
                 };
+
+                RolesServices.SaveNewRol(newRol);
             }
         }
 
@@ -87,9 +95,6 @@ namespace MercadoEnvio.ABM_Rol
 
             if (string.IsNullOrEmpty(TxtNombre.Text))
                 errors.Add(Resources.ErrorDescripcionVacia);
-
-            if(string.IsNullOrEmpty(TxtEstado.Text))
-                errors.Add(Resources.ErrorEstadoVacio);
 
             BindingSource bs = new BindingSource();
             bs = DgFuncionalidades.DataSource as BindingSource;
