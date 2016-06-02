@@ -8,7 +8,7 @@ using MercadoEnvio.Entidades;
 
 namespace MercadoEnvio.Servicios
 {
-    public class RolerServices
+    public class RolesServices
     {
         public static List<Rol> GetAllData()
         {

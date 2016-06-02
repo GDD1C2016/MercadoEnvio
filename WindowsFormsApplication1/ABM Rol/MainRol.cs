@@ -21,9 +21,8 @@ namespace MercadoEnvio.ABM_Rol
 
         private void MainRol_Load(object sender, EventArgs e)
         {
-            #region armadoDeGrillaFuncionalidad
-
-            BindingList<Rol> dataSource = new BindingList<Rol>(RolerServices.GetAllData());
+            #region armadoDeGrillaRol
+            BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.GetAllData());
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
 
@@ -40,12 +39,25 @@ namespace MercadoEnvio.ABM_Rol
 
             DgRoles.DataSource = bs;
             #endregion
-            
-            //DgRoles.DataSource = RolerServices.GetAllData();
-            #region armadoCombo
-            Funcionalidad funcionalidadTodos = new Funcionalidad { Descripcion = "--Todas--", IdFuncionalidad = 0 };
-            List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolerServices.GetAllFuncionalidades());
-            funcionalidades.Add(funcionalidadTodos);
+
+            #region armadoComboEstado
+            Estado estadoTodos = new Estado { Descripcion = "--Todos--" };
+            Estado estadoHabilitado = new Estado { Valor = true };
+            Estado estadoDeshabilitado = new Estado { Valor = false };
+            List<Estado> estados = new List<Estado>();
+            estados.Add(estadoTodos);
+            estados.Add(estadoHabilitado);
+            estados.Add(estadoDeshabilitado);
+
+            ComboEstado.DataSource = estados;
+            ComboEstado.DisplayMember = "Descripcion";
+            ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            #endregion
+
+            #region armadoComboFuncionalidad
+            Funcionalidad funcionalidadTodas = new Funcionalidad { IdFuncionalidad = 0, Descripcion = "--Todas--" };
+            List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolesServices.GetAllFuncionalidades());
+            funcionalidades.Add(funcionalidadTodas);
             funcionalidades = funcionalidades.OrderBy(x => x.IdFuncionalidad).ToList();
 
             ComboFuncionalidad.DataSource = funcionalidades;
@@ -55,8 +67,7 @@ namespace MercadoEnvio.ABM_Rol
         }
 
         private void BtnBorrar_Click(object sender, EventArgs e)
-        {
-            
+        {            
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
@@ -67,9 +78,9 @@ namespace MercadoEnvio.ABM_Rol
 
             filtroNombre = TxtFiltroNombre.Text;
             filtroFuncionalidad = ((Funcionalidad) ComboFuncionalidad.SelectedItem).IdFuncionalidad;
-            filtroEstado = TxtFiltroEstado.Text;
+            filtroEstado = ((Estado) ComboEstado.SelectedItem).Descripcion;
 
-            BindingList<Rol> dataSource = new BindingList<Rol>(RolerServices.FindRoles(filtroNombre, filtroFuncionalidad, filtroEstado));
+            BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.FindRoles(filtroNombre, filtroFuncionalidad, filtroEstado));
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
 
@@ -83,6 +94,11 @@ namespace MercadoEnvio.ABM_Rol
             bs.DataSource = dataSource;
 
             DgRoles.DataSource = bs;
+        }
+
+        private void TxtFiltroNombre_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

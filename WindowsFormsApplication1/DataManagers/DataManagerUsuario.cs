@@ -7,17 +7,18 @@ using System.Text;
 using MercadoEnvio.Helpers;
 using System.Configuration;
 using MercadoEnvio.Entidades;
+using MercadoEnvio.Properties;
 
 namespace MercadoEnvio.DataManagers
 {
     public class DataManagerUsuario
     {
-        public static Entidades.Login Login(string user, string passWord)
+        public static Entidades.Login Login(string user, string password)
         {
             DataBaseHelper db = null;
             object res;
             SqlParameter userParameter;
-            SqlParameter passWordParameter;
+            SqlParameter passwordParameter;
             List<SqlParameter> parameters = new List<SqlParameter>();
             Entidades.Login login = new Entidades.Login();
             Usuario usuarioEntidad = new Usuario();
@@ -27,11 +28,11 @@ namespace MercadoEnvio.DataManagers
                 userParameter = new SqlParameter("@Usuario", SqlDbType.NVarChar);
                 userParameter.Value = user;
 
-                passWordParameter = new SqlParameter("@Password", SqlDbType.NVarChar);
-                passWordParameter.Value = passWord;
+                passwordParameter = new SqlParameter("@Password", SqlDbType.NVarChar);
+                passwordParameter.Value = password;
 
                 parameters.Add(userParameter);
-                parameters.Add(passWordParameter);
+                parameters.Add(passwordParameter);
 
                 db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
                 db.Connection.Open();
@@ -40,52 +41,62 @@ namespace MercadoEnvio.DataManagers
                 foreach (DataRow row in resAux.Rows)
                 {
                     usuarioEntidad.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
-                    usuarioEntidad.CantIntentos = Convert.ToByte(row["CantIntentos"]);
-                    usuarioEntidad.Estado = Convert.ToString(row["Estado"]);
-                    usuarioEntidad.Password = Convert.ToString(row["PassEncr"]);
                     usuarioEntidad.UserName = Convert.ToString(row["UserName"]);
+                    usuarioEntidad.Password = Convert.ToString(row["PassEncr"]);
+                    usuarioEntidad.CantIntFallidos = Convert.ToByte(row["CantIntFallidos"]);
+                    usuarioEntidad.Activo = Convert.ToBoolean(row["Activo"]);
                 }
 
                 if (usuarioEntidad.IdUsuario == 0)
                 {
                     login.LoginSuccess = false;
-                    login.ErrorMessage = "El usuario no existe";
+                    login.ErrorMessage = Resources.UsuarioNoExiste;
                 }
                 else
                 {
-                    if(usuarioEntidad.Estado != "H")
+                    if (!usuarioEntidad.Activo)
                     {
-                        login.LoginSuccess = false;
-                        login.ErrorMessage = "Usuario bloqueado. Contacte al administrador";
+                        if (usuarioEntidad.CantIntFallidos >= 3)
+                        {
+                            login.Usuario = usuarioEntidad;
+                            login.LoginSuccess = false;
+                            login.ErrorMessage = Resources.UsuarioBloqueado + Resources.ContactarAdministrador;
+                        }
+                        else
+                        {
+                            login.Usuario = usuarioEntidad;
+                            login.LoginSuccess = false;
+                            login.ErrorMessage = Resources.UsuarioDeshabilitado + "\n" + Resources.ContactarAdministrador;
+                        }
                     }
-                    else if (usuarioEntidad.Password.Equals(passWord))
+                    else if (usuarioEntidad.Password.Equals(password))
                     {
                         ResetearContadorUsuario(user,db);
 
-                        usuarioEntidad.CantIntentos = 0;
+                        usuarioEntidad.CantIntFallidos = 0;
                         login.Usuario = usuarioEntidad;
                         login.LoginSuccess = true;
                     }
                     else
                     {
                         res = IncrementarContadorUsuario(user, db);
-                        
-                        login.LoginSuccess = false;
-                        usuarioEntidad.CantIntentos = (byte)res;
-                        login.ErrorMessage = "Contraseña Incorrecta";
 
-                        if (usuarioEntidad.CantIntentos >= 3)
+                        usuarioEntidad.CantIntFallidos = (int)res;
+                        login.Usuario = usuarioEntidad;
+                        login.LoginSuccess = false;
+                        login.ErrorMessage = Resources.ContraseñaIncorrecta;
+
+                        if (usuarioEntidad.CantIntFallidos >= 3)
                         {
                             BloquearUsuario(user, db);
                         }
-                        login.Usuario = usuarioEntidad;
                     }
                 }
                 return login;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error: " + ex.Message);
+                throw new Exception(Resources.Error + ex.Message);
             }
             finally
             {

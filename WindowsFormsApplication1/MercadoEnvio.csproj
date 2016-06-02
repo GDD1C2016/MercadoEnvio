@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="DataManagers\DataManagerRoles.cs" />
     <Compile Include="DataManagers\DataManagerUsuario.cs" />
+    <Compile Include="Entidades\Estado.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Login.cs" />
     <Compile Include="Entidades\Rol.cs" />
@@ -133,7 +134,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Servicios\RolerServices.cs" />
+    <Compile Include="Servicios\RolesServices.cs" />
     <Compile Include="Servicios\UsuarioService.cs" />
     <EmbeddedResource Include="ABM Rol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>

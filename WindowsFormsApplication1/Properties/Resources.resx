@@ -120,40 +120,52 @@
   <data name="Advertencia" xml:space="preserve">
     <value>Advertencia</value>
   </data>
+  <data name="ContactarAdministrador" xml:space="preserve">
+    <value>Contacte al administrador.</value>
+  </data>
+  <data name="ContraseñaIncorrecta" xml:space="preserve">
+    <value>Contraseña incorrecta</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error: </value>
+  </data>
   <data name="ErrorAgregarFuncionalidad" xml:space="preserve">
-    <value>La FUNCIONALIDAD que se quiere agregar, ya existe</value>
+    <value>La funcionalidad que se intenta agregar ya existe.</value>
   </data>
   <data name="ErrorBD" xml:space="preserve">
-    <value>No se pudo conectar a la BD</value>
+    <value>No se pudo establecer conexión con la base de datos.</value>
   </data>
   <data name="ErrorDescripcionVacia" xml:space="preserve">
-    <value>El campo DESCRIPCIÓN no puede estar vacío</value>
+    <value>El campo descripción no puede estar vacío.</value>
   </data>
   <data name="ErrorEstadoVacio" xml:space="preserve">
-    <value>El campo ESTADO no puede estar vacío</value>
+    <value>El campo estado no puede estar vacío.</value>
   </data>
   <data name="ErrorGuardado" xml:space="preserve">
-    <value>Error al Guardar</value>
-  </data>
-  <data name="ErrorLogin" xml:space="preserve">
-    <value>Usuario o contraseña invalidos</value>
+    <value>Error al guardar</value>
   </data>
   <data name="ErrorRolSinFuncionalidad" xml:space="preserve">
-    <value>El ROL debe tener almenos una FUNCIONALIDAD</value>
+    <value>El rol debe tener al menos una funcionalidad.</value>
   </data>
   <data name="ErrorSP" xml:space="preserve">
-    <value>Error al ejecutar SP</value>
+    <value>Error al ejecutar el stored procedure</value>
   </data>
   <data name="ErrorTable" xml:space="preserve">
-    <value>Error en el manejo de data-table</value>
+    <value>Error en el manejo data-table.</value>
   </data>
   <data name="ErrorTrans" xml:space="preserve">
-    <value>Error en la transacción</value>
+    <value>Se produjo un error durante la transacción.</value>
   </data>
   <data name="IntentosRestantes" xml:space="preserve">
     <value>Intentos restantes: </value>
   </data>
   <data name="UsuarioBloqueado" xml:space="preserve">
-    <value>Usuario bloqueado. Contacte al administrador</value>
+    <value>Usuario bloqueado. </value>
+  </data>
+  <data name="UsuarioDeshabilitado" xml:space="preserve">
+    <value>Usuario deshabilitado. </value>
+  </data>
+  <data name="UsuarioNoExiste" xml:space="preserve">
+    <value>El usuario ingresado no existe</value>
   </data>
 </root>

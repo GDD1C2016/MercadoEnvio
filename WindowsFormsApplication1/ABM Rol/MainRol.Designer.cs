@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ComboEstado = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.ComboFuncionalidad = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtFiltroNombre = new System.Windows.Forms.TextBox();
@@ -38,15 +40,13 @@
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnBorrar = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TxtFiltroEstado = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgRoles)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.TxtFiltroEstado);
+            this.groupBox1.Controls.Add(this.ComboEstado);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.ComboFuncionalidad);
             this.groupBox1.Controls.Add(this.label2);
@@ -60,6 +60,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de Búsqueda";
             // 
+            // ComboEstado
+            // 
+            this.ComboEstado.FormattingEnabled = true;
+            this.ComboEstado.Location = new System.Drawing.Point(260, 26);
+            this.ComboEstado.Name = "ComboEstado";
+            this.ComboEstado.Size = new System.Drawing.Size(76, 21);
+            this.ComboEstado.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(218, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Estado";
+            // 
             // ComboFuncionalidad
             // 
             this.ComboFuncionalidad.FormattingEnabled = true;
@@ -71,7 +88,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(352, 29);
+            this.label2.Location = new System.Drawing.Point(356, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 13);
             this.label2.TabIndex = 2;
@@ -79,10 +96,11 @@
             // 
             // TxtFiltroNombre
             // 
-            this.TxtFiltroNombre.Location = new System.Drawing.Point(57, 26);
+            this.TxtFiltroNombre.Location = new System.Drawing.Point(53, 26);
             this.TxtFiltroNombre.Name = "TxtFiltroNombre";
-            this.TxtFiltroNombre.Size = new System.Drawing.Size(187, 20);
+            this.TxtFiltroNombre.Size = new System.Drawing.Size(145, 20);
             this.TxtFiltroNombre.TabIndex = 1;
+            this.TxtFiltroNombre.TextChanged += new System.EventHandler(this.TxtFiltroNombre_TextChanged);
             // 
             // label1
             // 
@@ -145,22 +163,6 @@
             this.BtnBorrar.UseVisualStyleBackColor = true;
             this.BtnBorrar.Click += new System.EventHandler(this.BtnBorrar_Click);
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(250, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Estado";
-            // 
-            // TxtFiltroEstado
-            // 
-            this.TxtFiltroEstado.Location = new System.Drawing.Point(296, 26);
-            this.TxtFiltroEstado.Name = "TxtFiltroEstado";
-            this.TxtFiltroEstado.Size = new System.Drawing.Size(50, 20);
-            this.TxtFiltroEstado.TabIndex = 5;
-            // 
             // MainRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -175,7 +177,7 @@
             this.MaximumSize = new System.Drawing.Size(650, 500);
             this.MinimumSize = new System.Drawing.Size(650, 500);
             this.Name = "MainRol";
-            this.Text = "MainRol";
+            this.Text = "ABM de Rol";
             this.Load += new System.EventHandler(this.MainRol_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -199,7 +201,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn descripcionDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn estadoDataGridViewTextBoxColumn;
         private System.Windows.Forms.ComboBox ComboFuncionalidad;
-        private System.Windows.Forms.TextBox TxtFiltroEstado;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox ComboEstado;
     }
 }

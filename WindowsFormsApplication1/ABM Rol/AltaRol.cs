@@ -18,13 +18,12 @@ namespace MercadoEnvio.ABM_Rol
 
         private void AltaRol_Load(object sender, EventArgs e)
         {
-            List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolerServices.GetAllFuncionalidades());
+            List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolesServices.GetAllFuncionalidades());
             ComboFuncionalidad.DataSource = funcionalidades;
             ComboFuncionalidad.DisplayMember = "Descripcion";
             ComboFuncionalidad.DropDownStyle = ComboBoxStyle.DropDownList;
 
             #region armadoDeGrillaFuncionalidad
-
             BindingList<Funcionalidad> dataSource = new BindingList<Funcionalidad>();
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
@@ -37,7 +36,6 @@ namespace MercadoEnvio.ABM_Rol
             DgFuncionalidades.Columns[0].DataPropertyName = "Descripcion";
 
             DgFuncionalidades.DataSource = bs;
-
             #endregion
         }
 
@@ -52,13 +50,19 @@ namespace MercadoEnvio.ABM_Rol
             }
             else
             {
+                bool activo;
+
+                if (TxtEstado.Text == "Habilitado") // TODO Implementar COMBO-BOX
+                    activo = true;
+                else
+                    activo = false;
+
                 Rol newRol = new Rol
                 {
                     Descripcion = TxtNombre.Text.Trim(),
-                    Estado = TxtEstado.Text,
+                    Activo = activo,
                     Funcionalidades = GetFuncionalidadesFromDg()
                 };
-                //RolerServices.SaveRol(newRol);
             }
         }
 
@@ -73,6 +77,7 @@ namespace MercadoEnvio.ABM_Rol
             {
                 funcionalidades.Add(funcionalidad);
             }
+
             return funcionalidades;
         }
 
@@ -112,8 +117,7 @@ namespace MercadoEnvio.ABM_Rol
             else
             {
                 MessageBox.Show(Resources.ErrorAgregarFuncionalidad, Resources.Advertencia, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-            
+            }            
         }
 
         private void BtnQuitar_Click(object sender, EventArgs e)
@@ -125,6 +129,5 @@ namespace MercadoEnvio.ABM_Rol
                 bs.RemoveAt(DgFuncionalidades.SelectedRows[0].Index);
             }
         }
-
     }
 }

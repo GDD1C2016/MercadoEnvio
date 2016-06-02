@@ -30,6 +30,12 @@ namespace MercadoEnvio.Entidades
             set { _multiProfile = value; }
         }
 
+        public int IdUsuario
+        {
+            get { return _idUsuario; }
+            set { _idUsuario = value; }
+        }
+
         public int IdRol
         {
             get { return _idRol; }
@@ -47,7 +53,6 @@ namespace MercadoEnvio.Entidades
             get { return _errorMessage; }
             set { _errorMessage = value; }
         }
-
         #endregion
     }
 }

@@ -22,7 +22,7 @@ namespace MercadoEnvio.Entidades
 
         public string Descripcion
         {
-            get{return _descripcion;}
+            get { return _descripcion; }
             set { _descripcion = value; }
         }
         #endregion

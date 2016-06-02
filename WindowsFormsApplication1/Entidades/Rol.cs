@@ -7,12 +7,13 @@ using System.Threading.Tasks;
 namespace MercadoEnvio.Entidades
 {
     public class Rol
-    {
+    {        
         #region attributes
         private int _idRol;
         private string _descripcion;
+        private bool _activo;
         private string _estado;
-        private List<Funcionalidad> _funcionalidades; 
+        private List<Funcionalidad> _funcionalidades;
         #endregion
 
         #region properties
@@ -28,10 +29,22 @@ namespace MercadoEnvio.Entidades
             set { _descripcion = value; }
         }
 
+        public bool Activo
+        {
+            get { return _activo; }
+            
+            set
+            {
+                Estado estado = new Estado { Valor = value };
+
+                _activo = value;
+                _estado = estado.Descripcion;
+            }
+        }
+
         public string Estado
         {
             get { return _estado; }
-            set { _estado = value; }
         }
 
         public List<Funcionalidad> Funcionalidades
@@ -42,12 +55,10 @@ namespace MercadoEnvio.Entidades
         #endregion
 
         #region constructor
-
-        public Rol() 
+        public Rol()
         {
             Funcionalidades = new List<Funcionalidad>();
         }
-
         #endregion
     }
 }

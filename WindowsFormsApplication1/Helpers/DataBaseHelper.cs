@@ -10,7 +10,7 @@ namespace MercadoEnvio.Helpers
 {
     public class DataBaseHelper
     {
-        #region atributes
+        #region attributes
         private string _connectionString;
         private readonly SqlConnection _sqlConn;
         private SqlTransaction _sqlTrans;
@@ -35,7 +35,7 @@ namespace MercadoEnvio.Helpers
         }
         #endregion
 
-        //CONSTRUCTOR
+        #region constructor
         public DataBaseHelper(string connectionString)
         {
             _connectionString = connectionString;
@@ -48,9 +48,9 @@ namespace MercadoEnvio.Helpers
                 throw new Exception(Resources.ErrorBD, ex);
             }
         }
+        #endregion
 
         #region methods
-
         #region transaction methods
         public void BeginTransaction()
         {
@@ -102,7 +102,7 @@ namespace MercadoEnvio.Helpers
         #endregion
 
         #region data methods
-        public DataTable GetDataAsTable(string storeProcedure)
+        public DataTable GetDataAsTable(string storedProcedure)
         {
             SqlCommand sqlCommand;
             SqlDataAdapter sqlAdapter;
@@ -118,7 +118,7 @@ namespace MercadoEnvio.Helpers
                     Connection.Open();
                 }
 
-                sqlCommand.CommandText = storeProcedure;
+                sqlCommand.CommandText = storedProcedure;
                 sqlCommand.Connection = Connection;
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
@@ -148,11 +148,12 @@ namespace MercadoEnvio.Helpers
             }
         }
 
-        public DataTable GetDataAsTable(string storeProcedure, List<SqlParameter> parameters)
+        public DataTable GetDataAsTable(string storedProcedure, List<SqlParameter> parameters)
         {
             SqlCommand sqlCommand = new SqlCommand();
             SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
             DataTable sqlTable = new DataTable();
+
             try
             {
                 if (Connection != null && Connection.State != ConnectionState.Open)
@@ -160,7 +161,7 @@ namespace MercadoEnvio.Helpers
                     Connection.Open();
                 }
 
-                sqlCommand.CommandText = storeProcedure;
+                sqlCommand.CommandText = storedProcedure;
                 sqlCommand.Connection = Connection;
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
@@ -187,7 +188,7 @@ namespace MercadoEnvio.Helpers
             }
         }
 
-        public object ExectInstruction(ExecutionType execType, string storeProcedure, List<SqlParameter> parameters)
+        public object ExectInstruction(ExecutionType execType, string storedProcedure, List<SqlParameter> parameters)
         {
             object result = null;
             SqlCommand sqlCommand = new SqlCommand();
@@ -199,7 +200,7 @@ namespace MercadoEnvio.Helpers
                     Connection.Open();
                 }
 
-                sqlCommand.CommandText = storeProcedure;
+                sqlCommand.CommandText = storedProcedure;
                 sqlCommand.Connection = Connection;
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
@@ -222,6 +223,7 @@ namespace MercadoEnvio.Helpers
                         result = sqlCommand.ExecuteScalar();
                         break;
                 }
+
                 return result;
             }
             catch (Exception ex)
@@ -242,8 +244,6 @@ namespace MercadoEnvio.Helpers
             }
         }
 
-        #endregion
-
         public void EndConnection()
         {
             try
@@ -263,8 +263,7 @@ namespace MercadoEnvio.Helpers
                 throw new Exception(Resources.ErrorBD,ex);
             }
         }
-
         #endregion
-
+        #endregion
     }
 }

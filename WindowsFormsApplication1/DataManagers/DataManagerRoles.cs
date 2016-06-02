@@ -26,13 +26,13 @@ namespace MercadoEnvio.DataManagers
                 {
                     var rol = new Rol
                     {
-                        Descripcion = Convert.ToString(row["Descripcion"]),
-                        Estado = Convert.ToString(row["Estado"]),
                         IdRol = Convert.ToInt32(row["IdRol"]),
+                        Descripcion = Convert.ToString(row["Descripcion"]),
+                        Activo = Convert.ToBoolean(row["Activo"]),
                     };
                     listRoles.Add(rol);
                 }
-                //return res;
+
                 return listRoles;
             }
         }
@@ -50,8 +50,8 @@ namespace MercadoEnvio.DataManagers
                 {
                     var funcionalidad = new Funcionalidad
                     {
+                        IdFuncionalidad = Convert.ToInt32(row["IdFuncionalidad"]),
                         Descripcion = Convert.ToString(row["Descripcion"]),
-                        IdFuncionalidad = Convert.ToInt32(row["IdFuncionalidad"])
                     };
                     listFuncionalidades.Add(funcionalidad);
                 }
@@ -62,6 +62,8 @@ namespace MercadoEnvio.DataManagers
 
         public static List<Rol> FindRoles(string filtroNombre, int filtroFuncionalidad, string filtroEstado)
         {
+            Estado estado = new Estado { Descripcion = filtroEstado };
+
             DataBaseHelper db = null;
             db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
@@ -76,8 +78,12 @@ namespace MercadoEnvio.DataManagers
             funcionalidadParameter = new SqlParameter("@FiltroFuncionalidad", SqlDbType.Int);
             funcionalidadParameter.Value = filtroFuncionalidad;
 
-            estadoParameter = new SqlParameter("@FiltroEstado", SqlDbType.NVarChar);
-            estadoParameter.Value = filtroEstado;
+            estadoParameter = new SqlParameter("@FiltroEstado", SqlDbType.Bit);
+
+            if (estado.EstadoValido())
+                estadoParameter.Value = estado.Valor;
+            else
+                estadoParameter.Value = null;
 
             parameters.Add(nombreParameter);
             parameters.Add(funcionalidadParameter);
@@ -93,7 +99,7 @@ namespace MercadoEnvio.DataManagers
                     {
                         IdRol = Convert.ToInt32(row["IdRol"]),
                         Descripcion = Convert.ToString(row["Descripcion"]),
-                        Estado = Convert.ToString(row["Estado"]),
+                        Activo = Convert.ToBoolean(row["Activo"]),
                     };
 
                     roles.Add(rol);

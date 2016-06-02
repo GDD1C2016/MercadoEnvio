@@ -9,31 +9,20 @@ namespace MercadoEnvio.Entidades
     public class Usuario
     {
         #region attributes
-        private bool _loginSuccess;
         private int _idUsuario;
-        private byte _cantIntentos;
         private string _userName;
         private string _password;
+        private int _cantIntFallidos;
+        private bool _activo;
         private string _estado;
+        private bool _loginSuccess;
         #endregion
 
         #region properties
-        public bool LoginSuccess
-        {
-            get { return _loginSuccess; }
-            set { _loginSuccess = value; }
-        }
-
         public int IdUsuario
         {
             get { return _idUsuario; }
             set { _idUsuario = value; }
-        }
-
-        public byte CantIntentos
-        {
-            get { return _cantIntentos; }
-            set { _cantIntentos = value; }
         }
 
         public string UserName
@@ -48,12 +37,35 @@ namespace MercadoEnvio.Entidades
             set { _password = value; }
         }
 
+        public int CantIntFallidos
+        {
+            get { return _cantIntFallidos; }
+            set { _cantIntFallidos = value; }
+        }
+
+        public bool Activo
+        {
+            get { return _activo; }
+            
+            set
+            {
+                Estado estado = new Estado { Valor = value };
+                
+                _activo = value;
+                _estado = estado.Descripcion;
+            }
+        }
+
         public string Estado
         {
             get { return _estado; }
-            set { _estado = value; }
         }
 
+        public bool LoginSuccess
+        {
+            get { return _loginSuccess; }
+            set { _loginSuccess = value; }
+        }
         #endregion
     }
 }

@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LabelCantIntentos = new System.Windows.Forms.Label();
             this.LabelErrorLogin = new System.Windows.Forms.Label();
             this.TxtPassword = new System.Windows.Forms.TextBox();
             this.TxtUsername = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.BtnEntrar = new System.Windows.Forms.Button();
-            this.LabelCantIntentos = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,6 +54,15 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Login";
+            // 
+            // LabelCantIntentos
+            // 
+            this.LabelCantIntentos.AutoSize = true;
+            this.LabelCantIntentos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.LabelCantIntentos.Location = new System.Drawing.Point(66, 148);
+            this.LabelCantIntentos.Name = "LabelCantIntentos";
+            this.LabelCantIntentos.Size = new System.Drawing.Size(0, 13);
+            this.LabelCantIntentos.TabIndex = 5;
             // 
             // LabelErrorLogin
             // 
@@ -107,22 +116,13 @@
             // 
             this.BtnEntrar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.BtnEntrar.Location = new System.Drawing.Point(69, 201);
+            this.BtnEntrar.Location = new System.Drawing.Point(58, 201);
             this.BtnEntrar.Name = "BtnEntrar";
             this.BtnEntrar.Size = new System.Drawing.Size(177, 23);
             this.BtnEntrar.TabIndex = 1;
             this.BtnEntrar.Text = "Entrar";
             this.BtnEntrar.UseVisualStyleBackColor = true;
             this.BtnEntrar.Click += new System.EventHandler(this.BtnEntrar_Click);
-            // 
-            // LabelCantIntentos
-            // 
-            this.LabelCantIntentos.AutoSize = true;
-            this.LabelCantIntentos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.LabelCantIntentos.Location = new System.Drawing.Point(66, 148);
-            this.LabelCantIntentos.Name = "LabelCantIntentos";
-            this.LabelCantIntentos.Size = new System.Drawing.Size(0, 13);
-            this.LabelCantIntentos.TabIndex = 5;
             // 
             // Main
             // 
@@ -153,4 +153,3 @@
         private System.Windows.Forms.Label LabelCantIntentos;
     }
 }
-
