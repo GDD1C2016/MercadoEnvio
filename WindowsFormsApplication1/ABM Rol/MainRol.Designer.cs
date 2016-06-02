@@ -40,6 +40,7 @@
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnBorrar = new System.Windows.Forms.Button();
+            this.BtnEditar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgRoles)).BeginInit();
             this.SuspendLayout();
@@ -163,11 +164,21 @@
             this.BtnBorrar.UseVisualStyleBackColor = true;
             this.BtnBorrar.Click += new System.EventHandler(this.BtnBorrar_Click);
             // 
+            // BtnEditar
+            // 
+            this.BtnEditar.Location = new System.Drawing.Point(221, 426);
+            this.BtnEditar.Name = "BtnEditar";
+            this.BtnEditar.Size = new System.Drawing.Size(190, 23);
+            this.BtnEditar.TabIndex = 6;
+            this.BtnEditar.Text = "Editar";
+            this.BtnEditar.UseVisualStyleBackColor = true;
+            // 
             // MainRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(634, 461);
+            this.Controls.Add(this.BtnEditar);
             this.Controls.Add(this.DgRoles);
             this.Controls.Add(this.BtnBorrar);
             this.Controls.Add(this.BtnAgregar);
@@ -203,5 +214,6 @@
         private System.Windows.Forms.ComboBox ComboFuncionalidad;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox ComboEstado;
+        private System.Windows.Forms.Button BtnEditar;
     }
 }
