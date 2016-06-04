@@ -148,7 +148,7 @@
             // 
             // BtnAgregar
             // 
-            this.BtnAgregar.Location = new System.Drawing.Point(209, 19);
+            this.BtnAgregar.Location = new System.Drawing.Point(221, 19);
             this.BtnAgregar.Name = "BtnAgregar";
             this.BtnAgregar.Size = new System.Drawing.Size(185, 23);
             this.BtnAgregar.TabIndex = 4;
@@ -158,7 +158,7 @@
             // 
             // BtnBorrar
             // 
-            this.BtnBorrar.Location = new System.Drawing.Point(413, 19);
+            this.BtnBorrar.Location = new System.Drawing.Point(431, 19);
             this.BtnBorrar.Name = "BtnBorrar";
             this.BtnBorrar.Size = new System.Drawing.Size(191, 23);
             this.BtnBorrar.TabIndex = 5;
