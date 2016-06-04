@@ -56,6 +56,7 @@ namespace MercadoEnvio.ABM_Rol
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
+            bool inserted;
             List<string> errors = new List<string>(ValidarDatosRol());
 
             if (errors.Count > 0)
@@ -68,11 +69,11 @@ namespace MercadoEnvio.ABM_Rol
                 Rol newRol = new Rol
                 {
                     Descripcion = TxtNombre.Text.Trim(),
-                    Activo = ((Estado)ComboEstado.SelectedItem).Valor,
+                    Activo = ((Estado) ComboEstado.SelectedItem).Valor,
                     Funcionalidades = GetFuncionalidadesFromDg()
                 };
 
-                RolesServices.SaveNewRol(newRol);
+                inserted = RolesServices.SaveNewRol(newRol);
             }
         }
 
@@ -110,7 +111,7 @@ namespace MercadoEnvio.ABM_Rol
         private void BtnSeleccionar_Click(object sender, EventArgs e)
         {
             Funcionalidad funcionalidadSeleccionada = new Funcionalidad();
-            funcionalidadSeleccionada = (Funcionalidad)ComboFuncionalidad.SelectedItem;
+            funcionalidadSeleccionada = (Funcionalidad) ComboFuncionalidad.SelectedItem;
 
             BindingSource bs = new BindingSource();
             bs = DgFuncionalidades.DataSource as BindingSource;

@@ -174,10 +174,11 @@
     <Content Include="Scripts\SP\SP_BloqUser.sql" />
     <Content Include="Scripts\SP\SP_FindRoles.sql" />
     <Content Include="Scripts\SP\SP_GetFuncionalidades.sql" />
+    <Content Include="Scripts\SP\SP_GetRolByDescripcion.sql" />
     <Content Include="Scripts\SP\SP_GetRoles.sql" />
-    <Content Include="Scripts\SP\SP_GetRolesFuncionalidades.sql" />
+    <Content Include="Scripts\SP\SP_GetRolFuncionalidades.sql" />
+    <Content Include="Scripts\SP\SP_GetUsuarioByUserName.sql" />
     <Content Include="Scripts\SP\SP_IncrementCountLogin.sql" />
-    <Content Include="Scripts\SP\SP_Login.sql" />
     <Content Include="Scripts\SP\SP_ResetCountLogin.sql" />
   </ItemGroup>
   <ItemGroup />

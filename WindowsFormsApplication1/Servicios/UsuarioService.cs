@@ -8,9 +8,9 @@ namespace MercadoEnvio.Servicios
 {
     public class UsuarioService
     {
-        public static Entidades.Login LoginUser(string user, string password)
+        public static Entidades.Login LoginUser(string userName, string password)
         {
-            Entidades.Login login = DataManagers.DataManagerUsuario.Login(user, password);
+            Entidades.Login login = DataManagers.DataManagerUsuario.Login(userName, password);
             return login;
         }
     }
