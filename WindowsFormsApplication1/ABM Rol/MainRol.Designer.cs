@@ -41,8 +41,10 @@
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnBorrar = new System.Windows.Forms.Button();
             this.BtnEditar = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgRoles)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -121,7 +123,7 @@
             this.DgRoles.Name = "DgRoles";
             this.DgRoles.ReadOnly = true;
             this.DgRoles.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgRoles.Size = new System.Drawing.Size(610, 311);
+            this.DgRoles.Size = new System.Drawing.Size(610, 335);
             this.DgRoles.TabIndex = 1;
             // 
             // BtnLimpiar
@@ -146,7 +148,7 @@
             // 
             // BtnAgregar
             // 
-            this.BtnAgregar.Location = new System.Drawing.Point(13, 426);
+            this.BtnAgregar.Location = new System.Drawing.Point(209, 19);
             this.BtnAgregar.Name = "BtnAgregar";
             this.BtnAgregar.Size = new System.Drawing.Size(185, 23);
             this.BtnAgregar.TabIndex = 4;
@@ -156,7 +158,7 @@
             // 
             // BtnBorrar
             // 
-            this.BtnBorrar.Location = new System.Drawing.Point(431, 426);
+            this.BtnBorrar.Location = new System.Drawing.Point(413, 19);
             this.BtnBorrar.Name = "BtnBorrar";
             this.BtnBorrar.Size = new System.Drawing.Size(191, 23);
             this.BtnBorrar.TabIndex = 5;
@@ -166,7 +168,7 @@
             // 
             // BtnEditar
             // 
-            this.BtnEditar.Location = new System.Drawing.Point(221, 426);
+            this.BtnEditar.Location = new System.Drawing.Point(6, 19);
             this.BtnEditar.Name = "BtnEditar";
             this.BtnEditar.Size = new System.Drawing.Size(190, 23);
             this.BtnEditar.TabIndex = 6;
@@ -174,26 +176,39 @@
             this.BtnEditar.UseVisualStyleBackColor = true;
             this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.BtnEditar);
+            this.groupBox2.Controls.Add(this.BtnAgregar);
+            this.groupBox2.Controls.Add(this.BtnBorrar);
+            this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox2.Location = new System.Drawing.Point(0, 441);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(634, 55);
+            this.groupBox2.TabIndex = 7;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Acciones";
+            // 
             // MainRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(634, 461);
-            this.Controls.Add(this.BtnEditar);
+            this.ClientSize = new System.Drawing.Size(634, 496);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.DgRoles);
-            this.Controls.Add(this.BtnBorrar);
-            this.Controls.Add(this.BtnAgregar);
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.groupBox1);
-            this.MaximumSize = new System.Drawing.Size(650, 500);
-            this.MinimumSize = new System.Drawing.Size(650, 500);
+            this.MaximumSize = new System.Drawing.Size(650, 535);
+            this.MinimumSize = new System.Drawing.Size(650, 535);
             this.Name = "MainRol";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ABM de Rol";
             this.Load += new System.EventHandler(this.MainRol_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgRoles)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -216,5 +231,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox ComboEstado;
         private System.Windows.Forms.Button BtnEditar;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }

@@ -87,11 +87,11 @@
     <Compile Include="Calificar\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComprarOfertar\Form1.cs">
+    <Compile Include="ComprarOfertar\MainPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ComprarOfertar\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ComprarOfertar\MainPublicacion.Designer.cs">
+      <DependentUpon>MainPublicacion.cs</DependentUpon>
     </Compile>
     <Compile Include="DataManagers\DataManagerRoles.cs" />
     <Compile Include="DataManagers\DataManagerUsuario.cs" />
@@ -141,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Rol\MainRol.resx">
       <DependentUpon>MainRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ComprarOfertar\MainPublicacion.resx">
+      <DependentUpon>MainPublicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
