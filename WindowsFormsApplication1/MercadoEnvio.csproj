@@ -93,11 +93,13 @@
     <Compile Include="ComprarOfertar\MainPublicacion.Designer.cs">
       <DependentUpon>MainPublicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataManagers\DataManagerPublicaciones.cs" />
     <Compile Include="DataManagers\DataManagerRoles.cs" />
     <Compile Include="DataManagers\DataManagerUsuario.cs" />
     <Compile Include="Entidades\Estado.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Login.cs" />
+    <Compile Include="Entidades\Publicacion.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Facturas\Form1.cs">
@@ -134,6 +136,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\PublicacionesServices.cs" />
     <Compile Include="Servicios\RolesServices.cs" />
     <Compile Include="Servicios\UsuarioService.cs" />
     <EmbeddedResource Include="ABM Rol\AltaRol.resx">
@@ -177,11 +180,11 @@
     <Content Include="Scripts\SP\SP_BloqUser.sql" />
     <Content Include="Scripts\SP\SP_FindRoles.sql" />
     <Content Include="Scripts\SP\SP_GetFuncionalidades.sql" />
-    <Content Include="Scripts\SP\SP_GetRolByDescripcion.sql" />
+    <Content Include="Scripts\SP\SP_GetPublicaciones.sql" />
     <Content Include="Scripts\SP\SP_GetRoles.sql" />
-    <Content Include="Scripts\SP\SP_GetRolFuncionalidades.sql" />
-    <Content Include="Scripts\SP\SP_GetUsuarioByUserName.sql" />
+    <Content Include="Scripts\SP\SP_GetRolesFuncionalidades.sql" />
     <Content Include="Scripts\SP\SP_IncrementCountLogin.sql" />
+    <Content Include="Scripts\SP\SP_Login.sql" />
     <Content Include="Scripts\SP\SP_ResetCountLogin.sql" />
   </ItemGroup>
   <ItemGroup />
