@@ -20,6 +20,7 @@ namespace MercadoEnvio.Entidades
         private int _idUsuario;
         private int _idEstado;
         private int _idTipo;
+        private int _index;
         #endregion
 
         #region properties
@@ -87,6 +88,12 @@ namespace MercadoEnvio.Entidades
         {
             get { return _idTipo; }
             set { _idTipo = value; }
+        }
+
+        public int Index
+        {
+            get { return _index; }
+            set { _index = value; }
         }
         #endregion
     }

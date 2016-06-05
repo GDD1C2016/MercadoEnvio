@@ -13,6 +13,9 @@ namespace MercadoEnvio.ComprarOfertar
 {
     public partial class MainPublicacion : Form
     {
+        private int TotalRecords = 0;
+        private int PageSize = 10;
+        
         public MainPublicacion()
         {
             InitializeComponent();
@@ -24,6 +27,11 @@ namespace MercadoEnvio.ComprarOfertar
             BindingList<Publicacion> dataSource = new BindingList<Publicacion>(PublicacionesServices.GetAllData());
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
+            TotalRecords = bs.List.Count;
+
+            bindingPaginador.BindingSource = sourcePaginador;
+            sourcePaginador.CurrentChanged += new EventHandler(sourcePaginador_CurrentChanged);
+            //sourcePaginador.DataSource = new PageOffsetList();
 
             DgPublicaciones.AutoGenerateColumns = false;
             DgPublicaciones.ColumnCount = 6;
@@ -54,6 +62,20 @@ namespace MercadoEnvio.ComprarOfertar
 
             DgPublicaciones.DataSource = bs;
             #endregion
+        }
+
+        private void sourcePaginador_CurrentChanged(object sender, EventArgs e)
+        {
+            int offset = (int)sourcePaginador.Current;
+            var records = new List<Record>();
+            for (int i = offset; i < offset + PageSize && i < TotalRecords; i++)
+                records.Add(new Record { Index = i });
+            DgPublicaciones.DataSource = records;
+        }
+
+        class Record
+        {
+            public int Index { get; set; }
         }
     }
 }
