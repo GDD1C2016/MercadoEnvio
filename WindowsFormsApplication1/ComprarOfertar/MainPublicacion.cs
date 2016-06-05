@@ -34,7 +34,7 @@ namespace MercadoEnvio.ComprarOfertar
             sourcePaginador.DataSource = new PageOffsetList();
 
             DgPublicaciones.AutoGenerateColumns = false;
-            DgPublicaciones.ColumnCount = 6;
+            //DgPublicaciones.ColumnCount = 7;
 
             DgPublicaciones.Columns[0].HeaderText = "Codigo Publicación";
             DgPublicaciones.Columns[0].Name = "CodigoPublicacion";
@@ -60,6 +60,8 @@ namespace MercadoEnvio.ComprarOfertar
             DgPublicaciones.Columns[5].Name = "Precio";
             DgPublicaciones.Columns[5].DataPropertyName = "Precio";
 
+            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Index" });
+
             DgPublicaciones.DataSource = bs;
             #endregion
         }
@@ -78,13 +80,12 @@ namespace MercadoEnvio.ComprarOfertar
             public int Index { get; set; }
         }
 
-        class PageOffsetList : System.ComponentModel.IListSource
+        class PageOffsetList : IListSource
         {
             public bool ContainsListCollection { get; protected set; }
 
             public System.Collections.IList GetList()
             {
-                // Return a list of page offsets based on "totalRecords" and "pageSize"
                 var pageOffsets = new List<int>();
                 for (int offset = 0; offset < TotalRecords; offset += PageSize)
                     pageOffsets.Add(offset);
