@@ -162,6 +162,9 @@
   <data name="UsuarioBloqueado" xml:space="preserve">
     <value>Usuario bloqueado. </value>
   </data>
+  <data name="UsuarioCreado" xml:space="preserve">
+    <value>El usuario ha sido creado exitósamente</value>
+  </data>
   <data name="UsuarioDeshabilitado" xml:space="preserve">
     <value>Usuario deshabilitado. </value>
   </data>
