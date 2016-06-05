@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaRol));
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ComboEstado = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.TxtNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -42,7 +43,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.ComboFuncionalidad = new System.Windows.Forms.ComboBox();
             this.BtnQuitar = new System.Windows.Forms.Button();
-            this.ComboEstado = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgFuncionalidades)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -72,6 +72,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Campos";
             // 
+            // ComboEstado
+            // 
+            this.ComboEstado.FormattingEnabled = true;
+            this.ComboEstado.Location = new System.Drawing.Point(494, 23);
+            this.ComboEstado.Name = "ComboEstado";
+            this.ComboEstado.Size = new System.Drawing.Size(87, 21);
+            this.ComboEstado.TabIndex = 11;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -85,7 +93,7 @@
             // 
             this.TxtNombre.Location = new System.Drawing.Point(75, 23);
             this.TxtNombre.Name = "TxtNombre";
-            this.TxtNombre.Size = new System.Drawing.Size(288, 20);
+            this.TxtNombre.Size = new System.Drawing.Size(295, 20);
             this.TxtNombre.TabIndex = 2;
             // 
             // label1
@@ -179,14 +187,6 @@
             this.BtnQuitar.UseVisualStyleBackColor = true;
             this.BtnQuitar.Click += new System.EventHandler(this.BtnQuitar_Click);
             // 
-            // ComboEstado
-            // 
-            this.ComboEstado.FormattingEnabled = true;
-            this.ComboEstado.Location = new System.Drawing.Point(498, 23);
-            this.ComboEstado.Name = "ComboEstado";
-            this.ComboEstado.Size = new System.Drawing.Size(76, 21);
-            this.ComboEstado.TabIndex = 11;
-            // 
             // AltaRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -203,7 +203,7 @@
             this.MinimumSize = new System.Drawing.Size(670, 400);
             this.Name = "AltaRol";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "AltaRol";
+            this.Text = "Alta de Rol";
             this.Load += new System.EventHandler(this.AltaRol_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

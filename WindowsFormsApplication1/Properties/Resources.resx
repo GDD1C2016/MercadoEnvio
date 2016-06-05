@@ -130,7 +130,7 @@
     <value>Error: </value>
   </data>
   <data name="ErrorAgregarFuncionalidad" xml:space="preserve">
-    <value>La funcionalidad que se intenta agregar ya existe.</value>
+    <value>La funcionalidad seleccionada ya fue agregada.</value>
   </data>
   <data name="ErrorBD" xml:space="preserve">
     <value>No se pudo establecer conexión con la base de datos.</value>

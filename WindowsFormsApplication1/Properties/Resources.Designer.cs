@@ -97,7 +97,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La funcionalidad que se intenta agregar ya existe..
+        ///   Looks up a localized string similar to La funcionalidad seleccionada ya fue agregada..
         /// </summary>
         internal static string ErrorAgregarFuncionalidad {
             get {

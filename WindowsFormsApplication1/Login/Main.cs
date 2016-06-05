@@ -19,9 +19,9 @@ namespace MercadoEnvio.Login
         {
             EncryptHelper encryptHelper = new EncryptHelper();
             string password = encryptHelper.Sha256Encrypt(TxtPassword.Text);
-            string user = TxtUsername.Text;
+            string userName = TxtUsername.Text;
 
-            Entidades.Login login = UsuarioService.LoginUser(user, password);
+            Entidades.Login login = UsuarioService.LoginUser(userName, password);
 
             if (login.LoginSuccess)
             {
