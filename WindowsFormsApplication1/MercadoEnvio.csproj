@@ -63,11 +63,11 @@
     <Compile Include="ABM Rol\MainRol.Designer.cs">
       <DependentUpon>MainRol.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Rubro\Form1.cs">
+    <Compile Include="ABM Rubro\MainRubro.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Rubro\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ABM Rubro\MainRubro.Designer.cs">
+      <DependentUpon>MainRubro.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Usuario\Form1.cs">
       <SubType>Form</SubType>
@@ -95,12 +95,14 @@
     </Compile>
     <Compile Include="DataManagers\DataManagerPublicaciones.cs" />
     <Compile Include="DataManagers\DataManagerRoles.cs" />
+    <Compile Include="DataManagers\DataManagerRubros.cs" />
     <Compile Include="DataManagers\DataManagerUsuario.cs" />
     <Compile Include="Entidades\Estado.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Login.cs" />
     <Compile Include="Entidades\Publicacion.cs" />
     <Compile Include="Entidades\Rol.cs" />
+    <Compile Include="Entidades\Rubro.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Facturas\Form1.cs">
       <SubType>Form</SubType>
@@ -138,12 +140,16 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\PublicacionesServices.cs" />
     <Compile Include="Servicios\RolesServices.cs" />
+    <Compile Include="Servicios\RubrosServices.cs" />
     <Compile Include="Servicios\UsuarioService.cs" />
     <EmbeddedResource Include="ABM Rol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Rol\MainRol.resx">
       <DependentUpon>MainRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Rubro\MainRubro.resx">
+      <DependentUpon>MainRubro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\MainPublicacion.resx">
       <DependentUpon>MainPublicacion.cs</DependentUpon>
@@ -188,6 +194,7 @@
     <Content Include="Scripts\SP\SP_GetRolByDescripcion.sql" />
     <Content Include="Scripts\SP\SP_GetRoles.sql" />
     <Content Include="Scripts\SP\SP_GetRolFuncionalidades.sql" />
+    <Content Include="Scripts\SP\SP_GetRubros.sql" />
     <Content Include="Scripts\SP\SP_GetUsuarioByUserName.sql" />
     <Content Include="Scripts\SP\SP_IncrementCountLogin.sql" />
     <Content Include="Scripts\SP\SP_InsertRol.sql" />

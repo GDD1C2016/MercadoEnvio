@@ -1,4 +1,5 @@
 ﻿using System.Windows.Forms;
+using MercadoEnvio.ABM_Rubro;
 using MercadoEnvio.ComprarOfertar;
 
 namespace MercadoEnvio
@@ -15,7 +16,8 @@ namespace MercadoEnvio
             //Application.Run(new Main());
             //Application.Run(new AltaRol(new Rol()));
             //Application.Run(new MainRol());
-            Application.Run(new MainPublicacion());
+            //Application.Run(new MainPublicacion());
+            Application.Run(new MainRubro());
         }
     }
 }
