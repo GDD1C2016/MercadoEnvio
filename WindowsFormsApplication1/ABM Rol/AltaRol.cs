@@ -56,7 +56,6 @@ namespace MercadoEnvio.ABM_Rol
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            bool inserted;
             List<string> errors = new List<string>(ValidarDatosRol());
 
             if (errors.Count > 0)
@@ -72,8 +71,11 @@ namespace MercadoEnvio.ABM_Rol
                     Activo = ((Estado) ComboEstado.SelectedItem).Valor,
                     Funcionalidades = GetFuncionalidadesFromDg()
                 };
-
-                inserted = RolesServices.SaveNewRol(newRol);
+                
+                if (RolesServices.SaveNewRol(newRol))
+                    MessageBox.Show(Resources.UsuarioCreado);
+                else
+                    MessageBox.Show(Resources.ErrorGuardado);
             }
         }
 

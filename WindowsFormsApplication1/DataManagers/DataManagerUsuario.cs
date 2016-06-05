@@ -33,6 +33,7 @@ namespace MercadoEnvio.DataManagers
                 db.Connection.Open();
 
                 DataTable resAux = db.GetDataAsTable("SP_GetUsuarioByUserName", parameters);
+
                 foreach (DataRow row in resAux.Rows)
                 {
                     usuarioEntidad.IdUsuario = Convert.ToInt32(row["IdUsuario"]);

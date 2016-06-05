@@ -196,6 +196,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El usuario ha sido creado exitósamente.
+        /// </summary>
+        internal static string UsuarioCreado {
+            get {
+                return ResourceManager.GetString("UsuarioCreado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Usuario deshabilitado. .
         /// </summary>
         internal static string UsuarioDeshabilitado {

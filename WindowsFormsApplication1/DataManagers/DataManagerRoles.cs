@@ -23,6 +23,7 @@ namespace MercadoEnvio.DataManagers
             {
                 DataTable res = db.GetDataAsTable("SP_GetRoles");
                 List<Rol> listRoles = new List<Rol>();
+
                 foreach (DataRow row in res.Rows)
                 {
                     var rol = new Rol
@@ -54,6 +55,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idRolParameter);
 
             DataTable res = db.GetDataAsTable("SP_GetRolFuncionalidades", parameters);
+
             foreach (DataRow row in res.Rows)
             {
                 var idFuncionalidad = Convert.ToInt32(row["IdFuncionalidad"]);
@@ -72,6 +74,7 @@ namespace MercadoEnvio.DataManagers
             {
                 DataTable resAux = db.GetDataAsTable("SP_GetFuncionalidades");
                 List<Funcionalidad> listFuncionalidades = new List<Funcionalidad>();
+
                 foreach (DataRow row in resAux.Rows)
                 {
                     var funcionalidad = new Funcionalidad
@@ -119,6 +122,7 @@ namespace MercadoEnvio.DataManagers
             {
                 DataTable res = db.GetDataAsTable("SP_FindRoles", parameters);
                 List<Rol> roles = new List<Rol>();
+
                 foreach (DataRow row in res.Rows)
                 {
                     var rol = new Rol
@@ -157,6 +161,7 @@ namespace MercadoEnvio.DataManagers
             {
                 DataTable res = db.GetDataAsTable("SP_InsertRol", parameters);
                 List<Rol> roles = new List<Rol>();
+
                 foreach (DataRow row in res.Rows)
                 {
                     var rol = new Rol
@@ -188,17 +193,8 @@ namespace MercadoEnvio.DataManagers
                     parameters.Add(idFuncionalidadParameter);
                     parameters.Add(activaParameter);
 
-                    try
-                    {
-                        db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolFuncionalidad", parameters);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(Resources.ErrorTrans, ex);
-                    }
+                    db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolFuncionalidad", parameters);
                 }
-
-                // TODO Exception
             }
         }
     }
