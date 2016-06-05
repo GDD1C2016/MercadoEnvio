@@ -175,11 +175,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\fastreverse.JPG" />
+    <None Include="Resources\Back.jpg" />
+    <None Include="Resources\Forward.jpg" />
+    <None Include="Resources\fastforward.JPG" />
     <Content Include="Scripts\MASTERDBA - Carga Inicial v2.sql" />
     <Content Include="Scripts\MASTERDBA - Creacion Tablas v2.sql" />
     <Content Include="Scripts\SP\SP_BloqUser.sql" />
     <Content Include="Scripts\SP\SP_FindRoles.sql" />
     <Content Include="Scripts\SP\SP_GetFuncionalidades.sql" />
+    <Content Include="Scripts\SP\SP_GetPublicaciones.sql" />
     <Content Include="Scripts\SP\SP_GetRolByDescripcion.sql" />
     <Content Include="Scripts\SP\SP_GetRoles.sql" />
     <Content Include="Scripts\SP\SP_GetRolFuncionalidades.sql" />

@@ -117,58 +117,71 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Advertencia" xml:space="preserve">
-    <value>Advertencia</value>
-  </data>
-  <data name="ContactarAdministrador" xml:space="preserve">
-    <value>Contacte al administrador.</value>
-  </data>
-  <data name="ContraseñaIncorrecta" xml:space="preserve">
-    <value>Contraseña incorrecta</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Error: </value>
-  </data>
-  <data name="ErrorAgregarFuncionalidad" xml:space="preserve">
-    <value>La funcionalidad seleccionada ya fue agregada.</value>
-  </data>
-  <data name="ErrorBD" xml:space="preserve">
-    <value>No se pudo establecer conexión con la base de datos.</value>
-  </data>
-  <data name="ErrorDescripcionVacia" xml:space="preserve">
-    <value>El campo descripción no puede estar vacío.</value>
-  </data>
-  <data name="ErrorEstadoVacio" xml:space="preserve">
-    <value>El campo estado no puede estar vacío.</value>
-  </data>
-  <data name="ErrorGuardado" xml:space="preserve">
-    <value>Error al guardar</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Forward" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Forward.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="ErrorRolSinFuncionalidad" xml:space="preserve">
     <value>El rol debe tener al menos una funcionalidad.</value>
   </data>
-  <data name="ErrorSP" xml:space="preserve">
-    <value>Error al ejecutar el stored procedure</value>
-  </data>
-  <data name="ErrorTable" xml:space="preserve">
-    <value>Error en el manejo data-table.</value>
-  </data>
-  <data name="ErrorTrans" xml:space="preserve">
-    <value>Se produjo un error durante la transacción.</value>
-  </data>
   <data name="IntentosRestantes" xml:space="preserve">
     <value>Intentos restantes: </value>
+  </data>
+  <data name="ContactarAdministrador" xml:space="preserve">
+    <value>Contacte al administrador.</value>
+  </data>
+  <data name="UsuarioNoExiste" xml:space="preserve">
+    <value>El usuario ingresado no existe</value>
+  </data>
+  <data name="ContraseñaIncorrecta" xml:space="preserve">
+    <value>Contraseña incorrecta</value>
+  </data>
+  <data name="ErrorDescripcionVacia" xml:space="preserve">
+    <value>El campo descripción no puede estar vacío.</value>
   </data>
   <data name="UsuarioBloqueado" xml:space="preserve">
     <value>Usuario bloqueado. </value>
   </data>
+  <data name="ErrorBD" xml:space="preserve">
+    <value>No se pudo establecer conexión con la base de datos.</value>
+  </data>
+  <data name="ErrorTable" xml:space="preserve">
+    <value>Error en el manejo data-table.</value>
+  </data>
+  <data name="Back" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Back.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ErrorEstadoVacio" xml:space="preserve">
+    <value>El campo estado no puede estar vacío.</value>
+  </data>
   <data name="UsuarioCreado" xml:space="preserve">
     <value>El usuario ha sido creado exitósamente</value>
+  </data>
+  <data name="Advertencia" xml:space="preserve">
+    <value>Advertencia</value>
   </data>
   <data name="UsuarioDeshabilitado" xml:space="preserve">
     <value>Usuario deshabilitado. </value>
   </data>
-  <data name="UsuarioNoExiste" xml:space="preserve">
-    <value>El usuario ingresado no existe</value>
+  <data name="ErrorSP" xml:space="preserve">
+    <value>Error al ejecutar el stored procedure</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error: </value>
+  </data>
+  <data name="fastreverse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fastreverse.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ErrorAgregarFuncionalidad" xml:space="preserve">
+    <value>La funcionalidad seleccionada ya fue agregada.</value>
+  </data>
+  <data name="ErrorTrans" xml:space="preserve">
+    <value>Se produjo un error durante la transacción.</value>
+  </data>
+  <data name="ErrorGuardado" xml:space="preserve">
+    <value>Error al guardar</value>
+  </data>
+  <data name="fastforward" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fastforward.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

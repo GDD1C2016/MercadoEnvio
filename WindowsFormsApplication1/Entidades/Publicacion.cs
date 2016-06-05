@@ -88,6 +88,8 @@ namespace MercadoEnvio.Entidades
             get { return _idTipo; }
             set { _idTipo = value; }
         }
+
+        public int Index { get; set; }
         #endregion
     }
 }
