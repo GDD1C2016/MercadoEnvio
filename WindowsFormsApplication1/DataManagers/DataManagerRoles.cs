@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Helpers;
-using MercadoEnvio.Properties;
+//using MercadoEnvio.Properties;
 
 namespace MercadoEnvio.DataManagers
 {
@@ -16,8 +16,7 @@ namespace MercadoEnvio.DataManagers
     {
         public static List<Rol> GetAllData()
         {
-            DataBaseHelper db = null;
-            db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
@@ -59,7 +58,7 @@ namespace MercadoEnvio.DataManagers
             foreach (DataRow row in res.Rows)
             {
                 var idFuncionalidad = Convert.ToInt32(row["IdFuncionalidad"]);
-                funcionalidades.Add(funcionalidadesAux.Find(x=>x.IdFuncionalidad == idFuncionalidad));
+                funcionalidades.Add(funcionalidadesAux.Find(x => x.IdFuncionalidad == idFuncionalidad));
             }
 
             return funcionalidades;
@@ -67,8 +66,7 @@ namespace MercadoEnvio.DataManagers
 
         public static List<Funcionalidad> GetAllFuncionalidades()
         {
-            DataBaseHelper db = null;
-            db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
@@ -93,8 +91,7 @@ namespace MercadoEnvio.DataManagers
         {
             Estado estado = new Estado { Descripcion = filtroEstado };
 
-            DataBaseHelper db = null;
-            db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             SqlParameter nombreParameter;
             SqlParameter funcionalidadParameter;
@@ -141,8 +138,7 @@ namespace MercadoEnvio.DataManagers
 
         public static bool SaveNewRol(Rol newRol)
         {
-            DataBaseHelper db = null;
-            db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             SqlParameter descripcionParameter;
             SqlParameter activoParameter;
@@ -193,8 +189,19 @@ namespace MercadoEnvio.DataManagers
                     parameters.Add(idFuncionalidadParameter);
                     parameters.Add(activaParameter);
 
-                    db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolFuncionalidad", parameters);
+                    try
+                    {
+                        db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolFuncionalidad",
+                            parameters);
+                    }
+                    catch (Exception)
+                    {
+
+                        return false;
+                    }
                 }
+
+                return true;
             }
         }
     }
