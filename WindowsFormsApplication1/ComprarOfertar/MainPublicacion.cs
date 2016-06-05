@@ -13,9 +13,6 @@ namespace MercadoEnvio.ComprarOfertar
 {
     public partial class MainPublicacion : Form
     {
-        private static int TotalRecords = 0;
-        private static int PageSize = 10;
-        
         public MainPublicacion()
         {
             InitializeComponent();
@@ -27,14 +24,9 @@ namespace MercadoEnvio.ComprarOfertar
             BindingList<Publicacion> dataSource = new BindingList<Publicacion>(PublicacionesServices.GetAllData());
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
-            TotalRecords = bs.List.Count;
-
-            bindingPaginador.BindingSource = sourcePaginador;
-            sourcePaginador.CurrentChanged += new EventHandler(sourcePaginador_CurrentChanged);
-            sourcePaginador.DataSource = new PageOffsetList();
 
             DgPublicaciones.AutoGenerateColumns = false;
-            //DgPublicaciones.ColumnCount = 7;
+            DgPublicaciones.ColumnCount = 6;
 
             DgPublicaciones.Columns[0].HeaderText = "Codigo Publicación";
             DgPublicaciones.Columns[0].Name = "CodigoPublicacion";
@@ -60,37 +52,8 @@ namespace MercadoEnvio.ComprarOfertar
             DgPublicaciones.Columns[5].Name = "Precio";
             DgPublicaciones.Columns[5].DataPropertyName = "Precio";
 
-            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Index" });
-
             DgPublicaciones.DataSource = bs;
             #endregion
-        }
-
-        private void sourcePaginador_CurrentChanged(object sender, EventArgs e)
-        {
-            int offset = (int)sourcePaginador.Current;
-            var records = new List<Record>();
-            for (int i = offset; i < offset + PageSize && i < TotalRecords; i++)
-                records.Add(new Record { Index = i });
-            DgPublicaciones.DataSource = records;
-        }
-
-        class Record
-        {
-            public int Index { get; set; }
-        }
-
-        class PageOffsetList : IListSource
-        {
-            public bool ContainsListCollection { get; protected set; }
-
-            public System.Collections.IList GetList()
-            {
-                var pageOffsets = new List<int>();
-                for (int offset = 0; offset < TotalRecords; offset += PageSize)
-                    pageOffsets.Add(offset);
-                return pageOffsets;
-            }
         }
     }
 }
