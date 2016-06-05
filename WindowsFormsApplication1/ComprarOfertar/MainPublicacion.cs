@@ -13,8 +13,8 @@ namespace MercadoEnvio.ComprarOfertar
 {
     public partial class MainPublicacion : Form
     {
-        private int TotalRecords = 0;
-        private int PageSize = 10;
+        private static int TotalRecords = 0;
+        private static int PageSize = 10;
         
         public MainPublicacion()
         {
@@ -31,7 +31,7 @@ namespace MercadoEnvio.ComprarOfertar
 
             bindingPaginador.BindingSource = sourcePaginador;
             sourcePaginador.CurrentChanged += new EventHandler(sourcePaginador_CurrentChanged);
-            //sourcePaginador.DataSource = new PageOffsetList();
+            sourcePaginador.DataSource = new PageOffsetList();
 
             DgPublicaciones.AutoGenerateColumns = false;
             DgPublicaciones.ColumnCount = 6;
@@ -76,6 +76,20 @@ namespace MercadoEnvio.ComprarOfertar
         class Record
         {
             public int Index { get; set; }
+        }
+
+        class PageOffsetList : System.ComponentModel.IListSource
+        {
+            public bool ContainsListCollection { get; protected set; }
+
+            public System.Collections.IList GetList()
+            {
+                // Return a list of page offsets based on "totalRecords" and "pageSize"
+                var pageOffsets = new List<int>();
+                for (int offset = 0; offset < TotalRecords; offset += PageSize)
+                    pageOffsets.Add(offset);
+                return pageOffsets;
+            }
         }
     }
 }
