@@ -20,6 +20,7 @@ namespace MercadoEnvio.DataManagers
 
             using (db.Connection)
             {
+
                 DataTable res = db.GetDataAsTable("SP_GetRoles");
                 List<Rol> listRoles = new List<Rol>();
 
@@ -46,9 +47,8 @@ namespace MercadoEnvio.DataManagers
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
             List<Funcionalidad> funcionalidadesAux = new List<Funcionalidad>(GetAllFuncionalidades());
             List<SqlParameter> parameters = new List<SqlParameter>();
-            SqlParameter idRolParameter;
 
-            idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
+            SqlParameter idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
             idRolParameter.Value = idRol;
 
             parameters.Add(idRolParameter);
@@ -90,21 +90,16 @@ namespace MercadoEnvio.DataManagers
         public static List<Rol> FindRoles(string filtroNombre, int filtroFuncionalidad, string filtroEstado)
         {
             Estado estado = new Estado { Descripcion = filtroEstado };
-
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
-
-            SqlParameter nombreParameter;
-            SqlParameter funcionalidadParameter;
-            SqlParameter estadoParameter;
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            nombreParameter = new SqlParameter("@FiltroNombre", SqlDbType.NVarChar);
+            SqlParameter nombreParameter = new SqlParameter("@FiltroNombre", SqlDbType.NVarChar);
             nombreParameter.Value = filtroNombre.Trim();
 
-            funcionalidadParameter = new SqlParameter("@FiltroFuncionalidad", SqlDbType.Int);
+            SqlParameter funcionalidadParameter = new SqlParameter("@FiltroFuncionalidad", SqlDbType.Int);
             funcionalidadParameter.Value = filtroFuncionalidad;
 
-            estadoParameter = new SqlParameter("@FiltroEstado", SqlDbType.Bit);
+            SqlParameter estadoParameter = new SqlParameter("@FiltroEstado", SqlDbType.Bit);
 
             if (estado.EstadoValido())
                 estadoParameter.Value = estado.Valor;
@@ -139,15 +134,12 @@ namespace MercadoEnvio.DataManagers
         public static bool SaveNewRol(Rol newRol)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
-
-            SqlParameter descripcionParameter;
-            SqlParameter activoParameter;
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
+            SqlParameter descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
             descripcionParameter.Value = newRol.Descripcion.Trim();
 
-            activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
+            SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
             activoParameter.Value = newRol.Activo;
 
             parameters.Add(descripcionParameter);
@@ -191,7 +183,7 @@ namespace MercadoEnvio.DataManagers
 
                     try
                     {
-                        db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolFuncionalidad",
+                        db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolFuncionalidad",
                             parameters);
                     }
                     catch (Exception)

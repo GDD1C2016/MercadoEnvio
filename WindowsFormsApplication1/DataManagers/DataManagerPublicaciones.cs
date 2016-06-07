@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Helpers;
 using System.Configuration;
@@ -14,13 +14,13 @@ namespace MercadoEnvio.DataManagers
     {
         public static List<Publicacion> GetAllData()
         {
-            DataBaseHelper db = null;
-            db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
                 DataTable res = db.GetDataAsTable("SP_GetPublicaciones");
                 List<Publicacion> listPublicaciones = new List<Publicacion>();
+
                 foreach (DataRow row in res.Rows)
                 {
                     var publicacion = new Publicacion

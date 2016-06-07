@@ -143,10 +143,7 @@
     <value>Usuario bloqueado. </value>
   </data>
   <data name="ErrorBD" xml:space="preserve">
-    <value>No se pudo establecer conexión con la base de datos.</value>
-  </data>
-  <data name="ErrorTable" xml:space="preserve">
-    <value>Error en el manejo data-table.</value>
+    <value>Se produjo un error al intentar establecer conexión con la base de datos.</value>
   </data>
   <data name="Back" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Back.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -155,7 +152,7 @@
     <value>El campo estado no puede estar vacío.</value>
   </data>
   <data name="UsuarioCreado" xml:space="preserve">
-    <value>El usuario ha sido creado exitósamente</value>
+    <value>El usuario ha sido creado exitosamente</value>
   </data>
   <data name="Advertencia" xml:space="preserve">
     <value>Advertencia</value>
@@ -164,7 +161,7 @@
     <value>Usuario deshabilitado. </value>
   </data>
   <data name="ErrorSP" xml:space="preserve">
-    <value>Error al ejecutar el stored procedure</value>
+    <value>Se produjo un error al intentar ejecutar el stored procedure</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error: </value>
@@ -176,12 +173,27 @@
     <value>La funcionalidad seleccionada ya fue agregada.</value>
   </data>
   <data name="ErrorTrans" xml:space="preserve">
-    <value>Se produjo un error durante la transacción.</value>
+    <value>Se produjo un error al intentar ejecutar la transacción.</value>
   </data>
   <data name="ErrorGuardado" xml:space="preserve">
     <value>Error al guardar</value>
   </data>
   <data name="fastforward" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fastforward.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ErrorBeginTrans" xml:space="preserve">
+    <value>Se produjo un error al intentar iniciar la transacción.</value>
+  </data>
+  <data name="ErrorEndTrans" xml:space="preserve">
+    <value>Se produjo un error al intentar finalizar la transacción.</value>
+  </data>
+  <data name="ErrorNoConnection" xml:space="preserve">
+    <value>No se ha instanciado ninguna conexión.</value>
+  </data>
+  <data name="ErrorNoTrans" xml:space="preserve">
+    <value>No se ha instanciado ninguna transacción.</value>
+  </data>
+  <data name="ErrorRollbackTrans" xml:space="preserve">
+    <value>Se produjo un error al intentar deshacer la transacción.</value>
   </data>
 </root>

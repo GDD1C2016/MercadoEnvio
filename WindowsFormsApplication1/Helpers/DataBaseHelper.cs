@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
+//using System.Linq;
+//using System.Text;
 using MercadoEnvio.Properties;
 
 namespace MercadoEnvio.Helpers
@@ -39,169 +40,137 @@ namespace MercadoEnvio.Helpers
         public DataBaseHelper(string connectionString)
         {
             _connectionString = connectionString;
-            try
-            {
-                _sqlConn = new SqlConnection(_connectionString);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(Resources.ErrorBD, ex);
-            }
+            _sqlConn = new SqlConnection(_connectionString);
         }
         #endregion
 
         #region methods
         #region transaction methods
+
         public void BeginTransaction()
         {
-            try
+            if (Connection != null)
             {
-                if (Connection != null)
+                if (Connection.State != ConnectionState.Open)
+                    try
+                    {
+                        Connection.Open();
+                    }
+                    catch (SqlException)
+                    {
+                        throw new Exception(Resources.ErrorBD);
+                    }
+                    catch (ConfigurationErrorsException)
+                    {
+                        throw new Exception(Resources.ErrorBD);
+                    }
+
+                try
                 {
-                    Connection.Open();
                     _sqlTrans = Connection.BeginTransaction();
                 }
+                catch (Exception ex)
+                {
+                    throw new Exception(Resources.ErrorBeginTrans, ex);
+                }
             }
-            catch (Exception ex)
-            {
-                throw new Exception(Resources.ErrorTrans,ex);
-            }
+            else
+                throw new Exception(Resources.ErrorNoConnection);
         }
 
         public void RollbackTransaction()
         {
-            try
+            if (_sqlTrans != null)
             {
-                if (_sqlTrans != null)
+                try
                 {
                     _sqlTrans.Rollback();
                 }
+                catch (Exception ex)
+                {
+                    throw new Exception(Resources.ErrorRollbackTrans, ex);
+                }
             }
-            catch (Exception ex)
-            {
-                throw new Exception(Resources.ErrorTrans, ex);
-            }
+            else
+                throw new Exception(Resources.ErrorNoTrans);
         }
 
         public void EndTransaction()
         {
-            try
+            if (_sqlTrans != null)
             {
-                if (_sqlTrans != null)
+                try
                 {
                     _sqlTrans.Commit();
-                    _sqlTrans.Dispose();
-                    _sqlTrans = null;
+
+                    try
+                    {
+                        _sqlTrans.Dispose();
+                        _sqlTrans = null;
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new Exception(Resources.ErrorEndTrans, ex);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(Resources.ErrorTrans, ex);
                 }
             }
-            catch (Exception ex)
-            {
-                throw new Exception(Resources.ErrorTrans, ex);
-            }
+            else
+                throw new Exception(Resources.ErrorNoTrans);
         }
         #endregion
 
         #region data methods
         public DataTable GetDataAsTable(string storedProcedure)
         {
-            SqlCommand sqlCommand;
-            SqlDataAdapter sqlAdapter;
-            DataTable sqlTable;
-
-            sqlCommand = new SqlCommand();
-            sqlAdapter = new SqlDataAdapter(sqlCommand);
-
-            try
-            {
-                if (Connection != null && Connection.State != ConnectionState.Open)
-                {
-                    Connection.Open();
-                }
-
-                sqlCommand.CommandText = storedProcedure;
-                sqlCommand.Connection = Connection;
-                sqlCommand.CommandType = CommandType.StoredProcedure;
-
-                sqlTable = new DataTable();
-                sqlAdapter.Fill(sqlTable);
-
-                return sqlTable;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(Resources.ErrorTable,ex);
-            }
-            finally
-            {
-                if (Connection != null && Connection.State == ConnectionState.Open)
-                {
-                    Connection.Close();
-                }
-                if (sqlCommand != null)
-                {
-                    sqlCommand.Dispose();
-                }
-                if (sqlAdapter != null)
-                {
-                    sqlAdapter.Dispose();
-                }
-            }
-        }
-
-        public DataTable GetDataAsTable(string storedProcedure, List<SqlParameter> parameters)
-        {
-            SqlCommand sqlCommand = new SqlCommand();
+            SqlCommand sqlCommand = Connection.CreateCommand();
             SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
-            DataTable sqlTable = new DataTable();
+
+            sqlCommand.Connection = Connection;
+            sqlCommand.Transaction = _sqlTrans;
 
             try
             {
-                if (Connection != null && Connection.State != ConnectionState.Open)
-                {
-                    Connection.Open();
-                }
+                DataTable sqlTable = new DataTable();
 
                 sqlCommand.CommandText = storedProcedure;
-                sqlCommand.Connection = Connection;
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
-                foreach (SqlParameter sqlPrm in parameters)
-                {
-                    sqlCommand.Parameters.Add(sqlPrm);
-                }
-
                 sqlAdapter.Fill(sqlTable);
+
                 return sqlTable;
             }
             catch (Exception ex)
             {
-                throw new Exception(Resources.ErrorTable, ex);
+                RollbackTransaction();
+                throw new Exception(Resources.ErrorSP, ex);
             }
             finally
             {
-                if (Connection != null && Connection.State == ConnectionState.Open)
-                {
-                    Connection.Close();
-                }
+                if (_sqlTrans == null)
+                        EndConnection();
+
                 sqlCommand.Dispose();
                 sqlAdapter.Dispose();
             }
         }
 
-        public object ExectInstruction(ExecutionType execType, string storedProcedure, List<SqlParameter> parameters)
+        public DataTable GetDataAsTable(string storedProcedure, List<SqlParameter> parameters)
         {
-            object result = null;
-            SqlCommand sqlCommand = new SqlCommand();
+            SqlCommand sqlCommand = Connection.CreateCommand();
+            SqlDataAdapter sqlAdapter = new SqlDataAdapter(sqlCommand);
+
+            sqlCommand.Connection = Connection;
+            sqlCommand.Transaction = _sqlTrans;
 
             try
             {
-                if (Connection != null && Connection.State != ConnectionState.Open)
-                {
-                    Connection.Open();
-                }
+                DataTable sqlTable = new DataTable();
 
                 sqlCommand.CommandText = storedProcedure;
-                sqlCommand.Connection = Connection;
                 sqlCommand.CommandType = CommandType.StoredProcedure;
 
                 foreach (SqlParameter sqlPrm in parameters)
@@ -209,9 +178,42 @@ namespace MercadoEnvio.Helpers
                     sqlCommand.Parameters.Add(sqlPrm);
                 }
 
-                if (_sqlTrans != null)
+                sqlAdapter.Fill(sqlTable);
+
+                return sqlTable;
+            }
+            catch (Exception ex)
+            {
+                RollbackTransaction();
+                throw new Exception(Resources.ErrorSP, ex);
+            }
+            finally
+            {
+                if (_sqlTrans == null)
+                    EndConnection();
+
+                sqlCommand.Dispose();
+                sqlAdapter.Dispose();
+            }
+        }
+
+        public object ExecInstruction(ExecutionType execType, string storedProcedure, List<SqlParameter> parameters)
+        {
+            SqlCommand sqlCommand = Connection.CreateCommand();
+
+            sqlCommand.Connection = Connection;
+            sqlCommand.Transaction = _sqlTrans;
+
+            try
+            {
+                object result = null;
+
+                sqlCommand.CommandText = storedProcedure;
+                sqlCommand.CommandType = CommandType.StoredProcedure;
+
+                foreach (SqlParameter sqlPrm in parameters)
                 {
-                    sqlCommand.Transaction = _sqlTrans;
+                    sqlCommand.Parameters.Add(sqlPrm);
                 }
 
                 switch (execType)
@@ -229,17 +231,13 @@ namespace MercadoEnvio.Helpers
             catch (Exception ex)
             {
                 RollbackTransaction();
-                throw new Exception(Resources.ErrorSP,ex);
+                throw new Exception(Resources.ErrorSP, ex);
             }
             finally
             {
                 if (_sqlTrans == null)
-                {
-                    if (Connection != null && Connection.State == ConnectionState.Open)
-                    {
-                        Connection.Close();
-                    }
-                }
+                    EndConnection();
+
                 sqlCommand.Dispose();
             }
         }
@@ -250,17 +248,19 @@ namespace MercadoEnvio.Helpers
             {
                 if (Connection != null)
                 {
-                    Connection.Close();
                     if (_sqlTrans != null)
                     {
                         _sqlTrans.Dispose();
+                        _sqlTrans = null;
                     }
+
+                    Connection.Close();
                     Connection.Dispose();
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception(Resources.ErrorBD,ex);
+                throw new Exception(Resources.ErrorBD, ex);
             }
         }
         #endregion

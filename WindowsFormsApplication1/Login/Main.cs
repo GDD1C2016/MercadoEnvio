@@ -27,7 +27,7 @@ namespace MercadoEnvio.Login
             {
                 LabelErrorLogin.Text = string.Empty;
                 LabelCantIntentos.Text = string.Empty;
-                MessageBox.Show("Ingreso exitoso");
+                MessageBox.Show("Ingreso exitoso"); // TODO Vincular a la pantalla de selección de rol
             }
             else
             {

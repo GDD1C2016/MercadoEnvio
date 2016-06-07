@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
+//using System.Linq;
+//using System.Text;
 using MercadoEnvio.Helpers;
 using System.Configuration;
 using MercadoEnvio.Entidades;
@@ -16,15 +16,13 @@ namespace MercadoEnvio.DataManagers
         public static Entidades.Login Login(string userName, string password)
         {
             DataBaseHelper db = null;
-            object res;
-            SqlParameter userNameParameter;
             List<SqlParameter> parameters = new List<SqlParameter>();
             Entidades.Login login = new Entidades.Login();
             Usuario usuarioEntidad = new Usuario();
 
             try
             {
-                userNameParameter = new SqlParameter("@UserName", SqlDbType.NVarChar);
+                SqlParameter userNameParameter = new SqlParameter("@UserName", SqlDbType.NVarChar);
                 userNameParameter.Value = userName;
 
                 parameters.Add(userNameParameter);
@@ -75,7 +73,7 @@ namespace MercadoEnvio.DataManagers
                     }
                     else
                     {
-                        res = IncrementarContadorUsuario(userName, db);
+                        object res = IncrementarContadorUsuario(userName, db);
 
                         usuarioEntidad.CantIntFallidos = (int)res;
                         login.Usuario = usuarioEntidad;
@@ -103,34 +101,37 @@ namespace MercadoEnvio.DataManagers
         private static void BloquearUsuario(string userName, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            SqlParameter userNameParameter;
-            userNameParameter = new SqlParameter("@Usuario", SqlDbType.NVarChar);
+
+            SqlParameter userNameParameter = new SqlParameter("@Usuario", SqlDbType.NVarChar);
             userNameParameter.Value = userName;
+
             parameters.Add(userNameParameter);
 
-            db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_BloqUser", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_BloqUser", parameters);
         }
 
         private static object IncrementarContadorUsuario(string userName, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            SqlParameter userNameParameter;
-            userNameParameter = new SqlParameter("@Usuario", SqlDbType.NVarChar);
+            
+            SqlParameter userNameParameter = new SqlParameter("@Usuario", SqlDbType.NVarChar);
             userNameParameter.Value = userName;
+            
             parameters.Add(userNameParameter);
 
-            return db.ExectInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_IncrementCountLogin", parameters);
+            return db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_IncrementCountLogin", parameters);
         }
 
         private static void ResetearContadorUsuario(string userName, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            SqlParameter userNameParameter;
-            userNameParameter = new SqlParameter("@Usuario", SqlDbType.NVarChar);
+            
+            SqlParameter userNameParameter = new SqlParameter("@Usuario", SqlDbType.NVarChar);
             userNameParameter.Value = userName;
+            
             parameters.Add(userNameParameter);
 
-            db.ExectInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_ResetCountLogin", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_ResetCountLogin", parameters);
         }
     }
 }
