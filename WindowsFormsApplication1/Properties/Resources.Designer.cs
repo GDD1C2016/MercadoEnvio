@@ -134,7 +134,25 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo descripción no puede estar vacío..
+        ///   Looks up a localized string similar to El campo &quot;Descripción corta&quot; no puede estar vacío..
+        /// </summary>
+        internal static string ErrorDescripcionCortaVacia {
+            get {
+                return ResourceManager.GetString("ErrorDescripcionCortaVacia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;Descripción larga&quot; no puede estar vacío..
+        /// </summary>
+        internal static string ErrorDescripcionLargaVacia {
+            get {
+                return ResourceManager.GetString("ErrorDescripcionLargaVacia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;Descripción&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorDescripcionVacia {
             get {
@@ -152,7 +170,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo estado no puede estar vacío..
+        ///   Looks up a localized string similar to El campo &quot;Estado&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorEstadoVacio {
             get {
@@ -259,6 +277,15 @@ namespace MercadoEnvio.Properties {
         internal static string IntentosRestantes {
             get {
                 return ResourceManager.GetString("IntentosRestantes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El rubro ha sido creado exitosamente.
+        /// </summary>
+        internal static string RubroCreado {
+            get {
+                return ResourceManager.GetString("RubroCreado", resourceCulture);
             }
         }
         

@@ -63,6 +63,12 @@
     <Compile Include="ABM Rol\MainRol.Designer.cs">
       <DependentUpon>MainRol.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM Rubro\AltaRubro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Rubro\AltaRubro.Designer.cs">
+      <DependentUpon>AltaRubro.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM Rubro\MainRubro.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,9 @@
     <EmbeddedResource Include="ABM Rol\MainRol.resx">
       <DependentUpon>MainRol.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM Rubro\AltaRubro.resx">
+      <DependentUpon>AltaRubro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM Rubro\MainRubro.resx">
       <DependentUpon>MainRubro.cs</DependentUpon>
     </EmbeddedResource>
@@ -189,6 +198,7 @@
     <Content Include="Scripts\MASTERDBA - Creacion Tablas v2.sql" />
     <Content Include="Scripts\SP\SP_BloqUser.sql" />
     <Content Include="Scripts\SP\SP_FindRoles.sql" />
+    <Content Include="Scripts\SP\SP_FindRubros.sql" />
     <Content Include="Scripts\SP\SP_GetFuncionalidades.sql" />
     <Content Include="Scripts\SP\SP_GetPublicaciones.sql" />
     <Content Include="Scripts\SP\SP_GetRolByDescripcion.sql" />
@@ -199,6 +209,7 @@
     <Content Include="Scripts\SP\SP_IncrementCountLogin.sql" />
     <Content Include="Scripts\SP\SP_InsertRol.sql" />
     <Content Include="Scripts\SP\SP_InsertRolFuncionalidad.sql" />
+    <Content Include="Scripts\SP\SP_InsertRubro.sql" />
     <Content Include="Scripts\SP\SP_ResetCountLogin.sql" />
   </ItemGroup>
   <ItemGroup />

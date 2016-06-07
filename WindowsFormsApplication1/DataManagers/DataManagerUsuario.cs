@@ -15,24 +15,23 @@ namespace MercadoEnvio.DataManagers
     {
         public static Entidades.Login Login(string userName, string password)
         {
-            DataBaseHelper db = null;
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
             List<SqlParameter> parameters = new List<SqlParameter>();
-            Entidades.Login login = new Entidades.Login();
             Usuario usuarioEntidad = new Usuario();
+            Entidades.Login login = new Entidades.Login();
 
-            try
+            using (db.Connection)
             {
+                db.BeginTransaction();
+
                 SqlParameter userNameParameter = new SqlParameter("@UserName", SqlDbType.NVarChar);
                 userNameParameter.Value = userName;
 
                 parameters.Add(userNameParameter);
 
-                db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
-                db.Connection.Open();
+                DataTable res1 = db.GetDataAsTable("SP_GetUsuarioByUserName", parameters);
 
-                DataTable resAux = db.GetDataAsTable("SP_GetUsuarioByUserName", parameters);
-
-                foreach (DataRow row in resAux.Rows)
+                foreach (DataRow row in res1.Rows)
                 {
                     usuarioEntidad.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
                     usuarioEntidad.UserName = Convert.ToString(row["UserName"]);
@@ -65,7 +64,7 @@ namespace MercadoEnvio.DataManagers
                     }
                     else if (usuarioEntidad.Password.Equals(password))
                     {
-                        ResetearContadorUsuario(userName,db);
+                        ResetearContadorUsuario(userName, db);
 
                         usuarioEntidad.CantIntFallidos = 0;
                         login.Usuario = usuarioEntidad;
@@ -73,9 +72,9 @@ namespace MercadoEnvio.DataManagers
                     }
                     else
                     {
-                        object res = IncrementarContadorUsuario(userName, db);
+                        object res2 = IncrementarContadorUsuario(userName, db);
 
-                        usuarioEntidad.CantIntFallidos = (int)res;
+                        usuarioEntidad.CantIntFallidos = (int)res2;
                         login.Usuario = usuarioEntidad;
                         login.LoginSuccess = false;
                         login.ErrorMessage = Resources.ContraseñaIncorrecta;
@@ -86,15 +85,10 @@ namespace MercadoEnvio.DataManagers
                         }
                     }
                 }
-                return login;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(Resources.Error + ex.Message);
-            }
-            finally
-            {
+
                 db.EndConnection();
+
+                return login;
             }
         }
 
@@ -113,10 +107,10 @@ namespace MercadoEnvio.DataManagers
         private static object IncrementarContadorUsuario(string userName, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            
+
             SqlParameter userNameParameter = new SqlParameter("@Usuario", SqlDbType.NVarChar);
             userNameParameter.Value = userName;
-            
+
             parameters.Add(userNameParameter);
 
             return db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_IncrementCountLogin", parameters);
@@ -125,10 +119,10 @@ namespace MercadoEnvio.DataManagers
         private static void ResetearContadorUsuario(string userName, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            
+
             SqlParameter userNameParameter = new SqlParameter("@Usuario", SqlDbType.NVarChar);
             userNameParameter.Value = userName;
-            
+
             parameters.Add(userNameParameter);
 
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_ResetCountLogin", parameters);

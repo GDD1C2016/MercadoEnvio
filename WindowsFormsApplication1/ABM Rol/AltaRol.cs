@@ -14,7 +14,7 @@ namespace MercadoEnvio.ABM_Rol
         public AltaRol(Rol rol)
         {
             InitializeComponent();
-            
+
             TxtNombre.Text = rol.Descripcion;
 
             #region armadoDeGrillaFuncionalidad
@@ -68,14 +68,12 @@ namespace MercadoEnvio.ABM_Rol
                 Rol newRol = new Rol
                 {
                     Descripcion = TxtNombre.Text.Trim(),
-                    Activo = ((Estado) ComboEstado.SelectedItem).Valor,
+                    Activo = ((Estado)ComboEstado.SelectedItem).Valor,
                     Funcionalidades = GetFuncionalidadesFromDg()
                 };
-                
-                if (RolesServices.SaveNewRol(newRol))
-                    MessageBox.Show(Resources.UsuarioCreado);
-                else
-                    MessageBox.Show(Resources.ErrorGuardado);
+
+                RolesServices.SaveNewRol(newRol);
+                MessageBox.Show(Resources.UsuarioCreado);
             }
         }
 
@@ -83,8 +81,7 @@ namespace MercadoEnvio.ABM_Rol
         {
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
 
-            BindingSource bs = new BindingSource();
-            bs = DgFuncionalidades.DataSource as BindingSource;
+            BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
 
             foreach (Funcionalidad funcionalidad in bs.List)
             {
@@ -101,10 +98,9 @@ namespace MercadoEnvio.ABM_Rol
             if (string.IsNullOrEmpty(TxtNombre.Text))
                 errors.Add(Resources.ErrorDescripcionVacia);
 
-            BindingSource bs = new BindingSource();
-            bs = DgFuncionalidades.DataSource as BindingSource;
+            BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
 
-            if(bs.List.Count == 0)
+            if (bs.List.Count == 0)
                 errors.Add(Resources.ErrorRolSinFuncionalidad);
 
             return errors;
@@ -112,11 +108,9 @@ namespace MercadoEnvio.ABM_Rol
 
         private void BtnSeleccionar_Click(object sender, EventArgs e)
         {
-            Funcionalidad funcionalidadSeleccionada = new Funcionalidad();
-            funcionalidadSeleccionada = (Funcionalidad) ComboFuncionalidad.SelectedItem;
+            Funcionalidad funcionalidadSeleccionada = (Funcionalidad)ComboFuncionalidad.SelectedItem;
 
-            BindingSource bs = new BindingSource();
-            bs = DgFuncionalidades.DataSource as BindingSource;
+            BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
 
             bool canAdd = bs.List.Cast<Funcionalidad>().All(funcionalidad => funcionalidad.IdFuncionalidad != funcionalidadSeleccionada.IdFuncionalidad);
 
@@ -127,15 +121,14 @@ namespace MercadoEnvio.ABM_Rol
             else
             {
                 MessageBox.Show(Resources.ErrorAgregarFuncionalidad, Resources.Advertencia, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }            
+            }
         }
 
         private void BtnQuitar_Click(object sender, EventArgs e)
         {
             if (DgFuncionalidades.SelectedRows.Count > 0)
             {
-                BindingSource bs = new BindingSource();
-                bs = DgFuncionalidades.DataSource as BindingSource;
+                BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
                 bs.RemoveAt(DgFuncionalidades.SelectedRows[0].Index);
             }
         }

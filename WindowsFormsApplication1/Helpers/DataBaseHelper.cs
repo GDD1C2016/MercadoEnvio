@@ -151,7 +151,7 @@ namespace MercadoEnvio.Helpers
             finally
             {
                 if (_sqlTrans == null)
-                        EndConnection();
+                    EndConnection();
 
                 sqlCommand.Dispose();
                 sqlAdapter.Dispose();
@@ -250,12 +250,10 @@ namespace MercadoEnvio.Helpers
                 {
                     if (_sqlTrans != null)
                     {
-                        _sqlTrans.Dispose();
-                        _sqlTrans = null;
+                        EndTransaction();
                     }
 
                     Connection.Close();
-                    Connection.Dispose();
                 }
             }
             catch (Exception ex)

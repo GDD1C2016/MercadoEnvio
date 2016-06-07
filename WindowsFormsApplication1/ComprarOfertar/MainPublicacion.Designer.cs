@@ -79,6 +79,7 @@
             this.BtnSeleccionarRubro.TabIndex = 4;
             this.BtnSeleccionarRubro.Text = "Seleccionar Rubro";
             this.BtnSeleccionarRubro.UseVisualStyleBackColor = true;
+            this.BtnSeleccionarRubro.Click += new System.EventHandler(this.BtnSeleccionarRubro_Click);
             // 
             // textBox1
             // 

@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtFiltroDescripcionLarga = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.TxtFiltroDescripcionCorta = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.TxtFiltroDescripcionLarga = new System.Windows.Forms.TextBox();
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.DgRubros = new System.Windows.Forms.DataGridView();
@@ -40,6 +40,7 @@
             this.BtnEditar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnBorrar = new System.Windows.Forms.Button();
+            this.BtnSeleccionarRubro = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgRubros)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -59,6 +60,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de Búsqueda";
             // 
+            // TxtFiltroDescripcionLarga
+            // 
+            this.TxtFiltroDescripcionLarga.Location = new System.Drawing.Point(395, 26);
+            this.TxtFiltroDescripcionLarga.Name = "TxtFiltroDescripcionLarga";
+            this.TxtFiltroDescripcionLarga.Size = new System.Drawing.Size(227, 20);
+            this.TxtFiltroDescripcionLarga.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(296, 29);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Descripción Larga";
+            // 
             // TxtFiltroDescripcionCorta
             // 
             this.TxtFiltroDescripcionCorta.Location = new System.Drawing.Point(104, 26);
@@ -74,22 +91,6 @@
             this.label1.Size = new System.Drawing.Size(91, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Descripción Corta";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(296, 29);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(93, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Descripción Larga";
-            // 
-            // TxtFiltroDescripcionLarga
-            // 
-            this.TxtFiltroDescripcionLarga.Location = new System.Drawing.Point(395, 26);
-            this.TxtFiltroDescripcionLarga.Name = "TxtFiltroDescripcionLarga";
-            this.TxtFiltroDescripcionLarga.Size = new System.Drawing.Size(227, 20);
-            this.TxtFiltroDescripcionLarga.TabIndex = 3;
             // 
             // BtnLimpiar
             // 
@@ -129,6 +130,7 @@
             this.groupBox2.Controls.Add(this.BtnEditar);
             this.groupBox2.Controls.Add(this.BtnAgregar);
             this.groupBox2.Controls.Add(this.BtnBorrar);
+            this.groupBox2.Controls.Add(this.BtnSeleccionarRubro);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox2.Location = new System.Drawing.Point(0, 441);
             this.groupBox2.Name = "groupBox2";
@@ -145,6 +147,7 @@
             this.BtnEditar.TabIndex = 6;
             this.BtnEditar.Text = "Editar";
             this.BtnEditar.UseVisualStyleBackColor = true;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // BtnAgregar
             // 
@@ -154,6 +157,7 @@
             this.BtnAgregar.TabIndex = 4;
             this.BtnAgregar.Text = "Agregar";
             this.BtnAgregar.UseVisualStyleBackColor = true;
+            this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
             // 
             // BtnBorrar
             // 
@@ -163,6 +167,17 @@
             this.BtnBorrar.TabIndex = 5;
             this.BtnBorrar.Text = "Borrar";
             this.BtnBorrar.UseVisualStyleBackColor = true;
+            // 
+            // BtnSeleccionarRubro
+            // 
+            this.BtnSeleccionarRubro.Location = new System.Drawing.Point(152, 19);
+            this.BtnSeleccionarRubro.Name = "BtnSeleccionarRubro";
+            this.BtnSeleccionarRubro.Size = new System.Drawing.Size(302, 23);
+            this.BtnSeleccionarRubro.TabIndex = 7;
+            this.BtnSeleccionarRubro.Text = "Seleccionar Rubro";
+            this.BtnSeleccionarRubro.UseVisualStyleBackColor = true;
+            this.BtnSeleccionarRubro.Visible = false;
+            this.BtnSeleccionarRubro.Click += new System.EventHandler(this.BtnSeleccionarRubro_Click);
             // 
             // MainRubro
             // 
@@ -202,5 +217,6 @@
         private System.Windows.Forms.Button BtnEditar;
         private System.Windows.Forms.Button BtnAgregar;
         private System.Windows.Forms.Button BtnBorrar;
+        private System.Windows.Forms.Button BtnSeleccionarRubro;
     }
 }
