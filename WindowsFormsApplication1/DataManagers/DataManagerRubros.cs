@@ -16,6 +16,8 @@ namespace MercadoEnvio.DataManagers
 
             using (db.Connection)
             {
+                db.BeginTransaction();
+
                 DataTable res = db.GetDataAsTable("SP_GetRubros");
                 List<Rubro> listRubros = new List<Rubro>();
 
@@ -30,6 +32,8 @@ namespace MercadoEnvio.DataManagers
 
                     listRubros.Add(rubro);
                 }
+
+                db.EndConnection();
 
                 return listRubros;
             }

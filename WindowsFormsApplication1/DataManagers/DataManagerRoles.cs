@@ -17,7 +17,6 @@ namespace MercadoEnvio.DataManagers
         public static List<Rol> GetAllData()
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
-            List<Rol> listRoles = new List<Rol>();
 
             using (db.Connection)
             {
@@ -25,6 +24,7 @@ namespace MercadoEnvio.DataManagers
 
                 DataTable res = db.GetDataAsTable("SP_GetRoles");
 
+                List<Rol> listRoles = new List<Rol>();
                 foreach (DataRow row in res.Rows)
                 {
                     var rol = new Rol
@@ -47,9 +47,6 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Funcionalidad> GetFuncionalidadesRol(int idRol, DataBaseHelper db)
         {
-            List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
-            List<Funcionalidad> funcionalidadesAux = new List<Funcionalidad>(GetAllFuncionalidades());
-
             List<SqlParameter> parameters = new List<SqlParameter>();
 
             SqlParameter idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
@@ -59,6 +56,8 @@ namespace MercadoEnvio.DataManagers
 
             DataTable res = db.GetDataAsTable("SP_GetRolFuncionalidades", parameters);
 
+            List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
+            List<Funcionalidad> funcionalidadesAux = new List<Funcionalidad>(GetAllFuncionalidades());
             foreach (DataRow row in res.Rows)
             {
                 var idFuncionalidad = Convert.ToInt32(row["IdFuncionalidad"]);
@@ -72,7 +71,6 @@ namespace MercadoEnvio.DataManagers
         public static List<Funcionalidad> GetAllFuncionalidades()
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
-            List<Funcionalidad> listFuncionalidades = new List<Funcionalidad>();
 
             using (db.Connection)
             {
@@ -80,6 +78,7 @@ namespace MercadoEnvio.DataManagers
 
                 DataTable res = db.GetDataAsTable("SP_GetFuncionalidades");
 
+                List<Funcionalidad> listFuncionalidades = new List<Funcionalidad>();
                 foreach (DataRow row in res.Rows)
                 {
                     var funcionalidad = new Funcionalidad
@@ -101,8 +100,6 @@ namespace MercadoEnvio.DataManagers
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
             List<SqlParameter> parameters = new List<SqlParameter>();
-            Estado estado = new Estado { Descripcion = filtroEstado };
-            List<Rol> roles = new List<Rol>();
 
             using (db.Connection)
             {
@@ -116,6 +113,7 @@ namespace MercadoEnvio.DataManagers
 
                 SqlParameter estadoParameter = new SqlParameter("@FiltroEstado", SqlDbType.Bit);
 
+                Estado estado = new Estado { Descripcion = filtroEstado };
                 if (estado.EstadoValido())
                     estadoParameter.Value = estado.Valor;
                 else
@@ -127,6 +125,7 @@ namespace MercadoEnvio.DataManagers
 
                 DataTable res = db.GetDataAsTable("SP_FindRoles", parameters);
 
+                List<Rol> roles = new List<Rol>();
                 foreach (DataRow row in res.Rows)
                 {
                     var rol = new Rol
@@ -149,7 +148,6 @@ namespace MercadoEnvio.DataManagers
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
             List<SqlParameter> parameters = new List<SqlParameter>();
-            List<Rol> roles = new List<Rol>();
 
             using (db.Connection)
             {
@@ -166,6 +164,7 @@ namespace MercadoEnvio.DataManagers
 
                 DataTable res = db.GetDataAsTable("SP_InsertRol", parameters);
 
+                List<Rol> roles = new List<Rol>();
                 foreach (DataRow row in res.Rows)
                 {
                     var rol = new Rol
@@ -199,7 +198,7 @@ namespace MercadoEnvio.DataManagers
 
                     db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolFuncionalidad", parameters);
                 }
-            
+
                 db.EndConnection();
             }
         }

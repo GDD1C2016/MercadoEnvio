@@ -17,8 +17,6 @@ namespace MercadoEnvio.DataManagers
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
             List<SqlParameter> parameters = new List<SqlParameter>();
-            Usuario usuarioEntidad = new Usuario();
-            Entidades.Login login = new Entidades.Login();
 
             using (db.Connection)
             {
@@ -31,6 +29,7 @@ namespace MercadoEnvio.DataManagers
 
                 DataTable res1 = db.GetDataAsTable("SP_GetUsuarioByUserName", parameters);
 
+                Usuario usuarioEntidad = new Usuario();
                 foreach (DataRow row in res1.Rows)
                 {
                     usuarioEntidad.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
@@ -40,6 +39,7 @@ namespace MercadoEnvio.DataManagers
                     usuarioEntidad.Activo = Convert.ToBoolean(row["Activo"]);
                 }
 
+                Entidades.Login login = new Entidades.Login();
                 if (usuarioEntidad.IdUsuario == 0)
                 {
                     login.LoginSuccess = false;
