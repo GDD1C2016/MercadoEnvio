@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
+using MercadoEnvio.ABM_Rubro;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Servicios;
 
@@ -144,5 +145,11 @@ namespace MercadoEnvio.ComprarOfertar
 
         }
         #endregion
+
+        private void BtnSeleccionarRubro_Click(object sender, EventArgs e)
+        {
+            var mainRubro = new MainRubro(true);
+            var res = mainRubro.ShowDialog();
+        }
     }
 }

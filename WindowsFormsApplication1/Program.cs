@@ -6,9 +6,6 @@ namespace MercadoEnvio
 {
     static class Program
     {
-        /// <summary>
-        /// Punto de entrada principal para la aplicación.
-        /// </summary>
         static void Main()
         {
             Application.EnableVisualStyles();
@@ -16,8 +13,8 @@ namespace MercadoEnvio
             //Application.Run(new Main());
             //Application.Run(new AltaRol(new Rol()));
             //Application.Run(new MainRol());
-            //Application.Run(new MainPublicacion());
-            Application.Run(new MainRubro());
+            Application.Run(new MainPublicacion());
+            //Application.Run(new MainRubro(false));
         }
     }
 }

@@ -125,6 +125,24 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El campo descripción corta no puede estar vacío..
+        /// </summary>
+        internal static string ErrorDescripcionCortaVacia {
+            get {
+                return ResourceManager.GetString("ErrorDescripcionCortaVacia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El campo descripción larga no puede estar vacío..
+        /// </summary>
+        internal static string ErrorDescripcionLargaVacia {
+            get {
+                return ResourceManager.GetString("ErrorDescripcionLargaVacia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El campo descripción no puede estar vacío..
         /// </summary>
         internal static string ErrorDescripcionVacia {
@@ -223,6 +241,15 @@ namespace MercadoEnvio.Properties {
         internal static string IntentosRestantes {
             get {
                 return ResourceManager.GetString("IntentosRestantes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El rubro ha sido creado exitósamente.
+        /// </summary>
+        internal static string RubroCreado {
+            get {
+                return ResourceManager.GetString("RubroCreado", resourceCulture);
             }
         }
         
