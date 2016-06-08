@@ -178,5 +178,14 @@ namespace MercadoEnvio.ComprarOfertar
 
             DgPublicaciones.DataSource = bs;
         }
+
+        private void BtnLimpiar_Click(object sender, EventArgs e)
+        {
+            BindingList<Publicacion> dataSource = new BindingList<Publicacion>();
+            BindingSource bs = new BindingSource();
+            bs.DataSource = dataSource;
+
+            DgPublicaciones.DataSource = bs;
+        }
     }
 }
