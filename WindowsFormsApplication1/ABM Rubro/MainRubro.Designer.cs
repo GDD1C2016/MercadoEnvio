@@ -37,10 +37,8 @@
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.DgRubros = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.BtnEditar = new System.Windows.Forms.Button();
-            this.BtnAgregar = new System.Windows.Forms.Button();
-            this.BtnBorrar = new System.Windows.Forms.Button();
             this.BtnSeleccionarRubro = new System.Windows.Forms.Button();
+            this.BtnCancelar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgRubros)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -127,9 +125,7 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.BtnEditar);
-            this.groupBox2.Controls.Add(this.BtnAgregar);
-            this.groupBox2.Controls.Add(this.BtnBorrar);
+            this.groupBox2.Controls.Add(this.BtnCancelar);
             this.groupBox2.Controls.Add(this.BtnSeleccionarRubro);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox2.Location = new System.Drawing.Point(0, 441);
@@ -139,45 +135,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Acciones";
             // 
-            // BtnEditar
-            // 
-            this.BtnEditar.Location = new System.Drawing.Point(6, 19);
-            this.BtnEditar.Name = "BtnEditar";
-            this.BtnEditar.Size = new System.Drawing.Size(190, 23);
-            this.BtnEditar.TabIndex = 6;
-            this.BtnEditar.Text = "Editar";
-            this.BtnEditar.UseVisualStyleBackColor = true;
-            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
-            // 
-            // BtnAgregar
-            // 
-            this.BtnAgregar.Location = new System.Drawing.Point(221, 19);
-            this.BtnAgregar.Name = "BtnAgregar";
-            this.BtnAgregar.Size = new System.Drawing.Size(185, 23);
-            this.BtnAgregar.TabIndex = 4;
-            this.BtnAgregar.Text = "Agregar";
-            this.BtnAgregar.UseVisualStyleBackColor = true;
-            this.BtnAgregar.Click += new System.EventHandler(this.BtnAgregar_Click);
-            // 
-            // BtnBorrar
-            // 
-            this.BtnBorrar.Location = new System.Drawing.Point(431, 19);
-            this.BtnBorrar.Name = "BtnBorrar";
-            this.BtnBorrar.Size = new System.Drawing.Size(191, 23);
-            this.BtnBorrar.TabIndex = 5;
-            this.BtnBorrar.Text = "Borrar";
-            this.BtnBorrar.UseVisualStyleBackColor = true;
-            // 
             // BtnSeleccionarRubro
             // 
-            this.BtnSeleccionarRubro.Location = new System.Drawing.Point(152, 19);
+            this.BtnSeleccionarRubro.Location = new System.Drawing.Point(12, 19);
             this.BtnSeleccionarRubro.Name = "BtnSeleccionarRubro";
             this.BtnSeleccionarRubro.Size = new System.Drawing.Size(302, 23);
             this.BtnSeleccionarRubro.TabIndex = 7;
             this.BtnSeleccionarRubro.Text = "Seleccionar Rubro";
             this.BtnSeleccionarRubro.UseVisualStyleBackColor = true;
-            this.BtnSeleccionarRubro.Visible = false;
             this.BtnSeleccionarRubro.Click += new System.EventHandler(this.BtnSeleccionarRubro_Click);
+            // 
+            // BtnCancelar
+            // 
+            this.BtnCancelar.Location = new System.Drawing.Point(320, 19);
+            this.BtnCancelar.Name = "BtnCancelar";
+            this.BtnCancelar.Size = new System.Drawing.Size(302, 23);
+            this.BtnCancelar.TabIndex = 8;
+            this.BtnCancelar.Text = "Cancelar";
+            this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // MainRubro
             // 
@@ -214,9 +190,7 @@
         private System.Windows.Forms.Button BtnBuscar;
         private System.Windows.Forms.DataGridView DgRubros;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Button BtnEditar;
-        private System.Windows.Forms.Button BtnAgregar;
-        private System.Windows.Forms.Button BtnBorrar;
         private System.Windows.Forms.Button BtnSeleccionarRubro;
+        private System.Windows.Forms.Button BtnCancelar;
     }
 }

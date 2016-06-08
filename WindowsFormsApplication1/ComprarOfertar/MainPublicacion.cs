@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using MercadoEnvio.ABM_Rubro;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Servicios;
+using System.Collections.Generic;
 
 namespace MercadoEnvio.ComprarOfertar
 {
@@ -15,13 +16,17 @@ namespace MercadoEnvio.ComprarOfertar
         private int CurrentPage = 1;
         int PagesCount = 1;
         int pageRows = 12;
-
         BindingList<Publicacion> Baselist = null;
         BindingList<Publicacion> Templist = null;
         #endregion
+
+        public Rubro RubroSeleccionado { get; set; }
+        public List<Rubro> RubrosFiltro { get; set; } 
+
         public MainPublicacion()
         {
             InitializeComponent();
+            RubrosFiltro = new List<Rubro>();
         }
 
         private void MainPublicacion_Load(object sender, EventArgs e)
@@ -148,8 +153,30 @@ namespace MercadoEnvio.ComprarOfertar
 
         private void BtnSeleccionarRubro_Click(object sender, EventArgs e)
         {
-            var mainRubro = new MainRubro(true);
+            var mainRubro = new MainRubro();
+            mainRubro.FormPublicacion = this;
             var res = mainRubro.ShowDialog();
+
+            if (res.Equals(DialogResult.OK))
+            {
+                RubrosFiltro.Add(RubroSeleccionado);
+
+                TxtFiltroRubro.Text = string.IsNullOrEmpty(TxtFiltroRubro.Text)
+                    ? RubroSeleccionado.DescripcionCorta
+                    : TxtFiltroRubro.Text + "; " + RubroSeleccionado.DescripcionCorta;
+            }
+        }
+
+        private void BtnBuscar_Click(object sender, EventArgs e)
+        {
+            string filtroDescripcion = string.Empty;
+            filtroDescripcion = TxtFiltroDescripcion.Text;
+
+            BindingList<Publicacion> dataSource = new BindingList<Publicacion>(PublicacionesServices.FindPublicaciones(filtroDescripcion, RubrosFiltro));
+            BindingSource bs = new BindingSource();
+            bs.DataSource = dataSource;
+
+            DgPublicaciones.DataSource = bs;
         }
     }
 }

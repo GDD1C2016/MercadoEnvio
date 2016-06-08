@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using MercadoEnvio.ComprarOfertar;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Servicios;
 
@@ -13,17 +9,10 @@ namespace MercadoEnvio.ABM_Rubro
 {
     public partial class MainRubro : Form
     {
-        public MainRubro(bool vieneDeMainPublicacion)
+        public MainPublicacion FormPublicacion { get; set; }
+        public MainRubro()
         {
             InitializeComponent();
-
-            if (vieneDeMainPublicacion)
-            {
-                BtnEditar.Visible = false;
-                BtnBorrar.Visible = false;
-                BtnAgregar.Visible = false;
-                BtnSeleccionarRubro.Visible = true;
-            }
         }
 
         private void MainRubro_Load(object sender, EventArgs e)
@@ -65,13 +54,7 @@ namespace MercadoEnvio.ABM_Rubro
             DgRubros.DataSource = bs;
         }
 
-        private void BtnAgregar_Click(object sender, EventArgs e)
-        {
-            var altaRubro = new AltaRubro(new Rubro());
-            altaRubro.ShowDialog();
-        }
-
-        private void BtnEditar_Click(object sender, EventArgs e)
+        private void BtnSeleccionarRubro_Click(object sender, EventArgs e)
         {
             Rubro rubroSeleccionado = new Rubro();
 
@@ -82,12 +65,15 @@ namespace MercadoEnvio.ABM_Rubro
                 rubroSeleccionado = (Rubro)bs.List[bs.Position];
             }
 
-            var altaRubro = new AltaRubro(rubroSeleccionado);
-            altaRubro.ShowDialog();
+            FormPublicacion.RubroSeleccionado = rubroSeleccionado;
+
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
 
-        private void BtnSeleccionarRubro_Click(object sender, EventArgs e)
+        private void BtnCancelar_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
     }
