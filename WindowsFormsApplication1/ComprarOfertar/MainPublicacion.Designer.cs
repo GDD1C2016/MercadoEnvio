@@ -31,9 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainPublicacion));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BtnSeleccionarRubro = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.TxtFiltroRubro = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.TxtFiltroNombre = new System.Windows.Forms.TextBox();
+            this.TxtFiltroDescripcion = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.DgPublicaciones = new System.Windows.Forms.DataGridView();
             this.BtnLimpiar = new System.Windows.Forms.Button();
@@ -59,9 +59,9 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.BtnSeleccionarRubro);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.TxtFiltroRubro);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.TxtFiltroNombre);
+            this.groupBox1.Controls.Add(this.TxtFiltroDescripcion);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
@@ -81,12 +81,13 @@
             this.BtnSeleccionarRubro.UseVisualStyleBackColor = true;
             this.BtnSeleccionarRubro.Click += new System.EventHandler(this.BtnSeleccionarRubro_Click);
             // 
-            // textBox1
+            // TxtFiltroRubro
             // 
-            this.textBox1.Location = new System.Drawing.Point(338, 26);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(187, 20);
-            this.textBox1.TabIndex = 3;
+            this.TxtFiltroRubro.Enabled = false;
+            this.TxtFiltroRubro.Location = new System.Drawing.Point(338, 26);
+            this.TxtFiltroRubro.Name = "TxtFiltroRubro";
+            this.TxtFiltroRubro.Size = new System.Drawing.Size(187, 20);
+            this.TxtFiltroRubro.TabIndex = 3;
             // 
             // label2
             // 
@@ -97,12 +98,12 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Rubro";
             // 
-            // TxtFiltroNombre
+            // TxtFiltroDescripcion
             // 
-            this.TxtFiltroNombre.Location = new System.Drawing.Point(76, 26);
-            this.TxtFiltroNombre.Name = "TxtFiltroNombre";
-            this.TxtFiltroNombre.Size = new System.Drawing.Size(214, 20);
-            this.TxtFiltroNombre.TabIndex = 1;
+            this.TxtFiltroDescripcion.Location = new System.Drawing.Point(76, 26);
+            this.TxtFiltroDescripcion.Name = "TxtFiltroDescripcion";
+            this.TxtFiltroDescripcion.Size = new System.Drawing.Size(214, 20);
+            this.TxtFiltroDescripcion.TabIndex = 1;
             // 
             // label1
             // 
@@ -134,6 +135,7 @@
             this.BtnLimpiar.TabIndex = 3;
             this.BtnLimpiar.Text = "Limpiar";
             this.BtnLimpiar.UseVisualStyleBackColor = true;
+            this.BtnLimpiar.Click += new System.EventHandler(this.BtnLimpiar_Click);
             // 
             // BtnBuscar
             // 
@@ -143,6 +145,7 @@
             this.BtnBuscar.TabIndex = 4;
             this.BtnBuscar.Text = "Buscar";
             this.BtnBuscar.UseVisualStyleBackColor = true;
+            this.BtnBuscar.Click += new System.EventHandler(this.BtnBuscar_Click);
             // 
             // groupBox2
             // 
@@ -309,9 +312,9 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button BtnSeleccionarRubro;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox TxtFiltroRubro;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox TxtFiltroNombre;
+        private System.Windows.Forms.TextBox TxtFiltroDescripcion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView DgPublicaciones;
         private System.Windows.Forms.Button BtnLimpiar;

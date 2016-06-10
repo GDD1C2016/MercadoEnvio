@@ -13,5 +13,10 @@ namespace MercadoEnvio.Servicios
         {
             return DataManagers.DataManagerPublicaciones.GetAllData();
         }
+
+        public static List<Publicacion> FindPublicaciones(string filtroDescripcion, List<Rubro> rubrosFiltro)
+        {
+            return DataManagers.DataManagerPublicaciones.FindPublicaciones(filtroDescripcion, rubrosFiltro);
+        }
     }
 }
