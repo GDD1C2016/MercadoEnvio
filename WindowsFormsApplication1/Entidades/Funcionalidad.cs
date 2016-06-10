@@ -1,8 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Versioning;
+using MercadoEnvio.Properties;
+
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
 namespace MercadoEnvio.Entidades
 {
@@ -24,6 +27,13 @@ namespace MercadoEnvio.Entidades
         {
             get { return _descripcion; }
             set { _descripcion = value; }
+        }
+        #endregion
+
+        #region methods
+        public bool IsLoginSeguridad()
+        {
+            return Descripcion.Equals(Resources.LoginSeguridad, StringComparison.CurrentCultureIgnoreCase);
         }
         #endregion
     }

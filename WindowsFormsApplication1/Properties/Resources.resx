@@ -205,4 +205,43 @@
   <data name="ErrorRollbackTrans" xml:space="preserve">
     <value>Se produjo un error al intentar deshacer la transacción.</value>
   </data>
+  <data name="RolCreado" xml:space="preserve">
+    <value>El rol ha sido creado exitosamente</value>
+  </data>
+  <data name="ErrorLoginSeguridad" xml:space="preserve">
+    <value>Todo rol debe tener la funcionalidad "Login y Seguridad".</value>
+  </data>
+  <data name="Funcionalidad" xml:space="preserve">
+    <value>Funcionalidad</value>
+  </data>
+  <data name="Estado" xml:space="preserve">
+    <value>Estado</value>
+  </data>
+  <data name="Rol" xml:space="preserve">
+    <value>Rol</value>
+  </data>
+  <data name="RolBorrado" xml:space="preserve">
+    <value>El usuario ha sido borrado exitosamente.</value>
+  </data>
+  <data name="ErrorRolBorrado" xml:space="preserve">
+    <value>El rol que se desea borrar es el único que los siguientes usuarios tienen asignado:</value>
+  </data>
+  <data name="ErrorRolExistente" xml:space="preserve">
+    <value>Ya existe un rol con la descripción ingresada.</value>
+  </data>
+  <data name="LoginSeguridad" xml:space="preserve">
+    <value>Login y Seguridad</value>
+  </data>
+  <data name="ErrorBorrado" xml:space="preserve">
+    <value>Error al borrar</value>
+  </data>
+  <data name="MercadoEnvio" xml:space="preserve">
+    <value>MercadoEnvío</value>
+  </data>
+  <data name="EdicionRol" xml:space="preserve">
+    <value>Edición de Rol</value>
+  </data>
+  <data name="RolActualizado" xml:space="preserve">
+    <value>El usuario ha sido actualizado exitosamente.</value>
+  </data>
 </root>

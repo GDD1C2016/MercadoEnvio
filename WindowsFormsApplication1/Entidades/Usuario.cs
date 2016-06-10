@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
 namespace MercadoEnvio.Entidades
 {
@@ -46,11 +46,11 @@ namespace MercadoEnvio.Entidades
         public bool Activo
         {
             get { return _activo; }
-            
+
             set
             {
                 Estado estado = new Estado { Valor = value };
-                
+
                 _activo = value;
                 _estado = estado.Descripcion;
             }

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
+//using System.Data;
+//using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Servicios;
+using MercadoEnvio.Properties;
 
 namespace MercadoEnvio.ABM_Rol
 {
@@ -29,11 +30,11 @@ namespace MercadoEnvio.ABM_Rol
             DgRoles.AutoGenerateColumns = false;
             DgRoles.ColumnCount = 2;
 
-            DgRoles.Columns[0].HeaderText = "Rol";
+            DgRoles.Columns[0].HeaderText = Resources.Rol;
             DgRoles.Columns[0].Name = "Descripcion";
             DgRoles.Columns[0].DataPropertyName = "Descripcion";
 
-            DgRoles.Columns[1].HeaderText = "Estado";
+            DgRoles.Columns[1].HeaderText = Resources.Estado;
             DgRoles.Columns[1].Name = "Estado";
             DgRoles.Columns[1].DataPropertyName = "Estado";
 
@@ -58,6 +59,7 @@ namespace MercadoEnvio.ABM_Rol
             Funcionalidad funcionalidadTodas = new Funcionalidad { IdFuncionalidad = 0, Descripcion = "--Todas--" };
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolesServices.GetAllFuncionalidades());
             funcionalidades.Add(funcionalidadTodas);
+            funcionalidades.RemoveAll(x => x.Descripcion.Equals(Resources.LoginSeguridad,StringComparison.CurrentCultureIgnoreCase));
             funcionalidades = funcionalidades.OrderBy(x => x.IdFuncionalidad).ToList();
 
             ComboFuncionalidad.DataSource = funcionalidades;
@@ -67,18 +69,37 @@ namespace MercadoEnvio.ABM_Rol
         }
 
         private void BtnBorrar_Click(object sender, EventArgs e)
-        {            
+        {
+            Rol rolSeleccionado = new Rol();
+
+            if (DgRoles.SelectedRows.Count > 0)
+            {
+                BindingSource bs = DgRoles.DataSource as BindingSource;
+                if (bs != null)
+                    rolSeleccionado = (Rol)bs.List[bs.Position];
+            }
+
+            string message = RolesServices.DeleteRol(rolSeleccionado);
+
+            if (string.IsNullOrEmpty(message))
+            {
+                BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.FindRoles(string.Empty, 0, null)); // TODO Buscar otras alternativas
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dataSource;
+
+                DgRoles.DataSource = bs;
+
+                MessageBox.Show(Resources.RolBorrado, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                MessageBox.Show(message, Resources.ErrorBorrado, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            string filtroNombre = string.Empty;
-            int filtroFuncionalidad;
-            string filtroEstado = string.Empty;
-
-            filtroNombre = TxtFiltroNombre.Text;
-            filtroFuncionalidad = ((Funcionalidad) ComboFuncionalidad.SelectedItem).IdFuncionalidad;
-            filtroEstado = ((Estado) ComboEstado.SelectedItem).Descripcion;
+            string filtroNombre = TxtFiltroNombre.Text;
+            int filtroFuncionalidad = ((Funcionalidad)ComboFuncionalidad.SelectedItem).IdFuncionalidad;
+            string filtroEstado = ((Estado)ComboEstado.SelectedItem).Descripcion;
 
             BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.FindRoles(filtroNombre, filtroFuncionalidad, filtroEstado));
             BindingSource bs = new BindingSource();
@@ -102,12 +123,14 @@ namespace MercadoEnvio.ABM_Rol
 
             if (DgRoles.SelectedRows.Count > 0)
             {
-                BindingSource bs = new BindingSource();
-                bs = DgRoles.DataSource as BindingSource;
-                rolSeleccionado = (Rol)bs.List[bs.Position];
+                BindingSource bs = DgRoles.DataSource as BindingSource;
+                if (bs != null)
+                    rolSeleccionado = (Rol)bs.List[bs.Position];
+                
             }
 
             var altaRol = new AltaRol(rolSeleccionado);
+            altaRol.Text = Resources.EdicionRol;
             altaRol.ShowDialog();
         }
 

@@ -1,13 +1,13 @@
-﻿using System;
+﻿//using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
 
 namespace MercadoEnvio.Entidades
 {
     public class Rol
-    {        
+    {
         #region attributes
         private int _idRol;
         private string _descripcion;
@@ -32,7 +32,7 @@ namespace MercadoEnvio.Entidades
         public bool Activo
         {
             get { return _activo; }
-            
+
             set
             {
                 Estado estado = new Estado { Valor = value };

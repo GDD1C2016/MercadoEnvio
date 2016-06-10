@@ -145,6 +145,7 @@ WHERE NOT Descripcion = 'ABM de Rol'
 AND NOT Descripcion = 'ABM de Usuarios (sólo clientes y empresas'
 AND NOT Descripcion = 'ABM de Rubro'
 AND NOT Descripcion = 'ABM de Visibilidad de Publicación'
+AND NOT Descripcion = 'Listado Estadístico'
 
 --- TABLA MASTERDBA.Usuarios (Cliente)
 INSERT INTO MASTERDBA.Usuarios -- Usuarios que publicaron
@@ -179,7 +180,6 @@ SELECT @IdEmpresa, IdFuncionalidad, 1 FROM MASTERDBA.Funcionalidades
 WHERE Descripcion = 'Login y Seguridad'
 AND Descripcion = 'Generar Publicación'
 AND Descripcion = 'Consulta de Facturas Realizadas al Vendedor'
-AND Descripcion = 'Listado Estadístico'
 
 --- TABLA MASTERDBA.Usuarios (Empresa)
 INSERT INTO MASTERDBA.Usuarios
@@ -281,8 +281,8 @@ AND NOT M.Oferta_Fecha IS NULL
 GO
 
 --- TABLA MASTERDBA.Compras y TABLA MASTERDBA.Calificaciones
-DECLARE @IdPublicacion numeric(18,0)
-DECLARE @IdPublicacionAnt numeric(18,0)
+DECLARE @IdPublicacion int
+DECLARE @IdPublicacionAnt int
 DECLARE @Compra_Fecha datetime
 DECLARE @Compra_FechaAnt datetime
 DECLARE @Compra_Cantidad numeric(18,0)

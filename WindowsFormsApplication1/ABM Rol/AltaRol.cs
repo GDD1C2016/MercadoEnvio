@@ -11,21 +11,35 @@ namespace MercadoEnvio.ABM_Rol
 {
     public partial class AltaRol : Form
     {
+        #region attributes
+        private Rol _rol;
+        #endregion
+
+        #region properties
+        public Rol Rol
+        {
+            get { return _rol; }
+            set { _rol = value; }
+        }
+        #endregion
+
         public AltaRol(Rol rol)
         {
             InitializeComponent();
 
+            Rol = rol;
+
             TxtNombre.Text = rol.Descripcion;
 
             #region armadoDeGrillaFuncionalidad
-            BindingList<Funcionalidad> dataSource = new BindingList<Funcionalidad>(rol.Funcionalidades);
+            BindingList<Funcionalidad> dataSource = new BindingList<Funcionalidad>(Rol.Funcionalidades);
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
 
             DgFuncionalidades.AutoGenerateColumns = false;
             DgFuncionalidades.ColumnCount = 1;
 
-            DgFuncionalidades.Columns[0].HeaderText = "Funcionalidad";
+            DgFuncionalidades.Columns[0].HeaderText = Resources.Funcionalidad;
             DgFuncionalidades.Columns[0].Name = "Descripcion";
             DgFuncionalidades.Columns[0].DataPropertyName = "Descripcion";
 
@@ -42,13 +56,16 @@ namespace MercadoEnvio.ABM_Rol
             ComboEstado.DataSource = estados;
             ComboEstado.DisplayMember = "Descripcion";
             ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComboEstado.SelectedItem = rol.Activo;
+            ComboEstado.SelectedItem = Rol.Activo;
             #endregion
         }
 
         private void AltaRol_Load(object sender, EventArgs e)
         {
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolesServices.GetAllFuncionalidades());
+            funcionalidades.RemoveAll(x => x.Descripcion.Equals(Resources.LoginSeguridad, StringComparison.CurrentCultureIgnoreCase));
+            funcionalidades = funcionalidades.OrderBy(x => x.IdFuncionalidad).ToList();
+
             ComboFuncionalidad.DataSource = funcionalidades;
             ComboFuncionalidad.DisplayMember = "Descripcion";
             ComboFuncionalidad.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -65,15 +82,27 @@ namespace MercadoEnvio.ABM_Rol
             }
             else
             {
-                Rol newRol = new Rol
+                var rol = new Rol
                 {
                     Descripcion = TxtNombre.Text.Trim(),
                     Activo = ((Estado)ComboEstado.SelectedItem).Valor,
                     Funcionalidades = GetFuncionalidadesFromDg()
                 };
 
-                RolesServices.SaveNewRol(newRol);
-                MessageBox.Show(Resources.UsuarioCreado);
+                if (Rol.IdRol == 0)
+                {
+                    RolesServices.SaveNewRol(rol);
+
+                    MessageBox.Show(Resources.RolCreado, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    rol.IdRol = Rol.IdRol;
+
+                    RolesServices.UpdateRol(rol);
+
+                    MessageBox.Show(Resources.RolActualizado, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
 
@@ -82,11 +111,11 @@ namespace MercadoEnvio.ABM_Rol
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
 
             BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
-
-            foreach (Funcionalidad funcionalidad in bs.List)
-            {
-                funcionalidades.Add(funcionalidad);
-            }
+            if (bs != null)
+                foreach (Funcionalidad funcionalidad in bs.List)
+                {
+                    funcionalidades.Add(funcionalidad);
+                }
 
             return funcionalidades;
         }
@@ -98,10 +127,15 @@ namespace MercadoEnvio.ABM_Rol
             if (string.IsNullOrEmpty(TxtNombre.Text))
                 errors.Add(Resources.ErrorDescripcionVacia);
 
-            BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
+            if ((RolesServices.GetRolByDescription(TxtNombre.Text)).IdRol != 0)
+                errors.Add(Resources.ErrorRolExistente);
 
-            if (bs.List.Count == 0)
-                errors.Add(Resources.ErrorRolSinFuncionalidad);
+            BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
+            if (bs != null)
+            {
+                if (bs.List.Count == 0)
+                    errors.Add(Resources.ErrorRolSinFuncionalidad);
+            }
 
             return errors;
         }
@@ -111,16 +145,19 @@ namespace MercadoEnvio.ABM_Rol
             Funcionalidad funcionalidadSeleccionada = (Funcionalidad)ComboFuncionalidad.SelectedItem;
 
             BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
-
-            bool canAdd = bs.List.Cast<Funcionalidad>().All(funcionalidad => funcionalidad.IdFuncionalidad != funcionalidadSeleccionada.IdFuncionalidad);
-
-            if (canAdd)
+            if (bs != null)
             {
-                bs.Add(funcionalidadSeleccionada);
-            }
-            else
-            {
-                MessageBox.Show(Resources.ErrorAgregarFuncionalidad, Resources.Advertencia, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                bool canAdd =
+                    bs.List.Cast<Funcionalidad>().All(funcionalidad => funcionalidad.IdFuncionalidad != funcionalidadSeleccionada.IdFuncionalidad);
+
+                if (canAdd)
+                {
+                    bs.Add(funcionalidadSeleccionada);
+                }
+                else
+                {
+                    MessageBox.Show(Resources.ErrorAgregarFuncionalidad, Resources.Advertencia, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -129,7 +166,13 @@ namespace MercadoEnvio.ABM_Rol
             if (DgFuncionalidades.SelectedRows.Count > 0)
             {
                 BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
-                bs.RemoveAt(DgFuncionalidades.SelectedRows[0].Index);
+                if (bs != null)
+                {
+                    if (((Funcionalidad)bs[DgFuncionalidades.SelectedRows[0].Index]).IsLoginSeguridad())
+                        MessageBox.Show(Resources.ErrorLoginSeguridad, Resources.Advertencia, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    else
+                        bs.RemoveAt(DgFuncionalidades.SelectedRows[0].Index);
+                }
             }
         }
     }

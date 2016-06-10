@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 //using System.Threading.Tasks;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Helpers;
-//using MercadoEnvio.Properties;
+using MercadoEnvio.Properties;
 
 namespace MercadoEnvio.DataManagers
 {
@@ -23,8 +23,7 @@ namespace MercadoEnvio.DataManagers
                 db.BeginTransaction();
 
                 DataTable res = db.GetDataAsTable("SP_GetRoles");
-
-                List<Rol> listRoles = new List<Rol>();
+                List<Rol> roles = new List<Rol>();
                 foreach (DataRow row in res.Rows)
                 {
                     var rol = new Rol
@@ -36,12 +35,12 @@ namespace MercadoEnvio.DataManagers
 
                     rol.Funcionalidades = GetFuncionalidadesRol(rol.IdRol, db);
 
-                    listRoles.Add(rol);
+                    roles.Add(rol);
                 }
 
                 db.EndConnection();
 
-                return listRoles;
+                return roles;
             }
         }
 
@@ -55,7 +54,6 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idRolParameter);
 
             DataTable res = db.GetDataAsTable("SP_GetRolFuncionalidades", parameters);
-
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
             List<Funcionalidad> funcionalidadesAux = new List<Funcionalidad>(GetAllFuncionalidades());
             foreach (DataRow row in res.Rows)
@@ -77,8 +75,7 @@ namespace MercadoEnvio.DataManagers
                 db.BeginTransaction();
 
                 DataTable res = db.GetDataAsTable("SP_GetFuncionalidades");
-
-                List<Funcionalidad> listFuncionalidades = new List<Funcionalidad>();
+                List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
                 foreach (DataRow row in res.Rows)
                 {
                     var funcionalidad = new Funcionalidad
@@ -87,12 +84,12 @@ namespace MercadoEnvio.DataManagers
                         Descripcion = Convert.ToString(row["Descripcion"]),
                     };
 
-                    listFuncionalidades.Add(funcionalidad);
+                    funcionalidades.Add(funcionalidad);
                 }
 
                 db.EndConnection();
 
-                return listFuncionalidades;
+                return funcionalidades;
             }
         }
 
@@ -124,7 +121,6 @@ namespace MercadoEnvio.DataManagers
                 parameters.Add(estadoParameter);
 
                 DataTable res = db.GetDataAsTable("SP_FindRoles", parameters);
-
                 List<Rol> roles = new List<Rol>();
                 foreach (DataRow row in res.Rows)
                 {
@@ -144,7 +140,7 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
-        public static void SaveNewRol(Rol newRol)
+        public static Rol GetRolByDescription(string descripcion)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
             List<SqlParameter> parameters = new List<SqlParameter>();
@@ -154,43 +150,83 @@ namespace MercadoEnvio.DataManagers
                 db.BeginTransaction();
 
                 SqlParameter descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
-                descripcionParameter.Value = newRol.Descripcion.Trim();
-
-                SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
-                activoParameter.Value = newRol.Activo;
+                descripcionParameter.Value = descripcion.Trim();
 
                 parameters.Add(descripcionParameter);
-                parameters.Add(activoParameter);
 
-                DataTable res = db.GetDataAsTable("SP_InsertRol", parameters);
-
-                List<Rol> roles = new List<Rol>();
+                DataTable res = db.GetDataAsTable("SP_GetRolByDescripcion", parameters);
+                Rol rol = new Rol();
                 foreach (DataRow row in res.Rows)
                 {
-                    var rol = new Rol
-                    {
-                        IdRol = Convert.ToInt32(row["IdRol"]),
-                        Descripcion = Convert.ToString(row["Descripcion"]),
-                        Activo = Convert.ToBoolean(row["Activo"]),
-                    };
-
-                    roles.Add(rol);
+                    rol.IdRol = Convert.ToInt32(row["IdRol"]);
+                    rol.Descripcion = Convert.ToString(row["Descripcion"]);
+                    rol.Activo = Convert.ToBoolean(row["Activo"]);
                 }
 
-                newRol.IdRol = roles.Find(x => x.Descripcion == newRol.Descripcion).IdRol;
+                db.EndConnection();
+
+                return rol;
+            }
+        }
+
+        public static void SaveNewRol(Rol newRol)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                SqlParameter rolDescripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
+                rolDescripcionParameter.Value = newRol.Descripcion.Trim();
+
+                SqlParameter rolActivoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
+                rolActivoParameter.Value = newRol.Activo;
+
+                parameters.Add(rolDescripcionParameter);
+                parameters.Add(rolActivoParameter);
+
+                DataTable res = db.GetDataAsTable("SP_InsertRol", parameters);
+                foreach (DataRow row in res.Rows)
+                {
+                    newRol.IdRol = Convert.ToInt32(row["IdRol"]);
+                }
+
+                res.Clear();
+                parameters.Clear();
+
+                SqlParameter funcionalidadDescripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
+                funcionalidadDescripcionParameter.Value = Resources.LoginSeguridad;
+
+                parameters.Add(funcionalidadDescripcionParameter);
+
+                res = db.GetDataAsTable("SP_GetFuncionalidadByDescripcion", parameters);
+                foreach (DataRow row in res.Rows)
+                {
+                    var funcionalidad = new Funcionalidad()
+                    {
+                        IdFuncionalidad = Convert.ToInt32(row["IdFuncionalidad"]),
+                        Descripcion = Convert.ToString(row["Descripcion"]),
+                    };
+
+                    newRol.Funcionalidades.Add(funcionalidad);
+                }
 
                 parameters.Clear();
 
                 foreach (Funcionalidad funcionalidad in newRol.Funcionalidades)
                 {
-                    var idFuncionalidadParameter = new SqlParameter("@IdFuncionalidad", SqlDbType.Int);
-                    idFuncionalidadParameter.Value = funcionalidad.IdFuncionalidad;
-
                     var idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
                     idRolParameter.Value = newRol.IdRol;
 
+                    var idFuncionalidadParameter = new SqlParameter("@IdFuncionalidad", SqlDbType.Int);
+                    idFuncionalidadParameter.Value = funcionalidad.IdFuncionalidad;
+
                     var activaParameter = new SqlParameter("@Activa", SqlDbType.Bit);
                     activaParameter.Value = true;
+
+                    parameters.Clear();
 
                     parameters.Add(idRolParameter);
                     parameters.Add(idFuncionalidadParameter);
@@ -200,6 +236,123 @@ namespace MercadoEnvio.DataManagers
                 }
 
                 db.EndConnection();
+            }
+        }
+
+        public static string DeleteRol(Rol rol)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                SqlParameter usuarioRolIdRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
+                usuarioRolIdRolParameter.Value = rol.IdRol;
+
+                parameters.Add(usuarioRolIdRolParameter);
+
+                DataTable res = db.GetDataAsTable("SP_DeleteUsuariosRol", parameters);
+                List<string> usuarios = new List<string>();
+                foreach (DataRow row in res.Rows)
+                {
+                    var usuario = new Usuario
+                    {
+                        IdUsuario = Convert.ToInt32(row["IdUsuario"]),
+                        UserName = Convert.ToString(row["UserName"])
+                    };
+
+                    usuarios.Add("Username: " + usuario.UserName + " (Id " + usuario.IdUsuario.ToString() + ")");
+                }
+
+                if (usuarios.Count > 0)
+                {
+                    return Resources.ErrorRolBorrado + "\n" + string.Join(Environment.NewLine, usuarios);
+                }
+
+                parameters.Clear();
+
+                SqlParameter rolIdRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
+                rolIdRolParameter.Value = rol.IdRol;
+
+                parameters.Add(rolIdRolParameter);
+
+                db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteRol", parameters);
+
+                db.EndConnection();
+
+                return string.Empty;
+            }
+        }
+
+        public static void UpdateRol(Rol rol) // TODO Agregar lógica
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                SqlParameter rolDescripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
+                rolDescripcionParameter.Value = rol.Descripcion.Trim();
+
+                SqlParameter rolActivoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
+                rolActivoParameter.Value = rol.Activo;
+
+                parameters.Add(rolDescripcionParameter);
+                parameters.Add(rolActivoParameter);
+
+                DataTable res = db.GetDataAsTable("SP_InsertRol", parameters);
+                foreach (DataRow row in res.Rows)
+                {
+                    rol.IdRol = Convert.ToInt32(row["IdRol"]);
+                }
+
+                res.Clear();
+                parameters.Clear();
+
+                SqlParameter funcionalidadDescripcionParameter = new SqlParameter("@Descripcion",
+                    SqlDbType.NVarChar);
+                funcionalidadDescripcionParameter.Value = Resources.LoginSeguridad;
+
+                parameters.Add(funcionalidadDescripcionParameter);
+
+                res = db.GetDataAsTable("SP_GetFuncionalidadByDescripcion", parameters);
+                foreach (DataRow row in res.Rows)
+                {
+                    var funcionalidad = new Funcionalidad()
+                    {
+                        IdFuncionalidad = Convert.ToInt32(row["IdFuncionalidad"]),
+                        Descripcion = Convert.ToString(row["Descripcion"]),
+                    };
+
+                    rol.Funcionalidades.Add(funcionalidad);
+                }
+
+                parameters.Clear();
+
+                foreach (Funcionalidad funcionalidad in rol.Funcionalidades)
+                {
+                    var idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
+                    idRolParameter.Value = rol.IdRol;
+
+                    var idFuncionalidadParameter = new SqlParameter("@IdFuncionalidad", SqlDbType.Int);
+                    idFuncionalidadParameter.Value = funcionalidad.IdFuncionalidad;
+
+                    var activaParameter = new SqlParameter("@Activa", SqlDbType.Bit);
+                    activaParameter.Value = true;
+
+                    parameters.Clear();
+
+                    parameters.Add(idRolParameter);
+                    parameters.Add(idFuncionalidadParameter);
+                    parameters.Add(activaParameter);
+
+                    db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolFuncionalidad",
+                        parameters);
+                }
             }
         }
     }

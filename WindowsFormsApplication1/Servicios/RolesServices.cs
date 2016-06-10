@@ -25,9 +25,24 @@ namespace MercadoEnvio.Servicios
             return DataManagers.DataManagerRoles.FindRoles(filtroNombre, filtroFuncionalidad, filtroEstado);
         }
 
+        public static Rol GetRolByDescription(string descripcion)
+        {
+            return DataManagers.DataManagerRoles.GetRolByDescription(descripcion);
+        }
+
         public static void SaveNewRol(Rol newRol)
         {
             DataManagers.DataManagerRoles.SaveNewRol(newRol);
+        }
+
+        public static string DeleteRol(Rol rol)
+        {
+            return DataManagers.DataManagerRoles.DeleteRol(rol);
+        }
+
+        public static void UpdateRol(Rol rol)
+        {
+            DataManagers.DataManagerRoles.UpdateRol(rol);
         }
     }
 }

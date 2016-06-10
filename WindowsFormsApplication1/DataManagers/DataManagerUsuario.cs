@@ -28,7 +28,6 @@ namespace MercadoEnvio.DataManagers
                 parameters.Add(userNameParameter);
 
                 DataTable res1 = db.GetDataAsTable("SP_GetUsuarioByUserName", parameters);
-
                 Usuario usuarioEntidad = new Usuario();
                 foreach (DataRow row in res1.Rows)
                 {
@@ -96,7 +95,7 @@ namespace MercadoEnvio.DataManagers
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter userNameParameter = new SqlParameter("@Usuario", SqlDbType.NVarChar);
+            SqlParameter userNameParameter = new SqlParameter("@UserName", SqlDbType.NVarChar);
             userNameParameter.Value = userName;
 
             parameters.Add(userNameParameter);
@@ -108,7 +107,7 @@ namespace MercadoEnvio.DataManagers
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter userNameParameter = new SqlParameter("@Usuario", SqlDbType.NVarChar);
+            SqlParameter userNameParameter = new SqlParameter("@UserName", SqlDbType.NVarChar);
             userNameParameter.Value = userName;
 
             parameters.Add(userNameParameter);
@@ -120,7 +119,7 @@ namespace MercadoEnvio.DataManagers
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter userNameParameter = new SqlParameter("@Usuario", SqlDbType.NVarChar);
+            SqlParameter userNameParameter = new SqlParameter("@UserName", SqlDbType.NVarChar);
             userNameParameter.Value = userName;
 
             parameters.Add(userNameParameter);

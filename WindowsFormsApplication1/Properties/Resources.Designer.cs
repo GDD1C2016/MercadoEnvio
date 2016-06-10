@@ -98,6 +98,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edición de Rol.
+        /// </summary>
+        internal static string EdicionRol {
+            get {
+                return ResourceManager.GetString("EdicionRol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error: .
         /// </summary>
         internal static string Error {
@@ -130,6 +139,15 @@ namespace MercadoEnvio.Properties {
         internal static string ErrorBeginTrans {
             get {
                 return ResourceManager.GetString("ErrorBeginTrans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error al borrar.
+        /// </summary>
+        internal static string ErrorBorrado {
+            get {
+                return ResourceManager.GetString("ErrorBorrado", resourceCulture);
             }
         }
         
@@ -188,6 +206,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Todo rol debe tener la funcionalidad &quot;Login y Seguridad&quot;..
+        /// </summary>
+        internal static string ErrorLoginSeguridad {
+            get {
+                return ResourceManager.GetString("ErrorLoginSeguridad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No se ha instanciado ninguna conexión..
         /// </summary>
         internal static string ErrorNoConnection {
@@ -202,6 +229,24 @@ namespace MercadoEnvio.Properties {
         internal static string ErrorNoTrans {
             get {
                 return ResourceManager.GetString("ErrorNoTrans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El rol que se desea borrar es el único que los siguientes usuarios tienen asignado:.
+        /// </summary>
+        internal static string ErrorRolBorrado {
+            get {
+                return ResourceManager.GetString("ErrorRolBorrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ya existe un rol con la descripción ingresada..
+        /// </summary>
+        internal static string ErrorRolExistente {
+            get {
+                return ResourceManager.GetString("ErrorRolExistente", resourceCulture);
             }
         }
         
@@ -242,6 +287,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Estado.
+        /// </summary>
+        internal static string Estado {
+            get {
+                return ResourceManager.GetString("Estado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap fastforward {
@@ -272,11 +326,74 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Funcionalidad.
+        /// </summary>
+        internal static string Funcionalidad {
+            get {
+                return ResourceManager.GetString("Funcionalidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Intentos restantes: .
         /// </summary>
         internal static string IntentosRestantes {
             get {
                 return ResourceManager.GetString("IntentosRestantes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login y Seguridad.
+        /// </summary>
+        internal static string LoginSeguridad {
+            get {
+                return ResourceManager.GetString("LoginSeguridad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to MercadoEnvío.
+        /// </summary>
+        internal static string MercadoEnvio {
+            get {
+                return ResourceManager.GetString("MercadoEnvio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rol.
+        /// </summary>
+        internal static string Rol {
+            get {
+                return ResourceManager.GetString("Rol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El usuario ha sido actualizado exitosamente..
+        /// </summary>
+        internal static string RolActualizado {
+            get {
+                return ResourceManager.GetString("RolActualizado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El usuario ha sido borrado exitosamente..
+        /// </summary>
+        internal static string RolBorrado {
+            get {
+                return ResourceManager.GetString("RolBorrado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El rol ha sido creado exitosamente.
+        /// </summary>
+        internal static string RolCreado {
+            get {
+                return ResourceManager.GetString("RolCreado", resourceCulture);
             }
         }
         
