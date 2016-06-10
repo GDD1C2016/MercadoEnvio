@@ -337,7 +337,7 @@ namespace MercadoEnvio.DataManagers
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteRol", parameters);
         }
 
-        public static void UpdateRol(Rol rol) // TODO Agregar lógica
+        public static void UpdateRol(Rol rol)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 

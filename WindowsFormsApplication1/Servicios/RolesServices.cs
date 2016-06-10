@@ -27,7 +27,7 @@ namespace MercadoEnvio.Servicios
 
         public static Rol GetRolByDescription(string descripcion)
         {
-            return DataManagers.DataManagerRoles.GetRolByDescription(descripcion);
+            return DataManagers.DataManagerRoles.GetRolByDescripcion(descripcion);
         }
 
         public static void SaveNewRol(Rol newRol)
