@@ -84,7 +84,7 @@
             // TxtFiltroRubro
             // 
             this.TxtFiltroRubro.Enabled = false;
-            this.TxtFiltroRubro.Location = new System.Drawing.Point(338, 26);
+            this.TxtFiltroRubro.Location = new System.Drawing.Point(335, 26);
             this.TxtFiltroRubro.Name = "TxtFiltroRubro";
             this.TxtFiltroRubro.Size = new System.Drawing.Size(187, 20);
             this.TxtFiltroRubro.TabIndex = 3;
@@ -92,7 +92,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(296, 29);
+            this.label2.Location = new System.Drawing.Point(297, 29);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(36, 13);
             this.label2.TabIndex = 2;
@@ -100,7 +100,7 @@
             // 
             // TxtFiltroDescripcion
             // 
-            this.TxtFiltroDescripcion.Location = new System.Drawing.Point(76, 26);
+            this.TxtFiltroDescripcion.Location = new System.Drawing.Point(74, 26);
             this.TxtFiltroDescripcion.Name = "TxtFiltroDescripcion";
             this.TxtFiltroDescripcion.Size = new System.Drawing.Size(214, 20);
             this.TxtFiltroDescripcion.TabIndex = 1;
@@ -108,7 +108,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(7, 29);
+            this.label1.Location = new System.Drawing.Point(9, 29);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 0;

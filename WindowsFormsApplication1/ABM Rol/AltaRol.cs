@@ -11,16 +11,8 @@ namespace MercadoEnvio.ABM_Rol
 {
     public partial class AltaRol : Form
     {
-        #region attributes
-        private Rol _rol;
-        #endregion
-
         #region properties
-        public Rol Rol
-        {
-            get { return _rol; }
-            set { _rol = value; }
-        }
+        public Rol Rol { get; set; }
         #endregion
 
         public AltaRol(Rol rol)
