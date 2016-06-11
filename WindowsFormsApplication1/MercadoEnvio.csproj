@@ -194,9 +194,12 @@
     <Content Include="Scripts\MASTERDBA - Carga Inicial v2.sql" />
     <Content Include="Scripts\MASTERDBA - Creacion Tablas v2.sql" />
     <Content Include="Scripts\SP\SP_BloqUser.sql" />
+    <Content Include="Scripts\SP\SP_DeleteRol.sql" />
+    <Content Include="Scripts\SP\SP_DeleteUsuariosRol.sql" />
     <Content Include="Scripts\SP\SP_FindRoles.sql" />
     <Content Include="Scripts\SP\SP_FindRubros.sql" />
     <Content Include="Scripts\SP\SP_FindVisibilidades.sql" />
+    <Content Include="Scripts\SP\SP_GetFuncionalidadByDescripcion.sql" />
     <Content Include="Scripts\SP\SP_GetFuncionalidades.sql" />
     <Content Include="Scripts\SP\SP_GetPublicaciones.sql" />
     <Content Include="Scripts\SP\SP_GetRolByDescripcion.sql" />
