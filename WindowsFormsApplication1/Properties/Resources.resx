@@ -244,4 +244,7 @@
   <data name="RolActualizado" xml:space="preserve">
     <value>El usuario ha sido actualizado exitosamente.</value>
   </data>
+  <data name="VisibilidadBorrada" xml:space="preserve">
+    <value>La visibilidad ha sido borrada exitosamente</value>
+  </data>
 </root>
