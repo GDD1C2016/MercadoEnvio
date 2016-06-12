@@ -247,4 +247,19 @@
   <data name="VisibilidadBorrada" xml:space="preserve">
     <value>La visibilidad ha sido borrada exitosamente</value>
   </data>
+  <data name="ErrorVisibilidadBorrada" xml:space="preserve">
+    <value>La visibilidad que desea borrar esta siendo usada por una publicación</value>
+  </data>
+  <data name="EdicionVisibilidad" xml:space="preserve">
+    <value>Edición de Visibilidad</value>
+  </data>
+  <data name="ErrorVisibilidadExistente" xml:space="preserve">
+    <value>Ya existe una visibilidad con la descripción ingresada</value>
+  </data>
+  <data name="VisibilidadActualizada" xml:space="preserve">
+    <value>La visibilidad ha sido actualizada exitosamente</value>
+  </data>
+  <data name="VisibilidadCreada" xml:space="preserve">
+    <value>La visibilidad ha sido creada exitosamente</value>
+  </data>
 </root>

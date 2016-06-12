@@ -8,6 +8,8 @@
         private decimal _precio;
         private decimal _porcentaje;
         private decimal _envioPorcentaje;
+        private bool _activa;
+        private string _estado;
         #endregion
 
         #region properties
@@ -39,6 +41,24 @@
         {
             get { return _envioPorcentaje; }
             set { _envioPorcentaje = value; }
+        }
+
+        public string Estado
+        {
+            get { return _estado; }
+        }
+
+        public bool Activa
+        {
+            get { return _activa; }
+
+            set
+            {
+                Estado estado = new Estado { Valor = value };
+
+                _activa = value;
+                _estado = estado.Descripcion;
+            }
         }
         #endregion
     }

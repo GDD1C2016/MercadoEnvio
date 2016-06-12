@@ -15,9 +15,24 @@ namespace MercadoEnvio.Servicios
             return DataManagers.DataManagerVisibilidad.FindVisibilidades(filtroDescripcion);
         }
 
-        public static List<Visibilidad> DeleteVisibilidad(Visibilidad visibilidadSeleccionada)
+        public static string DeleteVisibilidad(Visibilidad visibilidadSeleccionada)
         {
             return DataManagers.DataManagerVisibilidad.DeleteVisibilidad(visibilidadSeleccionada);
+        }
+
+        public static void SaveNewVisibilidad(Visibilidad newVisibilidad)
+        {
+            DataManagers.DataManagerVisibilidad.SaveNewVisibilidad(newVisibilidad);
+        }
+
+        public static void UpdateVisibilidad(Visibilidad visibilidad)
+        {
+            DataManagers.DataManagerVisibilidad.UpdateVisibilidad(visibilidad);
+        }
+
+        public static Visibilidad GetVisibilidadByDescription(string descripcion)
+        {
+            return DataManagers.DataManagerVisibilidad.GetVisibilidadByDescripcion(descripcion);
         }
     }
 }
