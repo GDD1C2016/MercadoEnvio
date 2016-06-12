@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Helpers;
 using MercadoEnvio.Properties;
@@ -231,11 +228,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(descripcionParameter);
             parameters.Add(activoParameter);
 
-            DataTable res = db.GetDataAsTable("SP_InsertRol", parameters);
-            foreach (DataRow row in res.Rows)
-            {
-                newRol.IdRol = Convert.ToInt32(row["IdRol"]);
-            }
+            newRol.IdRol = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertRol", parameters);
         }
 
         private static Funcionalidad GetFuncionalidadByDescripcion(string descripcion, DataBaseHelper db)
@@ -289,7 +282,16 @@ namespace MercadoEnvio.DataManagers
                 List<string> usuarios = DeleteUsuariosRol(rol.IdRol, db);
                 if (usuarios.Count > 0)
                 {
-                    return Resources.ErrorRolBorrado + "\n" + string.Join(Environment.NewLine, usuarios);
+                    if (usuarios.Count <= 5)
+                    {
+                        db.EndConnection();
+
+                        return Resources.ErrorRolBorrado1 + "\n" + string.Join(Environment.NewLine, usuarios);
+                    }
+
+                    db.EndConnection();
+
+                    return Resources.ErrorRolBorrado2 + "\n Total: " + usuarios.Count;
                 }
 
                 DeleteRol(rol.IdRol, db);

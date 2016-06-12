@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-//using System.Data;
-//using System.Drawing;
 using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Servicios;
@@ -59,7 +55,7 @@ namespace MercadoEnvio.ABM_Rol
             Funcionalidad funcionalidadTodas = new Funcionalidad { IdFuncionalidad = 0, Descripcion = "--Todas--" };
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolesServices.GetAllFuncionalidades());
             funcionalidades.Add(funcionalidadTodas);
-            funcionalidades.RemoveAll(x => x.Descripcion.Equals(Resources.LoginSeguridad,StringComparison.CurrentCultureIgnoreCase));
+            funcionalidades.RemoveAll(x => x.Descripcion.Equals(Resources.LoginSeguridad, StringComparison.CurrentCultureIgnoreCase));
             funcionalidades = funcionalidades.OrderBy(x => x.IdFuncionalidad).ToList();
 
             ComboFuncionalidad.DataSource = funcionalidades;
@@ -126,7 +122,7 @@ namespace MercadoEnvio.ABM_Rol
                 BindingSource bs = DgRoles.DataSource as BindingSource;
                 if (bs != null)
                     rolSeleccionado = (Rol)bs.List[bs.Position];
-                
+
             }
 
             var altaRol = new AltaRol(rolSeleccionado);

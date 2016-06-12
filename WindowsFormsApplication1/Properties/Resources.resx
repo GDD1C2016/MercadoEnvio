@@ -223,7 +223,7 @@
   <data name="RolBorrado" xml:space="preserve">
     <value>El usuario ha sido borrado exitosamente.</value>
   </data>
-  <data name="ErrorRolBorrado" xml:space="preserve">
+  <data name="ErrorRolBorrado1" xml:space="preserve">
     <value>El rol que se desea borrar es el único que los siguientes usuarios tienen asignado:</value>
   </data>
   <data name="ErrorRolExistente" xml:space="preserve">
@@ -246,5 +246,8 @@
   </data>
   <data name="VisibilidadBorrada" xml:space="preserve">
     <value>La visibilidad ha sido borrada exitosamente</value>
+  </data>
+  <data name="ErrorRolBorrado2" xml:space="preserve">
+    <value>Existen usuarios cuyo único rol asignado es el que se desea borrar.</value>
   </data>
 </root>
