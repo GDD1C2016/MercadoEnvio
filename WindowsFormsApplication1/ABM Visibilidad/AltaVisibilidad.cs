@@ -105,8 +105,8 @@ namespace MercadoEnvio.ABM_Visibilidad
                 errors.Add(Resources.ErrorDescripcionVacia);
 
             Visibilidad visibilidad = VisibilidadServices.GetVisibilidadByDescription(TxtDescripcion.Text);
-            if (visibilidad.IdVisibilidad != 0 || visibilidad.IdVisibilidad != Visibilidad.IdVisibilidad)
-                errors.Add(Resources.ErrorRolExistente);
+            if (visibilidad.IdVisibilidad != 0 && visibilidad.IdVisibilidad != Visibilidad.IdVisibilidad)
+                errors.Add(Resources.ErrorVisibilidadExistente);
 
             return errors;
         }

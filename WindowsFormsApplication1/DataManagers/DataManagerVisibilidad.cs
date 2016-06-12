@@ -210,8 +210,42 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
+                UpdateVisibilidad(visibilidad, db);
+
                 db.EndConnection();
             }
+        }
+
+        public static void UpdateVisibilidad(Visibilidad visibilidad, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idVisibilidadParameter = new SqlParameter("@IdVisibilidad", SqlDbType.Int);
+            idVisibilidadParameter.Value = visibilidad.IdVisibilidad;
+
+            SqlParameter descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
+            descripcionParameter.Value = visibilidad.Descripcion.Trim();
+
+            SqlParameter activaParameter = new SqlParameter("@Activa", SqlDbType.Bit);
+            activaParameter.Value = visibilidad.Activa;
+
+            SqlParameter porcentajeParameter = new SqlParameter("@Porcentaje", SqlDbType.Decimal);
+            porcentajeParameter.Value = visibilidad.Porcentaje;
+
+            SqlParameter envioPorcentajeParameter = new SqlParameter("@EnvioPorcentaje", SqlDbType.Decimal);
+            envioPorcentajeParameter.Value = visibilidad.EnvioPorcentaje;
+
+            SqlParameter precioParameter = new SqlParameter("@Precio", SqlDbType.Decimal);
+            precioParameter.Value = visibilidad.Precio;
+
+            parameters.Add(descripcionParameter);
+            parameters.Add(activaParameter);
+            parameters.Add(porcentajeParameter);
+            parameters.Add(envioPorcentajeParameter);
+            parameters.Add(precioParameter);
+            parameters.Add(idVisibilidadParameter);
+
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateVisibilidad", parameters);
         }
 
         public static Visibilidad GetVisibilidadByDescripcion(string descripcion)

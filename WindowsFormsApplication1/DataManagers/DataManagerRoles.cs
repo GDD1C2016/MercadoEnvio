@@ -345,8 +345,36 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
+                UpdateRol(rol, db);
+
+                foreach (Funcionalidad funcionalidad in rol.Funcionalidades)
+                {
+                    //UpdateRolFuncionalidad(rol, funcionalidad, db);
+                    //TODO HACER EL UPDATE DE LAS FUNCIONALIDADES
+                }
+
                 db.EndConnection();
             }
+        }
+
+        public static void UpdateRol(Rol rol, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
+            idRolParameter.Value = rol.IdRol;
+
+            SqlParameter descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
+            descripcionParameter.Value = rol.Descripcion.Trim();
+
+            SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
+            activoParameter.Value = rol.Activo;
+
+            parameters.Add(descripcionParameter);
+            parameters.Add(idRolParameter);
+            parameters.Add(activoParameter);
+           
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateRol", parameters);
         }
     }
 }
