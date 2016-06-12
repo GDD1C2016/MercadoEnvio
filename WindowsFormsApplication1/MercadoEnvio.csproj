@@ -75,6 +75,12 @@
     <Compile Include="ABM Usuario\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ABM Visibilidad\AltaVisibilidad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Visibilidad\AltaVisibilidad.Designer.cs">
+      <DependentUpon>AltaVisibilidad.cs</DependentUpon>
+    </Compile>
     <Compile Include="ABM Visibilidad\MainVisibilidad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,6 +160,9 @@
     <EmbeddedResource Include="ABM Rubro\MainRubro.resx">
       <DependentUpon>MainRubro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM Visibilidad\AltaVisibilidad.resx">
+      <DependentUpon>AltaVisibilidad.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM Visibilidad\MainVisibilidad.resx">
       <DependentUpon>MainVisibilidad.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,6 +196,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\SP\SP_UpdateRol.sql" />
+    <Content Include="Scripts\SP\SP_UpdateVisibilidad.sql" />
     <None Include="Resources\fastreverse.JPG" />
     <None Include="Resources\Back.jpg" />
     <None Include="Resources\Forward.jpg" />
@@ -196,22 +207,26 @@
     <Content Include="Scripts\SP\SP_BloqUser.sql" />
     <Content Include="Scripts\SP\SP_DeleteRol.sql" />
     <Content Include="Scripts\SP\SP_DeleteUsuariosRol.sql" />
+    <Content Include="Scripts\SP\SP_DeleteVisibilidad.sql" />
     <Content Include="Scripts\SP\SP_FindRoles.sql" />
     <Content Include="Scripts\SP\SP_FindRubros.sql" />
     <Content Include="Scripts\SP\SP_FindVisibilidades.sql" />
     <Content Include="Scripts\SP\SP_GetFuncionalidadByDescripcion.sql" />
     <Content Include="Scripts\SP\SP_GetFuncionalidades.sql" />
     <Content Include="Scripts\SP\SP_GetPublicaciones.sql" />
+    <Content Include="Scripts\SP\SP_GetPublicacionesVisibilidad.sql" />
     <Content Include="Scripts\SP\SP_GetRolByDescripcion.sql" />
     <Content Include="Scripts\SP\SP_GetRoles.sql" />
     <Content Include="Scripts\SP\SP_GetRolFuncionalidades.sql" />
     <Content Include="Scripts\SP\SP_GetRubros.sql" />
     <Content Include="Scripts\SP\SP_GetUsuarioByUserName.sql" />
+    <Content Include="Scripts\SP\SP_GetVisibilidadByDescripcion.sql" />
     <Content Include="Scripts\SP\SP_GetVisibilidades.sql" />
     <Content Include="Scripts\SP\SP_IncrementCountLogin.sql" />
     <Content Include="Scripts\SP\SP_InsertRol.sql" />
     <Content Include="Scripts\SP\SP_InsertRolFuncionalidad.sql" />
     <Content Include="Scripts\SP\SP_InsertRubro.sql" />
+    <Content Include="Scripts\SP\SP_InsertVisibilidad.sql" />
     <Content Include="Scripts\SP\SP_ResetCountLogin.sql" />
   </ItemGroup>
   <ItemGroup />

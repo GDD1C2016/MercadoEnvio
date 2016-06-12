@@ -107,6 +107,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edición de Visibilidad.
+        /// </summary>
+        internal static string EdicionVisibilidad {
+            get {
+                return ResourceManager.GetString("EdicionVisibilidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error: .
         /// </summary>
         internal static string Error {
@@ -296,6 +305,24 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La visibilidad que desea borrar esta siendo usada por una publicación.
+        /// </summary>
+        internal static string ErrorVisibilidadBorrada {
+            get {
+                return ResourceManager.GetString("ErrorVisibilidadBorrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ya existe una visibilidad con la descripción ingresada.
+        /// </summary>
+        internal static string ErrorVisibilidadExistente {
+            get {
+                return ResourceManager.GetString("ErrorVisibilidadExistente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Estado.
         /// </summary>
         internal static string Estado {
@@ -452,11 +479,29 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La visibilidad ha sido actualizada exitosamente.
+        /// </summary>
+        internal static string VisibilidadActualizada {
+            get {
+                return ResourceManager.GetString("VisibilidadActualizada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to La visibilidad ha sido borrada exitosamente.
         /// </summary>
         internal static string VisibilidadBorrada {
             get {
                 return ResourceManager.GetString("VisibilidadBorrada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La visibilidad ha sido creada exitosamente.
+        /// </summary>
+        internal static string VisibilidadCreada {
+            get {
+                return ResourceManager.GetString("VisibilidadCreada", resourceCulture);
             }
         }
     }

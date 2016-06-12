@@ -82,5 +82,27 @@ namespace MercadoEnvio.ABM_Visibilidad
             else
                 MessageBox.Show(message, Resources.ErrorBorrado, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            var altaVisibilidad = new AltaVisibilidad(new Visibilidad());
+            altaVisibilidad.ShowDialog();
+        }
+
+        private void BtnEditar_Click(object sender, EventArgs e)
+        {
+            Visibilidad visibilidadSeleccionada = new Visibilidad();
+
+            if (DgVisibilidad.SelectedRows.Count > 0)
+            {
+                BindingSource bs = DgVisibilidad.DataSource as BindingSource;
+                if (bs != null)
+                    visibilidadSeleccionada = (Visibilidad)bs.List[bs.Position];
+            }
+
+            var altaVisibilidad = new AltaVisibilidad(visibilidadSeleccionada);
+            altaVisibilidad.Text = Resources.EdicionVisibilidad;
+            altaVisibilidad.ShowDialog();
+        }
     }
 }
