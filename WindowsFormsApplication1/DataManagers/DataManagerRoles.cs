@@ -349,17 +349,25 @@ namespace MercadoEnvio.DataManagers
 
                 UpdateRol(rol, db);
 
+                List<Funcionalidad> funcionalidades = GetRolFuncionalidades(rol.IdRol, db);
+
                 foreach (Funcionalidad funcionalidad in rol.Funcionalidades)
                 {
-                    //UpdateRolFuncionalidad(rol, funcionalidad, db);
-                    //TODO HACER EL UPDATE DE LAS FUNCIONALIDADES
+                    if (!funcionalidades.Contains(funcionalidad))
+                        InsertRolFuncionalidad(rol.IdRol, funcionalidad.IdFuncionalidad, true, db);
+                }
+
+                foreach (Funcionalidad funcionalidad in funcionalidades)
+                {
+                    if (!rol.Funcionalidades.Contains(funcionalidad))
+                        DeleteRolFuncionalidad(rol.IdRol, funcionalidad.IdFuncionalidad, db);
                 }
 
                 db.EndConnection();
             }
         }
 
-        public static void UpdateRol(Rol rol, DataBaseHelper db)
+        private static void UpdateRol(Rol rol, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
@@ -372,11 +380,27 @@ namespace MercadoEnvio.DataManagers
             SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
             activoParameter.Value = rol.Activo;
 
-            parameters.Add(descripcionParameter);
             parameters.Add(idRolParameter);
+            parameters.Add(descripcionParameter);
             parameters.Add(activoParameter);
            
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateRol", parameters);
+        }
+
+        private static void DeleteRolFuncionalidad(int idRol,  int idFuncionalidad, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
+            idRolParameter.Value = idRol;
+
+            SqlParameter idFuncionalidadParameter = new SqlParameter("@IdFuncionalidad", SqlDbType.Int);
+            idFuncionalidadParameter.Value = idFuncionalidad;
+
+            parameters.Add(idRolParameter);
+            parameters.Add(idFuncionalidadParameter);
+
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteRolFuncionalidad", parameters);
         }
     }
 }
