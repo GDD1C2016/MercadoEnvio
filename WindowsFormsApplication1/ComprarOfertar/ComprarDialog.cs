@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MercadoEnvio.Entidades;
 
 namespace MercadoEnvio.ComprarOfertar
 {
     public partial class ComprarDialog : Form
     {
+        public Publicacion PublicacionSeleccionada { get; set; }
+
         public ComprarDialog()
         {
             InitializeComponent();

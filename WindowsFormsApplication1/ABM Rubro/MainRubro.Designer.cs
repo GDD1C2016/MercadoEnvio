@@ -37,8 +37,8 @@
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.DgRubros = new System.Windows.Forms.DataGridView();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.BtnSeleccionarRubro = new System.Windows.Forms.Button();
             this.BtnCancelar = new System.Windows.Forms.Button();
+            this.BtnSeleccionarRubro = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgRubros)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -135,16 +135,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Acciones";
             // 
-            // BtnSeleccionarRubro
-            // 
-            this.BtnSeleccionarRubro.Location = new System.Drawing.Point(12, 19);
-            this.BtnSeleccionarRubro.Name = "BtnSeleccionarRubro";
-            this.BtnSeleccionarRubro.Size = new System.Drawing.Size(302, 23);
-            this.BtnSeleccionarRubro.TabIndex = 7;
-            this.BtnSeleccionarRubro.Text = "Seleccionar Rubro";
-            this.BtnSeleccionarRubro.UseVisualStyleBackColor = true;
-            this.BtnSeleccionarRubro.Click += new System.EventHandler(this.BtnSeleccionarRubro_Click);
-            // 
             // BtnCancelar
             // 
             this.BtnCancelar.Location = new System.Drawing.Point(320, 19);
@@ -154,6 +144,16 @@
             this.BtnCancelar.Text = "Cancelar";
             this.BtnCancelar.UseVisualStyleBackColor = true;
             this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
+            // 
+            // BtnSeleccionarRubro
+            // 
+            this.BtnSeleccionarRubro.Location = new System.Drawing.Point(12, 19);
+            this.BtnSeleccionarRubro.Name = "BtnSeleccionarRubro";
+            this.BtnSeleccionarRubro.Size = new System.Drawing.Size(302, 23);
+            this.BtnSeleccionarRubro.TabIndex = 7;
+            this.BtnSeleccionarRubro.Text = "Seleccionar Rubro";
+            this.BtnSeleccionarRubro.UseVisualStyleBackColor = true;
+            this.BtnSeleccionarRubro.Click += new System.EventHandler(this.BtnSeleccionarRubro_Click);
             // 
             // MainRubro
             // 

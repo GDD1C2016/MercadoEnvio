@@ -39,6 +39,7 @@
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.BtnComprar = new System.Windows.Forms.Button();
             this.PagingPanel = new System.Windows.Forms.Panel();
             this.toolStripPaging = new System.Windows.Forms.ToolStrip();
             this.btnFirst = new System.Windows.Forms.ToolStripButton();
@@ -50,7 +51,6 @@
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.btnForward = new System.Windows.Forms.ToolStripButton();
             this.btnLast = new System.Windows.Forms.ToolStripButton();
-            this.BtnComprar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgPublicaciones)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -159,6 +159,16 @@
             this.groupBox2.TabIndex = 5;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Acciones";
+            // 
+            // BtnComprar
+            // 
+            this.BtnComprar.Location = new System.Drawing.Point(248, 19);
+            this.BtnComprar.Name = "BtnComprar";
+            this.BtnComprar.Size = new System.Drawing.Size(237, 23);
+            this.BtnComprar.TabIndex = 0;
+            this.BtnComprar.Text = "Comprar";
+            this.BtnComprar.UseVisualStyleBackColor = true;
+            this.BtnComprar.Click += new System.EventHandler(this.BtnComprar_Click);
             // 
             // PagingPanel
             // 
@@ -282,16 +292,6 @@
             this.btnLast.Tag = "";
             this.btnLast.Text = "toolStripButton6";
             this.btnLast.Click += new System.EventHandler(this.ToolStripButtonClick);
-            // 
-            // BtnComprar
-            // 
-            this.BtnComprar.Location = new System.Drawing.Point(248, 19);
-            this.BtnComprar.Name = "BtnComprar";
-            this.BtnComprar.Size = new System.Drawing.Size(237, 23);
-            this.BtnComprar.TabIndex = 0;
-            this.BtnComprar.Text = "Comprar";
-            this.BtnComprar.UseVisualStyleBackColor = true;
-            this.BtnComprar.Click += new System.EventHandler(this.BtnComprar_Click);
             // 
             // MainPublicacion
             // 

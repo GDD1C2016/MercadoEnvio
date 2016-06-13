@@ -27,8 +27,8 @@ namespace MercadoEnvio.Generar_Publicación
         {
             string fmt = "000000000000000000";
 
-            if (Publicacion.CodigoPublicacion != 0)
-                label4.Text = Publicacion.CodigoPublicacion.ToString(fmt);
+            if (Publicacion.IdPublicacion != 0)
+                label4.Text = Publicacion.IdPublicacion.ToString(fmt);
         }
     }
 }

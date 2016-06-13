@@ -186,6 +186,9 @@
     <EmbeddedResource Include="ABM Visibilidad\MainVisibilidad.resx">
       <DependentUpon>MainVisibilidad.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ComprarOfertar\ComprarDialog.resx">
+      <DependentUpon>ComprarDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\MainPublicacion.resx">
       <DependentUpon>MainPublicacion.cs</DependentUpon>
     </EmbeddedResource>

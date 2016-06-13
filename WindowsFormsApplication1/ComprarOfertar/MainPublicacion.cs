@@ -7,6 +7,7 @@ using MercadoEnvio.ABM_Rubro;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Servicios;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MercadoEnvio.ComprarOfertar
 {
@@ -52,7 +53,7 @@ namespace MercadoEnvio.ComprarOfertar
 
         private BindingList<Publicacion> FillDataforGrid()
         {
-            BindingList<Publicacion> list = new BindingList<Publicacion>(PublicacionesServices.GetAllData());
+            BindingList<Publicacion> list = new BindingList<Publicacion>(PublicacionesServices.GetAllData().OrderByDescending(x=>x.Visibilidad.Precio).ToList());
             return list;
         }
 
@@ -172,7 +173,7 @@ namespace MercadoEnvio.ComprarOfertar
             string filtroDescripcion = string.Empty;
             filtroDescripcion = TxtFiltroDescripcion.Text;
 
-            BindingList<Publicacion> dataSource = new BindingList<Publicacion>(PublicacionesServices.FindPublicaciones(filtroDescripcion, RubrosFiltro));
+            BindingList<Publicacion> dataSource = new BindingList<Publicacion>(PublicacionesServices.FindPublicaciones(filtroDescripcion, RubrosFiltro).OrderByDescending(x=>x.Visibilidad.Precio).ToList());
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
 
@@ -190,7 +191,23 @@ namespace MercadoEnvio.ComprarOfertar
 
         private void BtnComprar_Click(object sender, EventArgs e)
         {
+            Publicacion publicacionSeleccionada = new Publicacion();
 
+            if (DgPublicaciones.SelectedRows.Count > 0)
+            {
+                BindingSource bs = new BindingSource();
+                bs = DgPublicaciones.DataSource as BindingSource;
+                publicacionSeleccionada = (Publicacion)bs.List[bs.Position];
+            }
+
+            var comprarDialog = new ComprarDialog();
+            comprarDialog.PublicacionSeleccionada = publicacionSeleccionada;
+            var res = comprarDialog.ShowDialog();
+
+            if (res.Equals(DialogResult.OK))
+            {
+                
+            }
         }
     }
 }
