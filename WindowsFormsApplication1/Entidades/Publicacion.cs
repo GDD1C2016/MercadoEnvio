@@ -20,6 +20,7 @@ namespace MercadoEnvio.Entidades
         private int _idUsuario;
         private int _idEstado;
         private int _idTipo;
+        private Visibilidad _visibilidad;
         #endregion
 
         #region properties
@@ -89,7 +90,11 @@ namespace MercadoEnvio.Entidades
             set { _idTipo = value; }
         }
 
-        public int Index { get; set; }
+        public Visibilidad Visibilidad
+        {
+            get { return _visibilidad; }
+            set { _visibilidad = value; }
+        }
         #endregion
     }
 }
