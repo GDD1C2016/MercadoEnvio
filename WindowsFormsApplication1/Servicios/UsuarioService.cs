@@ -25,6 +25,26 @@ namespace MercadoEnvio.Servicios
         public static List<Cliente> FindClientes(string filtroNombre, string filtroApellido, string filtroDni, string filtroEmail)
         {
             return DataManagers.DataManagerUsuario.FindClientes(filtroNombre, filtroApellido, filtroDni, filtroEmail);
-        } 
+        }
+
+        public static void SaveNewCliente(Cliente newCliente)
+        {
+            DataManagers.DataManagerUsuario.SaveNewCliente(newCliente);
+        }
+
+        public static void UpdateCliente(Cliente cliente)
+        {
+            DataManagers.DataManagerUsuario.UpdateCliente(cliente);
+        }
+
+        public static void SaveNewEmpresa(Empresa newEmpresa)
+        {
+            DataManagers.DataManagerUsuario.SaveNewEmpresa(newEmpresa);
+        }
+
+        public static void UpdateEmpresa(Empresa empresa)
+        {
+            DataManagers.DataManagerUsuario.UpdateEmpresa(empresa);
+        }
     }
 }
