@@ -222,6 +222,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\MASTERDBA-Drop.sql" />
     <Content Include="Scripts\SP\SP_FindClientes.sql" />
     <Content Include="Scripts\SP\SP_FindEmpresas.sql" />
     <Content Include="Scripts\SP\SP_GetRolesUsuario.sql" />
