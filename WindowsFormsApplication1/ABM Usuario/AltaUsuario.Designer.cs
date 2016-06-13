@@ -201,7 +201,7 @@
             // DatePickerFechaNacimiento
             // 
             this.DatePickerFechaNacimiento.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatePickerFechaNacimiento.Location = new System.Drawing.Point(516, 43);
+            this.DatePickerFechaNacimiento.Location = new System.Drawing.Point(516, 46);
             this.DatePickerFechaNacimiento.Name = "DatePickerFechaNacimiento";
             this.DatePickerFechaNacimiento.Size = new System.Drawing.Size(126, 20);
             this.DatePickerFechaNacimiento.TabIndex = 35;

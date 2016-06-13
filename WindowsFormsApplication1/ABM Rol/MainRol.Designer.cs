@@ -100,6 +100,7 @@
             // TxtFiltroNombre
             // 
             this.TxtFiltroNombre.Location = new System.Drawing.Point(53, 26);
+            this.TxtFiltroNombre.MaxLength = 100;
             this.TxtFiltroNombre.Name = "TxtFiltroNombre";
             this.TxtFiltroNombre.Size = new System.Drawing.Size(145, 20);
             this.TxtFiltroNombre.TabIndex = 1;
