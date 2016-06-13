@@ -1,6 +1,7 @@
 ﻿using System.Windows.Forms;
 using MercadoEnvio.ABM_Rol;
 using MercadoEnvio.ABM_Rubro;
+using MercadoEnvio.ABM_Usuario;
 using MercadoEnvio.ABM_Visibilidad;
 using MercadoEnvio.ComprarOfertar;
 using MercadoEnvio.Entidades;
@@ -20,6 +21,8 @@ namespace MercadoEnvio
             //Application.Run(new MainPublicacion());
             //Application.Run(new MainRubro());
             //Application.Run(new MainVisibilidad());
+            //Application.Run(new MainUsuario());
+            Application.Run(new AltaUsuario(new Usuario()));
         }
     }
 }

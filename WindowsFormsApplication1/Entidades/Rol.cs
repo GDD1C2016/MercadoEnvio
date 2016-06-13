@@ -1,8 +1,5 @@
-﻿//using System;
+﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 
 namespace MercadoEnvio.Entidades
 {
@@ -58,6 +55,16 @@ namespace MercadoEnvio.Entidades
         public Rol()
         {
             Funcionalidades = new List<Funcionalidad>();
+        }
+        #endregion
+
+        #region methods
+        public bool IsClienteOEmpresa()
+        {
+            bool condicion = false;
+
+            condicion = Descripcion.Equals("Cliente",StringComparison.CurrentCultureIgnoreCase) || Descripcion.Equals("Empresa", StringComparison.CurrentCultureIgnoreCase);
+            return condicion;
         }
         #endregion
     }

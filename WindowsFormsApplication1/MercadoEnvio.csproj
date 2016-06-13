@@ -69,11 +69,17 @@
     <Compile Include="ABM Rubro\MainRubro.Designer.cs">
       <DependentUpon>MainRubro.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM Usuario\Form1.cs">
+    <Compile Include="ABM Usuario\AltaUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM Usuario\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ABM Usuario\AltaUsuario.Designer.cs">
+      <DependentUpon>AltaUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM Usuario\MainUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM Usuario\MainUsuario.Designer.cs">
+      <DependentUpon>MainUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM Visibilidad\AltaVisibilidad.cs">
       <SubType>Form</SubType>
@@ -104,6 +110,8 @@
     <Compile Include="DataManagers\DataManagerRubros.cs" />
     <Compile Include="DataManagers\DataManagerUsuario.cs" />
     <Compile Include="DataManagers\DataManagerVisibilidad.cs" />
+    <Compile Include="Entidades\Cliente.cs" />
+    <Compile Include="Entidades\Empresa.cs" />
     <Compile Include="Entidades\Estado.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Login.cs" />
@@ -160,6 +168,12 @@
     <EmbeddedResource Include="ABM Rubro\MainRubro.resx">
       <DependentUpon>MainRubro.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM Usuario\AltaUsuario.resx">
+      <DependentUpon>AltaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM Usuario\MainUsuario.resx">
+      <DependentUpon>MainUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM Visibilidad\AltaVisibilidad.resx">
       <DependentUpon>AltaVisibilidad.cs</DependentUpon>
     </EmbeddedResource>
@@ -196,6 +210,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Scripts\SP\SP_FindClientes.sql" />
+    <Content Include="Scripts\SP\SP_FindEmpresas.sql" />
+    <Content Include="Scripts\SP\SP_GetRolesUsuario.sql" />
     <Content Include="Scripts\SP\SP_DeleteRolFuncionalidad.sql" />
     <Content Include="Scripts\SP\SP_UpdateRol.sql" />
     <Content Include="Scripts\SP\SP_UpdateVisibilidad.sql" />
