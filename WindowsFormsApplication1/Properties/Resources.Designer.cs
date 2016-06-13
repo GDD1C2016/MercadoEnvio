@@ -125,6 +125,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Descripción.
+        /// </summary>
+        internal static string Descripción {
+            get {
+                return ResourceManager.GetString("Descripción", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to N° Doc.
         /// </summary>
         internal static string DNI {
@@ -179,7 +188,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo &quot;Apellido&quot; no puede estar vacio..
+        ///   Looks up a localized string similar to El campo &quot;Apellido&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorApellido {
             get {
@@ -215,7 +224,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo &quot;Calle&quot; no puede estar vacio..
+        ///   Looks up a localized string similar to El campo &quot;Calle&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorCalle {
             get {
@@ -224,7 +233,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo &quot;CP&quot; no puede estar vacio..
+        ///   Looks up a localized string similar to El campo &quot;CP&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorCp {
             get {
@@ -233,7 +242,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo &quot;CUIT&quot; no puede estar vacio..
+        ///   Looks up a localized string similar to El campo &quot;CUIT&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorCuit {
             get {
@@ -269,7 +278,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo &quot;N° Doc&quot; no puede estar vacio..
+        ///   Looks up a localized string similar to El campo &quot;N° Doc&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorDNI {
             get {
@@ -278,7 +287,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo &quot;Email&quot; no puede estar vacio..
+        ///   Looks up a localized string similar to El campo &quot;Email&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorEmail {
             get {
@@ -332,7 +341,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo &quot;Nombre/Razon Social&quot; no puede estar vacio..
+        ///   Looks up a localized string similar to El campo &quot;Nombre/Razón Social&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorNombreRazonSocial {
             get {
@@ -413,7 +422,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Se produjo un error al intentar ejecutar el stored procedure.
+        ///   Looks up a localized string similar to Se produjo un error al intentar ejecutar el stored procedure..
         /// </summary>
         internal static string ErrorSP {
             get {
@@ -422,7 +431,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El campo &quot;Tipo Doc&quot; no puede estar vacio..
+        ///   Looks up a localized string similar to El campo &quot;Tipo Doc&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorTipoDocumento {
             get {
@@ -440,7 +449,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Todo usuario debe tener un rol Usuario o Empresa.
+        ///   Looks up a localized string similar to Todo usuario debe tener un rol &quot;Usuario&quot; o &quot;Empresa&quot;..
         /// </summary>
         internal static string ErrorUsuarioRol {
             get {
@@ -449,7 +458,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La visibilidad que desea borrar esta siendo usada por una publicación.
+        ///   Looks up a localized string similar to La visibilidad que desea borrar está siendo usada por una publicación..
         /// </summary>
         internal static string ErrorVisibilidadBorrada {
             get {
@@ -458,7 +467,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ya existe una visibilidad con la descripción ingresada.
+        ///   Looks up a localized string similar to Ya existe una visibilidad con la descripción ingresada..
         /// </summary>
         internal static string ErrorVisibilidadExistente {
             get {
@@ -596,7 +605,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El rol ha sido creado exitosamente.
+        ///   Looks up a localized string similar to El rol ha sido creado exitosamente..
         /// </summary>
         internal static string RolCreado {
             get {
@@ -614,7 +623,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El rubro ha sido creado exitosamente.
+        ///   Looks up a localized string similar to El rubro ha sido creado exitosamente..
         /// </summary>
         internal static string RubroCreado {
             get {
@@ -623,7 +632,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El usuario ha sido actualizado exitosamente.
+        ///   Looks up a localized string similar to El usuario ha sido actualizado exitosamente..
         /// </summary>
         internal static string UsuarioActualizado {
             get {
@@ -641,7 +650,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El usuario ha sido creado exitosamente.
+        ///   Looks up a localized string similar to El usuario ha sido creado exitosamente..
         /// </summary>
         internal static string UsuarioCreado {
             get {
@@ -659,7 +668,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El usuario ingresado no existe.
+        ///   Looks up a localized string similar to El usuario ingresado no existe..
         /// </summary>
         internal static string UsuarioNoExiste {
             get {
@@ -668,7 +677,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La visibilidad ha sido actualizada exitosamente.
+        ///   Looks up a localized string similar to La visibilidad ha sido actualizada exitosamente..
         /// </summary>
         internal static string VisibilidadActualizada {
             get {
@@ -677,7 +686,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La visibilidad ha sido borrada exitosamente.
+        ///   Looks up a localized string similar to La visibilidad ha sido borrada exitosamente..
         /// </summary>
         internal static string VisibilidadBorrada {
             get {
@@ -686,7 +695,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La visibilidad ha sido creada exitosamente.
+        ///   Looks up a localized string similar to La visibilidad ha sido creada exitosamente..
         /// </summary>
         internal static string VisibilidadCreada {
             get {

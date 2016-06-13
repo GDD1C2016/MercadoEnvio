@@ -131,7 +131,7 @@
     <value>Contacte al administrador.</value>
   </data>
   <data name="UsuarioNoExiste" xml:space="preserve">
-    <value>El usuario ingresado no existe</value>
+    <value>El usuario ingresado no existe.</value>
   </data>
   <data name="ContraseñaIncorrecta" xml:space="preserve">
     <value>Contraseña incorrecta</value>
@@ -152,7 +152,7 @@
     <value>El campo "Estado" no puede estar vacío.</value>
   </data>
   <data name="UsuarioCreado" xml:space="preserve">
-    <value>El usuario ha sido creado exitosamente</value>
+    <value>El usuario ha sido creado exitosamente.</value>
   </data>
   <data name="Advertencia" xml:space="preserve">
     <value>Advertencia</value>
@@ -161,7 +161,7 @@
     <value>Usuario deshabilitado. </value>
   </data>
   <data name="ErrorSP" xml:space="preserve">
-    <value>Se produjo un error al intentar ejecutar el stored procedure</value>
+    <value>Se produjo un error al intentar ejecutar el stored procedure.</value>
   </data>
   <data name="Error" xml:space="preserve">
     <value>Error: </value>
@@ -182,7 +182,7 @@
     <value>..\Resources\fastforward.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="RubroCreado" xml:space="preserve">
-    <value>El rubro ha sido creado exitosamente</value>
+    <value>El rubro ha sido creado exitosamente.</value>
   </data>
   <data name="ErrorDescripcionCortaVacia" xml:space="preserve">
     <value>El campo "Descripción corta" no puede estar vacío.</value>
@@ -206,7 +206,7 @@
     <value>Se produjo un error al intentar deshacer la transacción.</value>
   </data>
   <data name="RolCreado" xml:space="preserve">
-    <value>El rol ha sido creado exitosamente</value>
+    <value>El rol ha sido creado exitosamente.</value>
   </data>
   <data name="ErrorLoginSeguridad" xml:space="preserve">
     <value>Todo rol debe tener la funcionalidad "Login y Seguridad".</value>
@@ -245,22 +245,22 @@
     <value>El rol ha sido actualizado exitosamente.</value>
   </data>
   <data name="VisibilidadBorrada" xml:space="preserve">
-    <value>La visibilidad ha sido borrada exitosamente</value>
+    <value>La visibilidad ha sido borrada exitosamente.</value>
   </data>
   <data name="ErrorVisibilidadBorrada" xml:space="preserve">
-    <value>La visibilidad que desea borrar esta siendo usada por una publicación</value>
+    <value>La visibilidad que desea borrar está siendo usada por una publicación.</value>
   </data>
   <data name="EdicionVisibilidad" xml:space="preserve">
     <value>Edición de Visibilidad</value>
   </data>
   <data name="ErrorVisibilidadExistente" xml:space="preserve">
-    <value>Ya existe una visibilidad con la descripción ingresada</value>
+    <value>Ya existe una visibilidad con la descripción ingresada.</value>
   </data>
   <data name="VisibilidadActualizada" xml:space="preserve">
-    <value>La visibilidad ha sido actualizada exitosamente</value>
+    <value>La visibilidad ha sido actualizada exitosamente.</value>
   </data>
   <data name="VisibilidadCreada" xml:space="preserve">
-    <value>La visibilidad ha sido creada exitosamente</value>
+    <value>La visibilidad ha sido creada exitosamente.</value>
   </data>
   <data name="RazonSocial" xml:space="preserve">
     <value>R.Social</value>
@@ -290,42 +290,45 @@
     <value>El rol seleccionado ya fue agregado.</value>
   </data>
   <data name="ErrorUsuarioRol" xml:space="preserve">
-    <value>Todo usuario debe tener un rol Usuario o Empresa</value>
+    <value>Todo usuario debe tener un rol "Usuario" o "Empresa".</value>
   </data>
   <data name="ErrorApellido" xml:space="preserve">
-    <value>El campo "Apellido" no puede estar vacio.</value>
+    <value>El campo "Apellido" no puede estar vacío.</value>
   </data>
   <data name="ErrorCalle" xml:space="preserve">
-    <value>El campo "Calle" no puede estar vacio.</value>
+    <value>El campo "Calle" no puede estar vacío.</value>
   </data>
   <data name="ErrorCp" xml:space="preserve">
-    <value>El campo "CP" no puede estar vacio.</value>
+    <value>El campo "CP" no puede estar vacío.</value>
   </data>
   <data name="ErrorCuit" xml:space="preserve">
-    <value>El campo "CUIT" no puede estar vacio.</value>
+    <value>El campo "CUIT" no puede estar vacío.</value>
   </data>
   <data name="ErrorDNI" xml:space="preserve">
-    <value>El campo "N° Doc" no puede estar vacio.</value>
+    <value>El campo "N° Doc" no puede estar vacío.</value>
   </data>
   <data name="ErrorEmail" xml:space="preserve">
-    <value>El campo "Email" no puede estar vacio.</value>
+    <value>El campo "Email" no puede estar vacío.</value>
   </data>
   <data name="ErrorNombreRazonSocial" xml:space="preserve">
-    <value>El campo "Nombre/Razon Social" no puede estar vacio.</value>
+    <value>El campo "Nombre/Razón Social" no puede estar vacío.</value>
   </data>
   <data name="ErrorNumeroCalle" xml:space="preserve">
     <value>El campo "N°" no puede estar vacio.</value>
   </data>
   <data name="ErrorTipoDocumento" xml:space="preserve">
-    <value>El campo "Tipo Doc" no puede estar vacio.</value>
+    <value>El campo "Tipo Doc" no puede estar vacío.</value>
   </data>
   <data name="UsuarioActualizado" xml:space="preserve">
-    <value>El usuario ha sido actualizado exitosamente</value>
+    <value>El usuario ha sido actualizado exitosamente.</value>
   </data>
   <data name="ErrorRolBorrado2" xml:space="preserve">
     <value>Existen varios usuarios cuyo único rol asignado es el que se desea borrar.</value>
   </data>
   <data name="ErrorRolBorrado3" xml:space="preserve">
     <value>El rol ya ha sido dado de baja.</value>
+  </data>
+  <data name="Descripción" xml:space="preserve">
+    <value>Descripción</value>
   </data>
 </root>

@@ -7,7 +7,6 @@ using MercadoEnvio.Entidades;
 using MercadoEnvio.Properties;
 using MercadoEnvio.Servicios;
 using System.ComponentModel;
-using System.Xml.Serialization;
 
 namespace MercadoEnvio.ABM_Usuario
 {
@@ -26,8 +25,8 @@ namespace MercadoEnvio.ABM_Usuario
             bs.DataSource = dataSource;
 
             DgRoles.AutoGenerateColumns = false;
-            DgRoles.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = "Descripción", Name = "Descripcion" });
-            DgRoles.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Estado", HeaderText = "Estado", Name = "Estado" });
+            DgRoles.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = Resources.Descripción, Name = "Descripcion" });
+            DgRoles.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Estado", HeaderText = Resources.Estado, Name = "Estado" });
 
             DgRoles.DataSource = bs;
             #endregion
@@ -51,14 +50,12 @@ namespace MercadoEnvio.ABM_Usuario
             ComboRol.DataSource = rolesGrilla;
             ComboRol.DisplayMember = "Descripcion";
             ComboRol.DropDownStyle = ComboBoxStyle.DropDownList;
-
             #endregion
         }
 
         private void ComboTipoDeUsuario_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            Rol rolSeleccionado = new Rol();
-            rolSeleccionado = ((Rol)ComboTipoDeUsuario.SelectedItem);
+            Rol rolSeleccionado = ((Rol)ComboTipoDeUsuario.SelectedItem);
             ReorganizarPantallaDeAcuerdoARol(rolSeleccionado);
         }
 
@@ -179,42 +176,42 @@ namespace MercadoEnvio.ABM_Usuario
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private List<string> ValidarDatosUsuario(Rol tipoUsuario)
         {
             List<string> errors = new List<string>();
 
-            if(string.IsNullOrEmpty(TxtCp.Text))
+            if (string.IsNullOrEmpty(TxtCp.Text))
                 errors.Add(Resources.ErrorCp);
 
-            if(string.IsNullOrEmpty(TxtNombre.Text))
+            if (string.IsNullOrEmpty(TxtNombre.Text))
                 errors.Add(Resources.ErrorNombreRazonSocial);
 
-            if(string.IsNullOrEmpty(TxtCalle.Text))
+            if (string.IsNullOrEmpty(TxtCalle.Text))
                 errors.Add(Resources.ErrorCalle);
 
-            if(string.IsNullOrEmpty(TxtNumero.Text))
+            if (string.IsNullOrEmpty(TxtNumero.Text))
                 errors.Add(Resources.ErrorNumeroCalle);
 
-            if(string.IsNullOrEmpty(TxtEmail.Text))
+            if (string.IsNullOrEmpty(TxtEmail.Text))
                 errors.Add(Resources.ErrorEmail);
 
             if (tipoUsuario.Descripcion.Equals("Cliente", StringComparison.CurrentCultureIgnoreCase))
             {
-                if(string.IsNullOrEmpty(TxtApellido.Text))
+                if (string.IsNullOrEmpty(TxtApellido.Text))
                     errors.Add(Resources.ErrorApellido);
 
-                if(string.IsNullOrEmpty(TxtDNI.Text))
+                if (string.IsNullOrEmpty(TxtDNI.Text))
                     errors.Add(Resources.ErrorDNI);
 
-                if(string.IsNullOrEmpty(TxtTipoDoc.Text))
+                if (string.IsNullOrEmpty(TxtTipoDoc.Text))
                     errors.Add(Resources.ErrorTipoDocumento);
             }
             else
             {
-                if(string.IsNullOrEmpty(TxtCuit.Text))
+                if (string.IsNullOrEmpty(TxtCuit.Text))
                     errors.Add(Resources.ErrorCuit);
             }
 
@@ -237,8 +234,7 @@ namespace MercadoEnvio.ABM_Usuario
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            Rol rolSeleccionado = new Rol();
-            rolSeleccionado = ((Rol)ComboTipoDeUsuario.SelectedItem);
+            Rol rolSeleccionado = ((Rol)ComboTipoDeUsuario.SelectedItem);
 
             List<string> errors = new List<string>(ValidarDatosUsuario(rolSeleccionado));
             if (errors.Count > 0)

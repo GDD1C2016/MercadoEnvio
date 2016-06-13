@@ -282,7 +282,8 @@ SELECT DISTINCT
 	R.[IdRubro],
 	U.[IdUsuario],
 	E.[IdEstado],
-	T.[IdTipo]
+	T.[IdTipo],
+	0
 FROM #Maestra M, [GD1C2016].[MASTERDBA].[Usuarios] U, [GD1C2016].[MASTERDBA].[Estado_Publicacion] E, [GD1C2016].[MASTERDBA].[Tipo_Publicacion] T, [GD1C2016].[MASTERDBA].[Rubros] R
 WHERE ('empresa' + SUBSTRING(M.Publ_Empresa_Razon_Social, 17, 2) = U.[UserName]
 OR LOWER(M.Publ_Cli_Apeliido) + '_' + LOWER(M.Publ_Cli_Nombre) = U.[UserName])

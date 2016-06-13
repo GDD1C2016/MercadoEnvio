@@ -170,7 +170,7 @@ namespace MercadoEnvio.ABM_Rol
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

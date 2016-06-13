@@ -193,13 +193,12 @@ namespace MercadoEnvio.DataManagers
                     Password = Convert.ToString(row["PasswordEnc"]),
                 };
 
-                usuario.Roles = GetRolesUsuario(usuario,db);
+                usuario.Roles = GetRolesUsuario(usuario, db);
 
                 usuarios.Add(usuario);
             }
 
             return usuarios;
-
         }
 
         private static List<Rol> GetRolesUsuario(Usuario usuario, DataBaseHelper db)
@@ -288,7 +287,6 @@ namespace MercadoEnvio.DataManagers
             }
 
             return usuarios;
-
         }
 
         public static void SaveNewEmpresa(Empresa newEmpresa)
@@ -376,7 +374,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(telefonoParameter);
             parameters.Add(fechaCreacionParameter);
 
-            newEmpresa.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertEmpresa", parameters);
+            newEmpresa.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertEmpresa", parameters);//TODO SP
         }
 
         public static void SaveNewCliente(Cliente newCliente)
@@ -416,7 +414,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idUsuarioParameter);
             parameters.Add(activoParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolUsuario", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolUsuario", parameters); //TODO SP
         }
 
         private static void InsertCliente(Cliente newCliente, DataBaseHelper db)
@@ -484,7 +482,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(telefonoParameter);
             parameters.Add(fechaCreacionParameter);
 
-            newCliente.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertCliente", parameters);
+            newCliente.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertCliente", parameters); //TODO SP
         }
 
         public static void UpdateCliente(Cliente cliente)
@@ -608,7 +606,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(telefonoParameter);
             parameters.Add(fechaCreacionParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateEmpresa", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateEmpresa", parameters); //TODO SP
         }
 
         private static void DeleteRolUsuario(Usuario usuario, Rol rol, DataBaseHelper db)
@@ -624,7 +622,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idRolParameter);
             parameters.Add(idUsuarioParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteRolUsuario", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteRolUsuario", parameters); //TODO SP
         }
 
         private static void UpdateCliente(Cliente cliente, DataBaseHelper db)
@@ -692,7 +690,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(telefonoParameter);
             parameters.Add(fechaCreacionParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateCliente", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateCliente", parameters); //TODO SP
         }
     }
 }
