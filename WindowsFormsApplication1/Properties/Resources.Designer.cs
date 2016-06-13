@@ -251,11 +251,20 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Existen usuarios cuyo único rol asignado es el que se desea borrar..
+        ///   Looks up a localized string similar to Existen varios usuarios cuyo único rol asignado es el que se desea borrar..
         /// </summary>
         internal static string ErrorRolBorrado2 {
             get {
                 return ResourceManager.GetString("ErrorRolBorrado2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El rol ya ha sido dado de baja..
+        /// </summary>
+        internal static string ErrorRolBorrado3 {
+            get {
+                return ResourceManager.GetString("ErrorRolBorrado3", resourceCulture);
             }
         }
         

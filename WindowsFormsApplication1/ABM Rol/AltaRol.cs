@@ -45,10 +45,12 @@ namespace MercadoEnvio.ABM_Rol
             estados.Add(estadoHabilitado);
             estados.Add(estadoDeshabilitado);
 
+            Estado estado = new Estado(); // TODO Arreglar combo estado en edición
+            estado.Valor = Rol.Activo;
             ComboEstado.DataSource = estados;
             ComboEstado.DisplayMember = "Descripcion";
             ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComboEstado.SelectedItem = Rol.Activo;
+            ComboEstado.SelectedItem = estado;
             #endregion
         }
 
@@ -71,6 +73,7 @@ namespace MercadoEnvio.ABM_Rol
             {
                 var message = string.Join(Environment.NewLine, errors);
                 MessageBox.Show(message, Resources.ErrorGuardado, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DialogResult = DialogResult.Cancel;
             }
             else
             {
@@ -86,6 +89,7 @@ namespace MercadoEnvio.ABM_Rol
                     RolesServices.SaveNewRol(rol);
 
                     MessageBox.Show(Resources.RolCreado, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult = DialogResult.OK;
                 }
                 else
                 {
@@ -94,6 +98,7 @@ namespace MercadoEnvio.ABM_Rol
                     RolesServices.UpdateRol(rol);
 
                     MessageBox.Show(Resources.RolActualizado, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult = DialogResult.OK;
                 }
             }
         }
@@ -120,8 +125,9 @@ namespace MercadoEnvio.ABM_Rol
                 errors.Add(Resources.ErrorDescripcionVacia);
 
             Rol rol = RolesServices.GetRolByDescription(TxtNombre.Text);
-            if (rol.IdRol != 0 || rol.IdRol != Rol.IdRol)
-                errors.Add(Resources.ErrorRolExistente);
+            if (rol.IdRol != 0)
+                if (rol.IdRol != Rol.IdRol)
+                    errors.Add(Resources.ErrorRolExistente);
 
             BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
             if (bs != null)
@@ -160,6 +166,11 @@ namespace MercadoEnvio.ABM_Rol
                         bs.RemoveAt(DgFuncionalidades.SelectedRows[0].Index);
                 }
             }
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
         }
     }
 }

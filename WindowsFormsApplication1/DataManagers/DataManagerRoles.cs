@@ -291,7 +291,7 @@ namespace MercadoEnvio.DataManagers
 
                     db.EndConnection();
 
-                    return Resources.ErrorRolBorrado2 + "\n Total: " + usuarios.Count;
+                    return Resources.ErrorRolBorrado2 + "\n Total: " + usuarios.Count.ToString();
                 }
 
                 DeleteRol(rol.IdRol, db);
@@ -353,13 +353,13 @@ namespace MercadoEnvio.DataManagers
 
                 foreach (Funcionalidad funcionalidad in rol.Funcionalidades)
                 {
-                    if (!funcionalidades.Contains(funcionalidad))
+                    if (!funcionalidades.Exists(x => x.IdFuncionalidad == funcionalidad.IdFuncionalidad))
                         InsertRolFuncionalidad(rol.IdRol, funcionalidad.IdFuncionalidad, true, db);
                 }
 
                 foreach (Funcionalidad funcionalidad in funcionalidades)
                 {
-                    if (!rol.Funcionalidades.Contains(funcionalidad))
+                    if (!rol.Funcionalidades.Exists(x => x.IdFuncionalidad == funcionalidad.IdFuncionalidad))
                         DeleteRolFuncionalidad(rol.IdRol, funcionalidad.IdFuncionalidad, db);
                 }
 

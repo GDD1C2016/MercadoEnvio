@@ -262,4 +262,10 @@
   <data name="VisibilidadCreada" xml:space="preserve">
     <value>La visibilidad ha sido creada exitosamente</value>
   </data>
+  <data name="ErrorRolBorrado2" xml:space="preserve">
+    <value>Existen varios usuarios cuyo único rol asignado es el que se desea borrar.</value>
+  </data>
+  <data name="ErrorRolBorrado3" xml:space="preserve">
+    <value>El rol ya ha sido dado de baja.</value>
+  </data>
 </root>

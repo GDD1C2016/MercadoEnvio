@@ -75,20 +75,25 @@ namespace MercadoEnvio.ABM_Rol
                     rolSeleccionado = (Rol)bs.List[bs.Position];
             }
 
-            string message = RolesServices.DeleteRol(rolSeleccionado);
-
-            if (string.IsNullOrEmpty(message))
+            if (rolSeleccionado.Activo)
             {
-                BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.FindRoles(string.Empty, 0, null)); // TODO Buscar otras alternativas
-                BindingSource bs = new BindingSource();
-                bs.DataSource = dataSource;
+                string message = RolesServices.DeleteRol(rolSeleccionado);
 
-                DgRoles.DataSource = bs;
+                if (string.IsNullOrEmpty(message))
+                {
+                    BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.FindRoles(string.Empty, 0, string.Empty)); // TODO Buscar otras alternativas
+                    BindingSource bs = new BindingSource();
+                    bs.DataSource = dataSource;
 
-                MessageBox.Show(Resources.RolBorrado, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DgRoles.DataSource = bs;
+
+                    MessageBox.Show(Resources.RolBorrado, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                    MessageBox.Show(message, Resources.ErrorBorrado, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-                MessageBox.Show(message, Resources.ErrorBorrado, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Resources.ErrorRolBorrado3, Resources.ErrorBorrado, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
@@ -122,18 +127,35 @@ namespace MercadoEnvio.ABM_Rol
                 BindingSource bs = DgRoles.DataSource as BindingSource;
                 if (bs != null)
                     rolSeleccionado = (Rol)bs.List[bs.Position];
-
             }
 
             var altaRol = new AltaRol(rolSeleccionado);
             altaRol.Text = Resources.EdicionRol;
-            altaRol.ShowDialog();
+            var result = altaRol.ShowDialog();
+
+            if (result.Equals(DialogResult.OK))
+            {
+                BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.GetAllData()); // TODO Buscar otras alternativas
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dataSource;
+
+                DgRoles.DataSource = bs;
+            }
         }
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             var altaRol = new AltaRol(new Rol());
-            altaRol.ShowDialog();
+            var result = altaRol.ShowDialog();
+
+            if (result.Equals(DialogResult.OK))
+            {
+                BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.GetAllData()); // TODO Buscar otras alternativas
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dataSource;
+
+                DgRoles.DataSource = bs;
+            }
         }
     }
 }
