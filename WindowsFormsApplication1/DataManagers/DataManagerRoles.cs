@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Helpers;
 using MercadoEnvio.Properties;
@@ -231,11 +228,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(descripcionParameter);
             parameters.Add(activoParameter);
 
-            DataTable res = db.GetDataAsTable("SP_InsertRol", parameters);
-            foreach (DataRow row in res.Rows)
-            {
-                newRol.IdRol = Convert.ToInt32(row["IdRol"]);
-            }
+            newRol.IdRol = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertRol", parameters);
         }
 
         private static Funcionalidad GetFuncionalidadByDescripcion(string descripcion, DataBaseHelper db)
@@ -289,7 +282,16 @@ namespace MercadoEnvio.DataManagers
                 List<string> usuarios = DeleteUsuariosRol(rol.IdRol, db);
                 if (usuarios.Count > 0)
                 {
-                    return Resources.ErrorRolBorrado + "\n" + string.Join(Environment.NewLine, usuarios);
+                    if (usuarios.Count <= 5)
+                    {
+                        db.EndConnection();
+
+                        return Resources.ErrorRolBorrado1 + "\n" + string.Join(Environment.NewLine, usuarios);
+                    }
+
+                    db.EndConnection();
+
+                    return Resources.ErrorRolBorrado2 + "\n Total: " + usuarios.Count;
                 }
 
                 DeleteRol(rol.IdRol, db);
@@ -347,17 +349,25 @@ namespace MercadoEnvio.DataManagers
 
                 UpdateRol(rol, db);
 
+                List<Funcionalidad> funcionalidades = GetRolFuncionalidades(rol.IdRol, db);
+
                 foreach (Funcionalidad funcionalidad in rol.Funcionalidades)
                 {
-                    //UpdateRolFuncionalidad(rol, funcionalidad, db);
-                    //TODO HACER EL UPDATE DE LAS FUNCIONALIDADES
+                    if (!funcionalidades.Contains(funcionalidad))
+                        InsertRolFuncionalidad(rol.IdRol, funcionalidad.IdFuncionalidad, true, db);
+                }
+
+                foreach (Funcionalidad funcionalidad in funcionalidades)
+                {
+                    if (!rol.Funcionalidades.Contains(funcionalidad))
+                        DeleteRolFuncionalidad(rol.IdRol, funcionalidad.IdFuncionalidad, db);
                 }
 
                 db.EndConnection();
             }
         }
 
-        public static void UpdateRol(Rol rol, DataBaseHelper db)
+        private static void UpdateRol(Rol rol, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
@@ -370,11 +380,27 @@ namespace MercadoEnvio.DataManagers
             SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
             activoParameter.Value = rol.Activo;
 
-            parameters.Add(descripcionParameter);
             parameters.Add(idRolParameter);
+            parameters.Add(descripcionParameter);
             parameters.Add(activoParameter);
            
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateRol", parameters);
+        }
+
+        private static void DeleteRolFuncionalidad(int idRol,  int idFuncionalidad, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
+            idRolParameter.Value = idRol;
+
+            SqlParameter idFuncionalidadParameter = new SqlParameter("@IdFuncionalidad", SqlDbType.Int);
+            idFuncionalidadParameter.Value = idFuncionalidad;
+
+            parameters.Add(idRolParameter);
+            parameters.Add(idFuncionalidadParameter);
+
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteRolFuncionalidad", parameters);
         }
     }
 }

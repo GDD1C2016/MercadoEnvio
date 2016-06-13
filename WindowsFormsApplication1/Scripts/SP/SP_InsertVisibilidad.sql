@@ -10,7 +10,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE [dbo].[SP_InsertVisibilidad] 
+CREATE PROCEDURE [dbo].[SP_InsertVisibilidad] 
 	@Descripcion nvarchar(255), 
 	@Activa bit,
 	@Porcentaje numeric(18,2),
@@ -21,10 +21,11 @@ BEGIN
 	SET NOCOUNT ON;
 
 	INSERT INTO [GD1C2016].[MASTERDBA].[Visibilidad_Publicacion]
-	VALUES (NULL, @Descripcion, @Precio, @Porcentaje, @EnvioPorcentaje, @Activa)
+	VALUES (@Descripcion, @Precio, @Porcentaje, @EnvioPorcentaje, @Activa)
 
 	SELECT V.[IdVisibilidad]
 	FROM [GD1C2016].[MASTERDBA].[Visibilidad_Publicacion] V
 	WHERE V.[IdVisibilidad] = @@IDENTITY
 END
 
+GO

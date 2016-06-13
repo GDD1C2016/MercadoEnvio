@@ -8,8 +8,6 @@ namespace MercadoEnvio.Login
 {
     public partial class Main : Form
     {
-        //private int errorCount = 0;
-
         public Main()
         {
             InitializeComponent();
@@ -34,14 +32,10 @@ namespace MercadoEnvio.Login
                 LabelErrorLogin.Text = login.ErrorMessage;
 
                 if (login.Usuario != null && !login.Usuario.Activo)
-                {
                     LabelCantIntentos.Text = string.Empty;
-                }
                 else
-                {
                     if (login.Usuario != null)
                         LabelCantIntentos.Text = Resources.IntentosRestantes + (3 - login.Usuario.CantIntFallidos);
-                }
             }
         }
     }

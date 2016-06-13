@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-//using System.Linq;
-//using System.Text;
 using MercadoEnvio.Helpers;
 using System.Configuration;
 using MercadoEnvio.Entidades;
@@ -17,72 +15,54 @@ namespace MercadoEnvio.DataManagers
         public static Entidades.Login Login(string userName, string password)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
-            List<SqlParameter> parameters = new List<SqlParameter>();
 
             using (db.Connection)
             {
                 db.BeginTransaction();
 
-                SqlParameter userNameParameter = new SqlParameter("@UserName", SqlDbType.NVarChar);
-                userNameParameter.Value = userName;
-
-                parameters.Add(userNameParameter);
-
-                DataTable res1 = db.GetDataAsTable("SP_GetUsuarioByUserName", parameters);
-                Usuario usuarioEntidad = new Usuario();
-                foreach (DataRow row in res1.Rows)
-                {
-                    usuarioEntidad.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
-                    usuarioEntidad.UserName = Convert.ToString(row["UserName"]);
-                    usuarioEntidad.Password = Convert.ToString(row["PassEncr"]);
-                    usuarioEntidad.CantIntFallidos = Convert.ToByte(row["CantIntFallidos"]);
-                    usuarioEntidad.Activo = Convert.ToBoolean(row["Activo"]);
-                }
+                Usuario usuario = GetUsuarioByUserName(userName, db);
 
                 Entidades.Login login = new Entidades.Login();
-                if (usuarioEntidad.IdUsuario == 0)
+                if (usuario.IdUsuario == 0)
                 {
                     login.LoginSuccess = false;
                     login.ErrorMessage = Resources.UsuarioNoExiste;
                 }
                 else
                 {
-                    if (!usuarioEntidad.Activo)
+                    if (!usuario.Activo)
                     {
-                        if (usuarioEntidad.CantIntFallidos >= 3)
+                        if (usuario.CantIntFallidos >= 3)
                         {
-                            login.Usuario = usuarioEntidad;
+                            login.Usuario = usuario;
                             login.LoginSuccess = false;
                             login.ErrorMessage = Resources.UsuarioBloqueado + Resources.ContactarAdministrador;
                         }
                         else
                         {
-                            login.Usuario = usuarioEntidad;
+                            login.Usuario = usuario;
                             login.LoginSuccess = false;
                             login.ErrorMessage = Resources.UsuarioDeshabilitado + "\n" + Resources.ContactarAdministrador;
                         }
                     }
-                    else if (usuarioEntidad.Password.Equals(password))
+                    else if (usuario.Password.Equals(password))
                     {
-                        ResetearContadorUsuario(userName, db);
+                        ResetCountLogin(userName, db);
 
-                        usuarioEntidad.CantIntFallidos = 0;
-                        login.Usuario = usuarioEntidad;
+                        usuario.CantIntFallidos = 0;
+                        login.Usuario = usuario;
                         login.LoginSuccess = true;
                     }
                     else
                     {
-                        object res2 = IncrementarContadorUsuario(userName, db);
+                        usuario.CantIntFallidos = (int)IncrementCountLogin(userName, db);
 
-                        usuarioEntidad.CantIntFallidos = (int)res2;
-                        login.Usuario = usuarioEntidad;
+                        login.Usuario = usuario;
                         login.LoginSuccess = false;
                         login.ErrorMessage = Resources.ContraseñaIncorrecta;
 
-                        if (usuarioEntidad.CantIntFallidos >= 3)
-                        {
-                            BloquearUsuario(userName, db);
-                        }
+                        if (usuario.CantIntFallidos >= 3)
+                            BloqUser(userName, db);
                     }
                 }
 
@@ -92,7 +72,30 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
-        private static void BloquearUsuario(string userName, DataBaseHelper db)
+        private static Usuario GetUsuarioByUserName(string userName, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter userNameParameter = new SqlParameter("@UserName", SqlDbType.NVarChar);
+            userNameParameter.Value = userName;
+
+            parameters.Add(userNameParameter);
+
+            DataTable res = db.GetDataAsTable("SP_GetUsuarioByUserName", parameters);
+            Usuario usuario = new Usuario();
+            foreach (DataRow row in res.Rows)
+            {
+                usuario.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
+                usuario.UserName = Convert.ToString(row["UserName"]);
+                usuario.Password = Convert.ToString(row["PassEncr"]);
+                usuario.CantIntFallidos = Convert.ToByte(row["CantIntFallidos"]);
+                usuario.Activo = Convert.ToBoolean(row["Activo"]);
+            }
+
+            return usuario;
+        }
+
+        private static void BloqUser(string userName, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
@@ -104,7 +107,7 @@ namespace MercadoEnvio.DataManagers
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_BloqUser", parameters);
         }
 
-        private static object IncrementarContadorUsuario(string userName, DataBaseHelper db)
+        private static object IncrementCountLogin(string userName, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
@@ -116,7 +119,7 @@ namespace MercadoEnvio.DataManagers
             return db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_IncrementCountLogin", parameters);
         }
 
-        private static void ResetearContadorUsuario(string userName, DataBaseHelper db)
+        private static void ResetCountLogin(string userName, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 

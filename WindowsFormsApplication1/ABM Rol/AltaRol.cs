@@ -125,10 +125,8 @@ namespace MercadoEnvio.ABM_Rol
 
             BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
             if (bs != null)
-            {
                 if (bs.List.Count == 0)
                     errors.Add(Resources.ErrorRolSinFuncionalidad);
-            }
 
             return errors;
         }
@@ -140,17 +138,12 @@ namespace MercadoEnvio.ABM_Rol
             BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
             if (bs != null)
             {
-                bool canAdd =
-                    bs.List.Cast<Funcionalidad>().All(funcionalidad => funcionalidad.IdFuncionalidad != funcionalidadSeleccionada.IdFuncionalidad);
+                bool canAdd = bs.List.Cast<Funcionalidad>().All(funcionalidad => funcionalidad.IdFuncionalidad != funcionalidadSeleccionada.IdFuncionalidad);
 
                 if (canAdd)
-                {
                     bs.Add(funcionalidadSeleccionada);
-                }
                 else
-                {
                     MessageBox.Show(Resources.ErrorAgregarFuncionalidad, Resources.Advertencia, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
             }
         }
 
