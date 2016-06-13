@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Helpers;
 using System.Configuration;
@@ -32,17 +29,19 @@ namespace MercadoEnvio.DataManagers
                         FechaInicio = Convert.ToDateTime(row["FechaInicio"]),
                         FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]),
                         Precio = Convert.ToDecimal(row["Precio"]),
+                        PrecioReserva = Convert.ToDecimal(row["Precio"]),
                         IdRubro = Convert.ToInt32(row["IdRubro"]),
                         IdUsuario = Convert.ToInt32(row["IdUsuario"]),
                         IdEstado = Convert.ToInt32(row["IdEstado"]),
                         IdTipo = Convert.ToInt32(row["IdTipo"]),
+                        Envio = Convert.ToBoolean(row["Envio"]),
                         Visibilidad = new Visibilidad
                         {
                             IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
                             Descripcion = Convert.ToString(row["DescripcionVisibilidad"]),
-                            EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"]),
+                            Precio = Convert.ToDecimal(row["Precio"]),
                             Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
-                            Precio = Convert.ToDecimal(row["Precio"])
+                            EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
                         }
                     };
 
@@ -75,7 +74,6 @@ namespace MercadoEnvio.DataManagers
                     var publicacion = new Publicacion
                     {
                         IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
-                        CodigoPublicacion = Convert.ToInt32(row["CodigoPublicacion"]),
                         Descripcion = Convert.ToString(row["Descripcion"]),
                         Stock = Convert.ToInt32(row["Stock"]),
                         FechaInicio = Convert.ToDateTime(row["FechaInicio"]),

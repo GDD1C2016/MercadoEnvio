@@ -1,4 +1,5 @@
 ﻿using System;
+
 namespace MercadoEnvio.Entidades
 {
     public class Cliente : Usuario

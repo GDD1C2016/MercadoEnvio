@@ -61,10 +61,7 @@ namespace MercadoEnvio.Entidades
         #region methods
         public bool IsClienteOEmpresa()
         {
-            bool condicion = false;
-
-            condicion = Descripcion.Equals("Cliente",StringComparison.CurrentCultureIgnoreCase) || Descripcion.Equals("Empresa", StringComparison.CurrentCultureIgnoreCase);
-            return condicion;
+            return Descripcion.Equals("Cliente", StringComparison.CurrentCultureIgnoreCase) || Descripcion.Equals("Empresa", StringComparison.CurrentCultureIgnoreCase);
         }
         #endregion
     }

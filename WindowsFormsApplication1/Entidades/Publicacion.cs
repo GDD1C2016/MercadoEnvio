@@ -1,8 +1,4 @@
 ﻿using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
 
 namespace MercadoEnvio.Entidades
 {
@@ -10,16 +6,17 @@ namespace MercadoEnvio.Entidades
     {
         #region attributes
         private int _idPublicacion;
-        private int _codPublicacion;
         private string _descripcion;
         private int _stock;
         private DateTime _fechaInicio;
         private DateTime _fechaVencimiento;
         private decimal _precio;
+        private decimal _precioReserva;
         private int _idRubro;
         private int _idUsuario;
         private int _idEstado;
         private int _idTipo;
+        private bool _envio;
         private Visibilidad _visibilidad;
         #endregion
 
@@ -28,12 +25,6 @@ namespace MercadoEnvio.Entidades
         {
             get { return _idPublicacion; }
             set { _idPublicacion = value; }
-        }
-
-        public int CodigoPublicacion
-        {
-            get { return _codPublicacion; }
-            set { _codPublicacion = value; }
         }
 
         public string Descripcion
@@ -66,6 +57,12 @@ namespace MercadoEnvio.Entidades
             set { _precio = value; }
         }
 
+        public decimal PrecioReserva
+        {
+            get { return _precioReserva; }
+            set { _precioReserva = value; }
+        }
+
         public int IdRubro
         {
             get { return _idRubro; }
@@ -88,6 +85,12 @@ namespace MercadoEnvio.Entidades
         {
             get { return _idTipo; }
             set { _idTipo = value; }
+        }
+
+        public bool Envio
+        {
+            get { return _envio; }
+            set { _envio = value; }
         }
 
         public Visibilidad Visibilidad
