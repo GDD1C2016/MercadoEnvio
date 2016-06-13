@@ -70,12 +70,30 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apellido.
+        /// </summary>
+        internal static string Apellido {
+            get {
+                return ResourceManager.GetString("Apellido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Back {
             get {
                 object obj = ResourceManager.GetObject("Back", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ciudad.
+        /// </summary>
+        internal static string Ciudad {
+            get {
+                return ResourceManager.GetString("Ciudad", resourceCulture);
             }
         }
         
@@ -94,6 +112,24 @@ namespace MercadoEnvio.Properties {
         internal static string ContraseñaIncorrecta {
             get {
                 return ResourceManager.GetString("ContraseñaIncorrecta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CUIT.
+        /// </summary>
+        internal static string CUIT {
+            get {
+                return ResourceManager.GetString("CUIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N° Doc.
+        /// </summary>
+        internal static string DNI {
+            get {
+                return ResourceManager.GetString("DNI", resourceCulture);
             }
         }
         
@@ -134,6 +170,24 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El rol seleccionado ya fue agregado..
+        /// </summary>
+        internal static string ErrorAgregarRol {
+            get {
+                return ResourceManager.GetString("ErrorAgregarRol", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;Apellido&quot; no puede estar vacio..
+        /// </summary>
+        internal static string ErrorApellido {
+            get {
+                return ResourceManager.GetString("ErrorApellido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Se produjo un error al intentar establecer conexión con la base de datos..
         /// </summary>
         internal static string ErrorBD {
@@ -161,6 +215,33 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;Calle&quot; no puede estar vacio..
+        /// </summary>
+        internal static string ErrorCalle {
+            get {
+                return ResourceManager.GetString("ErrorCalle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;CP&quot; no puede estar vacio..
+        /// </summary>
+        internal static string ErrorCp {
+            get {
+                return ResourceManager.GetString("ErrorCp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;CUIT&quot; no puede estar vacio..
+        /// </summary>
+        internal static string ErrorCuit {
+            get {
+                return ResourceManager.GetString("ErrorCuit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El campo &quot;Descripción corta&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorDescripcionCortaVacia {
@@ -184,6 +265,24 @@ namespace MercadoEnvio.Properties {
         internal static string ErrorDescripcionVacia {
             get {
                 return ResourceManager.GetString("ErrorDescripcionVacia", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;N° Doc&quot; no puede estar vacio..
+        /// </summary>
+        internal static string ErrorDNI {
+            get {
+                return ResourceManager.GetString("ErrorDNI", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;Email&quot; no puede estar vacio..
+        /// </summary>
+        internal static string ErrorEmail {
+            get {
+                return ResourceManager.GetString("ErrorEmail", resourceCulture);
             }
         }
         
@@ -233,11 +332,29 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;Nombre/Razon Social&quot; no puede estar vacio..
+        /// </summary>
+        internal static string ErrorNombreRazonSocial {
+            get {
+                return ResourceManager.GetString("ErrorNombreRazonSocial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No se ha instanciado ninguna transacción..
         /// </summary>
         internal static string ErrorNoTrans {
             get {
                 return ResourceManager.GetString("ErrorNoTrans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;N°&quot; no puede estar vacio..
+        /// </summary>
+        internal static string ErrorNumeroCalle {
+            get {
+                return ResourceManager.GetString("ErrorNumeroCalle", resourceCulture);
             }
         }
         
@@ -287,11 +404,29 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;Tipo Doc&quot; no puede estar vacio..
+        /// </summary>
+        internal static string ErrorTipoDocumento {
+            get {
+                return ResourceManager.GetString("ErrorTipoDocumento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Se produjo un error al intentar ejecutar la transacción..
         /// </summary>
         internal static string ErrorTrans {
             get {
                 return ResourceManager.GetString("ErrorTrans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Todo usuario debe tener un rol Usuario o Empresa.
+        /// </summary>
+        internal static string ErrorUsuarioRol {
+            get {
+                return ResourceManager.GetString("ErrorUsuarioRol", resourceCulture);
             }
         }
         
@@ -371,6 +506,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Localidad.
+        /// </summary>
+        internal static string Localidad {
+            get {
+                return ResourceManager.GetString("Localidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Login y Seguridad.
         /// </summary>
         internal static string LoginSeguridad {
@@ -389,6 +533,24 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nombre.
+        /// </summary>
+        internal static string Nombre {
+            get {
+                return ResourceManager.GetString("Nombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to R.Social.
+        /// </summary>
+        internal static string RazonSocial {
+            get {
+                return ResourceManager.GetString("RazonSocial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rol.
         /// </summary>
         internal static string Rol {
@@ -398,7 +560,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El usuario ha sido actualizado exitosamente..
+        ///   Looks up a localized string similar to El rol ha sido actualizado exitosamente..
         /// </summary>
         internal static string RolActualizado {
             get {
@@ -407,7 +569,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El usuario ha sido borrado exitosamente..
+        ///   Looks up a localized string similar to El rol ha sido borrado exitosamente..
         /// </summary>
         internal static string RolBorrado {
             get {
@@ -425,11 +587,29 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rubro.
+        /// </summary>
+        internal static string Rubro {
+            get {
+                return ResourceManager.GetString("Rubro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El rubro ha sido creado exitosamente.
         /// </summary>
         internal static string RubroCreado {
             get {
                 return ResourceManager.GetString("RubroCreado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El usuario ha sido actualizado exitosamente.
+        /// </summary>
+        internal static string UsuarioActualizado {
+            get {
+                return ResourceManager.GetString("UsuarioActualizado", resourceCulture);
             }
         }
         

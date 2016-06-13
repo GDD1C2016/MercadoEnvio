@@ -221,7 +221,7 @@
     <value>Rol</value>
   </data>
   <data name="RolBorrado" xml:space="preserve">
-    <value>El usuario ha sido borrado exitosamente.</value>
+    <value>El rol ha sido borrado exitosamente.</value>
   </data>
   <data name="ErrorRolBorrado" xml:space="preserve">
     <value>El rol que se desea borrar es el único que los siguientes usuarios tienen asignado:</value>
@@ -242,7 +242,7 @@
     <value>Edición de Rol</value>
   </data>
   <data name="RolActualizado" xml:space="preserve">
-    <value>El usuario ha sido actualizado exitosamente.</value>
+    <value>El rol ha sido actualizado exitosamente.</value>
   </data>
   <data name="VisibilidadBorrada" xml:space="preserve">
     <value>La visibilidad ha sido borrada exitosamente</value>
@@ -261,5 +261,65 @@
   </data>
   <data name="VisibilidadCreada" xml:space="preserve">
     <value>La visibilidad ha sido creada exitosamente</value>
+  </data>
+  <data name="RazonSocial" xml:space="preserve">
+    <value>R.Social</value>
+  </data>
+  <data name="CUIT" xml:space="preserve">
+    <value>CUIT</value>
+  </data>
+  <data name="Nombre" xml:space="preserve">
+    <value>Nombre</value>
+  </data>
+  <data name="DNI" xml:space="preserve">
+    <value>N° Doc</value>
+  </data>
+  <data name="Ciudad" xml:space="preserve">
+    <value>Ciudad</value>
+  </data>
+  <data name="Localidad" xml:space="preserve">
+    <value>Localidad</value>
+  </data>
+  <data name="Rubro" xml:space="preserve">
+    <value>Rubro</value>
+  </data>
+  <data name="Apellido" xml:space="preserve">
+    <value>Apellido</value>
+  </data>
+  <data name="ErrorAgregarRol" xml:space="preserve">
+    <value>El rol seleccionado ya fue agregado.</value>
+  </data>
+  <data name="ErrorUsuarioRol" xml:space="preserve">
+    <value>Todo usuario debe tener un rol Usuario o Empresa</value>
+  </data>
+  <data name="ErrorApellido" xml:space="preserve">
+    <value>El campo "Apellido" no puede estar vacio.</value>
+  </data>
+  <data name="ErrorCalle" xml:space="preserve">
+    <value>El campo "Calle" no puede estar vacio.</value>
+  </data>
+  <data name="ErrorCp" xml:space="preserve">
+    <value>El campo "CP" no puede estar vacio.</value>
+  </data>
+  <data name="ErrorCuit" xml:space="preserve">
+    <value>El campo "CUIT" no puede estar vacio.</value>
+  </data>
+  <data name="ErrorDNI" xml:space="preserve">
+    <value>El campo "N° Doc" no puede estar vacio.</value>
+  </data>
+  <data name="ErrorEmail" xml:space="preserve">
+    <value>El campo "Email" no puede estar vacio.</value>
+  </data>
+  <data name="ErrorNombreRazonSocial" xml:space="preserve">
+    <value>El campo "Nombre/Razon Social" no puede estar vacio.</value>
+  </data>
+  <data name="ErrorNumeroCalle" xml:space="preserve">
+    <value>El campo "N°" no puede estar vacio.</value>
+  </data>
+  <data name="ErrorTipoDocumento" xml:space="preserve">
+    <value>El campo "Tipo Doc" no puede estar vacio.</value>
+  </data>
+  <data name="UsuarioActualizado" xml:space="preserve">
+    <value>El usuario ha sido actualizado exitosamente</value>
   </data>
 </root>
