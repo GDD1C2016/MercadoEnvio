@@ -156,6 +156,7 @@
             this.Name = "ComprarDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Compra";
+            this.Load += new System.EventHandler(this.ComprarDialog_Load);
             this.GroupBoxDetalles.ResumeLayout(false);
             this.GroupBoxDetalles.PerformLayout();
             this.groupBox2.ResumeLayout(false);

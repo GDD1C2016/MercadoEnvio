@@ -19,5 +19,10 @@ namespace MercadoEnvio.ComprarOfertar
         {
             InitializeComponent();
         }
+
+        private void ComprarDialog_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
