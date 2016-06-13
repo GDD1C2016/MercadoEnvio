@@ -50,8 +50,10 @@
             this.toolStripButton5 = new System.Windows.Forms.ToolStripButton();
             this.btnForward = new System.Windows.Forms.ToolStripButton();
             this.btnLast = new System.Windows.Forms.ToolStripButton();
+            this.BtnComprar = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgPublicaciones)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.PagingPanel.SuspendLayout();
             this.toolStripPaging.SuspendLayout();
             this.SuspendLayout();
@@ -149,6 +151,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.BtnComprar);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.groupBox2.Location = new System.Drawing.Point(0, 401);
             this.groupBox2.Name = "groupBox2";
@@ -280,6 +283,16 @@
             this.btnLast.Text = "toolStripButton6";
             this.btnLast.Click += new System.EventHandler(this.ToolStripButtonClick);
             // 
+            // BtnComprar
+            // 
+            this.BtnComprar.Location = new System.Drawing.Point(248, 19);
+            this.BtnComprar.Name = "BtnComprar";
+            this.BtnComprar.Size = new System.Drawing.Size(237, 23);
+            this.BtnComprar.TabIndex = 0;
+            this.BtnComprar.Text = "Comprar";
+            this.BtnComprar.UseVisualStyleBackColor = true;
+            this.BtnComprar.Click += new System.EventHandler(this.BtnComprar_Click);
+            // 
             // MainPublicacion
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -300,6 +313,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgPublicaciones)).EndInit();
+            this.groupBox2.ResumeLayout(false);
             this.PagingPanel.ResumeLayout(false);
             this.PagingPanel.PerformLayout();
             this.toolStripPaging.ResumeLayout(false);
@@ -331,5 +345,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButton5;
         private System.Windows.Forms.ToolStripButton btnForward;
         private System.Windows.Forms.ToolStripButton btnLast;
+        private System.Windows.Forms.Button BtnComprar;
     }
 }

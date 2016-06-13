@@ -187,5 +187,10 @@ namespace MercadoEnvio.ComprarOfertar
 
             DgPublicaciones.DataSource = bs;
         }
+
+        private void BtnComprar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

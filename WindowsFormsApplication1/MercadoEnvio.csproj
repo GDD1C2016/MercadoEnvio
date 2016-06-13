@@ -99,6 +99,12 @@
     <Compile Include="Calificar\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ComprarOfertar\ComprarDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ComprarOfertar\ComprarDialog.Designer.cs">
+      <DependentUpon>ComprarDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="ComprarOfertar\MainPublicacion.cs">
       <SubType>Form</SubType>
     </Compile>
