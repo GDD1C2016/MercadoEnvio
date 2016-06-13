@@ -318,8 +318,8 @@ namespace MercadoEnvio.DataManagers
             SqlParameter razonSocialParameter = new SqlParameter("@RazonSocial", SqlDbType.NVarChar);
             razonSocialParameter.Value = newEmpresa.RazonSocial.Trim();
 
-            SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
-            activoParameter.Value = newEmpresa.Activo;
+            //SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
+            //activoParameter.Value = newEmpresa.Activo;
 
             SqlParameter calleParameter = new SqlParameter("@Calle", SqlDbType.NVarChar);
             calleParameter.Value = newEmpresa.Calle.Trim();
@@ -357,8 +357,11 @@ namespace MercadoEnvio.DataManagers
             SqlParameter telefonoParameter = new SqlParameter("@Telefono", SqlDbType.NVarChar);
             telefonoParameter.Value = newEmpresa.Telefono.Trim();
 
+            SqlParameter fechaCreacionParameter = new SqlParameter("@FechaCreacion", SqlDbType.DateTime);
+            fechaCreacionParameter.Value = DateTime.Now;
+
             parameters.Add(razonSocialParameter);
-            parameters.Add(activoParameter);
+            //parameters.Add(activoParameter);
             parameters.Add(calleParameter);
             parameters.Add(ciudadParameter);
             parameters.Add(codigoPostalParameter);
@@ -371,6 +374,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(nroCalleParameter);
             parameters.Add(localidadParameter);
             parameters.Add(telefonoParameter);
+            parameters.Add(fechaCreacionParameter);
 
             newEmpresa.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertEmpresa", parameters);
         }
@@ -422,8 +426,8 @@ namespace MercadoEnvio.DataManagers
             SqlParameter nombreParameter = new SqlParameter("@Nombre", SqlDbType.NVarChar);
             nombreParameter.Value = newCliente.Nombre.Trim();
 
-            SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
-            activoParameter.Value = newCliente.Activo;
+            //SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
+            //activoParameter.Value = newCliente.Activo;
 
             SqlParameter apellidoParameter = new SqlParameter("@Apellido", SqlDbType.NVarChar);
             apellidoParameter.Value = newCliente.Apellido.Trim();
@@ -461,8 +465,11 @@ namespace MercadoEnvio.DataManagers
             SqlParameter telefonoParameter = new SqlParameter("@Telefono", SqlDbType.NVarChar);
             telefonoParameter.Value = newCliente.Telefono.Trim();
 
+            SqlParameter fechaCreacionParameter = new SqlParameter("@FechaCreacion", SqlDbType.DateTime);
+            fechaCreacionParameter.Value = DateTime.Now;
+
             parameters.Add(nombreParameter);
-            parameters.Add(activoParameter);
+            //parameters.Add(activoParameter);
             parameters.Add(apellidoParameter);
             parameters.Add(calleParameter);
             parameters.Add(codigoPostalParameter);
@@ -475,6 +482,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(numeroDocParameter);
             parameters.Add(localidadParameter);
             parameters.Add(telefonoParameter);
+            parameters.Add(fechaCreacionParameter);
 
             newCliente.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertCliente", parameters);
         }
@@ -542,8 +550,8 @@ namespace MercadoEnvio.DataManagers
             SqlParameter razonSocialParameter = new SqlParameter("@RazonSocial", SqlDbType.NVarChar);
             razonSocialParameter.Value = empresa.RazonSocial.Trim();
 
-            SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
-            activoParameter.Value = empresa.Activo;
+            //SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
+            //activoParameter.Value = empresa.Activo;
 
             SqlParameter calleParameter = new SqlParameter("@Calle", SqlDbType.NVarChar);
             calleParameter.Value = empresa.Calle.Trim();
@@ -581,8 +589,11 @@ namespace MercadoEnvio.DataManagers
             SqlParameter telefonoParameter = new SqlParameter("@Telefono", SqlDbType.NVarChar);
             telefonoParameter.Value = empresa.Telefono.Trim();
 
+            SqlParameter fechaCreacionParameter = new SqlParameter("@FechaCreacion", SqlDbType.DateTime);
+            fechaCreacionParameter.Value = DateTime.Now;
+
             parameters.Add(razonSocialParameter);
-            parameters.Add(activoParameter);
+            //parameters.Add(activoParameter);
             parameters.Add(calleParameter);
             parameters.Add(ciudadParameter);
             parameters.Add(codigoPostalParameter);
@@ -595,6 +606,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(nroCalleParameter);
             parameters.Add(localidadParameter);
             parameters.Add(telefonoParameter);
+            parameters.Add(fechaCreacionParameter);
 
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateEmpresa", parameters);
         }
@@ -622,8 +634,8 @@ namespace MercadoEnvio.DataManagers
             SqlParameter nombreParameter = new SqlParameter("@Nombre", SqlDbType.NVarChar);
             nombreParameter.Value = cliente.Nombre.Trim();
 
-            SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
-            activoParameter.Value = cliente.Activo;
+            //SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
+            //activoParameter.Value = cliente.Activo;
 
             SqlParameter apellidoParameter = new SqlParameter("@Apellido", SqlDbType.NVarChar);
             apellidoParameter.Value = cliente.Apellido.Trim();
@@ -661,8 +673,11 @@ namespace MercadoEnvio.DataManagers
             SqlParameter telefonoParameter = new SqlParameter("@Telefono", SqlDbType.NVarChar);
             telefonoParameter.Value = cliente.Telefono.Trim();
 
+            SqlParameter fechaCreacionParameter = new SqlParameter("@FechaCreacion", SqlDbType.DateTime);
+            fechaCreacionParameter.Value = DateTime.Now;
+
             parameters.Add(nombreParameter);
-            parameters.Add(activoParameter);
+            //parameters.Add(activoParameter);
             parameters.Add(apellidoParameter);
             parameters.Add(calleParameter);
             parameters.Add(codigoPostalParameter);
@@ -675,6 +690,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(numeroDocParameter);
             parameters.Add(localidadParameter);
             parameters.Add(telefonoParameter);
+            parameters.Add(fechaCreacionParameter);
 
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateCliente", parameters);
         }
