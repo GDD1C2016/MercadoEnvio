@@ -263,6 +263,7 @@ namespace MercadoEnvio.ABM_Usuario
                         Piso = Convert.ToInt32(TxtPiso.Text.Trim()),
                         NroCalle = Convert.ToInt32(TxtNumero.Text.Trim()),
                         TipoDoc = TxtTipoDoc.Text.Trim(),
+                        NumeroDoc = Convert.ToInt32(TxtDNI.Text.Trim()),
                         Localidad = TxtLocalidad.Text.Trim(),
                         Telefono = TxtTelefono.Text.Trim(),
                         Roles = GetRolesFromDg()
@@ -298,6 +299,7 @@ namespace MercadoEnvio.ABM_Usuario
                         NroCalle = Convert.ToInt32(TxtNumero.Text.Trim()),
                         Localidad = TxtLocalidad.Text.Trim(),
                         Telefono = TxtTelefono.Text.Trim(),
+                        Roles = GetRolesFromDg()
                     };
 
                     if (Usuario.IdUsuario == 0)
