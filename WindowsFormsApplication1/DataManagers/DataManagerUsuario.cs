@@ -297,85 +297,131 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
+                InsertUsuario(newEmpresa, db);
                 InsertEmpresa(newEmpresa, db);
                 newEmpresa.Roles.Add(RolesServices.GetRolByDescription("Empresa"));
 
                 foreach (Rol rol in newEmpresa.Roles)
                 {
-                    InsertRolUsuario(newEmpresa, rol, true, db);
+                    InsertUsuarioRol(newEmpresa.IdUsuario, rol.IdRol, true, db);
                 }
 
                 db.EndConnection();
             }
         }
 
+        private static void InsertUsuario(Usuario newUsuario, DataBaseHelper db)
+        {
+            EncryptHelper encryptHelper = new EncryptHelper();
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter userNameParameter = new SqlParameter("@UserName", SqlDbType.NVarChar);
+            userNameParameter.Value = newUsuario.UserName;
+
+            SqlParameter passEncrParameter = new SqlParameter("@PassEncr", SqlDbType.NVarChar);
+            passEncrParameter.Value = encryptHelper.Sha256Encrypt(newUsuario.Password);
+
+            SqlParameter cantIntFallidosParameter = new SqlParameter("@CantIntFallidos", SqlDbType.Int);
+            cantIntFallidosParameter.Value = newUsuario.CantIntFallidos;
+
+            SqlParameter activoParameter = new SqlParameter("@PassEncr", SqlDbType.Bit);
+            activoParameter.Value = true;
+
+            parameters.Add(userNameParameter);
+            parameters.Add(passEncrParameter);
+            parameters.Add(cantIntFallidosParameter);
+            parameters.Add(activoParameter);
+
+            newUsuario.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolUsuario", parameters);
+        }
+
         private static void InsertEmpresa(Empresa newEmpresa, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = newEmpresa.IdUsuario;
+
             SqlParameter razonSocialParameter = new SqlParameter("@RazonSocial", SqlDbType.NVarChar);
             razonSocialParameter.Value = newEmpresa.RazonSocial.Trim();
 
-            //SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
-            //activoParameter.Value = newEmpresa.Activo;
-
-            SqlParameter calleParameter = new SqlParameter("@Calle", SqlDbType.NVarChar);
-            calleParameter.Value = newEmpresa.Calle.Trim();
-
-            SqlParameter ciudadParameter = new SqlParameter("@Ciudad", SqlDbType.NVarChar);
-            ciudadParameter.Value = newEmpresa.Ciudad.Trim();
-
-            SqlParameter codigoPostalParameter = new SqlParameter("@CodigoPostal", SqlDbType.NVarChar);
-            codigoPostalParameter.Value = newEmpresa.CodigoPostal.Trim();
-
-            SqlParameter contactoParameter = new SqlParameter("@Contato", SqlDbType.NVarChar);
-            contactoParameter.Value = newEmpresa.Contacto.Trim();
-
-            SqlParameter cuitParameter = new SqlParameter("@Cuit", SqlDbType.NVarChar);
-            cuitParameter.Value = newEmpresa.Cuit.Trim();
-
-            SqlParameter departamentoParameter = new SqlParameter("@Departamento", SqlDbType.NVarChar);
-            departamentoParameter.Value = newEmpresa.Departamento.Trim();
-
-            SqlParameter emailParameter = new SqlParameter("@Email", SqlDbType.NVarChar);
-            emailParameter.Value = newEmpresa.Email.Trim();
-
-            SqlParameter rubroParameter = new SqlParameter("@Rubro", SqlDbType.NVarChar);
-            rubroParameter.Value = newEmpresa.Rubro.Trim();
-
-            SqlParameter pisoParameter = new SqlParameter("@Piso", SqlDbType.Int);
-            pisoParameter.Value = newEmpresa.Piso;
-
-            SqlParameter nroCalleParameter = new SqlParameter("@NroCalle", SqlDbType.Int);
-            nroCalleParameter.Value = newEmpresa.NroCalle;
-
-            SqlParameter localidadParameter = new SqlParameter("@Localidad", SqlDbType.NVarChar);
-            localidadParameter.Value = newEmpresa.Localidad.Trim();
+            SqlParameter mailParameter = new SqlParameter("@Mail", SqlDbType.NVarChar);
+            mailParameter.Value = newEmpresa.Email.Trim();
 
             SqlParameter telefonoParameter = new SqlParameter("@Telefono", SqlDbType.NVarChar);
             telefonoParameter.Value = newEmpresa.Telefono.Trim();
 
-            SqlParameter fechaCreacionParameter = new SqlParameter("@FechaCreacion", SqlDbType.DateTime);
-            fechaCreacionParameter.Value = DateTime.Now;
+            SqlParameter calleParameter = new SqlParameter("@Calle", SqlDbType.NVarChar);
+            calleParameter.Value = newEmpresa.Calle.Trim();
 
+            SqlParameter nroParameter = new SqlParameter("@Nro", SqlDbType.Int);
+            nroParameter.Value = newEmpresa.NroCalle;
+
+            SqlParameter pisoParameter = new SqlParameter("@Piso", SqlDbType.Int);
+            pisoParameter.Value = newEmpresa.Piso;
+
+            SqlParameter departamentoParameter = new SqlParameter("@Departamento", SqlDbType.NVarChar);
+            departamentoParameter.Value = newEmpresa.Departamento.Trim();
+
+            SqlParameter localidadParameter = new SqlParameter("@Localidad", SqlDbType.NVarChar);
+            localidadParameter.Value = newEmpresa.Localidad.Trim();
+
+            SqlParameter codigoPostalParameter = new SqlParameter("@CodigoPostal", SqlDbType.NVarChar);
+            codigoPostalParameter.Value = newEmpresa.CodigoPostal.Trim();
+
+            SqlParameter ciudadParameter = new SqlParameter("@Ciudad", SqlDbType.NVarChar);
+            ciudadParameter.Value = newEmpresa.Ciudad.Trim();
+
+            SqlParameter cuitParameter = new SqlParameter("@CUIT", SqlDbType.NVarChar);
+            cuitParameter.Value = newEmpresa.Cuit.Trim();
+
+            SqlParameter contactoParameter = new SqlParameter("@Contacto", SqlDbType.NVarChar);
+            contactoParameter.Value = newEmpresa.Contacto.Trim();
+
+            SqlParameter rubroParameter = new SqlParameter("@Rubro", SqlDbType.NVarChar);
+            rubroParameter.Value = newEmpresa.Rubro.Trim();
+
+            SqlParameter fechaCreacionParameter = new SqlParameter("@FechaCreacion", SqlDbType.DateTime);
+            fechaCreacionParameter.Value = DateTime.Now; // TODO Recuperar del app.config
+
+            parameters.Add(idUsuarioParameter);
             parameters.Add(razonSocialParameter);
-            //parameters.Add(activoParameter);
-            parameters.Add(calleParameter);
-            parameters.Add(ciudadParameter);
-            parameters.Add(codigoPostalParameter);
-            parameters.Add(contactoParameter);
-            parameters.Add(cuitParameter);
-            parameters.Add(departamentoParameter);
-            parameters.Add(emailParameter);
-            parameters.Add(rubroParameter);
-            parameters.Add(pisoParameter);
-            parameters.Add(nroCalleParameter);
-            parameters.Add(localidadParameter);
+            parameters.Add(mailParameter);
             parameters.Add(telefonoParameter);
+            parameters.Add(calleParameter);
+            parameters.Add(nroParameter);
+            parameters.Add(pisoParameter);
+            parameters.Add(departamentoParameter);
+            parameters.Add(localidadParameter);
+            parameters.Add(codigoPostalParameter);
+            parameters.Add(ciudadParameter);
+            parameters.Add(cuitParameter);
+            parameters.Add(contactoParameter);            
+            parameters.Add(rubroParameter);
             parameters.Add(fechaCreacionParameter);
 
-            newEmpresa.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertEmpresa", parameters);//TODO SP
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertEmpresa", parameters);
         }
+
+        private static void InsertUsuarioRol(int idUsuario, int idRol, bool activa, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            SqlParameter idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
+            idRolParameter.Value = idRol;
+
+            SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
+            activoParameter.Value = activa;
+
+            parameters.Add(idUsuarioParameter);
+            parameters.Add(idRolParameter);
+            parameters.Add(activoParameter);
+
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertUsuarioRol", parameters);
+        } //TODO Seguir
 
         public static void SaveNewCliente(Cliente newCliente)
         {
@@ -397,92 +443,72 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
-        private static void InsertRolUsuario(Usuario usuario, Rol rol, bool activa, DataBaseHelper db)
-        {
-            List<SqlParameter> parameters = new List<SqlParameter>();
-
-            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
-            idUsuarioParameter.Value = usuario.IdUsuario;
-
-            SqlParameter idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
-            idRolParameter.Value = rol.IdRol;
-
-            SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
-            activoParameter.Value = activa;
-
-            parameters.Add(idRolParameter);
-            parameters.Add(idUsuarioParameter);
-            parameters.Add(activoParameter);
-
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolUsuario", parameters); //TODO SP
-        }
-
         private static void InsertCliente(Cliente newCliente, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter nombreParameter = new SqlParameter("@Nombre", SqlDbType.NVarChar);
-            nombreParameter.Value = newCliente.Nombre.Trim();
-
-            //SqlParameter activoParameter = new SqlParameter("@Activo", SqlDbType.Bit);
-            //activoParameter.Value = newCliente.Activo;
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = newCliente.IdUsuario;
 
             SqlParameter apellidoParameter = new SqlParameter("@Apellido", SqlDbType.NVarChar);
             apellidoParameter.Value = newCliente.Apellido.Trim();
 
-            SqlParameter calleParameter = new SqlParameter("@Calle", SqlDbType.NVarChar);
-            calleParameter.Value = newCliente.Calle.Trim();
-
-            SqlParameter codigoPostalParameter = new SqlParameter("@CodigoPostal", SqlDbType.NVarChar);
-            codigoPostalParameter.Value = newCliente.CodigoPostal.Trim();
-
-            SqlParameter departamentoParameter = new SqlParameter("@Departamento", SqlDbType.NVarChar);
-            departamentoParameter.Value = newCliente.Departamento.Trim();
-
-            SqlParameter emailParameter = new SqlParameter("@Email", SqlDbType.NVarChar);
-            emailParameter.Value = newCliente.Email.Trim();
-
-            SqlParameter fechaNacimientoParameter = new SqlParameter("@FechaNacimiento", SqlDbType.DateTime);
-            fechaNacimientoParameter.Value = newCliente.FechaNacimiento.Date;
-
-            SqlParameter pisoParameter = new SqlParameter("@Piso", SqlDbType.Int);
-            pisoParameter.Value = newCliente.Piso;
-
-            SqlParameter nroCalleParameter = new SqlParameter("@NroCalle", SqlDbType.Int);
-            nroCalleParameter.Value = newCliente.NroCalle;
+            SqlParameter nombreParameter = new SqlParameter("@Nombre", SqlDbType.NVarChar);
+            nombreParameter.Value = newCliente.Nombre.Trim();
 
             SqlParameter tipoDocParameter = new SqlParameter("@TipoDoc", SqlDbType.NVarChar);
             tipoDocParameter.Value = newCliente.TipoDoc.Trim();
 
-            SqlParameter numeroDocParameter = new SqlParameter("@NumeroDoc", SqlDbType.Int);
-            numeroDocParameter.Value = newCliente.NumeroDoc;
-
-            SqlParameter localidadParameter = new SqlParameter("@Localidad", SqlDbType.NVarChar);
-            localidadParameter.Value = newCliente.Localidad.Trim();
+            SqlParameter nroDocParameter = new SqlParameter("@NroDoc", SqlDbType.Int);
+            nroDocParameter.Value = newCliente.NumeroDoc;
+            
+            SqlParameter mailParameter = new SqlParameter("@Mail", SqlDbType.NVarChar);
+            mailParameter.Value = newCliente.Email.Trim();
 
             SqlParameter telefonoParameter = new SqlParameter("@Telefono", SqlDbType.NVarChar);
             telefonoParameter.Value = newCliente.Telefono.Trim();
 
-            SqlParameter fechaCreacionParameter = new SqlParameter("@FechaCreacion", SqlDbType.DateTime);
-            fechaCreacionParameter.Value = DateTime.Now;
+            SqlParameter calleParameter = new SqlParameter("@Calle", SqlDbType.NVarChar);
+            calleParameter.Value = newCliente.Calle.Trim();
 
-            parameters.Add(nombreParameter);
-            //parameters.Add(activoParameter);
+            SqlParameter nroParameter = new SqlParameter("@Nro", SqlDbType.Int);
+            nroParameter.Value = newCliente.NroCalle;
+
+            SqlParameter pisoParameter = new SqlParameter("@Piso", SqlDbType.Int);
+            pisoParameter.Value = newCliente.Piso;
+
+            SqlParameter departamentoParameter = new SqlParameter("@Departamento", SqlDbType.NVarChar);
+            departamentoParameter.Value = newCliente.Departamento.Trim();
+
+            SqlParameter localidadParameter = new SqlParameter("@Localidad", SqlDbType.NVarChar);
+            localidadParameter.Value = newCliente.Localidad.Trim();
+
+            SqlParameter codigoPostalParameter = new SqlParameter("@CodigoPostal", SqlDbType.NVarChar);
+            codigoPostalParameter.Value = newCliente.CodigoPostal.Trim();
+
+            SqlParameter fechaNacimientoParameter = new SqlParameter("@FechaNacimiento", SqlDbType.DateTime);
+            fechaNacimientoParameter.Value = newCliente.FechaNacimiento.Date;
+
+            SqlParameter fechaCreacionParameter = new SqlParameter("@FechaCreacion", SqlDbType.DateTime);
+            fechaCreacionParameter.Value = DateTime.Now; // TODO Recuperar del app.config
+
+            parameters.Add(idUsuarioParameter);
             parameters.Add(apellidoParameter);
-            parameters.Add(calleParameter);
-            parameters.Add(codigoPostalParameter);
-            parameters.Add(departamentoParameter);
-            parameters.Add(emailParameter);
-            parameters.Add(fechaNacimientoParameter);
-            parameters.Add(pisoParameter);
-            parameters.Add(nroCalleParameter);
+            parameters.Add(nombreParameter);
             parameters.Add(tipoDocParameter);
-            parameters.Add(numeroDocParameter);
-            parameters.Add(localidadParameter);
+            parameters.Add(nroDocParameter);
+            parameters.Add(mailParameter);
             parameters.Add(telefonoParameter);
+            parameters.Add(calleParameter);
+            parameters.Add(nroParameter);
+            parameters.Add(pisoParameter);
+            parameters.Add(departamentoParameter);
+            parameters.Add(localidadParameter);
+            parameters.Add(codigoPostalParameter);
+            parameters.Add(fechaNacimientoParameter);
             parameters.Add(fechaCreacionParameter);
 
-            newCliente.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertCliente", parameters); //TODO SP
+            db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertCliente", parameters);
         }
 
         public static void UpdateCliente(Cliente cliente)
