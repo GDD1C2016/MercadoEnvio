@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace MercadoEnvio.Historial_Cliente
 {
-    public partial class Form1 : Form
+    public partial class MainHistorialCliente : Form
     {
-        public Form1()
+        public MainHistorialCliente()
         {
             InitializeComponent();
         }

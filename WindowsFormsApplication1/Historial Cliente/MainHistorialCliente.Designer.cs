@@ -1,6 +1,6 @@
 ﻿namespace MercadoEnvio.Historial_Cliente
 {
-    partial class Form1
+    partial class MainHistorialCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // MainHistorialCliente
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(634, 496);
+            this.MaximumSize = new System.Drawing.Size(650, 535);
+            this.MinimumSize = new System.Drawing.Size(650, 535);
+            this.Name = "MainHistorialCliente";
+            this.Text = "Historial Cliente";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
