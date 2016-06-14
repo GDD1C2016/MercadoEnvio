@@ -15,9 +15,9 @@ namespace MercadoEnvio.Entidades
         private int _idRubro;
         private int _idUsuario;
         private int _idEstado;
-        private int _idTipo;
         private bool _envio;
         private Visibilidad _visibilidad;
+        private TipoPublicacion _tipoPublicacion;
         #endregion
 
         #region properties
@@ -81,10 +81,10 @@ namespace MercadoEnvio.Entidades
             set { _idEstado = value; }
         }
 
-        public int IdTipo
+        public TipoPublicacion TipoPublicacion
         {
-            get { return _idTipo; }
-            set { _idTipo = value; }
+            get { return _tipoPublicacion; }
+            set { _tipoPublicacion = value; }
         }
 
         public bool Envio

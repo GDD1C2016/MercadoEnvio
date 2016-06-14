@@ -8,6 +8,7 @@ using MercadoEnvio.Entidades;
 using MercadoEnvio.Servicios;
 using System.Collections.Generic;
 using System.Linq;
+using MercadoEnvio.Properties;
 
 namespace MercadoEnvio.ComprarOfertar
 {
@@ -35,7 +36,7 @@ namespace MercadoEnvio.ComprarOfertar
             #region armadoDeGrillaPublicaciones
             
             DgPublicaciones.AutoGenerateColumns = false;
-            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CodigoPublicacion", HeaderText = "Codigo Publicación", Name = "CodigoPublicacion" });
+            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdPublicacion", HeaderText = "Codigo Publicación", Name = "CodigoPublicacion" });
             DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = "Descripción", Name = "Descripcion" });
             DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Stock", HeaderText = "Stock", Name = "Stock" });
             DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "FechaInicio", HeaderText = "Fecha Inicio", Name = "FechaInicio" });
@@ -195,9 +196,11 @@ namespace MercadoEnvio.ComprarOfertar
 
             if (DgPublicaciones.SelectedRows.Count > 0)
             {
-                BindingSource bs = new BindingSource();
-                bs = DgPublicaciones.DataSource as BindingSource;
-                publicacionSeleccionada = (Publicacion)bs.List[bs.Position];
+                BindingList<Publicacion> bs = DgPublicaciones.DataSource as BindingList<Publicacion>;
+                if (bs != null)
+                {
+                    publicacionSeleccionada = (Publicacion) bs[DgPublicaciones.SelectedRows[0].Index];
+                }
             }
 
             var comprarDialog = new ComprarDialog();
