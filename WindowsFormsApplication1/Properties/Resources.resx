@@ -331,4 +331,25 @@
   <data name="Descripción" xml:space="preserve">
     <value>Descripción</value>
   </data>
+  <data name="DetallesDeCompra" xml:space="preserve">
+    <value>Detalles de Compra</value>
+  </data>
+  <data name="Ofertar" xml:space="preserve">
+    <value>Ofertar</value>
+  </data>
+  <data name="Cantidad" xml:space="preserve">
+    <value>Cantidad</value>
+  </data>
+  <data name="DetallesSubasta" xml:space="preserve">
+    <value>Detalles de Subasta</value>
+  </data>
+  <data name="TituloCompra" xml:space="preserve">
+    <value>Compra</value>
+  </data>
+  <data name="Compra" xml:space="preserve">
+    <value>Compra</value>
+  </data>
+  <data name="Subasta" xml:space="preserve">
+    <value>Subasta</value>
+  </data>
 </root>

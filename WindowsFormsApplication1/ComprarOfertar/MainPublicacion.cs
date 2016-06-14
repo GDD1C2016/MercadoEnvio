@@ -54,7 +54,8 @@ namespace MercadoEnvio.ComprarOfertar
 
         private BindingList<Publicacion> FillDataforGrid()
         {
-            BindingList<Publicacion> list = new BindingList<Publicacion>(PublicacionesServices.GetAllData().OrderByDescending(x=>x.Visibilidad.Precio).ToList());
+            List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.GetAllData().OrderByDescending(x=>x.Visibilidad.Precio).ToList());
+            BindingList<Publicacion> list = new BindingList<Publicacion>(listAux);
             return list;
         }
 
@@ -71,7 +72,11 @@ namespace MercadoEnvio.ComprarOfertar
                 Templist.Add(Baselist[i]);
             }
 
-            DgPublicaciones.DataSource = Templist;
+            BindingSource bs = new BindingSource();
+            bs.DataSource = Templist;
+
+            //DgPublicaciones.DataSource = Templist;
+            DgPublicaciones.DataSource = bs;
             DgPublicaciones.Refresh();
         }
 
@@ -173,8 +178,9 @@ namespace MercadoEnvio.ComprarOfertar
         {
             string filtroDescripcion = string.Empty;
             filtroDescripcion = TxtFiltroDescripcion.Text;
+            List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.FindPublicaciones(filtroDescripcion, RubrosFiltro).OrderByDescending(x => x.Visibilidad.Precio).ToList());
 
-            BindingList<Publicacion> dataSource = new BindingList<Publicacion>(PublicacionesServices.FindPublicaciones(filtroDescripcion, RubrosFiltro).OrderByDescending(x=>x.Visibilidad.Precio).ToList());
+            BindingList<Publicacion> dataSource = new BindingList<Publicacion>(listAux);
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
 
@@ -196,7 +202,9 @@ namespace MercadoEnvio.ComprarOfertar
 
             if (DgPublicaciones.SelectedRows.Count > 0)
             {
-                BindingList<Publicacion> bs = DgPublicaciones.DataSource as BindingList<Publicacion>;
+                BindingSource bs = new BindingSource();
+                bs = (BindingSource) DgPublicaciones.DataSource;
+                //BindingList<Publicacion> bs = DgPublicaciones.DataSource as BindingList<Publicacion>;
                 if (bs != null)
                 {
                     publicacionSeleccionada = (Publicacion) bs[DgPublicaciones.SelectedRows[0].Index];
