@@ -189,5 +189,62 @@ namespace MercadoEnvio.DataManagers
 
             return publicaciones;
         }
+
+        public static List<Publicacion> GetPendientesCalificar()
+        {
+            List<Publicacion> listaPublicaciones = new List<Publicacion>();
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                listaPublicaciones = GetPendientesCalificar(db);
+
+                db.EndConnection();
+
+                return listaPublicaciones;
+            }
+        }
+
+        public static List<Publicacion> GetPendientesCalificar(DataBaseHelper db)
+        {
+            DataTable res = db.GetDataAsTable("SP_GetPendientesCalificar"); //TODO HACER ESTE SP Y VER SI VALE LA PENA LLENAR TODAS LAS PROPIEDADES
+            List<Publicacion> publicaciones = new List<Publicacion>();
+            foreach (DataRow row in res.Rows)
+            {
+                var publicacion = new Publicacion();
+
+                publicacion.IdPublicacion = Convert.ToInt32(row["IdPublicacion"]);
+                publicacion.Descripcion = Convert.ToString(row["Descripcion"]);
+                publicacion.Stock = Convert.ToInt32(row["Stock"]);
+                publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
+                publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
+                publicacion.Precio = Convert.ToDecimal(row["Precio"]);
+                publicacion.PrecioReserva = row["PrecioReserva"] == System.DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
+                publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
+                publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
+                publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
+                publicacion.Envio = Convert.ToBoolean(row["Envio"]);
+                publicacion.Visibilidad = new Visibilidad
+                {
+                    IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
+                    Descripcion = Convert.ToString(row["DescripcionVisibilidad"]),
+                    Precio = Convert.ToDecimal(row["Precio"]),
+                    Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
+                    EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
+                };
+                publicacion.TipoPublicacion = new TipoPublicacion
+                {
+                    IdTipo = Convert.ToInt32(row["IdTipo"]),
+                    Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"]),
+                    Envio = Convert.ToBoolean(row["Envio"]),
+                };
+
+                publicaciones.Add(publicacion);
+            }
+
+            return publicaciones;
+        }
     }
 }

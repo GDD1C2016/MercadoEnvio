@@ -21,6 +21,7 @@ namespace MercadoEnvio.Entidades
         private string _departamento;
         private string _localidad;
         private string _codigoPostal;
+        private decimal _reputacion;
 
         #endregion
 
@@ -123,6 +124,12 @@ namespace MercadoEnvio.Entidades
         }
 
         public List<Rol> Roles { get; set; }
+
+        public decimal Reputacion
+        {
+            get { return _reputacion; }
+            set { _reputacion = value; }
+        }
 
         #endregion
 
