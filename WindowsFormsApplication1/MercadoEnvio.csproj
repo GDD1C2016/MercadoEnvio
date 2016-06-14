@@ -229,8 +229,6 @@
     <Content Include="Scripts\SP\SP_FindPublicaciones.sql" />
     <Content Include="Scripts\SP\SP_GetRolesUsuario.sql" />
     <Content Include="Scripts\SP\SP_DeleteRolFuncionalidad.sql" />
-    <Content Include="Scripts\SP\SP_GetTipoPublicacion.sql" />
-    <Content Include="Scripts\SP\SP_GetVisibilidadPublicacion.sql" />
     <Content Include="Scripts\SP\SP_UpdateRol.sql" />
     <Content Include="Scripts\SP\SP_UpdateVisibilidad.sql" />
     <None Include="Resources\fastreverse.JPG" />

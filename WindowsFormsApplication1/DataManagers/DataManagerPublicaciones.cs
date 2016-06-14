@@ -4,7 +4,6 @@ using MercadoEnvio.Entidades;
 using MercadoEnvio.Helpers;
 using System.Configuration;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace MercadoEnvio.DataManagers
 {
@@ -32,23 +31,33 @@ namespace MercadoEnvio.DataManagers
             List<Publicacion> publicaciones = new List<Publicacion>();
             foreach (DataRow row in res.Rows)
             {
-                var publicacion = new Publicacion
+                var publicacion = new Publicacion();
+
+                publicacion.IdPublicacion = Convert.ToInt32(row["IdPublicacion"]);
+                publicacion.Descripcion = Convert.ToString(row["Descripcion"]);
+                publicacion.Stock = Convert.ToInt32(row["Stock"]);
+                publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
+                publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
+                publicacion.Precio = Convert.ToDecimal(row["Precio"]);
+                publicacion.PrecioReserva = Convert.ToDecimal(row["Precio"]);
+                publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
+                publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
+                publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
+                publicacion.Envio = Convert.ToBoolean(row["Envio"]);
+                publicacion.Visibilidad = new Visibilidad
                 {
-                    IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
-                    Descripcion = Convert.ToString(row["Descripcion"]),
-                    Stock = Convert.ToInt32(row["Stock"]),
-                    FechaInicio = Convert.ToDateTime(row["FechaInicio"]),
-                    FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]),
+                    IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
+                    Descripcion = Convert.ToString(row["DescripcionVisibilidad"]),
                     Precio = Convert.ToDecimal(row["Precio"]),
-                    PrecioReserva = Convert.ToDecimal(row["Precio"]),
-                    IdRubro = Convert.ToInt32(row["IdRubro"]),
-                    IdUsuario = Convert.ToInt32(row["IdUsuario"]),
-                    IdEstado = Convert.ToInt32(row["IdEstado"]),
+                    Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
+                    EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
+                };
+                publicacion.TipoPublicacion = new TipoPublicacion
+                {
+                    IdTipo = Convert.ToInt32(row["IdTipo"]),
+                    Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"]),
                     Envio = Convert.ToBoolean(row["Envio"]),
                 };
-
-                publicacion.Visibilidad = GetVisibilidadPublicacion(publicacion.IdPublicacion, db);
-                publicacion.TipoPublicacion = GetTipoPublicacion(publicacion.IdPublicacion, db);
 
                 publicaciones.Add(publicacion);
             }
@@ -56,102 +65,67 @@ namespace MercadoEnvio.DataManagers
             return publicaciones;
         }
 
-        private static Visibilidad GetVisibilidadPublicacion(int idPublicacion, DataBaseHelper db)
-        {
-            List<SqlParameter> parameters = new List<SqlParameter>();
-
-            SqlParameter idPublicacionParameter = new SqlParameter("@IdPublicacion", SqlDbType.Decimal);
-            idPublicacionParameter.Value = idPublicacion;
-
-            parameters.Add(idPublicacionParameter);
-
-            DataTable res = db.GetDataAsTable("SP_GetVisibilidadPublicacion", parameters);
-            Visibilidad visibilidad = new Visibilidad();
-            foreach (DataRow row in res.Rows)
-            {
-                visibilidad.IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]);
-                visibilidad.Descripcion = Convert.ToString(row["Descripcion"]);
-                visibilidad.Precio = Convert.ToDecimal(row["Precio"]);
-                visibilidad.Porcentaje = Convert.ToDecimal(row["Porcentaje"]);
-                visibilidad.EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"]);
-            }
-
-            return visibilidad;
-        }
-
-        private static TipoPublicacion GetTipoPublicacion(int idPublicacion, DataBaseHelper db)
-        {
-            List<SqlParameter> parameters = new List<SqlParameter>();
-
-            SqlParameter idPublicacionParameter = new SqlParameter("@IdPublicacion", SqlDbType.Decimal);
-            idPublicacionParameter.Value = idPublicacion;
-
-            parameters.Add(idPublicacionParameter);
-
-            DataTable res = db.GetDataAsTable("SP_GetVisibilidadPublicacion", parameters);
-            TipoPublicacion tipoPublicacion = new TipoPublicacion();
-            foreach (DataRow row in res.Rows)
-            {
-                tipoPublicacion.IdTipo = Convert.ToInt32(row["IdTipo"]);
-                tipoPublicacion.Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"]);
-                tipoPublicacion.Envio = Convert.ToBoolean(row["Envio"]);
-            }
-
-            return tipoPublicacion;
-        }
-
         public static List<Publicacion> FindPublicaciones(string filtroDescripcion, List<Rubro> rubrosFiltro)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
-            SqlParameter filtroDescripcionParameter;
 
-            List<SqlParameter> parameters = new List<SqlParameter>();
-
-            filtroDescripcionParameter = new SqlParameter("@FiltroDescripcion", SqlDbType.NVarChar);
-            filtroDescripcionParameter.Value = filtroDescripcion.Trim();
-
-            parameters.Add(filtroDescripcionParameter);
-            //TODO CREAR EL SP FINDPUBLICACIONES Y VER COMO MANDAR LA LISTA DE ID DE RUBROS PARA FILTRAR
             using (db.Connection)
             {
-                DataTable res = db.GetDataAsTable("SP_FindPublicaciones", parameters);
-                List<Publicacion> listPublicaciones = new List<Publicacion>();
+                db.BeginTransaction();
 
-                foreach (DataRow row in res.Rows)
-                {
-                    var publicacion = new Publicacion
-                    {
-                        IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
-                        Descripcion = Convert.ToString(row["Descripcion"]),
-                        Stock = Convert.ToInt32(row["Stock"]),
-                        FechaInicio = Convert.ToDateTime(row["FechaInicio"]),
-                        FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]),
-                        Precio = Convert.ToDecimal(row["Precio"]),
-                        PrecioReserva = Convert.ToDecimal(row["Precio"]),
-                        IdRubro = Convert.ToInt32(row["IdRubro"]),
-                        IdUsuario = Convert.ToInt32(row["IdUsuario"]),
-                        IdEstado = Convert.ToInt32(row["IdEstado"]),
-                        Envio = Convert.ToBoolean(row["Envio"]),
-                        Visibilidad = new Visibilidad
-                        {
-                            IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
-                            Descripcion = Convert.ToString(row["DescripcionVisibilidad"]),
-                            Precio = Convert.ToDecimal(row["Precio"]),
-                            Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
-                            EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
-                        },
-                        TipoPublicacion = new TipoPublicacion
-                        {
-                            IdTipo = Convert.ToInt32(row["IdTipo"]),
-                            Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"])
-                        }
-                    };
+                List<Publicacion> publicaciones = FindPublicaciones(filtroDescripcion, rubrosFiltro, db);
 
-                    listPublicaciones.Add(publicacion);
-                }
+                db.EndConnection();
 
-                return listPublicaciones;
+                return publicaciones;
             }
+        }
+
+        private static List<Publicacion> FindPublicaciones(string filtroDescripcion, List<Rubro> rubrosFiltro, DataBaseHelper db)
+        {
+            List<Publicacion> publicaciones = new List<Publicacion>();
+            //List<SqlParameter> parameters = new List<SqlParameter>();
+            //DataTable res =
+
+            //foreach (Rubro rubro in rubrosFiltro)
+            //{
+            //    SqlParameter filtroDescripcionParameter = new SqlParameter("@FiltroDescripcion", SqlDbType.NVarChar);
+            //    filtroDescripcionParameter.Value = filtroDescripcion.Trim();
+
+            //    SqlParameter filtroIdRubroParameter = new SqlParameter("@FiltroIdRubro", SqlDbType.Int);
+            //    filtroIdRubroParameter.Value = rubro.IdRubro;
+
+            //    parameters.Add(filtroDescripcionParameter);
+            //    parameters.Add(filtroIdRubroParameter);
+
+            //    DataTable res = db.GetDataAsTable("SP_FindPublicaciones", parameters);
+            //    foreach (DataRow row in res.Rows)
+            //    {
+            //        var publicacion = new Publicacion
+            //        {
+            //            IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
+            //            Descripcion = Convert.ToString(row["Descripcion"]),
+            //            Stock = Convert.ToInt32(row["Stock"]),
+            //            FechaInicio = Convert.ToDateTime(row["FechaInicio"]),
+            //            FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]),
+            //            Precio = Convert.ToDecimal(row["Precio"]),
+            //            PrecioReserva = Convert.ToDecimal(row["Precio"]),
+            //            IdRubro = Convert.ToInt32(row["IdRubro"]),
+            //            IdUsuario = Convert.ToInt32(row["IdUsuario"]),
+            //            IdEstado = Convert.ToInt32(row["IdEstado"]),
+            //            Envio = Convert.ToBoolean(row["Envio"]),
+            //        };
+
+            //        publicacion.Visibilidad = GetVisibilidadPublicacion(publicacion.IdPublicacion, db);
+            //        publicacion.TipoPublicacion = GetTipoPublicacion(publicacion.IdPublicacion, db);
+
+            //        publicaciones.Add(publicacion);
+
+            //        parameters.Clear();
+            //    }
+            //}
+
+            return publicaciones;
         }
     }
 }
