@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.GroupBoxDetalles = new System.Windows.Forms.GroupBox();
+            this.TxtOfertar = new System.Windows.Forms.TextBox();
             this.LabelPrecioReservaNum = new System.Windows.Forms.Label();
             this.LabelPrecioReservaText = new System.Windows.Forms.Label();
             this.CheckBoxEnvio = new System.Windows.Forms.CheckBox();
             this.TxtCantidad = new System.Windows.Forms.TextBox();
             this.LabelCantidad = new System.Windows.Forms.Label();
-            this.TxtOfertar = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnAceptar = new System.Windows.Forms.Button();
+            this.BtnCancelar = new System.Windows.Forms.Button();
             this.GroupBoxDetalles.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -57,6 +57,15 @@
             this.GroupBoxDetalles.TabIndex = 2;
             this.GroupBoxDetalles.TabStop = false;
             this.GroupBoxDetalles.Text = "Detalles de la Compra";
+            // 
+            // TxtOfertar
+            // 
+            this.TxtOfertar.Location = new System.Drawing.Point(64, 23);
+            this.TxtOfertar.Name = "TxtOfertar";
+            this.TxtOfertar.Size = new System.Drawing.Size(130, 20);
+            this.TxtOfertar.TabIndex = 6;
+            this.TxtOfertar.Visible = false;
+            this.TxtOfertar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtOfertar_KeyPress);
             // 
             // LabelPrecioReservaNum
             // 
@@ -95,6 +104,7 @@
             this.TxtCantidad.Size = new System.Drawing.Size(130, 20);
             this.TxtCantidad.TabIndex = 1;
             this.TxtCantidad.Visible = false;
+            this.TxtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtCantidad_KeyPress);
             // 
             // LabelCantidad
             // 
@@ -105,14 +115,6 @@
             this.LabelCantidad.TabIndex = 0;
             this.LabelCantidad.Text = "Cantidad";
             this.LabelCantidad.Visible = false;
-            // 
-            // TxtOfertar
-            // 
-            this.TxtOfertar.Location = new System.Drawing.Point(64, 23);
-            this.TxtOfertar.Name = "TxtOfertar";
-            this.TxtOfertar.Size = new System.Drawing.Size(130, 20);
-            this.TxtOfertar.TabIndex = 6;
-            this.TxtOfertar.Visible = false;
             // 
             // groupBox2
             // 
@@ -126,15 +128,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Acciones";
             // 
-            // BtnCancelar
-            // 
-            this.BtnCancelar.Location = new System.Drawing.Point(279, 19);
-            this.BtnCancelar.Name = "BtnCancelar";
-            this.BtnCancelar.Size = new System.Drawing.Size(243, 23);
-            this.BtnCancelar.TabIndex = 8;
-            this.BtnCancelar.Text = "Cancelar";
-            this.BtnCancelar.UseVisualStyleBackColor = true;
-            // 
             // BtnAceptar
             // 
             this.BtnAceptar.Location = new System.Drawing.Point(12, 19);
@@ -143,6 +136,17 @@
             this.BtnAceptar.TabIndex = 9;
             this.BtnAceptar.Text = "Aceptar";
             this.BtnAceptar.UseVisualStyleBackColor = true;
+            this.BtnAceptar.Click += new System.EventHandler(this.BtnAceptar_Click);
+            // 
+            // BtnCancelar
+            // 
+            this.BtnCancelar.Location = new System.Drawing.Point(279, 19);
+            this.BtnCancelar.Name = "BtnCancelar";
+            this.BtnCancelar.Size = new System.Drawing.Size(243, 23);
+            this.BtnCancelar.TabIndex = 8;
+            this.BtnCancelar.Text = "Cancelar";
+            this.BtnCancelar.UseVisualStyleBackColor = true;
+            this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
             // ComprarDialog
             // 

@@ -93,11 +93,17 @@
     <Compile Include="ABM Visibilidad\MainVisibilidad.Designer.cs">
       <DependentUpon>MainVisibilidad.cs</DependentUpon>
     </Compile>
-    <Compile Include="Calificar\Form1.cs">
+    <Compile Include="Calificar\CalificarVendedor.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Calificar\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Calificar\CalificarVendedor.Designer.cs">
+      <DependentUpon>CalificarVendedor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Calificar\MainCalificaciones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Calificar\MainCalificaciones.Designer.cs">
+      <DependentUpon>MainCalificaciones.cs</DependentUpon>
     </Compile>
     <Compile Include="ComprarOfertar\ComprarDialog.cs">
       <SubType>Form</SubType>
@@ -111,11 +117,13 @@
     <Compile Include="ComprarOfertar\MainPublicacion.Designer.cs">
       <DependentUpon>MainPublicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataManagers\DataManagerCalificacion.cs" />
     <Compile Include="DataManagers\DataManagerPublicaciones.cs" />
     <Compile Include="DataManagers\DataManagerRoles.cs" />
     <Compile Include="DataManagers\DataManagerRubros.cs" />
     <Compile Include="DataManagers\DataManagerUsuario.cs" />
     <Compile Include="DataManagers\DataManagerVisibilidad.cs" />
+    <Compile Include="Entidades\Calificacion.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Empresa.cs" />
     <Compile Include="Entidades\Estado.cs" />
@@ -161,6 +169,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Servicios\CalificacionesServices.cs" />
+    <Compile Include="Servicios\ComprasServices.cs" />
     <Compile Include="Servicios\PublicacionesServices.cs" />
     <Compile Include="Servicios\RolesServices.cs" />
     <Compile Include="Servicios\RubrosServices.cs" />
@@ -186,6 +196,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM Visibilidad\MainVisibilidad.resx">
       <DependentUpon>MainVisibilidad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calificar\CalificarVendedor.resx">
+      <DependentUpon>CalificarVendedor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Calificar\MainCalificaciones.resx">
+      <DependentUpon>MainCalificaciones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\ComprarDialog.resx">
       <DependentUpon>ComprarDialog.cs</DependentUpon>

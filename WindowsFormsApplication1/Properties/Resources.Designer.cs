@@ -170,7 +170,6 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to N° Doc.
         ///   Looks up a localized string similar to DNI.
         /// </summary>
         internal static string DNI {
@@ -351,6 +350,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error en la operación.
+        /// </summary>
+        internal static string ErrorEnLaOperacion {
+            get {
+                return ResourceManager.GetString("ErrorEnLaOperacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El campo &quot;Estado&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorEstadoVacio {
@@ -410,6 +418,15 @@ namespace MercadoEnvio.Properties {
         internal static string ErrorNumeroCalle {
             get {
                 return ResourceManager.GetString("ErrorNumeroCalle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El valor de la oferta no puede ser menor al precio actual de la subasta..
+        /// </summary>
+        internal static string ErrorOferta {
+            get {
+                return ResourceManager.GetString("ErrorOferta", resourceCulture);
             }
         }
         
@@ -477,6 +494,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to La cantidad a comprar no puede superar el stock..
+        /// </summary>
+        internal static string ErrorStock {
+            get {
+                return ResourceManager.GetString("ErrorStock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El campo &quot;Tipo Doc&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorTipoDocumento {
@@ -491,6 +517,15 @@ namespace MercadoEnvio.Properties {
         internal static string ErrorTrans {
             get {
                 return ResourceManager.GetString("ErrorTrans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El autor de una publicación no puede Comprar/Ofertar sobre la misma..
+        /// </summary>
+        internal static string ErrorUsuarioCompraSuPublicacion {
+            get {
+                return ResourceManager.GetString("ErrorUsuarioCompraSuPublicacion", resourceCulture);
             }
         }
         
@@ -629,6 +664,24 @@ namespace MercadoEnvio.Properties {
         internal static string Ofertar {
             get {
                 return ResourceManager.GetString("Ofertar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Operacion Exitosa.
+        /// </summary>
+        internal static string OperacionExitosa {
+            get {
+                return ResourceManager.GetString("OperacionExitosa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Se ha generado la orden de compra N° .
+        /// </summary>
+        internal static string OrdenDeCompra {
+            get {
+                return ResourceManager.GetString("OrdenDeCompra", resourceCulture);
             }
         }
         

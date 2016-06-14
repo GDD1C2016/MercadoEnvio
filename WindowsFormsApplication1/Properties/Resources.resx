@@ -358,4 +358,22 @@
   <data name="Subasta" xml:space="preserve">
     <value>Subasta</value>
   </data>
+  <data name="ErrorOferta" xml:space="preserve">
+    <value>El valor de la oferta no puede ser menor al precio actual de la subasta.</value>
+  </data>
+  <data name="ErrorStock" xml:space="preserve">
+    <value>La cantidad a comprar no puede superar el stock.</value>
+  </data>
+  <data name="ErrorEnLaOperacion" xml:space="preserve">
+    <value>Error en la operación</value>
+  </data>
+  <data name="ErrorUsuarioCompraSuPublicacion" xml:space="preserve">
+    <value>El autor de una publicación no puede Comprar/Ofertar sobre la misma.</value>
+  </data>
+  <data name="OperacionExitosa" xml:space="preserve">
+    <value>Operacion Exitosa</value>
+  </data>
+  <data name="OrdenDeCompra" xml:space="preserve">
+    <value>Se ha generado la orden de compra N° </value>
+  </data>
 </root>
