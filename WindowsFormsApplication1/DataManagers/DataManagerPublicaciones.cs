@@ -88,12 +88,12 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(idPublicacionParameter);
 
-            DataTable res = db.GetDataAsTable("SP_GetVisibilidadPublicacion", parameters);
+            DataTable res = db.GetDataAsTable("SP_GetTipoPublicacion", parameters);
             TipoPublicacion tipoPublicacion = new TipoPublicacion();
             foreach (DataRow row in res.Rows)
             {
                 tipoPublicacion.IdTipo = Convert.ToInt32(row["IdTipo"]);
-                tipoPublicacion.Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"]);
+                tipoPublicacion.Descripcion = Convert.ToString(row["Descripcion"]);
                 tipoPublicacion.Envio = Convert.ToBoolean(row["Envio"]);
             }
 
