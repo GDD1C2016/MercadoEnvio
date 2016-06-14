@@ -40,7 +40,7 @@ namespace MercadoEnvio.DataManagers
                 publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
                 publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
                 publicacion.Precio = Convert.ToDecimal(row["Precio"]);
-                publicacion.PrecioReserva = Convert.ToDecimal(row["Precio"]);
+                publicacion.PrecioReserva = Convert.ToDecimal(row["PrecioReserva"]);
                 publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
                 publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
                 publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
@@ -112,7 +112,7 @@ namespace MercadoEnvio.DataManagers
                         publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
                         publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
                         publicacion.Precio = Convert.ToDecimal(row["Precio"]);
-                        publicacion.PrecioReserva = Convert.ToDecimal(row["Precio"]);
+                        publicacion.PrecioReserva = Convert.ToDecimal(row["PrecioReserva"]);
                         publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
                         publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
                         publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
@@ -161,7 +161,7 @@ namespace MercadoEnvio.DataManagers
                     publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
                     publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
                     publicacion.Precio = Convert.ToDecimal(row["Precio"]);
-                    publicacion.PrecioReserva = Convert.ToDecimal(row["Precio"]);
+                    publicacion.PrecioReserva = Convert.ToDecimal(row["PrecioReserva"]);
                     publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
                     publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
                     publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
