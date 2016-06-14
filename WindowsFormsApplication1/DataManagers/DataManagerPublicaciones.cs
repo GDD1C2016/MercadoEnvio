@@ -33,7 +33,6 @@ namespace MercadoEnvio.DataManagers
                         IdRubro = Convert.ToInt32(row["IdRubro"]),
                         IdUsuario = Convert.ToInt32(row["IdUsuario"]),
                         IdEstado = Convert.ToInt32(row["IdEstado"]),
-                        IdTipo = Convert.ToInt32(row["IdTipo"]),
                         Envio = Convert.ToBoolean(row["Envio"]),
                         Visibilidad = new Visibilidad
                         {
@@ -42,6 +41,11 @@ namespace MercadoEnvio.DataManagers
                             Precio = Convert.ToDecimal(row["Precio"]),
                             Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
                             EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
+                        },
+                        TipoPublicacion = new TipoPublicacion
+                        {
+                            IdTipo = Convert.ToInt32(row["IdTipo"]),
+                            Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"])
                         }
                     };
 
@@ -79,10 +83,24 @@ namespace MercadoEnvio.DataManagers
                         FechaInicio = Convert.ToDateTime(row["FechaInicio"]),
                         FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]),
                         Precio = Convert.ToDecimal(row["Precio"]),
+                        PrecioReserva = Convert.ToDecimal(row["Precio"]),
                         IdRubro = Convert.ToInt32(row["IdRubro"]),
                         IdUsuario = Convert.ToInt32(row["IdUsuario"]),
                         IdEstado = Convert.ToInt32(row["IdEstado"]),
-                        IdTipo = Convert.ToInt32(row["IdTipo"]),
+                        Envio = Convert.ToBoolean(row["Envio"]),
+                        Visibilidad = new Visibilidad
+                        {
+                            IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
+                            Descripcion = Convert.ToString(row["DescripcionVisibilidad"]),
+                            Precio = Convert.ToDecimal(row["Precio"]),
+                            Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
+                            EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
+                        },
+                        TipoPublicacion = new TipoPublicacion
+                        {
+                            IdTipo = Convert.ToInt32(row["IdTipo"]),
+                            Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"])
+                        }
                     };
 
                     listPublicaciones.Add(publicacion);

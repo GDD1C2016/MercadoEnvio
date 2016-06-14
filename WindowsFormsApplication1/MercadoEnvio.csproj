@@ -124,6 +124,7 @@
     <Compile Include="Entidades\Publicacion.cs" />
     <Compile Include="Entidades\Rol.cs" />
     <Compile Include="Entidades\Rubro.cs" />
+    <Compile Include="Entidades\TipoPublicacion.cs" />
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\Visibilidad.cs" />
     <Compile Include="Facturas\Form1.cs">
