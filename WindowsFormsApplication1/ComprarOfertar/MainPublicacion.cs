@@ -23,7 +23,8 @@ namespace MercadoEnvio.ComprarOfertar
         #endregion
 
         public Rubro RubroSeleccionado { get; set; }
-        public List<Rubro> RubrosFiltro { get; set; } 
+        public List<Rubro> RubrosFiltro { get; set; }
+        public Usuario Usuario { get; set; }
 
         public MainPublicacion()
         {
@@ -204,7 +205,6 @@ namespace MercadoEnvio.ComprarOfertar
             {
                 BindingSource bs = new BindingSource();
                 bs = (BindingSource) DgPublicaciones.DataSource;
-                //BindingList<Publicacion> bs = DgPublicaciones.DataSource as BindingList<Publicacion>;
                 if (bs != null)
                 {
                     publicacionSeleccionada = (Publicacion) bs[DgPublicaciones.SelectedRows[0].Index];
@@ -212,12 +212,19 @@ namespace MercadoEnvio.ComprarOfertar
             }
 
             var comprarDialog = new ComprarDialog();
+            comprarDialog.UsuarioActivo = Usuario;
             comprarDialog.PublicacionSeleccionada = publicacionSeleccionada;
             var res = comprarDialog.ShowDialog();
 
             if (res.Equals(DialogResult.OK))
             {
-                
+                List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.GetAllData().OrderByDescending(x => x.Visibilidad.Precio).ToList());
+
+                BindingList<Publicacion> dataSource = new BindingList<Publicacion>(listAux);
+                BindingSource bs = new BindingSource();
+                bs.DataSource = dataSource;
+
+                DgPublicaciones.DataSource = bs;
             }
         }
     }
