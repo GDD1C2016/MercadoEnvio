@@ -78,7 +78,7 @@ namespace MercadoEnvio.DataManagers
                 db.EndConnection();
 
                 return publicaciones;
-            }
+        }
         }
 
         private static List<Publicacion> FindPublicaciones(string filtroDescripcion, List<Rubro> rubrosFiltro, DataBaseHelper db)
