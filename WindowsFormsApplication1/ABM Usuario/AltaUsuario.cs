@@ -80,7 +80,7 @@ namespace MercadoEnvio.ABM_Usuario
             else
             {
                 LabelNombre.Text = Resources.Nombre;
-                LabelDNI.Text = Resources.DNI;
+                LabelDNI.Text = Resources.NoDoc;
                 LabelApellido.Text = Resources.Apellido;
 
                 TxtApellido.Visible = true;

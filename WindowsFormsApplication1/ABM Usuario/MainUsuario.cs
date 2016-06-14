@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Properties;
@@ -33,10 +32,10 @@ namespace MercadoEnvio.ABM_Usuario
             bs.DataSource = dataSource;
 
             DgUsuarios.AutoGenerateColumns = false;
-            DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre", HeaderText = "Nombre", Name = "Nombre" });
-            DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Apellido", HeaderText = "Apellido", Name = "Apellido" });
-            DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = "Email", Name = "Email" });
-            DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NumeroDoc", HeaderText = "Número Documento", Name = "NumeroDoc" });
+            DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre", HeaderText = Resources.Nombre, Name = "Nombre" });
+            DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Apellido", HeaderText = Resources.Apellido, Name = "Apellido" });
+            DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = Resources.Email, Name = "Email" });
+            DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NumeroDoc", HeaderText = Resources.NoDoc, Name = "NumeroDoc" });
 
             DgUsuarios.DataSource = bs;
             #endregion
@@ -45,8 +44,7 @@ namespace MercadoEnvio.ABM_Usuario
 
         private void ComboTipoDeUsuario_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            Rol rolSeleccionado = new Rol();
-            rolSeleccionado = ((Rol) ComboTipoDeUsuario.SelectedItem);
+            Rol rolSeleccionado = ((Rol) ComboTipoDeUsuario.SelectedItem);
 
             ReorganizarPantallaDeAcuerdoARol(rolSeleccionado);
         }
@@ -84,8 +82,7 @@ namespace MercadoEnvio.ABM_Usuario
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            Rol rolSeleccionado = new Rol();
-            rolSeleccionado = ((Rol)ComboTipoDeUsuario.SelectedItem);
+            Rol rolSeleccionado = ((Rol)ComboTipoDeUsuario.SelectedItem);
 
             if (rolSeleccionado.Descripcion.Equals("Empresa", StringComparison.CurrentCultureIgnoreCase))
             {
@@ -100,9 +97,9 @@ namespace MercadoEnvio.ABM_Usuario
                 DgUsuarios.Columns.Clear();
 
                 #region rearmadoDeGrilla
-                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "RazonSocial", HeaderText = "Razón Social", Name = "RazonSocial" });
-                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cuit", HeaderText = "CUIT", Name = "Cuit" });
-                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = "Email", Name = "Email" });
+                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "RazonSocial", HeaderText = Resources.RazonSocial, Name = "RazonSocial" });
+                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cuit", HeaderText = Resources.CUIT, Name = "Cuit" });
+                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = Resources.Email, Name = "Email" });
                 #endregion
 
                 DgUsuarios.DataSource = bs;
@@ -119,10 +116,10 @@ namespace MercadoEnvio.ABM_Usuario
                 bs.DataSource = dataSource;
 
                 #region rearmadoDeGrilla
-                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre", HeaderText = "Nombre", Name = "Nombre" });
-                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Apellido", HeaderText = "Apellido", Name = "Apellido" });
-                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = "Email", Name = "Email" });
-                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NumeroDoc", HeaderText = "Número Documento", Name = "NumeroDoc" });
+                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre", HeaderText = Resources.Nombre, Name = "Nombre" });
+                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Apellido", HeaderText = Resources.Apellido, Name = "Apellido" });
+                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Email", HeaderText = Resources.Email, Name = "Email" });
+                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NumeroDoc", HeaderText = Resources.NoDoc, Name = "NumeroDoc" });
                 #endregion
 
                 DgUsuarios.DataSource = bs;

@@ -134,7 +134,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to N° Doc.
+        ///   Looks up a localized string similar to DNI.
         /// </summary>
         internal static string DNI {
             get {
@@ -157,6 +157,15 @@ namespace MercadoEnvio.Properties {
         internal static string EdicionVisibilidad {
             get {
                 return ResourceManager.GetString("EdicionVisibilidad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        internal static string Email {
+            get {
+                return ResourceManager.GetString("Email", resourceCulture);
             }
         }
         
@@ -556,6 +565,15 @@ namespace MercadoEnvio.Properties {
         internal static string MercadoEnvio {
             get {
                 return ResourceManager.GetString("MercadoEnvio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to N° Doc.
+        /// </summary>
+        internal static string NoDoc {
+            get {
+                return ResourceManager.GetString("NoDoc", resourceCulture);
             }
         }
         

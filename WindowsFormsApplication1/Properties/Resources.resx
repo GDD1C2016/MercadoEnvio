@@ -271,7 +271,7 @@
   <data name="Nombre" xml:space="preserve">
     <value>Nombre</value>
   </data>
-  <data name="DNI" xml:space="preserve">
+  <data name="NoDoc" xml:space="preserve">
     <value>N° Doc</value>
   </data>
   <data name="Ciudad" xml:space="preserve">
@@ -330,5 +330,11 @@
   </data>
   <data name="Descripción" xml:space="preserve">
     <value>Descripción</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="DNI" xml:space="preserve">
+    <value>DNI</value>
   </data>
 </root>
