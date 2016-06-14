@@ -12,6 +12,7 @@ namespace MercadoEnvio.Entidades
         #region attributes
         private int _idTipo;
         private string _descripcion;
+        private bool _envio;
         #endregion
 
         #region properties
@@ -25,6 +26,12 @@ namespace MercadoEnvio.Entidades
         {
             get { return _descripcion; }
             set { _descripcion = value; }
+        }
+
+        public bool Envio
+        {
+            get { return _envio; }
+            set { _envio = value; }
         }
         #endregion
     }

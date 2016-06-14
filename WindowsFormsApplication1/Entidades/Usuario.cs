@@ -4,11 +4,6 @@ namespace MercadoEnvio.Entidades
 {
     public class Usuario
     {
-        public Usuario()
-        {
-            Roles = new List<Rol>();
-        }
-
         #region attributes
 
         private int _idUsuario;
@@ -131,6 +126,11 @@ namespace MercadoEnvio.Entidades
 
         #endregion
 
-
+        #region constructor
+        public Usuario()
+        {
+            Roles = new List<Rol>();
+        }
+        #endregion
     }
 }
