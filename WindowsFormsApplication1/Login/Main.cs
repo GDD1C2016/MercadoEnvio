@@ -26,11 +26,19 @@ namespace MercadoEnvio.Login
             {
                 LabelErrorLogin.Text = string.Empty;
                 LabelCantIntentos.Text = string.Empty;
-                // TODO Vincular a la pantalla de selección de rol
-                
-                var menuDialog = new MainMenu();
-                menuDialog.Usuario = login.Usuario;
-                menuDialog.ShowDialog();
+
+                if (login.Usuario.Roles.Count > 1)
+                {
+                    var seleccionRol = new MainSeleccionRol();
+                    seleccionRol.Usuario = login.Usuario;
+                    seleccionRol.ShowDialog();
+                }
+                else
+                {
+                    var menuDialog = new MainMenu();
+                    menuDialog.Usuario = login.Usuario;
+                    menuDialog.ShowDialog();
+                }
             }
             else
             {
