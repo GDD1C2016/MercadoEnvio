@@ -118,6 +118,7 @@
       <DependentUpon>MainPublicacion.cs</DependentUpon>
     </Compile>
     <Compile Include="DataManagers\DataManagerCalificacion.cs" />
+    <Compile Include="DataManagers\DataManagerCompras.cs" />
     <Compile Include="DataManagers\DataManagerPublicaciones.cs" />
     <Compile Include="DataManagers\DataManagerRoles.cs" />
     <Compile Include="DataManagers\DataManagerRubros.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="DataManagers\DataManagerVisibilidad.cs" />
     <Compile Include="Entidades\Calificacion.cs" />
     <Compile Include="Entidades\Cliente.cs" />
+    <Compile Include="Entidades\Compra.cs" />
     <Compile Include="Entidades\Empresa.cs" />
     <Compile Include="Entidades\Estado.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
@@ -149,11 +151,11 @@
     <Compile Include="Generar Publicación\GenerarPublicacion.Designer.cs">
       <DependentUpon>GenerarPublicacion.cs</DependentUpon>
     </Compile>
-    <Compile Include="Historial Cliente\Form1.cs">
+    <Compile Include="Historial Cliente\MainHistorialCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Historial Cliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Historial Cliente\MainHistorialCliente.Designer.cs">
+      <DependentUpon>MainHistorialCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="Listado Estadistico\Form1.cs">
       <SubType>Form</SubType>
@@ -211,6 +213,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicación\GenerarPublicacion.resx">
       <DependentUpon>GenerarPublicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Historial Cliente\MainHistorialCliente.resx">
+      <DependentUpon>MainHistorialCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

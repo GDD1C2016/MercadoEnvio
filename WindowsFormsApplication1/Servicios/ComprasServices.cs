@@ -13,5 +13,10 @@ namespace MercadoEnvio.Servicios
         {
             return DataManagers.DataManagerPublicaciones.GetPendientesCalificar();
         }
+
+        public static List<Compra> GetAllData()
+        {
+            return DataManagers.DataManagerCompras.GetAllData();
+        }
     }
 }
