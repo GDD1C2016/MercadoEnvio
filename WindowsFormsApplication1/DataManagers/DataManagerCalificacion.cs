@@ -49,6 +49,26 @@ namespace MercadoEnvio.DataManagers
             return calificaciones;
         }
 
+        public static void InsertNewCalificacion(Calificacion calificacion)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                InsertNewCalificacion(calificacion, db);
+
+                db.EndConnection();
+            }
+        }
+
+        public static void InsertNewCalificacion(Calificacion calificacion, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery,"SP_InsertNewCalificacion",parameters); //TODO HACER ESTE SP
+        }
+
         public static int GetCantidadDeEstrellasDadas(int cantidadEstrellas, int idUsuario)
         {
             int cantidad = 0;

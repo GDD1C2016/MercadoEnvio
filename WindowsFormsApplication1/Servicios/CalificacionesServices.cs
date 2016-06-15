@@ -18,5 +18,10 @@ namespace MercadoEnvio.Servicios
         {
             return DataManagers.DataManagerCalificacion.GetCantidadDeEstrellasDadas(cantidadDeEstrellas, idUsuario);
         }
+
+        public static void InsertNewCalificacion(Calificacion calificacion)
+        {
+            DataManagers.DataManagerCalificacion.InsertNewCalificacion(calificacion);
+        }
     }
 }
