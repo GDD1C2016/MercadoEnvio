@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.BtnRol = new System.Windows.Forms.Button();
-            this.GrupBoxABM = new System.Windows.Forms.GroupBox();
-            this.BtnRubro = new System.Windows.Forms.Button();
-            this.BtnUsuario = new System.Windows.Forms.Button();
+            this.GroupBoxABM = new System.Windows.Forms.GroupBox();
             this.BtnVisibilidad = new System.Windows.Forms.Button();
+            this.BtnUsuario = new System.Windows.Forms.Button();
+            this.BtnRubro = new System.Windows.Forms.Button();
             this.BtnCalificar = new System.Windows.Forms.Button();
             this.BtnPublicacion = new System.Windows.Forms.Button();
             this.BtnFactura = new System.Windows.Forms.Button();
@@ -42,7 +42,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.BtnCerrar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.GrupBoxABM.SuspendLayout();
+            this.GroupBoxABM.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -55,38 +55,21 @@
             this.BtnRol.TabIndex = 0;
             this.BtnRol.Text = "ROL";
             this.BtnRol.UseVisualStyleBackColor = true;
+            this.BtnRol.Click += new System.EventHandler(this.BtnRol_Click);
             // 
-            // GrupBoxABM
+            // GroupBoxABM
             // 
-            this.GrupBoxABM.Controls.Add(this.BtnVisibilidad);
-            this.GrupBoxABM.Controls.Add(this.BtnUsuario);
-            this.GrupBoxABM.Controls.Add(this.BtnRubro);
-            this.GrupBoxABM.Controls.Add(this.BtnRol);
-            this.GrupBoxABM.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.GrupBoxABM.Location = new System.Drawing.Point(0, 239);
-            this.GrupBoxABM.Name = "GrupBoxABM";
-            this.GrupBoxABM.Size = new System.Drawing.Size(406, 139);
-            this.GrupBoxABM.TabIndex = 1;
-            this.GrupBoxABM.TabStop = false;
-            this.GrupBoxABM.Text = "ABM";
-            // 
-            // BtnRubro
-            // 
-            this.BtnRubro.Location = new System.Drawing.Point(12, 52);
-            this.BtnRubro.Name = "BtnRubro";
-            this.BtnRubro.Size = new System.Drawing.Size(382, 23);
-            this.BtnRubro.TabIndex = 1;
-            this.BtnRubro.Text = "RUBRO";
-            this.BtnRubro.UseVisualStyleBackColor = true;
-            // 
-            // BtnUsuario
-            // 
-            this.BtnUsuario.Location = new System.Drawing.Point(12, 81);
-            this.BtnUsuario.Name = "BtnUsuario";
-            this.BtnUsuario.Size = new System.Drawing.Size(382, 23);
-            this.BtnUsuario.TabIndex = 2;
-            this.BtnUsuario.Text = "USUARIO";
-            this.BtnUsuario.UseVisualStyleBackColor = true;
+            this.GroupBoxABM.Controls.Add(this.BtnVisibilidad);
+            this.GroupBoxABM.Controls.Add(this.BtnUsuario);
+            this.GroupBoxABM.Controls.Add(this.BtnRubro);
+            this.GroupBoxABM.Controls.Add(this.BtnRol);
+            this.GroupBoxABM.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.GroupBoxABM.Location = new System.Drawing.Point(0, 239);
+            this.GroupBoxABM.Name = "GroupBoxABM";
+            this.GroupBoxABM.Size = new System.Drawing.Size(406, 139);
+            this.GroupBoxABM.TabIndex = 1;
+            this.GroupBoxABM.TabStop = false;
+            this.GroupBoxABM.Text = "ABM";
             // 
             // BtnVisibilidad
             // 
@@ -96,6 +79,27 @@
             this.BtnVisibilidad.TabIndex = 3;
             this.BtnVisibilidad.Text = "VISIBILIDAD";
             this.BtnVisibilidad.UseVisualStyleBackColor = true;
+            this.BtnVisibilidad.Click += new System.EventHandler(this.BtnVisibilidad_Click);
+            // 
+            // BtnUsuario
+            // 
+            this.BtnUsuario.Location = new System.Drawing.Point(12, 81);
+            this.BtnUsuario.Name = "BtnUsuario";
+            this.BtnUsuario.Size = new System.Drawing.Size(382, 23);
+            this.BtnUsuario.TabIndex = 2;
+            this.BtnUsuario.Text = "USUARIO";
+            this.BtnUsuario.UseVisualStyleBackColor = true;
+            this.BtnUsuario.Click += new System.EventHandler(this.BtnUsuario_Click);
+            // 
+            // BtnRubro
+            // 
+            this.BtnRubro.Location = new System.Drawing.Point(12, 52);
+            this.BtnRubro.Name = "BtnRubro";
+            this.BtnRubro.Size = new System.Drawing.Size(382, 23);
+            this.BtnRubro.TabIndex = 1;
+            this.BtnRubro.Text = "RUBRO";
+            this.BtnRubro.UseVisualStyleBackColor = true;
+            this.BtnRubro.Click += new System.EventHandler(this.BtnRubro_Click);
             // 
             // BtnCalificar
             // 
@@ -105,6 +109,7 @@
             this.BtnCalificar.TabIndex = 2;
             this.BtnCalificar.Text = "CALIFICAR";
             this.BtnCalificar.UseVisualStyleBackColor = true;
+            this.BtnCalificar.Click += new System.EventHandler(this.BtnCalificar_Click);
             // 
             // BtnPublicacion
             // 
@@ -114,6 +119,7 @@
             this.BtnPublicacion.TabIndex = 3;
             this.BtnPublicacion.Text = "COMPRAR/OFERTAR";
             this.BtnPublicacion.UseVisualStyleBackColor = true;
+            this.BtnPublicacion.Click += new System.EventHandler(this.BtnPublicacion_Click);
             // 
             // BtnFactura
             // 
@@ -123,6 +129,7 @@
             this.BtnFactura.TabIndex = 4;
             this.BtnFactura.Text = "FACTURAS";
             this.BtnFactura.UseVisualStyleBackColor = true;
+            this.BtnFactura.Click += new System.EventHandler(this.BtnFactura_Click);
             // 
             // BtnPublicar
             // 
@@ -132,6 +139,7 @@
             this.BtnPublicar.TabIndex = 5;
             this.BtnPublicar.Text = "PUBLICAR";
             this.BtnPublicar.UseVisualStyleBackColor = true;
+            this.BtnPublicar.Click += new System.EventHandler(this.BtnPublicar_Click);
             // 
             // BtnHistorial
             // 
@@ -141,6 +149,7 @@
             this.BtnHistorial.TabIndex = 6;
             this.BtnHistorial.Text = "HISTORIAL";
             this.BtnHistorial.UseVisualStyleBackColor = true;
+            this.BtnHistorial.Click += new System.EventHandler(this.BtnHistorial_Click);
             // 
             // BtnListado
             // 
@@ -150,6 +159,7 @@
             this.BtnListado.TabIndex = 7;
             this.BtnListado.Text = "LISTADO ESTADISTICO";
             this.BtnListado.UseVisualStyleBackColor = true;
+            this.BtnListado.Click += new System.EventHandler(this.BtnListado_Click);
             // 
             // groupBox1
             // 
@@ -193,13 +203,14 @@
             this.ClientSize = new System.Drawing.Size(406, 378);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.GrupBoxABM);
+            this.Controls.Add(this.GroupBoxABM);
             this.MaximumSize = new System.Drawing.Size(422, 417);
             this.MinimumSize = new System.Drawing.Size(422, 417);
             this.Name = "MainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu MercadoEnvío";
-            this.GrupBoxABM.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.MainMenu_Load);
+            this.GroupBoxABM.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -209,7 +220,7 @@
         #endregion
 
         private System.Windows.Forms.Button BtnRol;
-        private System.Windows.Forms.GroupBox GrupBoxABM;
+        private System.Windows.Forms.GroupBox GroupBoxABM;
         private System.Windows.Forms.Button BtnVisibilidad;
         private System.Windows.Forms.Button BtnUsuario;
         private System.Windows.Forms.Button BtnRubro;
