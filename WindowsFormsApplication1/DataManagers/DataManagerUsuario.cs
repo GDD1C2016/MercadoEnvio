@@ -92,6 +92,8 @@ namespace MercadoEnvio.DataManagers
                 usuario.Activo = Convert.ToBoolean(row["Activo"]);
             }
 
+            List<Rol> roles = GetRolesUsuario(usuario.IdUsuario, db);
+
             return usuario;
         }
 
@@ -201,12 +203,12 @@ namespace MercadoEnvio.DataManagers
             return usuarios;
         }
 
-        private static List<Rol> GetRolesUsuario(Usuario usuario, DataBaseHelper db)
+        private static List<Rol> GetRolesUsuario(int idUsuario, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
             SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
-            idUsuarioParameter.Value = usuario.IdUsuario;
+            idUsuarioParameter.Value = idUsuario;
 
             parameters.Add(idUsuarioParameter);
 
@@ -727,7 +729,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idRolParameter);
             parameters.Add(idUsuarioParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteUsuarioRol", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteUsuarioRol", parameters); // TODO SP y validar UserName
         }
 
         public static Cliente GetClienteByTipoDocNroDoc(string tipoDoc, string nroDoc)
