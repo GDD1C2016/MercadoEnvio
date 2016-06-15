@@ -383,11 +383,11 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idRolParameter);
             parameters.Add(descripcionParameter);
             parameters.Add(activoParameter);
-           
+
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateRol", parameters);
         }
 
-        private static void DeleteRolFuncionalidad(int idRol,  int idFuncionalidad, DataBaseHelper db)
+        private static void DeleteRolFuncionalidad(int idRol, int idFuncionalidad, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 

@@ -26,7 +26,7 @@ namespace MercadoEnvio.ABM_Usuario
             ComboTipoDeUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
             #endregion
 
-            #region armadoDeGrillaVisibilidad
+            #region armadoDeGrillaUsuarios
             BindingList<Cliente> dataSource = new BindingList<Cliente>();
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
@@ -130,15 +130,10 @@ namespace MercadoEnvio.ABM_Usuario
         {
             char decimalSeparator = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != decimalSeparator))
-            {
                 e.Handled = true;
-            }
 
-            // only allow one decimal point
             if ((e.KeyChar == decimalSeparator) && ((sender as TextBox).Text.IndexOf(decimalSeparator) > -1))
-            {
                 e.Handled = true;
-            }
         }
     }
 }

@@ -272,7 +272,7 @@
     <value>Nombre</value>
   </data>
   <data name="NoDoc" xml:space="preserve">
-    <value>N° Doc</value>
+    <value>N° Doc.</value>
   </data>
   <data name="Ciudad" xml:space="preserve">
     <value>Ciudad</value>
@@ -305,19 +305,19 @@
     <value>El campo "CUIT" no puede estar vacío.</value>
   </data>
   <data name="ErrorDNI" xml:space="preserve">
-    <value>El campo "N° Doc" no puede estar vacío.</value>
+    <value>El campo "N° Doc." no puede estar vacío.</value>
   </data>
   <data name="ErrorEmail" xml:space="preserve">
     <value>El campo "Email" no puede estar vacío.</value>
   </data>
-  <data name="ErrorNombreRazonSocial" xml:space="preserve">
-    <value>El campo "Nombre/Razón Social" no puede estar vacío.</value>
+  <data name="ErrorNombre" xml:space="preserve">
+    <value>El campo "Nombre" no puede estar vacío.</value>
   </data>
   <data name="ErrorNumeroCalle" xml:space="preserve">
     <value>El campo "N°" no puede estar vacio.</value>
   </data>
-  <data name="ErrorTipoDocumento" xml:space="preserve">
-    <value>El campo "Tipo Doc" no puede estar vacío.</value>
+  <data name="ErrorTipoDocumento1" xml:space="preserve">
+    <value>El campo "Tipo Doc." no puede estar vacío.</value>
   </data>
   <data name="UsuarioActualizado" xml:space="preserve">
     <value>El usuario ha sido actualizado exitosamente.</value>
@@ -375,5 +375,29 @@
   </data>
   <data name="OrdenDeCompra" xml:space="preserve">
     <value>Se ha generado la orden de compra N° </value>
+  </data>
+  <data name="CUIL" xml:space="preserve">
+    <value>CUIL</value>
+  </data>
+  <data name="ErrorClienteExistente" xml:space="preserve">
+    <value>Ya existe un cliente con el mismo tipo y número de documento.</value>
+  </data>
+  <data name="ErrorEmpresaExistenteCUIT" xml:space="preserve">
+    <value>Ya existe una empresa con el mismo número de CUIT.</value>
+  </data>
+  <data name="ErrorEmpresaExistenteRazonSocial" xml:space="preserve">
+    <value>Ya existe una empresa con la misma razón social.</value>
+  </data>
+  <data name="ErrorRazonSocial" xml:space="preserve">
+    <value>El campo "Razón Social" no puede estar vacío.</value>
+  </data>
+  <data name="ErrorTipoDocumento2" xml:space="preserve">
+    <value>El tipo de documento debe ser DNI, LE o CUIL.</value>
+  </data>
+  <data name="LE" xml:space="preserve">
+    <value>LE</value>
+  </data>
+  <data name="ErrorFechaNacimiento" xml:space="preserve">
+    <value>La fecha de nacimiento debe ser anterior a la fecha del día de hoy.</value>
   </data>
 </root>

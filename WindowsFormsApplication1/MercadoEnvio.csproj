@@ -257,8 +257,16 @@
     <Content Include="Scripts\SP\SP_FindClientes.sql" />
     <Content Include="Scripts\SP\SP_FindEmpresas.sql" />
     <Content Include="Scripts\SP\SP_FindPublicaciones.sql" />
+    <Content Include="Scripts\SP\SP_GetClienteByTipoDocNroDoc.sql" />
+    <Content Include="Scripts\SP\SP_GetEmpresaByCUIT.sql" />
     <Content Include="Scripts\SP\SP_GetRolesUsuario.sql" />
     <Content Include="Scripts\SP\SP_DeleteRolFuncionalidad.sql" />
+    <Content Include="Scripts\SP\SP_InsertCliente.sql" />
+    <Content Include="Scripts\SP\SP_InsertEmpresa.sql" />
+    <Content Include="Scripts\SP\SP_InsertUsuario.sql" />
+    <Content Include="Scripts\SP\SP_InsertUsuarioRol.sql" />
+    <Content Include="Scripts\SP\SP_UpdateCliente.sql" />
+    <Content Include="Scripts\SP\SP_UpdateEmpresa.sql" />
     <Content Include="Scripts\SP\SP_UpdateRol.sql" />
     <Content Include="Scripts\SP\SP_UpdateVisibilidad.sql" />
     <None Include="Resources\fastreverse.JPG" />
