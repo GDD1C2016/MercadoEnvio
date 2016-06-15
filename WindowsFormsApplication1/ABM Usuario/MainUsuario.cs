@@ -11,6 +11,8 @@ namespace MercadoEnvio.ABM_Usuario
 {
     public partial class MainUsuario : Form
     {
+        public Usuario Usuario { get; set; }
+
         public MainUsuario()
         {
             InitializeComponent();

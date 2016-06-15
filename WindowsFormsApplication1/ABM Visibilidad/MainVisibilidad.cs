@@ -14,6 +14,8 @@ namespace MercadoEnvio.ABM_Visibilidad
 {
     public partial class MainVisibilidad : Form
     {
+        public Usuario Usuario { get; set; }
+
         public MainVisibilidad()
         {
             InitializeComponent();

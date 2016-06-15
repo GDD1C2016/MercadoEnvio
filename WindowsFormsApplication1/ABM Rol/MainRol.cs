@@ -11,6 +11,7 @@ namespace MercadoEnvio.ABM_Rol
 {
     public partial class MainRol : Form
     {
+        public Usuario Usuario { get; set; }
         public MainRol()
         {
             InitializeComponent();

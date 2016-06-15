@@ -19,7 +19,7 @@ namespace MercadoEnvio.Historial_Cliente
         BindingList<Compra> Templist = null;
         #endregion
 
-        Usuario Usuario { get; set; }
+        public Usuario Usuario { get; set; }
 
         public MainHistorialCliente()
         {

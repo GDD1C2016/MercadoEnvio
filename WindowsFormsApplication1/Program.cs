@@ -7,6 +7,8 @@ using MercadoEnvio.Calificar;
 using MercadoEnvio.ComprarOfertar;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Login;
+using MercadoEnvio.Menu;
+using MainMenu = MercadoEnvio.Menu.MainMenu;
 
 namespace MercadoEnvio
 {
@@ -16,7 +18,7 @@ namespace MercadoEnvio
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Main());
+            Application.Run(new Main());
             //Application.Run(new AltaRol(new Rol()));
             //Application.Run(new MainRol());
             //Application.Run(new MainPublicacion());
@@ -24,7 +26,8 @@ namespace MercadoEnvio
             //Application.Run(new MainVisibilidad());
             //Application.Run(new MainUsuario());
             //Application.Run(new AltaUsuario(new Usuario()));
-            Application.Run(new CalificarVendedor());
+            //Application.Run(new CalificarVendedor());
+            //Application.Run(new MainMenu());
         }
     }
 }
