@@ -13,5 +13,10 @@ namespace MercadoEnvio.Servicios
         {
             return DataManagers.DataManagerCalificacion.GetUltimas(cantidad);
         }
+
+        public static int GetCantidadDeEstrellasDadas(int cantidadDeEstrellas, int idUsuario)
+        {
+            return DataManagers.DataManagerCalificacion.GetCantidadDeEstrellasDadas(cantidadDeEstrellas, idUsuario);
+        }
     }
 }

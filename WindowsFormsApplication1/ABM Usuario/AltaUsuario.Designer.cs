@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtPassword = new System.Windows.Forms.TextBox();
+            this.LabelPass = new System.Windows.Forms.Label();
+            this.TxtUserName = new System.Windows.Forms.TextBox();
+            this.LabelUsername = new System.Windows.Forms.Label();
             this.TxtCiudad = new System.Windows.Forms.TextBox();
             this.LabelCiudad = new System.Windows.Forms.Label();
             this.TxtNumero = new System.Windows.Forms.TextBox();
@@ -72,10 +76,6 @@
             this.ComboRol = new System.Windows.Forms.ComboBox();
             this.BtnSeleccionar = new System.Windows.Forms.Button();
             this.BtnQuitar = new System.Windows.Forms.Button();
-            this.LabelUsername = new System.Windows.Forms.Label();
-            this.TxtUserName = new System.Windows.Forms.TextBox();
-            this.LabelPass = new System.Windows.Forms.Label();
-            this.TxtPassword = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgRoles)).BeginInit();
@@ -129,6 +129,42 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Campos";
+            // 
+            // TxtPassword
+            // 
+            this.TxtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TxtPassword.Location = new System.Drawing.Point(293, 17);
+            this.TxtPassword.Name = "TxtPassword";
+            this.TxtPassword.PasswordChar = '*';
+            this.TxtPassword.Size = new System.Drawing.Size(140, 20);
+            this.TxtPassword.TabIndex = 48;
+            // 
+            // LabelPass
+            // 
+            this.LabelPass.AutoSize = true;
+            this.LabelPass.Location = new System.Drawing.Point(243, 20);
+            this.LabelPass.Name = "LabelPass";
+            this.LabelPass.Size = new System.Drawing.Size(30, 13);
+            this.LabelPass.TabIndex = 47;
+            this.LabelPass.Text = "Pass";
+            // 
+            // TxtUserName
+            // 
+            this.TxtUserName.Location = new System.Drawing.Point(70, 17);
+            this.TxtUserName.Name = "TxtUserName";
+            this.TxtUserName.Size = new System.Drawing.Size(167, 20);
+            this.TxtUserName.TabIndex = 46;
+            // 
+            // LabelUsername
+            // 
+            this.LabelUsername.AutoSize = true;
+            this.LabelUsername.Location = new System.Drawing.Point(10, 20);
+            this.LabelUsername.Name = "LabelUsername";
+            this.LabelUsername.Size = new System.Drawing.Size(60, 13);
+            this.LabelUsername.TabIndex = 45;
+            this.LabelUsername.Text = "User Name";
             // 
             // TxtCiudad
             // 
@@ -405,7 +441,7 @@
             // ComboEstado
             // 
             this.ComboEstado.FormattingEnabled = true;
-            this.ComboEstado.Location = new System.Drawing.Point(293, 43);
+            this.ComboEstado.Location = new System.Drawing.Point(514, 17);
             this.ComboEstado.Name = "ComboEstado";
             this.ComboEstado.Size = new System.Drawing.Size(87, 21);
             this.ComboEstado.TabIndex = 11;
@@ -413,7 +449,7 @@
             // LabelEstado
             // 
             this.LabelEstado.AutoSize = true;
-            this.LabelEstado.Location = new System.Drawing.Point(243, 46);
+            this.LabelEstado.Location = new System.Drawing.Point(464, 20);
             this.LabelEstado.Name = "LabelEstado";
             this.LabelEstado.Size = new System.Drawing.Size(40, 13);
             this.LabelEstado.TabIndex = 3;
@@ -501,42 +537,6 @@
             this.BtnQuitar.Text = "Quitar Rol";
             this.BtnQuitar.UseVisualStyleBackColor = true;
             this.BtnQuitar.Click += new System.EventHandler(this.BtnQuitar_Click);
-            // 
-            // LabelUsername
-            // 
-            this.LabelUsername.AutoSize = true;
-            this.LabelUsername.Location = new System.Drawing.Point(10, 20);
-            this.LabelUsername.Name = "LabelUsername";
-            this.LabelUsername.Size = new System.Drawing.Size(60, 13);
-            this.LabelUsername.TabIndex = 45;
-            this.LabelUsername.Text = "User Name";
-            // 
-            // TxtUserName
-            // 
-            this.TxtUserName.Location = new System.Drawing.Point(70, 17);
-            this.TxtUserName.Name = "TxtUserName";
-            this.TxtUserName.Size = new System.Drawing.Size(167, 20);
-            this.TxtUserName.TabIndex = 46;
-            // 
-            // LabelPass
-            // 
-            this.LabelPass.AutoSize = true;
-            this.LabelPass.Location = new System.Drawing.Point(243, 20);
-            this.LabelPass.Name = "LabelPass";
-            this.LabelPass.Size = new System.Drawing.Size(30, 13);
-            this.LabelPass.TabIndex = 47;
-            this.LabelPass.Text = "Pass";
-            // 
-            // TxtPassword
-            // 
-            this.TxtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtPassword.Location = new System.Drawing.Point(293, 17);
-            this.TxtPassword.Name = "TxtPassword";
-            this.TxtPassword.PasswordChar = '*';
-            this.TxtPassword.Size = new System.Drawing.Size(140, 20);
-            this.TxtPassword.TabIndex = 48;
             // 
             // AltaUsuario
             // 

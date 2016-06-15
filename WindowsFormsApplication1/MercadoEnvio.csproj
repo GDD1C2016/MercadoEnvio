@@ -118,6 +118,7 @@
       <DependentUpon>MainPublicacion.cs</DependentUpon>
     </Compile>
     <Compile Include="DataManagers\DataManagerCalificacion.cs" />
+    <Compile Include="DataManagers\DataManagerCompras.cs" />
     <Compile Include="DataManagers\DataManagerPublicaciones.cs" />
     <Compile Include="DataManagers\DataManagerRoles.cs" />
     <Compile Include="DataManagers\DataManagerRubros.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="DataManagers\DataManagerVisibilidad.cs" />
     <Compile Include="Entidades\Calificacion.cs" />
     <Compile Include="Entidades\Cliente.cs" />
+    <Compile Include="Entidades\Compra.cs" />
     <Compile Include="Entidades\Empresa.cs" />
     <Compile Include="Entidades\Estado.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />

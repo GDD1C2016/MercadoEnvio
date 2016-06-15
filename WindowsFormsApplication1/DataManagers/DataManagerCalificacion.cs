@@ -7,6 +7,7 @@ using MercadoEnvio.Entidades;
 using MercadoEnvio.Helpers;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace MercadoEnvio.DataManagers
 {
@@ -46,6 +47,30 @@ namespace MercadoEnvio.DataManagers
             }
 
             return calificaciones;
+        }
+
+        public static int GetCantidadDeEstrellasDadas(int cantidadEstrellas, int idUsuario)
+        {
+            int cantidad = 0;
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                cantidad = GetCantidadDeEstrellasDadas(cantidadEstrellas,idUsuario, db);
+
+                db.EndConnection();
+
+                return cantidad;
+            }
+        }
+
+        public static int GetCantidadDeEstrellasDadas(int cantidadEstrellas, int idUsuario, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+            int cantidad = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_GetCantidadEstrellas", parameters);//TODO HACER ESTE SP
+            return cantidad;
         }
     }
 }
