@@ -331,10 +331,10 @@ namespace MercadoEnvio.DataManagers
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter rolIdRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
-            rolIdRolParameter.Value = idRol;
+            SqlParameter idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
+            idRolParameter.Value = idRol;
 
-            parameters.Add(rolIdRolParameter);
+            parameters.Add(idRolParameter);
 
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteRol", parameters);
         }

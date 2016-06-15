@@ -211,7 +211,7 @@
             // LabelContacto
             // 
             this.LabelContacto.AutoSize = true;
-            this.LabelContacto.Location = new System.Drawing.Point(349, 178);
+            this.LabelContacto.Location = new System.Drawing.Point(352, 178);
             this.LabelContacto.Name = "LabelContacto";
             this.LabelContacto.Size = new System.Drawing.Size(50, 13);
             this.LabelContacto.TabIndex = 39;
@@ -341,7 +341,7 @@
             // 
             // TxtEmail
             // 
-            this.TxtEmail.Location = new System.Drawing.Point(173, 175);
+            this.TxtEmail.Location = new System.Drawing.Point(176, 175);
             this.TxtEmail.Name = "TxtEmail";
             this.TxtEmail.Size = new System.Drawing.Size(170, 20);
             this.TxtEmail.TabIndex = 23;
@@ -351,9 +351,9 @@
             this.LabelEmail.AutoSize = true;
             this.LabelEmail.Location = new System.Drawing.Point(135, 178);
             this.LabelEmail.Name = "LabelEmail";
-            this.LabelEmail.Size = new System.Drawing.Size(32, 13);
+            this.LabelEmail.Size = new System.Drawing.Size(35, 13);
             this.LabelEmail.TabIndex = 22;
-            this.LabelEmail.Text = "Email";
+            this.LabelEmail.Text = "E-mail";
             // 
             // TxtTipoDoc
             // 
@@ -390,15 +390,15 @@
             // 
             // TxtApellido
             // 
-            this.TxtApellido.Location = new System.Drawing.Point(412, 71);
+            this.TxtApellido.Location = new System.Drawing.Point(405, 71);
             this.TxtApellido.Name = "TxtApellido";
-            this.TxtApellido.Size = new System.Drawing.Size(228, 20);
+            this.TxtApellido.Size = new System.Drawing.Size(235, 20);
             this.TxtApellido.TabIndex = 17;
             // 
             // LabelApellido
             // 
             this.LabelApellido.AutoSize = true;
-            this.LabelApellido.Location = new System.Drawing.Point(362, 74);
+            this.LabelApellido.Location = new System.Drawing.Point(355, 74);
             this.LabelApellido.Name = "LabelApellido";
             this.LabelApellido.Size = new System.Drawing.Size(44, 13);
             this.LabelApellido.TabIndex = 16;

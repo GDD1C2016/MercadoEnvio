@@ -73,7 +73,7 @@ namespace MercadoEnvio.ABM_Visibilidad
 
             if (string.IsNullOrEmpty(message))
             {
-                BindingList<Visibilidad> dataSource = new BindingList<Visibilidad>(VisibilidadServices.FindVisibilidades(string.Empty)); // TODO Buscar otras alternativas
+                BindingList<Visibilidad> dataSource = new BindingList<Visibilidad>(VisibilidadServices.FindVisibilidades(string.Empty));
                 BindingSource bs = new BindingSource();
                 bs.DataSource = dataSource;
 

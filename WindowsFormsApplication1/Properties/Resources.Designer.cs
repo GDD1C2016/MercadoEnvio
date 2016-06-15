@@ -197,6 +197,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edición de Usuario.
+        /// </summary>
+        internal static string EdicionUsuario {
+            get {
+                return ResourceManager.GetString("EdicionUsuario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edición de Visibilidad.
         /// </summary>
         internal static string EdicionVisibilidad {
@@ -494,6 +503,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;Password&quot; no puede estar vacío..
+        /// </summary>
+        internal static string ErrorPassword {
+            get {
+                return ResourceManager.GetString("ErrorPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to El campo &quot;Razón Social&quot; no puede estar vacío..
         /// </summary>
         internal static string ErrorRazonSocial {
@@ -598,6 +616,24 @@ namespace MercadoEnvio.Properties {
         internal static string ErrorTrans {
             get {
                 return ResourceManager.GetString("ErrorTrans", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El campo &quot;Username&quot; no puede estar vacío..
+        /// </summary>
+        internal static string ErrorUserName {
+            get {
+                return ResourceManager.GetString("ErrorUserName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El usuario ya ha sido dado de baja..
+        /// </summary>
+        internal static string ErrorUsuarioBorrado {
+            get {
+                return ResourceManager.GetString("ErrorUsuarioBorrado", resourceCulture);
             }
         }
         
@@ -916,6 +952,15 @@ namespace MercadoEnvio.Properties {
         internal static string UsuarioBloqueado {
             get {
                 return ResourceManager.GetString("UsuarioBloqueado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to El usuario ha sido borrado exitosamente..
+        /// </summary>
+        internal static string UsuarioBorrado {
+            get {
+                return ResourceManager.GetString("UsuarioBorrado", resourceCulture);
             }
         }
         

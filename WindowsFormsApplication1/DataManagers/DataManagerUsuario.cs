@@ -729,7 +729,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idRolParameter);
             parameters.Add(idUsuarioParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteUsuarioRol", parameters); // TODO SP y validar UserName
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteUsuarioRol", parameters);
         }
 
         public static Cliente GetClienteByTipoDocNroDoc(string tipoDoc, string nroDoc)
@@ -887,6 +887,32 @@ namespace MercadoEnvio.DataManagers
             }
 
             return empresa;
+        }
+
+        public static void DeleteUsuario(Usuario usuario)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                DeleteUsuario(usuario.IdUsuario, db);
+
+                db.EndConnection();
+            }
+        }
+
+        private static void DeleteUsuario(int idUsuario, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdRol", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            parameters.Add(idUsuarioParameter);
+
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteUsuario", parameters);
         }
     }
 }
