@@ -123,11 +123,13 @@ namespace MercadoEnvio.ABM_Rol
 
             if (string.IsNullOrEmpty(TxtNombre.Text))
                 errors.Add(Resources.ErrorDescripcionVacia);
-
-            Rol rol = RolesServices.GetRolByDescription(TxtNombre.Text);
-            if (rol.IdRol != 0)
-                if (rol.IdRol != Rol.IdRol)
-                    errors.Add(Resources.ErrorRolExistente);
+            else
+            {
+                Rol rol = RolesServices.GetRolByDescription(TxtNombre.Text);
+                if (rol.IdRol != 0)
+                    if (rol.IdRol != Rol.IdRol)
+                        errors.Add(Resources.ErrorRolExistente);
+            }
 
             BindingSource bs = DgFuncionalidades.DataSource as BindingSource;
             if (bs != null)

@@ -46,5 +46,20 @@ namespace MercadoEnvio.Servicios
         {
             DataManagers.DataManagerUsuario.UpdateEmpresa(empresa);
         }
+
+        public static Cliente GetClienteByTipoDocNroDoc(string tipoDoc, string nroDoc)
+        {
+            return DataManagers.DataManagerUsuario.GetClienteByTipoDocNroDoc(tipoDoc, nroDoc);
+        }
+
+        public static Empresa GetEmpresaByRazonSocial(string razonSocial)
+        {
+            return DataManagers.DataManagerUsuario.GetEmpresaByRazonSocial(razonSocial);
+        }
+
+        public static Empresa GetEmpresaByCuit(string cuit)
+        {
+            return DataManagers.DataManagerUsuario.GetEmpresaByCuit(cuit);
+        }
     }
 }
