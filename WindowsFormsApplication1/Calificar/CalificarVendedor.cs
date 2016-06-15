@@ -13,7 +13,7 @@ namespace MercadoEnvio.Calificar
 {
     public partial class CalificarVendedor : Form
     {
-        public Publicacion PublicacionSeleccionada { get; set; }
+        public Compra CompraSeleccionada { get; set; }
         public CalificarVendedor()
         {
             InitializeComponent();
@@ -22,8 +22,8 @@ namespace MercadoEnvio.Calificar
         private void CalificarVendedor_Load(object sender, EventArgs e)
         {
             #region cargarDatosVendedor
-            LabelArticuloText.Text = PublicacionSeleccionada.Descripcion;
-            //LabelVendedorText.Text = PublicacionesServices.GetVendedorById(PublicacionSeleccionada.IdUsuario); //TODO HACER METODO PARA OBTENER EL NOMBRE DEL VENDEDOR
+            LabelArticuloText.Text = CompraSeleccionada.DescripcionPublicacion;
+            LabelVendedorText.Text = CompraSeleccionada.Vendedor;
             #endregion
 
             #region llenadoComboEstrellas

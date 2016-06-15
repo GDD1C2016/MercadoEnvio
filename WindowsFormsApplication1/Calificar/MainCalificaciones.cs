@@ -35,11 +35,13 @@ namespace MercadoEnvio.Calificar
 
             #region armadoDeGrillaPendientes
            
-
             DgPendientes.AutoGenerateColumns = false;
-            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdPublicacion", HeaderText = "Codigo Publicación", Name = "CodigoPublicacion" });
-            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = "Descripción", Name = "Descripcion" });
-            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "Precio" });
+            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdCompra", HeaderText = "IdCompra", Name = "IdCompra" });
+            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DescripcionPublicacion", HeaderText = "Descripción", Name = "DescripcionPublicacion" });
+            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Vendedor", HeaderText = "Vendedor", Name = "Vendedor" });
+            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = "Fecha", Name = "Fecha" });
+            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "TipoPublicacion", HeaderText = "Tipo de Publicación", Name = "TipoPublicacion" });
+            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cantidad", HeaderText = "Cantidad", Name = "Cantidad" });
 
             DgPendientes.DataSource = GetPendientes();
             #endregion
@@ -55,9 +57,10 @@ namespace MercadoEnvio.Calificar
 
         private BindingSource GetPendientes()
         {
-            BindingList<Publicacion> dataSourcePendientes = new BindingList<Publicacion>(ComprasServices.GetPendientesCalificar());
+            List<Compra> listAux = new List<Compra>(ComprasServices.GetAllData());
+            BindingList<Compra> list = new BindingList<Compra>(listAux);
             BindingSource bsPendientes = new BindingSource();
-            bsPendientes.DataSource = dataSourcePendientes;
+            bsPendientes.DataSource = list;
             return bsPendientes;
         }
         private BindingSource GetUltimasCalificaciones()
@@ -71,24 +74,21 @@ namespace MercadoEnvio.Calificar
 
         private void BtnCalificar_Click(object sender, EventArgs e)
         {
-            Publicacion publicacionSeleccionada = new Publicacion();
+            Compra compraSeleccionada = new Compra();
 
             if (DgPendientes.SelectedRows.Count > 0)
             {
                 BindingSource bs = DgPendientes.DataSource as BindingSource;
                 if (bs != null)
-                    publicacionSeleccionada = (Publicacion)bs.List[bs.Position];
+                    compraSeleccionada = (Compra)bs.List[bs.Position];
             }
 
             var calificarDialog = new CalificarVendedor();
-            calificarDialog.PublicacionSeleccionada = publicacionSeleccionada;
+            calificarDialog.CompraSeleccionada = compraSeleccionada;
             var result = calificarDialog.ShowDialog();
 
             if (result.Equals(DialogResult.OK))
             {
-                GetUltimasCalificaciones();
-                GetPendientes();
-
                 DgUltimas5.DataSource = GetUltimasCalificaciones();
                 DgPendientes.DataSource = GetPendientes();
             }

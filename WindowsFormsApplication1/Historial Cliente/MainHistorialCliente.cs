@@ -28,7 +28,7 @@ namespace MercadoEnvio.Historial_Cliente
 
         private void MainHistorialCliente_Load(object sender, EventArgs e)
         {
-            #region armadoDeGrillaPublicaciones
+            #region armadoDeGrillaCompras
 
             DgCompras.AutoGenerateColumns = false;
             DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdCompra", HeaderText = "IdCompra", Name = "IdCompra" });
