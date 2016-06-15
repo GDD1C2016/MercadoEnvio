@@ -92,7 +92,7 @@ namespace MercadoEnvio.DataManagers
                 usuario.Activo = Convert.ToBoolean(row["Activo"]);
             }
 
-            List<Rol> roles = GetRolesUsuario(usuario.IdUsuario, db);
+            usuario.Roles = GetRolesUsuario(usuario.IdUsuario, db);
 
             return usuario;
         }
@@ -195,7 +195,7 @@ namespace MercadoEnvio.DataManagers
                     Password = Convert.ToString(row["PasswordEnc"]),
                 };
 
-                usuario.Roles = GetRolesUsuario(usuario, db);
+                usuario.Roles = GetRolesUsuario(usuario.IdUsuario, db);
 
                 usuarios.Add(usuario);
             }
@@ -283,7 +283,7 @@ namespace MercadoEnvio.DataManagers
                     Telefono = Convert.ToString(row["Telefono"]),
                 };
 
-                usuario.Roles = GetRolesUsuario(usuario, db);
+                usuario.Roles = GetRolesUsuario(usuario.IdUsuario, db);
 
                 usuarios.Add(usuario);
             }
@@ -524,7 +524,7 @@ namespace MercadoEnvio.DataManagers
 
                 UpdateCliente(cliente, db);
 
-                List<Rol> roles = GetRolesUsuario(cliente, db);
+                List<Rol> roles = GetRolesUsuario(cliente.IdUsuario, db);
 
                 foreach (Rol rol in cliente.Roles)
                 {
@@ -625,7 +625,7 @@ namespace MercadoEnvio.DataManagers
 
                 UpdateEmpresa(empresa, db);
 
-                List<Rol> roles = GetRolesUsuario(empresa, db);
+                List<Rol> roles = GetRolesUsuario(empresa.IdUsuario, db);
 
                 foreach (Rol rol in empresa.Roles)
                 {
