@@ -29,7 +29,7 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Visibilidad> GetVisibilidades(DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("SP_GetVisibilidades");
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetVisibilidades");
             List<Visibilidad> visibilidades = new List<Visibilidad>();
             foreach (DataRow row in res.Rows)
             {
@@ -72,8 +72,8 @@ namespace MercadoEnvio.DataManagers
             descripcionParameter.Value = filtroDescripcion.Trim();
 
             parameters.Add(descripcionParameter);
-            
-            DataTable res = db.GetDataAsTable("SP_FindVisibilidades", parameters);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_FindVisibilidades", parameters);
             List<Visibilidad> visibilidades = new List<Visibilidad>();
             foreach (DataRow row in res.Rows)
             {
@@ -125,7 +125,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(visibilidadPublicacionIdVisibilidadParameter);
 
-            DataTable res = db.GetDataAsTable("SP_GetPublicacionesVisibilidad", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetPublicacionesVisibilidad", parameters);
             List<string> publicaciones = new List<string>();
             foreach (DataRow row in res.Rows)
             {
@@ -150,7 +150,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(visibilidadIdVisibilidadParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteVisibilidad", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_DeleteVisibilidad", parameters);
         }
 
         public static void SaveNewVisibilidad(Visibilidad newVisibilidad)
@@ -192,7 +192,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(envioPorcentajeParameter);
             parameters.Add(precioParameter);
 
-            DataTable res = db.GetDataAsTable("SP_InsertVisibilidad", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_InsertVisibilidad", parameters);
             foreach (DataRow row in res.Rows)
             {
                 newVisibilidad.IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]);
@@ -242,7 +242,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(precioParameter);
             parameters.Add(idVisibilidadParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateVisibilidad", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_UpdateVisibilidad", parameters);
         }
 
         public static Visibilidad GetVisibilidadByDescripcion(string descripcion)
@@ -270,7 +270,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(descripcionParameter);
 
-            DataTable res = db.GetDataAsTable("SP_GetVisibilidadByDescripcion", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetVisibilidadByDescripcion", parameters);
             Visibilidad visibilidad = new Visibilidad();
             
             foreach (DataRow row in res.Rows)

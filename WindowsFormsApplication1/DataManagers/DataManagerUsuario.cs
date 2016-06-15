@@ -81,7 +81,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(userNameParameter);
 
-            DataTable res = db.GetDataAsTable("SP_GetUsuarioByUserName", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetUsuarioByUserName", parameters);
             Usuario usuario = new Usuario();
             foreach (DataRow row in res.Rows)
             {
@@ -106,7 +106,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(userNameParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_BloqUser", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_BloqUser", parameters);
         }
 
         private static object IncrementCountLogin(string userName, DataBaseHelper db)
@@ -118,7 +118,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(userNameParameter);
 
-            return db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_IncrementCountLogin", parameters);
+            return db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_IncrementCountLogin", parameters);
         }
 
         private static void ResetCountLogin(string userName, DataBaseHelper db)
@@ -130,7 +130,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(userNameParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_ResetCountLogin", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_ResetCountLogin", parameters);
         }
 
         public static List<Cliente> FindClientes(string filtroNombre, string filtroApellido, string filtroDni, string filtroEmail)
@@ -170,7 +170,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(emailParameter);
             parameters.Add(dniParameter);
 
-            DataTable res = db.GetDataAsTable("SP_FindClientes", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_FindClientes", parameters);
             List<Cliente> usuarios = new List<Cliente>();
             foreach (DataRow row in res.Rows)
             {
@@ -212,7 +212,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(idUsuarioParameter);
 
-            DataTable res = db.GetDataAsTable("SP_GetRolesUsuario", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetRolesUsuario", parameters);
             List<Rol> roles = new List<Rol>();
             List<Rol> rolesAux = new List<Rol>(RolesServices.GetAllData());
             foreach (DataRow row in res.Rows)
@@ -258,7 +258,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(cuitParameter);
             parameters.Add(emailParameter);
 
-            DataTable res = db.GetDataAsTable("SP_FindEmpresas", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_FindEmpresas", parameters);
             List<Empresa> usuarios = new List<Empresa>();
             foreach (DataRow row in res.Rows)
             {
@@ -334,7 +334,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(cantIntFallidosParameter);
             parameters.Add(activoParameter);
 
-            newUsuario.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertUsuario", parameters);
+            newUsuario.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertUsuario", parameters);
         }
 
         private static void InsertEmpresa(Empresa newEmpresa, DataBaseHelper db)
@@ -402,7 +402,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(rubroParameter);
             parameters.Add(fechaCreacionParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertEmpresa", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertEmpresa", parameters);
         }
 
         private static void InsertUsuarioRol(int idUsuario, int idRol, bool activa, DataBaseHelper db)
@@ -422,7 +422,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idRolParameter);
             parameters.Add(activaParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertUsuarioRol", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertUsuarioRol", parameters);
         }
 
         public static void SaveNewCliente(Cliente newCliente)
@@ -511,7 +511,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(fechaNacimientoParameter);
             parameters.Add(fechaCreacionParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertCliente", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertCliente", parameters);
         }
 
         public static void UpdateCliente(Cliente cliente)
@@ -612,7 +612,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(passEncrParameter);
             parameters.Add(activoParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateCliente", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_UpdateCliente", parameters);
         }
 
         public static void UpdateEmpresa(Empresa empresa)
@@ -713,7 +713,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(passEncrParameter);
             parameters.Add(activoParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateEmpresa", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_UpdateEmpresa", parameters);
         }
 
         private static void DeleteUsuarioRol(int idUsuario, int idRol, DataBaseHelper db)
@@ -729,7 +729,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idRolParameter);
             parameters.Add(idUsuarioParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteUsuarioRol", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_DeleteUsuarioRol", parameters);
         }
 
         public static Cliente GetClienteByTipoDocNroDoc(string tipoDoc, string nroDoc)
@@ -761,7 +761,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(tipoDocParameter);
             parameters.Add(nroDocParameter);
 
-            DataTable res = db.GetDataAsTable("SP_GetClienteByTipoDocNroDoc", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetClienteByTipoDocNroDoc", parameters);
             Cliente cliente = new Cliente();
             foreach (DataRow row in res.Rows)
             {
@@ -812,7 +812,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(razonSocialParameter);
 
-            DataTable res = db.GetDataAsTable("SP_GetEmpresaByRazonSocial", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetEmpresaByRazonSocial", parameters);
             Empresa empresa = new Empresa();
             foreach (DataRow row in res.Rows)
             {
@@ -863,7 +863,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(cuitParameter);
 
-            DataTable res = db.GetDataAsTable("SP_GetEmpresaByCUIT", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetEmpresaByCUIT", parameters);
             Empresa empresa = new Empresa();
             foreach (DataRow row in res.Rows)
             {
@@ -912,7 +912,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(idUsuarioParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteUsuario", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_DeleteUsuario", parameters);
         }
     }
 }

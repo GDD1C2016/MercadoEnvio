@@ -18,7 +18,7 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
-                DataTable res = db.GetDataAsTable("SP_GetRubros");
+                DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetRubros");
                 List<Rubro> listRubros = new List<Rubro>();
 
                 foreach (DataRow row in res.Rows)
@@ -58,7 +58,7 @@ namespace MercadoEnvio.DataManagers
 
             using (db.Connection)
             {
-                DataTable res = db.GetDataAsTable("SP_FindRubros", parameters);
+                DataTable res = db.GetDataAsTable("MASTERDBA.SP_FindRubros", parameters);
                 List<Rubro> listRubros = new List<Rubro>();
 
                 foreach (DataRow row in res.Rows)
@@ -96,7 +96,7 @@ namespace MercadoEnvio.DataManagers
 
             using (db.Connection)
             {
-                DataTable res = db.GetDataAsTable("SP_InsertRubro", parameters);
+                DataTable res = db.GetDataAsTable("MASTERDBA.SP_InsertRubro", parameters);
                 List<Rubro> rubros = new List<Rubro>();
 
                 foreach (DataRow row in res.Rows)

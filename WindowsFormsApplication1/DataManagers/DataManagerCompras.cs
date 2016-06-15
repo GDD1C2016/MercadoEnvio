@@ -31,7 +31,7 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Compra> GetAllData(DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("SP_GetCompras"); //TODO HACER ESTE SP
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetCompras"); //TODO HACER ESTE SP
             List<Compra> compras = new List<Compra>();
             foreach (DataRow row in res.Rows)
             {

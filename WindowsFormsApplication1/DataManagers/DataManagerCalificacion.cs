@@ -32,7 +32,7 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Calificacion> GetUltimas(int cantidad, DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("SP_GetUltimasCalificaciones"); //TODO HACER ESTE SP
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetUltimasCalificaciones"); //TODO HACER ESTE SP
             List<Calificacion> calificaciones = new List<Calificacion>();
             foreach (DataRow row in res.Rows)
             {
@@ -66,7 +66,7 @@ namespace MercadoEnvio.DataManagers
         public static void InsertNewCalificacion(Calificacion calificacion, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery,"SP_InsertNewCalificacion",parameters); //TODO HACER ESTE SP
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertNewCalificacion", parameters); //TODO HACER ESTE SP
         }
 
         public static int GetCantidadDeEstrellasDadas(int cantidadEstrellas, int idUsuario)
@@ -89,7 +89,7 @@ namespace MercadoEnvio.DataManagers
         public static int GetCantidadDeEstrellasDadas(int cantidadEstrellas, int idUsuario, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            int cantidad = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_GetCantidadEstrellas", parameters);//TODO HACER ESTE SP
+            int cantidad = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_GetCantidadEstrellas", parameters);//TODO HACER ESTE SP
             return cantidad;
         }
     }

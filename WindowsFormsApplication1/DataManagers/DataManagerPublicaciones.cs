@@ -28,7 +28,7 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Publicacion> GetPublicaciones(DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("SP_GetPublicaciones");
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetPublicaciones");
             List<Publicacion> publicaciones = new List<Publicacion>();
             foreach (DataRow row in res.Rows)
             {
@@ -101,7 +101,7 @@ namespace MercadoEnvio.DataManagers
                     parameters.Add(filtroDescripcionParameter);
                     parameters.Add(filtroIdRubroParameter);
 
-                    DataTable res = db.GetDataAsTable("SP_FindPublicaciones", parameters);
+                    DataTable res = db.GetDataAsTable("MASTERDBA.SP_FindPublicaciones", parameters);
                     foreach (DataRow row in res.Rows)
                     {
                         var publicacion = new Publicacion();
@@ -150,7 +150,7 @@ namespace MercadoEnvio.DataManagers
                 parameters.Add(filtroDescripcionParameter);
                 parameters.Add(filtroIdRubroParameter);
 
-                DataTable res = db.GetDataAsTable("SP_FindPublicaciones", parameters);
+                DataTable res = db.GetDataAsTable("MASTERDBA.SP_FindPublicaciones", parameters);
                 foreach (DataRow row in res.Rows)
                 {
                     var publicacion = new Publicacion();
@@ -209,7 +209,7 @@ namespace MercadoEnvio.DataManagers
 
         public static List<Publicacion> GetPendientesCalificar(DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("SP_GetPendientesCalificar"); //TODO HACER ESTE SP Y VER SI VALE LA PENA LLENAR TODAS LAS PROPIEDADES
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetPendientesCalificar"); //TODO HACER ESTE SP Y VER SI VALE LA PENA LLENAR TODAS LAS PROPIEDADES
             List<Publicacion> publicaciones = new List<Publicacion>();
             foreach (DataRow row in res.Rows)
             {
@@ -284,7 +284,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(montoParameter);
             parameters.Add(idUsuarioParameter);
 
-            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertOferta", parameters);
+            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertOferta", parameters);
         }
 
         public static int Comprar(Publicacion publicacionSeleccionada, Usuario usuarioActivo, string cantidad, bool envio)
@@ -328,7 +328,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(envioParameter);
             parameters.Add(idUsuarioParameter);
 
-            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertCompra", parameters); // TODO Insertar factura
+            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertCompra", parameters); // TODO Insertar factura
         }
     }
 }

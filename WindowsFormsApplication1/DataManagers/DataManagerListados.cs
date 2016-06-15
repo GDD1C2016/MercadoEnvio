@@ -102,7 +102,7 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Cliente> GetListadoClientesProductosComprados(int trimestre, int anio, Rubro rubro,DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("SP_GetListadoClientesProductosComprados"); //TODO HACER ESTE SP Y MANDAR PARAMETROS!
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetListadoClientesProductosComprados"); //TODO HACER ESTE SP Y MANDAR PARAMETROS!
             List<Cliente> clientes = new List<Cliente>();
             foreach (DataRow row in res.Rows)
             {
@@ -139,7 +139,7 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Vendedor> GetListadoVendedoresProductosNoVendidos(int trimestre, int anio, DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("SP_GetListadoVendedoresProductosNoVendidos"); //TODO HACER ESTE SP Y MANDAR PARAMETROS!
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetListadoVendedoresProductosNoVendidos"); //TODO HACER ESTE SP Y MANDAR PARAMETROS!
             List<Vendedor> vendedores = new List<Vendedor>();
             foreach (DataRow row in res.Rows)
             {

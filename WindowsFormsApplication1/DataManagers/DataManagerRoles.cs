@@ -29,7 +29,7 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Rol> GetRoles(DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("SP_GetRoles");
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetRoles");
             List<Rol> roles = new List<Rol>();
             foreach (DataRow row in res.Rows)
             {
@@ -57,7 +57,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(idRolParameter);
 
-            DataTable res = db.GetDataAsTable("SP_GetRolFuncionalidades", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetRolFuncionalidades", parameters);
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
             List<Funcionalidad> funcionalidadesAux = new List<Funcionalidad>(GetFuncionalidades(db));
             foreach (DataRow row in res.Rows)
@@ -88,7 +88,7 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Funcionalidad> GetFuncionalidades(DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("SP_GetFuncionalidades");
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetFuncionalidades");
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
             foreach (DataRow row in res.Rows)
             {
@@ -141,7 +141,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(funcionalidadParameter);
             parameters.Add(estadoParameter);
 
-            DataTable res = db.GetDataAsTable("SP_FindRoles", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_FindRoles", parameters);
             List<Rol> roles = new List<Rol>();
             foreach (DataRow row in res.Rows)
             {
@@ -183,7 +183,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(descripcionParameter);
 
-            DataTable res = db.GetDataAsTable("SP_GetRolByDescripcion", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetRolByDescripcion", parameters);
             Rol rol = new Rol();
             foreach (DataRow row in res.Rows)
             {
@@ -228,7 +228,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(descripcionParameter);
             parameters.Add(activoParameter);
 
-            newRol.IdRol = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertRol", parameters);
+            newRol.IdRol = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertRol", parameters);
         }
 
         private static Funcionalidad GetFuncionalidadByDescripcion(string descripcion, DataBaseHelper db)
@@ -240,7 +240,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(descripcionParameter);
 
-            DataTable res = db.GetDataAsTable("SP_GetFuncionalidadByDescripcion", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetFuncionalidadByDescripcion", parameters);
             Funcionalidad funcionalidad = new Funcionalidad();
             foreach (DataRow row in res.Rows)
             {
@@ -268,7 +268,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idFuncionalidadParameter);
             parameters.Add(activaParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_InsertRolFuncionalidad", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertRolFuncionalidad", parameters);
         }
 
         public static string DeleteRol(Rol rol)
@@ -311,7 +311,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(usuarioRolIdRolParameter);
 
-            DataTable res = db.GetDataAsTable("SP_DeleteUsuariosRol", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_DeleteUsuariosRol", parameters);
             List<string> usuarios = new List<string>();
             foreach (DataRow row in res.Rows)
             {
@@ -336,7 +336,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(idRolParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteRol", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_DeleteRol", parameters);
         }
 
         public static void UpdateRol(Rol rol)
@@ -384,7 +384,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(descripcionParameter);
             parameters.Add(activoParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_UpdateRol", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_UpdateRol", parameters);
         }
 
         private static void DeleteRolFuncionalidad(int idRol, int idFuncionalidad, DataBaseHelper db)
@@ -400,7 +400,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idRolParameter);
             parameters.Add(idFuncionalidadParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "SP_DeleteRolFuncionalidad", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_DeleteRolFuncionalidad", parameters);
         }
     }
 }
