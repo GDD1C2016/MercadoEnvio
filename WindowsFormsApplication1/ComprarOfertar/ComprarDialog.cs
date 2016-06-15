@@ -1,15 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Properties;
+using MercadoEnvio.Servicios;
 
 namespace MercadoEnvio.ComprarOfertar
 {
@@ -38,7 +33,7 @@ namespace MercadoEnvio.ComprarOfertar
                 LabelCantidad.Visible = true;
                 CheckBoxEnvio.Visible = true;
                 GroupBoxDetalles.Text = Resources.DetallesDeCompra;
-                this.Text = Resources.Compra;
+                Text = Resources.Compra;
                 LabelPrecioReservaNum.Visible = false;
                 LabelPrecioReservaText.Visible = false;
                 TxtCantidad.Visible = true;
@@ -46,11 +41,11 @@ namespace MercadoEnvio.ComprarOfertar
             }
             else
             {
-                LabelCantidad.Text = Resources.Ofertar;
+                LabelCantidad.Text = Resources.Monto;
                 LabelCantidad.Visible = true;
                 CheckBoxEnvio.Visible = false;
                 GroupBoxDetalles.Text = Resources.DetallesSubasta;
-                this.Text = Resources.Subasta;
+                Text = Resources.Subasta;
                 LabelPrecioReservaNum.Visible = true;
                 LabelPrecioReservaText.Visible = true;
                 TxtCantidad.Visible = false;
@@ -61,13 +56,9 @@ namespace MercadoEnvio.ComprarOfertar
         private void LlenarFormularioSegunTipo()
         {
             if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Contains("Compra"))
-            {
                 CheckBoxEnvio.Checked = PublicacionSeleccionada.Envio;
-            }
             else
-            {
-                LabelPrecioReservaNum.Text = PublicacionSeleccionada.PrecioReserva.ToString();
-            }
+                LabelPrecioReservaNum.Text = PublicacionSeleccionada.PrecioReserva.ToString(CultureInfo.CurrentCulture);
         }
 
         private void TxtCantidad_KeyPress(object sender, KeyPressEventArgs e)
@@ -82,21 +73,15 @@ namespace MercadoEnvio.ComprarOfertar
         {
             char decimalSeparator = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != decimalSeparator))
-            {
                 e.Handled = true;
-            }
 
-            // only allow one decimal point
             if ((e.KeyChar == decimalSeparator) && ((sender as TextBox).Text.IndexOf(decimalSeparator) > -1))
-            {
                 e.Handled = true;
-            }
         }
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            List<string> errors = new List<string>();
-            errors = ValidarDatos();
+            List<string> errors = ValidarDatos();
 
             if (errors.Count > 0)
             {
@@ -106,8 +91,8 @@ namespace MercadoEnvio.ComprarOfertar
             }
             else
             {
-                int numeroDeOrden = 0; //TODO HACER EL SP PARA QUE GENER LA ORDEN DE COMPRA
-                MessageBox.Show(Resources.OrdenDeCompra + numeroDeOrden, Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                int numero = PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals("Subasta", StringComparison.CurrentCultureIgnoreCase) ? PublicacionesServices.Ofertar(PublicacionSeleccionada, UsuarioActivo, TxtOfertar.Text) : PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, TxtCantidad.Text, CheckBoxEnvio.Checked);
+                MessageBox.Show(Resources.NroDeCompra + numero, Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 DialogResult = DialogResult.OK;
             }
         }
@@ -116,7 +101,7 @@ namespace MercadoEnvio.ComprarOfertar
         {
             List<string> errors = new List<string>();
 
-            if(PublicacionSeleccionada.IdUsuario == UsuarioActivo.IdUsuario)
+            if (PublicacionSeleccionada.IdUsuario == UsuarioActivo.IdUsuario)
                 errors.Add(Resources.ErrorUsuarioCompraSuPublicacion);
 
             if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Contains("Compra"))
@@ -130,7 +115,7 @@ namespace MercadoEnvio.ComprarOfertar
             {
                 int oferta = Convert.ToInt32(TxtOfertar.Text);
 
-                if(oferta < PublicacionSeleccionada.Precio)
+                if (oferta < PublicacionSeleccionada.Precio)
                     errors.Add(Resources.ErrorOferta);
             }
             return errors;
@@ -138,8 +123,8 @@ namespace MercadoEnvio.ComprarOfertar
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

@@ -40,7 +40,7 @@ namespace MercadoEnvio.DataManagers
                 publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
                 publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
                 publicacion.Precio = Convert.ToDecimal(row["Precio"]);
-                publicacion.PrecioReserva = row["PrecioReserva"] == System.DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
+                publicacion.PrecioReserva = row["PrecioReserva"] == DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
                 publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
                 publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
                 publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
@@ -112,7 +112,7 @@ namespace MercadoEnvio.DataManagers
                         publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
                         publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
                         publicacion.Precio = Convert.ToDecimal(row["Precio"]);
-                        publicacion.PrecioReserva = row["PrecioReserva"] == System.DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
+                        publicacion.PrecioReserva = row["PrecioReserva"] == DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
                         publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
                         publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
                         publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
@@ -161,7 +161,7 @@ namespace MercadoEnvio.DataManagers
                     publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
                     publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
                     publicacion.Precio = Convert.ToDecimal(row["Precio"]);
-                    publicacion.PrecioReserva = row["PrecioReserva"] == System.DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
+                    publicacion.PrecioReserva = row["PrecioReserva"] == DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
                     publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
                     publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
                     publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
@@ -192,7 +192,7 @@ namespace MercadoEnvio.DataManagers
 
         public static List<Publicacion> GetPendientesCalificar()
         {
-            List<Publicacion> listaPublicaciones = new List<Publicacion>();
+            List<Publicacion> listaPublicaciones;
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
@@ -221,7 +221,7 @@ namespace MercadoEnvio.DataManagers
                 publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
                 publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
                 publicacion.Precio = Convert.ToDecimal(row["Precio"]);
-                publicacion.PrecioReserva = row["PrecioReserva"] == System.DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
+                publicacion.PrecioReserva = row["PrecioReserva"] == DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
                 publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
                 publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
                 publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
@@ -245,6 +245,90 @@ namespace MercadoEnvio.DataManagers
             }
 
             return publicaciones;
+        }
+
+        public static int Ofertar(Publicacion publicacionSeleccionada, Usuario usuarioActivo, string monto)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                int nroOferta = Ofertar(publicacionSeleccionada, usuarioActivo, monto, db);
+
+                db.EndConnection();
+
+                return nroOferta;
+            }
+        }
+
+        private static int Ofertar(Publicacion publicacionSeleccionada, Usuario usuarioActivo, string monto, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idPublicacionParameter = new SqlParameter("@IdPublicacion", SqlDbType.Int);
+            idPublicacionParameter.Value = publicacionSeleccionada.IdPublicacion;
+
+            SqlParameter fechaParameter = new SqlParameter("@Fecha", SqlDbType.DateTime);
+            fechaParameter.Value = DateTime.Now; // TODO Recuperar del app.config
+
+            SqlParameter montoParameter = new SqlParameter("@Monto", SqlDbType.Decimal);
+            montoParameter.Value = Convert.ToInt32(monto);
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdPublicacion", SqlDbType.Int);
+            idUsuarioParameter.Value = usuarioActivo.IdUsuario;
+
+            parameters.Add(idPublicacionParameter);
+            parameters.Add(fechaParameter);
+            parameters.Add(montoParameter);
+            parameters.Add(idUsuarioParameter);
+
+            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertOferta", parameters);
+        }
+
+        public static int Comprar(Publicacion publicacionSeleccionada, Usuario usuarioActivo, string cantidad, bool envio)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                int nroCompra = Comprar(publicacionSeleccionada, usuarioActivo, cantidad, envio, db);
+
+                db.EndConnection();
+
+                return nroCompra;
+            }
+        }
+
+        private static int Comprar(Publicacion publicacionSeleccionada, Usuario usuarioActivo, string cantidad, bool envio, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idPublicacionParameter = new SqlParameter("@IdPublicacion", SqlDbType.Int);
+            idPublicacionParameter.Value = publicacionSeleccionada.IdPublicacion;
+
+            SqlParameter fechaParameter = new SqlParameter("@Fecha", SqlDbType.DateTime);
+            fechaParameter.Value = DateTime.Now; // TODO Recuperar del app.config
+
+            SqlParameter cantidadParameter = new SqlParameter("@Cantidad", SqlDbType.Decimal);
+            cantidadParameter.Value = Convert.ToInt32(cantidad);
+
+            SqlParameter envioParameter = new SqlParameter("@Envio", SqlDbType.Bit);
+            envioParameter.Value = envio;
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdPublicacion", SqlDbType.Int);
+            idUsuarioParameter.Value = usuarioActivo.IdUsuario;
+
+            parameters.Add(idPublicacionParameter);
+            parameters.Add(fechaParameter);
+            parameters.Add(cantidadParameter);
+            parameters.Add(envioParameter);
+            parameters.Add(idUsuarioParameter);
+
+            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "SP_InsertCompra", parameters); // TODO Insertar factura
         }
     }
 }

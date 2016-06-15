@@ -17,7 +17,7 @@ namespace MercadoEnvio.ComprarOfertar
         #region variablesPaginador
         private int CurrentPage = 1;
         int PagesCount = 1;
-        int pageRows = 12;
+        int PageRows = 12;
         BindingList<Publicacion> Baselist = null;
         BindingList<Publicacion> Templist = null;
         #endregion
@@ -37,15 +37,15 @@ namespace MercadoEnvio.ComprarOfertar
             #region armadoDeGrillaPublicaciones
             
             DgPublicaciones.AutoGenerateColumns = false;
-            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdPublicacion", HeaderText = "Codigo Publicación", Name = "CodigoPublicacion" });
-            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = "Descripción", Name = "Descripcion" });
-            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Stock", HeaderText = "Stock", Name = "Stock" });
-            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "FechaInicio", HeaderText = "Fecha Inicio", Name = "FechaInicio" });
-            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "FechaVencimiento", HeaderText = "Fecha Vencimiento", Name = "FechaVencimiento" });
-            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "Precio" });
+            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdPublicacion", HeaderText = Resources.CodigoPublicacion, Name = "CodigoPublicacion" });
+            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = Resources.Descripcion, Name = "Descripcion" });
+            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Stock", HeaderText = Resources.Stock, Name = "Stock" });
+            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "FechaInicio", HeaderText = Resources.FechaInicio, Name = "FechaInicio" });
+            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "FechaVencimiento", HeaderText = Resources.FechaVencimiento, Name = "FechaVencimiento" });
+            DgPublicaciones.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = Resources.Precio, Name = "Precio" });
 
             Baselist = FillDataforGrid();
-            PagesCount = Convert.ToInt32(Math.Ceiling(Baselist.Count * 1.0 / pageRows));
+            PagesCount = Convert.ToInt32(Math.Ceiling(Baselist.Count * 1.0 / PageRows));
 
             CurrentPage = 1;
             RefreshPagination();
@@ -63,9 +63,9 @@ namespace MercadoEnvio.ComprarOfertar
         #region MetodosPaginador
         private void RebindGridForPageChange()
         {
-            int datasourcestartIndex = (CurrentPage - 1) * pageRows;
+            int datasourcestartIndex = (CurrentPage - 1) * PageRows;
             Templist = new BindingList<Publicacion>();
-            for (int i = datasourcestartIndex; i < datasourcestartIndex + pageRows; i++)
+            for (int i = datasourcestartIndex; i < datasourcestartIndex + PageRows; i++)
             {
                 if (i >= Baselist.Count)
                     break;
@@ -85,7 +85,7 @@ namespace MercadoEnvio.ComprarOfertar
         {
             ToolStripButton[] items = new ToolStripButton[] { toolStripButton1, toolStripButton2, toolStripButton3, toolStripButton4, toolStripButton5 };
 
-            //pageStartIndex contains the first button number of pagination.
+            //pageStartIndex contains the first button number of pagination
             int pageStartIndex = 1;
 
             if (PagesCount > 5 && CurrentPage > 2)
@@ -105,7 +105,7 @@ namespace MercadoEnvio.ComprarOfertar
                     //Changing the page numbers
                     items[i - pageStartIndex].Text = i.ToString(CultureInfo.InvariantCulture);
 
-                    //Setting the Appearance of the page number buttons
+                    //Setting the appearance of the page number buttons
                     if (i == CurrentPage)
                     {
                         items[i - pageStartIndex].BackColor = Color.Black;
@@ -119,7 +119,7 @@ namespace MercadoEnvio.ComprarOfertar
                 }
             }
 
-            //Enabling or Disalbing pagination first, last, previous , next buttons
+            //Enabling or disabling pagination first, last, previous, next buttons
             if (CurrentPage == 1)
                 btnBackward.Enabled = btnFirst.Enabled = false;
             else
@@ -134,19 +134,19 @@ namespace MercadoEnvio.ComprarOfertar
 
         private void ToolStripButtonClick(object sender, EventArgs e)
         {
-            ToolStripButton ToolStripButton = ((ToolStripButton)sender);
+            ToolStripButton toolStripButton = ((ToolStripButton)sender);
 
             //Determining the current page
-            if (ToolStripButton == btnBackward)
+            if (toolStripButton == btnBackward)
                 CurrentPage--;
-            else if (ToolStripButton == btnForward)
+            else if (toolStripButton == btnForward)
                 CurrentPage++;
-            else if (ToolStripButton == btnLast)
+            else if (toolStripButton == btnLast)
                 CurrentPage = PagesCount;
-            else if (ToolStripButton == btnFirst)
+            else if (toolStripButton == btnFirst)
                 CurrentPage = 1;
             else
-                CurrentPage = Convert.ToInt32(ToolStripButton.Text, CultureInfo.InvariantCulture);
+                CurrentPage = Convert.ToInt32(toolStripButton.Text, CultureInfo.InvariantCulture);
 
             if (CurrentPage < 1)
                 CurrentPage = 1;
@@ -155,7 +155,6 @@ namespace MercadoEnvio.ComprarOfertar
 
             RebindGridForPageChange();
             RefreshPagination();
-
         }
         #endregion
 
@@ -177,8 +176,7 @@ namespace MercadoEnvio.ComprarOfertar
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            string filtroDescripcion = string.Empty;
-            filtroDescripcion = TxtFiltroDescripcion.Text;
+            string filtroDescripcion = TxtFiltroDescripcion.Text;
             List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.FindPublicaciones(filtroDescripcion, RubrosFiltro).OrderByDescending(x => x.Visibilidad.Precio).ToList());
 
             BindingList<Publicacion> dataSource = new BindingList<Publicacion>(listAux);
@@ -203,8 +201,7 @@ namespace MercadoEnvio.ComprarOfertar
 
             if (DgPublicaciones.SelectedRows.Count > 0)
             {
-                BindingSource bs = new BindingSource();
-                bs = (BindingSource) DgPublicaciones.DataSource;
+                BindingSource bs = (BindingSource) DgPublicaciones.DataSource;
                 if (bs != null)
                 {
                     publicacionSeleccionada = (Publicacion) bs[DgPublicaciones.SelectedRows[0].Index];
@@ -214,6 +211,13 @@ namespace MercadoEnvio.ComprarOfertar
             var comprarDialog = new ComprarDialog();
             comprarDialog.UsuarioActivo = Usuario;
             comprarDialog.PublicacionSeleccionada = publicacionSeleccionada;
+
+            if (publicacionSeleccionada.TipoPublicacion.Descripcion.Equals("Subasta",
+                StringComparison.CurrentCultureIgnoreCase))
+                comprarDialog.Text = Resources.Ofertar;
+            else
+                comprarDialog.Text = Resources.Comprar;
+            
             var res = comprarDialog.ShowDialog();
 
             if (res.Equals(DialogResult.OK))

@@ -373,8 +373,8 @@
   <data name="OperacionExitosa" xml:space="preserve">
     <value>Operacion Exitosa</value>
   </data>
-  <data name="OrdenDeCompra" xml:space="preserve">
-    <value>Se ha generado la orden de compra N° </value>
+  <data name="NroDeCompra" xml:space="preserve">
+    <value>Se ha generado la compra N°</value>
   </data>
   <data name="CUIL" xml:space="preserve">
     <value>CUIL</value>
@@ -414,5 +414,29 @@
   </data>
   <data name="EdicionUsuario" xml:space="preserve">
     <value>Edición de Usuario</value>
+  </data>
+  <data name="Descripcion" xml:space="preserve">
+    <value>Descripción</value>
+  </data>
+  <data name="CodigoPublicacion" xml:space="preserve">
+    <value>Codigo Publicación</value>
+  </data>
+  <data name="Stock" xml:space="preserve">
+    <value>Stock</value>
+  </data>
+  <data name="FechaInicio" xml:space="preserve">
+    <value>Fecha Inicio</value>
+  </data>
+  <data name="FechaVencimiento" xml:space="preserve">
+    <value>Fecha Vencimiento</value>
+  </data>
+  <data name="Precio" xml:space="preserve">
+    <value>Precio</value>
+  </data>
+  <data name="Comprar" xml:space="preserve">
+    <value>Comprar</value>
+  </data>
+  <data name="Monto" xml:space="preserve">
+    <value>Monto</value>
   </data>
 </root>

@@ -166,7 +166,7 @@
             this.BtnComprar.Name = "BtnComprar";
             this.BtnComprar.Size = new System.Drawing.Size(237, 23);
             this.BtnComprar.TabIndex = 0;
-            this.BtnComprar.Text = "Comprar";
+            this.BtnComprar.Text = "Comprar/Ofertar";
             this.BtnComprar.UseVisualStyleBackColor = true;
             this.BtnComprar.Click += new System.EventHandler(this.BtnComprar_Click);
             // 

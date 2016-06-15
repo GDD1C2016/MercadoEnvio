@@ -107,11 +107,29 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Codigo Publicación.
+        /// </summary>
+        internal static string CodigoPublicacion {
+            get {
+                return ResourceManager.GetString("CodigoPublicacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compra.
         /// </summary>
         internal static string Compra {
             get {
                 return ResourceManager.GetString("Compra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comprar.
+        /// </summary>
+        internal static string Comprar {
+            get {
+                return ResourceManager.GetString("Comprar", resourceCulture);
             }
         }
         
@@ -148,6 +166,15 @@ namespace MercadoEnvio.Properties {
         internal static string CUIT {
             get {
                 return ResourceManager.GetString("CUIT", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descripción.
+        /// </summary>
+        internal static string Descripcion {
+            get {
+                return ResourceManager.GetString("Descripcion", resourceCulture);
             }
         }
         
@@ -685,6 +712,24 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fecha Inicio.
+        /// </summary>
+        internal static string FechaInicio {
+            get {
+                return ResourceManager.GetString("FechaInicio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fecha Vencimiento.
+        /// </summary>
+        internal static string FechaVencimiento {
+            get {
+                return ResourceManager.GetString("FechaVencimiento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap Forward {
@@ -749,6 +794,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Monto.
+        /// </summary>
+        internal static string Monto {
+            get {
+                return ResourceManager.GetString("Monto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to N° Doc..
         /// </summary>
         internal static string NoDoc {
@@ -763,6 +817,15 @@ namespace MercadoEnvio.Properties {
         internal static string Nombre {
             get {
                 return ResourceManager.GetString("Nombre", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Se ha generado la compra N°.
+        /// </summary>
+        internal static string NroDeCompra {
+            get {
+                return ResourceManager.GetString("NroDeCompra", resourceCulture);
             }
         }
         
@@ -785,11 +848,11 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Se ha generado la orden de compra N° .
+        ///   Looks up a localized string similar to Precio.
         /// </summary>
-        internal static string OrdenDeCompra {
+        internal static string Precio {
             get {
-                return ResourceManager.GetString("OrdenDeCompra", resourceCulture);
+                return ResourceManager.GetString("Precio", resourceCulture);
             }
         }
         
@@ -853,6 +916,15 @@ namespace MercadoEnvio.Properties {
         internal static string RubroCreado {
             get {
                 return ResourceManager.GetString("RubroCreado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stock.
+        /// </summary>
+        internal static string Stock {
+            get {
+                return ResourceManager.GetString("Stock", resourceCulture);
             }
         }
         
