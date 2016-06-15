@@ -140,11 +140,11 @@
     <Compile Include="Entidades\Usuario.cs" />
     <Compile Include="Entidades\Vendedor.cs" />
     <Compile Include="Entidades\Visibilidad.cs" />
-    <Compile Include="Facturas\Form1.cs">
+    <Compile Include="Facturas\MainFacturas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Facturas\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Facturas\MainFacturas.Designer.cs">
+      <DependentUpon>MainFacturas.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DataBaseHelper.cs" />
     <Compile Include="Helpers\EncryptHelper.cs" />
