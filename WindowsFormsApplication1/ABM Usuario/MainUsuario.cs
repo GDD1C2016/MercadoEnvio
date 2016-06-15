@@ -130,12 +130,10 @@ namespace MercadoEnvio.ABM_Usuario
 
         private void TxtFiltroDNI_KeyPress(object sender, KeyPressEventArgs e)
         {
-            char decimalSeparator = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != decimalSeparator))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
                 e.Handled = true;
-
-            if ((e.KeyChar == decimalSeparator) && ((sender as TextBox).Text.IndexOf(decimalSeparator) > -1))
-                e.Handled = true;
+            }
         }
 
         private void BtnBorrar_Click(object sender, EventArgs e)

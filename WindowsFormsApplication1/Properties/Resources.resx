@@ -400,6 +400,27 @@
   <data name="ErrorFechaNacimiento" xml:space="preserve">
     <value>La fecha de nacimiento debe ser anterior a la fecha del día de hoy.</value>
   </data>
+  <data name="TipoListadoClientesMasProductos" xml:space="preserve">
+    <value>Clientes con mayor cantidad de productos comprados</value>
+  </data>
+  <data name="TipoListadoVendedoresMasFacturas" xml:space="preserve">
+    <value>Vendedores con mayor cantidad de facturas</value>
+  </data>
+  <data name="TipoListadoVendedoresMasMonto" xml:space="preserve">
+    <value>Vendedores con mayor monto facturado</value>
+  </data>
+  <data name="TipoListadoVendedoresProductosNoVendidos" xml:space="preserve">
+    <value>Vendedores con mayor cantidad de productos no vendidos</value>
+  </data>
+  <data name="ErrorAnio" xml:space="preserve">
+    <value>El campo año no puede estar vacio.</value>
+  </data>
+  <data name="ErrorDeDatos" xml:space="preserve">
+    <value>Error de datos</value>
+  </data>
+  <data name="ResultadosRubro" xml:space="preserve">
+    <value>Resultados para el Rubro: </value>
+  </data>
   <data name="ErrorPassword" xml:space="preserve">
     <value>El campo "Password" no puede estar vacío.</value>
   </data>
