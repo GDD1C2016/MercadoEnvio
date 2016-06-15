@@ -119,6 +119,7 @@
     </Compile>
     <Compile Include="DataManagers\DataManagerCalificacion.cs" />
     <Compile Include="DataManagers\DataManagerCompras.cs" />
+    <Compile Include="DataManagers\DataManagerListados.cs" />
     <Compile Include="DataManagers\DataManagerPublicaciones.cs" />
     <Compile Include="DataManagers\DataManagerRoles.cs" />
     <Compile Include="DataManagers\DataManagerRubros.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Entidades\Compra.cs" />
     <Compile Include="Entidades\Empresa.cs" />
     <Compile Include="Entidades\Estado.cs" />
+    <Compile Include="Entidades\Factura.cs" />
     <Compile Include="Entidades\Funcionalidad.cs" />
     <Compile Include="Entidades\Login.cs" />
     <Compile Include="Entidades\Publicacion.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="Entidades\Rubro.cs" />
     <Compile Include="Entidades\TipoPublicacion.cs" />
     <Compile Include="Entidades\Usuario.cs" />
+    <Compile Include="Entidades\Vendedor.cs" />
     <Compile Include="Entidades\Visibilidad.cs" />
     <Compile Include="Facturas\Form1.cs">
       <SubType>Form</SubType>
@@ -157,11 +160,35 @@
     <Compile Include="Historial Cliente\MainHistorialCliente.Designer.cs">
       <DependentUpon>MainHistorialCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="Listado Estadistico\Form1.cs">
+    <Compile Include="Listado Estadistico\ListadoComprados.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Listado Estadistico\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Listado Estadistico\ListadoComprados.Designer.cs">
+      <DependentUpon>ListadoComprados.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listado Estadistico\ListadoFacturas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listado Estadistico\ListadoFacturas.Designer.cs">
+      <DependentUpon>ListadoFacturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listado Estadistico\ListadoMontos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listado Estadistico\ListadoMontos.Designer.cs">
+      <DependentUpon>ListadoMontos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listado Estadistico\ListadoNoVendidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listado Estadistico\ListadoNoVendidos.Designer.cs">
+      <DependentUpon>ListadoNoVendidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listado Estadistico\MainListado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listado Estadistico\MainListado.Designer.cs">
+      <DependentUpon>MainListado.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\Main.cs">
       <SubType>Form</SubType>
@@ -179,6 +206,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\CalificacionesServices.cs" />
     <Compile Include="Servicios\ComprasServices.cs" />
+    <Compile Include="Servicios\ListadoServices.cs" />
     <Compile Include="Servicios\PublicacionesServices.cs" />
     <Compile Include="Servicios\RolesServices.cs" />
     <Compile Include="Servicios\RubrosServices.cs" />
@@ -222,6 +250,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Historial Cliente\MainHistorialCliente.resx">
       <DependentUpon>MainHistorialCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado Estadistico\ListadoComprados.resx">
+      <DependentUpon>ListadoComprados.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado Estadistico\ListadoFacturas.resx">
+      <DependentUpon>ListadoFacturas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado Estadistico\ListadoMontos.resx">
+      <DependentUpon>ListadoMontos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado Estadistico\ListadoNoVendidos.resx">
+      <DependentUpon>ListadoNoVendidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado Estadistico\MainListado.resx">
+      <DependentUpon>MainListado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>

@@ -22,7 +22,7 @@ namespace MercadoEnvio.Menu
 {
     public partial class MainMenu : Form
     {
-        Usuario Usuario { get; set; }
+        public Usuario Usuario { get; set; }
 
         public MainMenu()
         {

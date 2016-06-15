@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using MercadoEnvio.Helpers;
 using MercadoEnvio.Properties;
 using MercadoEnvio.Servicios;
+using MainMenu = MercadoEnvio.Menu.MainMenu;
 
 namespace MercadoEnvio.Login
 {
@@ -25,7 +26,11 @@ namespace MercadoEnvio.Login
             {
                 LabelErrorLogin.Text = string.Empty;
                 LabelCantIntentos.Text = string.Empty;
-                MessageBox.Show("Ingreso exitoso"); // TODO Vincular a la pantalla de selección de rol
+                // TODO Vincular a la pantalla de selección de rol
+                
+                var menuDialog = new MainMenu();
+                menuDialog.Usuario = login.Usuario;
+                menuDialog.ShowDialog();
             }
             else
             {
