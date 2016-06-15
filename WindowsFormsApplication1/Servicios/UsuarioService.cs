@@ -61,5 +61,10 @@ namespace MercadoEnvio.Servicios
         {
             return DataManagers.DataManagerUsuario.GetEmpresaByCuit(cuit);
         }
+
+        public static void DeleteUsuario(Usuario usuario)
+        {
+            DataManagers.DataManagerUsuario.DeleteUsuario(usuario);
+        }
     }
 }

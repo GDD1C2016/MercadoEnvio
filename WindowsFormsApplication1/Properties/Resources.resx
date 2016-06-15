@@ -400,4 +400,19 @@
   <data name="ErrorFechaNacimiento" xml:space="preserve">
     <value>La fecha de nacimiento debe ser anterior a la fecha del día de hoy.</value>
   </data>
+  <data name="ErrorPassword" xml:space="preserve">
+    <value>El campo "Password" no puede estar vacío.</value>
+  </data>
+  <data name="ErrorUserName" xml:space="preserve">
+    <value>El campo "Username" no puede estar vacío.</value>
+  </data>
+  <data name="ErrorUsuarioBorrado" xml:space="preserve">
+    <value>El usuario ya ha sido dado de baja.</value>
+  </data>
+  <data name="UsuarioBorrado" xml:space="preserve">
+    <value>El usuario ha sido borrado exitosamente.</value>
+  </data>
+  <data name="EdicionUsuario" xml:space="preserve">
+    <value>Edición de Usuario</value>
+  </data>
 </root>

@@ -82,7 +82,7 @@ namespace MercadoEnvio.ABM_Rol
 
                 if (string.IsNullOrEmpty(message))
                 {
-                    BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.FindRoles(string.Empty, 0, string.Empty)); // TODO Buscar otras alternativas
+                    BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.FindRoles(string.Empty, 0, string.Empty));
                     BindingSource bs = new BindingSource();
                     bs.DataSource = dataSource;
 
@@ -136,7 +136,7 @@ namespace MercadoEnvio.ABM_Rol
 
             if (result.Equals(DialogResult.OK))
             {
-                BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.GetAllData()); // TODO Buscar otras alternativas
+                BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.GetAllData());
                 BindingSource bs = new BindingSource();
                 bs.DataSource = dataSource;
 
@@ -151,7 +151,7 @@ namespace MercadoEnvio.ABM_Rol
 
             if (result.Equals(DialogResult.OK))
             {
-                BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.GetAllData()); // TODO Buscar otras alternativas
+                BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.GetAllData());
                 BindingSource bs = new BindingSource();
                 bs.DataSource = dataSource;
 

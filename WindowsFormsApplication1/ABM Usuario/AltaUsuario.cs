@@ -175,6 +175,12 @@ namespace MercadoEnvio.ABM_Usuario
         {
             List<string> errors = new List<string>();
 
+            if (string.IsNullOrEmpty(TxtUserName.Text))
+                errors.Add(Resources.ErrorUserName);
+
+            if (string.IsNullOrEmpty(TxtPassword.Text))
+                errors.Add(Resources.ErrorPassword);
+
             if (string.IsNullOrEmpty(TxtCp.Text))
                 errors.Add(Resources.ErrorCp);
 
@@ -189,55 +195,65 @@ namespace MercadoEnvio.ABM_Usuario
 
             if (tipoUsuario.Descripcion.Equals("Cliente", StringComparison.CurrentCultureIgnoreCase))
             {
-                if (DatePickerFechaNacimiento.Value.CompareTo(DateTime.Now) >= 0)
-                    errors.Add(Resources.ErrorFechaNacimiento); // TODO Recuperar fecha del archivo app.config
-
-                if (string.IsNullOrEmpty(TxtNombre.Text))
-                    errors.Add(Resources.ErrorNombre);
-
-                if (string.IsNullOrEmpty(TxtApellido.Text))
-                    errors.Add(Resources.ErrorApellido);
-
-                if (string.IsNullOrEmpty(TxtDNI.Text))
-                    errors.Add(Resources.ErrorDNI);
-
-                if (string.IsNullOrEmpty(TxtTipoDoc.Text))
-                    errors.Add(Resources.ErrorTipoDocumento1);
-                else if (TxtTipoDoc.Text != Resources.DNI && TxtTipoDoc.Text != Resources.LE && TxtTipoDoc.Text != Resources.CUIL)
-                    errors.Add(Resources.ErrorTipoDocumento2);
-
-                if (!string.IsNullOrEmpty(TxtDNI.Text) && !string.IsNullOrEmpty(TxtTipoDoc.Text))
-                {
-                    Cliente cliente = UsuarioService.GetClienteByTipoDocNroDoc(TxtTipoDoc.Text, TxtDNI.Text);
-                    if (cliente.IdUsuario != 0)
-                        if (cliente.IdUsuario != Usuario.IdUsuario)
-                            errors.Add(Resources.ErrorClienteExistente);
-                }
+                ValidarDatosCliente(errors);
             }
             else
             {
-                if (string.IsNullOrEmpty(TxtNombre.Text))
-                    errors.Add(Resources.ErrorRazonSocial);
-                else
-                {
-                    Empresa empresa = UsuarioService.GetEmpresaByRazonSocial(TxtNombre.Text);
-                    if (empresa.IdUsuario != 0)
-                        if (empresa.IdUsuario != Usuario.IdUsuario)
-                            errors.Add(Resources.ErrorEmpresaExistenteRazonSocial);
-                }
-
-                if (string.IsNullOrEmpty(TxtCuit.Text))
-                    errors.Add(Resources.ErrorCuit);
-                else
-                {
-                    Empresa empresa = UsuarioService.GetEmpresaByCuit(TxtCuit.Text);
-                    if (empresa.IdUsuario != 0)
-                        if (empresa.IdUsuario != Usuario.IdUsuario)
-                            errors.Add(Resources.ErrorEmpresaExistenteCUIT);
-                }
+                ValidarDatosEmpresa(errors);
             }
 
             return errors;
+        }
+
+        private void ValidarDatosCliente(List<string> errors)
+        {
+            if (DatePickerFechaNacimiento.Value.CompareTo(DateTime.Now) >= 0)
+                errors.Add(Resources.ErrorFechaNacimiento); // TODO Recuperar del app.config
+
+            if (string.IsNullOrEmpty(TxtNombre.Text))
+                errors.Add(Resources.ErrorNombre);
+
+            if (string.IsNullOrEmpty(TxtApellido.Text))
+                errors.Add(Resources.ErrorApellido);
+
+            if (string.IsNullOrEmpty(TxtDNI.Text))
+                errors.Add(Resources.ErrorDNI);
+
+            if (string.IsNullOrEmpty(TxtTipoDoc.Text))
+                errors.Add(Resources.ErrorTipoDocumento1);
+            else if (TxtTipoDoc.Text != Resources.DNI && TxtTipoDoc.Text != Resources.LE && TxtTipoDoc.Text != Resources.CUIL)
+                errors.Add(Resources.ErrorTipoDocumento2);
+
+            if (!string.IsNullOrEmpty(TxtDNI.Text) && !string.IsNullOrEmpty(TxtTipoDoc.Text))
+            {
+                Cliente cliente = UsuarioService.GetClienteByTipoDocNroDoc(TxtTipoDoc.Text, TxtDNI.Text);
+                if (cliente.IdUsuario != 0)
+                    if (cliente.IdUsuario != Usuario.IdUsuario)
+                        errors.Add(Resources.ErrorClienteExistente);
+            }
+        }
+
+        private void ValidarDatosEmpresa(List<string> errors)
+        {
+            if (string.IsNullOrEmpty(TxtNombre.Text))
+                errors.Add(Resources.ErrorRazonSocial);
+            else
+            {
+                Empresa empresa = UsuarioService.GetEmpresaByRazonSocial(TxtNombre.Text);
+                if (empresa.IdUsuario != 0)
+                    if (empresa.IdUsuario != Usuario.IdUsuario)
+                        errors.Add(Resources.ErrorEmpresaExistenteRazonSocial);
+            }
+
+            if (string.IsNullOrEmpty(TxtCuit.Text))
+                errors.Add(Resources.ErrorCuit);
+            else
+            {
+                Empresa empresa = UsuarioService.GetEmpresaByCuit(TxtCuit.Text);
+                if (empresa.IdUsuario != 0)
+                    if (empresa.IdUsuario != Usuario.IdUsuario)
+                        errors.Add(Resources.ErrorEmpresaExistenteCUIT);
+            }            
         }
 
         private List<Rol> GetRolesFromDg()

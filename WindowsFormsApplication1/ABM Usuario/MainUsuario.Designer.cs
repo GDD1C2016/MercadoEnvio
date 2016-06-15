@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtFiltroCuit = new System.Windows.Forms.TextBox();
             this.ComboTipoDeUsuario = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.TxtFiltroEmail = new System.Windows.Forms.TextBox();
@@ -46,7 +47,6 @@
             this.BtnEditar = new System.Windows.Forms.Button();
             this.BtnAgregar = new System.Windows.Forms.Button();
             this.BtnBorrar = new System.Windows.Forms.Button();
-            this.TxtFiltroCuit = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgUsuarios)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -72,6 +72,14 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de Búsqueda";
+            // 
+            // TxtFiltroCuit
+            // 
+            this.TxtFiltroCuit.Location = new System.Drawing.Point(411, 52);
+            this.TxtFiltroCuit.Name = "TxtFiltroCuit";
+            this.TxtFiltroCuit.Size = new System.Drawing.Size(211, 20);
+            this.TxtFiltroCuit.TabIndex = 12;
+            this.TxtFiltroCuit.Visible = false;
             // 
             // ComboTipoDeUsuario
             // 
@@ -101,11 +109,11 @@
             // LabelEmail
             // 
             this.LabelEmail.AutoSize = true;
-            this.LabelEmail.Location = new System.Drawing.Point(379, 87);
+            this.LabelEmail.Location = new System.Drawing.Point(370, 87);
             this.LabelEmail.Name = "LabelEmail";
-            this.LabelEmail.Size = new System.Drawing.Size(32, 13);
+            this.LabelEmail.Size = new System.Drawing.Size(35, 13);
             this.LabelEmail.TabIndex = 8;
-            this.LabelEmail.Text = "Email";
+            this.LabelEmail.Text = "E-mail";
             // 
             // TxtFiltroDNI
             // 
@@ -118,7 +126,7 @@
             // LabelDNI
             // 
             this.LabelDNI.AutoSize = true;
-            this.LabelDNI.Location = new System.Drawing.Point(379, 55);
+            this.LabelDNI.Location = new System.Drawing.Point(370, 55);
             this.LabelDNI.Name = "LabelDNI";
             this.LabelDNI.Size = new System.Drawing.Size(26, 13);
             this.LabelDNI.TabIndex = 6;
@@ -210,6 +218,7 @@
             this.BtnEditar.TabIndex = 6;
             this.BtnEditar.Text = "Editar";
             this.BtnEditar.UseVisualStyleBackColor = true;
+            this.BtnEditar.Click += new System.EventHandler(this.BtnEditar_Click);
             // 
             // BtnAgregar
             // 
@@ -228,14 +237,7 @@
             this.BtnBorrar.TabIndex = 5;
             this.BtnBorrar.Text = "Borrar";
             this.BtnBorrar.UseVisualStyleBackColor = true;
-            // 
-            // TxtFiltroCuit
-            // 
-            this.TxtFiltroCuit.Location = new System.Drawing.Point(411, 52);
-            this.TxtFiltroCuit.Name = "TxtFiltroCuit";
-            this.TxtFiltroCuit.Size = new System.Drawing.Size(211, 20);
-            this.TxtFiltroCuit.TabIndex = 12;
-            this.TxtFiltroCuit.Visible = false;
+            this.BtnBorrar.Click += new System.EventHandler(this.BtnBorrar_Click);
             // 
             // MainUsuario
             // 
