@@ -251,6 +251,9 @@
     <EmbeddedResource Include="ComprarOfertar\MainPublicacion.resx">
       <DependentUpon>MainPublicacion.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Facturas\MainFacturas.resx">
+      <DependentUpon>MainFacturas.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicación\GenerarPublicacion.resx">
       <DependentUpon>GenerarPublicacion.cs</DependentUpon>
     </EmbeddedResource>
