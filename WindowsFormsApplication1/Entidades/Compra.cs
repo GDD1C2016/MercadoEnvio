@@ -45,12 +45,6 @@ namespace MercadoEnvio.Entidades
             set { _cantidad = value; }
         }
 
-        public bool Estado
-        {
-            get { return _estado; }
-            set { _estado = value; }
-        }
-
         public int IdUsuario
         {
             get { return _idUsuario; }

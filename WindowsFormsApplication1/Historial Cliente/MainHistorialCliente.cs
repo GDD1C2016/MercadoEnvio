@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
+using MercadoEnvio.Properties;
 using MercadoEnvio.Servicios;
 
 namespace MercadoEnvio.Historial_Cliente
@@ -12,11 +13,11 @@ namespace MercadoEnvio.Historial_Cliente
     public partial class MainHistorialCliente : Form
     {
         #region variablesPaginador
-        private int CurrentPage = 1;
-        int PagesCount = 1;
-        int pageRows = 12;
-        BindingList<Compra> Baselist = null;
-        BindingList<Compra> Templist = null;
+        private int _currentPage = 1;
+        private int _pagesCount = 1;
+        private const int PageRows = 12;
+        private BindingList<Compra> _baselist;
+        private BindingList<Compra> _templist;
         #endregion
 
         public Usuario Usuario { get; set; }
@@ -29,59 +30,59 @@ namespace MercadoEnvio.Historial_Cliente
         private void MainHistorialCliente_Load(object sender, EventArgs e)
         {
             #region armadoDeGrillaCompras
-
             DgCompras.AutoGenerateColumns = false;
-            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdCompra", HeaderText = "IdCompra", Name = "IdCompra" });
-            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DescripcionPublicacion", HeaderText = "Descripción", Name = "DescripcionPublicacion" });
-            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Vendedor", HeaderText = "Vendedor", Name = "Vendedor" });
-            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = "Fecha", Name = "Fecha" });
-            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "TipoPublicacion", HeaderText = "Tipo de Publicación", Name = "TipoPublicacion" });
-            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cantidad", HeaderText = "Cantidad", Name = "Cantidad" });
+            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdCompra", HeaderText = Resources.IdCompra, Name = "IdCompra" });
+            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DescripcionPublicacion", HeaderText = Resources.Descripcion, Name = "DescripcionPublicacion" });
+            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Vendedor", HeaderText = Resources.Vendedor, Name = "Vendedor" });
+            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = Resources.Fecha, Name = "Fecha" });
+            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "TipoPublicacion", HeaderText = Resources.TipoPublicacion, Name = "TipoPublicacion" });
+            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cantidad", HeaderText = Resources.Cantidad, Name = "Cantidad" });
 
-            Baselist = FillDataforGrid();
-            PagesCount = Convert.ToInt32(Math.Ceiling(Baselist.Count * 1.0 / pageRows));
+            _baselist = FillDataforGrid();
+            _pagesCount = Convert.ToInt32(Math.Ceiling(_baselist.Count * 1.0 / PageRows));
 
-            CurrentPage = 1;
+            _currentPage = 1;
             RefreshPagination();
             RebindGridForPageChange();
             #endregion
 
             #region cargaDatosUsuario
             LabelUsuarioTxt.Text = Usuario.UserName;
-            LabelReputacionTxt.Text = Usuario.Reputacion.ToString();
+            LabelReputacionTxt.Text = Usuario.Reputacion.ToString(CultureInfo.CurrentCulture);
             LabelFaltantesTxt.Text = ComprasServices.GetPendientesCalificar().Count.ToString();
             #endregion
 
             #region cargaDeEstrellas
-            Label1EstrellaTxt.Text = CalificacionesServices.GetCantidadDeEstrellasDadas(1,Usuario.IdUsuario).ToString();
-            Label2EstrellasTxt.Text = CalificacionesServices.GetCantidadDeEstrellasDadas(2, Usuario.IdUsuario).ToString();
-            Label3EstrellasTxt.Text = CalificacionesServices.GetCantidadDeEstrellasDadas(3, Usuario.IdUsuario).ToString();
-            Label4EstrellasTxt.Text = CalificacionesServices.GetCantidadDeEstrellasDadas(4, Usuario.IdUsuario).ToString();
-            Label5EstrellasTxt.Text = CalificacionesServices.GetCantidadDeEstrellasDadas(5, Usuario.IdUsuario).ToString();
+            Label1EstrellaTxt.Text = CalificacionesServices.GetCantidadCalificacionesDadas(1,Usuario.IdUsuario).ToString();
+            Label2EstrellasTxt.Text = CalificacionesServices.GetCantidadCalificacionesDadas(2, Usuario.IdUsuario).ToString();
+            Label3EstrellasTxt.Text = CalificacionesServices.GetCantidadCalificacionesDadas(3, Usuario.IdUsuario).ToString();
+            Label4EstrellasTxt.Text = CalificacionesServices.GetCantidadCalificacionesDadas(4, Usuario.IdUsuario).ToString();
+            Label5EstrellasTxt.Text = CalificacionesServices.GetCantidadCalificacionesDadas(5, Usuario.IdUsuario).ToString();
             #endregion
         }
 
         private BindingList<Compra> FillDataforGrid()
         {
-            List<Compra> listAux = new List<Compra>(ComprasServices.GetAllData());
+            List<Compra> listAux = new List<Compra>(ComprasServices.GetComprasPendientesDeCalificacion());
             BindingList<Compra> list = new BindingList<Compra>(listAux);
             return list;
         }
+
         #region MetodosPaginador
         private void RebindGridForPageChange()
         {
-            int datasourcestartIndex = (CurrentPage - 1) * pageRows;
-            Templist = new BindingList<Compra>();
-            for (int i = datasourcestartIndex; i < datasourcestartIndex + pageRows; i++)
+            int datasourcestartIndex = (_currentPage - 1) * PageRows;
+            _templist = new BindingList<Compra>();
+            for (int i = datasourcestartIndex; i < datasourcestartIndex + PageRows; i++)
             {
-                if (i >= Baselist.Count)
+                if (i >= _baselist.Count)
                     break;
 
-                Templist.Add(Baselist[i]);
+                _templist.Add(_baselist[i]);
             }
 
             BindingSource bs = new BindingSource();
-            bs.DataSource = Templist;
+            bs.DataSource = _templist;
             DgCompras.DataSource = bs;
             DgCompras.Refresh();
         }
@@ -90,28 +91,25 @@ namespace MercadoEnvio.Historial_Cliente
         {
             ToolStripButton[] items = new ToolStripButton[] { toolStripButton1, toolStripButton2, toolStripButton3, toolStripButton4, toolStripButton5 };
 
-            //pageStartIndex contains the first button number of pagination.
             int pageStartIndex = 1;
 
-            if (PagesCount > 5 && CurrentPage > 2)
-                pageStartIndex = CurrentPage - 2;
+            if (_pagesCount > 5 && _currentPage > 2)
+                pageStartIndex = _currentPage - 2;
 
-            if (PagesCount > 5 && CurrentPage > PagesCount - 2)
-                pageStartIndex = PagesCount - 4;
+            if (_pagesCount > 5 && _currentPage > _pagesCount - 2)
+                pageStartIndex = _pagesCount - 4;
 
             for (int i = pageStartIndex; i < pageStartIndex + 5; i++)
             {
-                if (i > PagesCount)
+                if (i > _pagesCount)
                 {
                     items[i - pageStartIndex].Visible = false;
                 }
                 else
                 {
-                    //Changing the page numbers
                     items[i - pageStartIndex].Text = i.ToString(CultureInfo.InvariantCulture);
 
-                    //Setting the Appearance of the page number buttons
-                    if (i == CurrentPage)
+                    if (i == _currentPage)
                     {
                         items[i - pageStartIndex].BackColor = Color.Black;
                         items[i - pageStartIndex].ForeColor = Color.White;
@@ -124,13 +122,12 @@ namespace MercadoEnvio.Historial_Cliente
                 }
             }
 
-            //Enabling or Disalbing pagination first, last, previous , next buttons
-            if (CurrentPage == 1)
+            if (_currentPage == 1)
                 btnBackward.Enabled = btnFirst.Enabled = false;
             else
                 btnBackward.Enabled = btnFirst.Enabled = true;
 
-            if (CurrentPage == PagesCount)
+            if (_currentPage == _pagesCount)
                 btnForward.Enabled = btnLast.Enabled = false;
 
             else
@@ -139,30 +136,28 @@ namespace MercadoEnvio.Historial_Cliente
 
         private void ToolStripButtonClick(object sender, EventArgs e)
         {
-            ToolStripButton ToolStripButton = ((ToolStripButton)sender);
+            ToolStripButton toolStripButton = ((ToolStripButton)sender);
 
-            //Determining the current page
-            if (ToolStripButton == btnBackward)
-                CurrentPage--;
-            else if (ToolStripButton == btnForward)
-                CurrentPage++;
-            else if (ToolStripButton == btnLast)
-                CurrentPage = PagesCount;
-            else if (ToolStripButton == btnFirst)
-                CurrentPage = 1;
+            if (toolStripButton == btnBackward)
+                _currentPage--;
+            else if (toolStripButton == btnForward)
+                _currentPage++;
+            else if (toolStripButton == btnLast)
+                _currentPage = _pagesCount;
+            else if (toolStripButton == btnFirst)
+                _currentPage = 1;
             else
-                CurrentPage = Convert.ToInt32(ToolStripButton.Text, CultureInfo.InvariantCulture);
+                _currentPage = Convert.ToInt32(toolStripButton.Text, CultureInfo.InvariantCulture);
 
-            if (CurrentPage < 1)
-                CurrentPage = 1;
-            else if (CurrentPage > PagesCount)
-                CurrentPage = PagesCount;
+            if (_currentPage < 1)
+                _currentPage = 1;
+            else if (_currentPage > _pagesCount)
+                _currentPage = _pagesCount;
 
             RebindGridForPageChange();
             RefreshPagination();
 
         }
         #endregion
-
     }
 }

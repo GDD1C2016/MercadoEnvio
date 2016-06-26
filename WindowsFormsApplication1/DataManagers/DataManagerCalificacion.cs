@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Helpers;
 using System.Configuration;
@@ -13,16 +10,15 @@ namespace MercadoEnvio.DataManagers
 {
     public class DataManagerCalificacion
     {
-        public static List<Calificacion> GetUltimas(int cantidad)
+        public static List<Calificacion> GetUltimas(int idUsuario, int cantidad)
         {
-            List<Calificacion> listaCalificaciones = new List<Calificacion>();
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
                 db.BeginTransaction();
 
-                listaCalificaciones = GetUltimas(cantidad,db);
+                List<Calificacion> listaCalificaciones = GetUltimas(idUsuario, cantidad, db);
 
                 db.EndConnection();
 
@@ -30,9 +26,20 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
-        private static List<Calificacion> GetUltimas(int cantidad, DataBaseHelper db)
+        private static List<Calificacion> GetUltimas(int idUsuario, int cantidad, DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetUltimasCalificaciones"); //TODO HACER ESTE SP
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            SqlParameter cantidadParameter = new SqlParameter("@Cantidad", SqlDbType.Int);
+            cantidadParameter.Value = cantidad;
+
+            parameters.Add(idUsuarioParameter);
+            parameters.Add(cantidadParameter);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetUltimasCalificaciones", parameters);
             List<Calificacion> calificaciones = new List<Calificacion>();
             foreach (DataRow row in res.Rows)
             {
@@ -41,7 +48,7 @@ namespace MercadoEnvio.DataManagers
                 calificacion.DescripcionCompra = Convert.ToString(row["DescripcionCompra"]);
                 calificacion.IdCalificacion = Convert.ToDecimal(row["IdCalificacion"]);
                 calificacion.IdCompra = Convert.ToInt32(row["IdCompra"]);
-                calificacion.Observaciones = Convert.ToString(row["Observaciones"]);
+                calificacion.Observaciones = Convert.ToString(row["Descripcion"]);
 
                 calificaciones.Add(calificacion);
             }
@@ -63,22 +70,35 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
-        public static void InsertNewCalificacion(Calificacion calificacion, DataBaseHelper db)
+        private static void InsertNewCalificacion(Calificacion calificacion, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertNewCalificacion", parameters); //TODO HACER ESTE SP
+
+            SqlParameter idCompraParameter = new SqlParameter("@IdCompra", SqlDbType.Int);
+            idCompraParameter.Value = calificacion.IdCompra;
+
+            SqlParameter cantEstrellasParameter = new SqlParameter("@CantEstrellas", SqlDbType.Int);
+            cantEstrellasParameter.Value = calificacion.CantEstrellas;
+
+            SqlParameter descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.Int);
+            descripcionParameter.Value = calificacion.Observaciones;
+
+            parameters.Add(idCompraParameter);
+            parameters.Add(cantEstrellasParameter);
+            parameters.Add(descripcionParameter);
+
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertNewCalificacion", parameters);
         }
 
-        public static int GetCantidadDeEstrellasDadas(int cantidadEstrellas, int idUsuario)
+        public static int GetCantidadCalificacionesDadas(int cantidadEstrellas, int idUsuario)
         {
-            int cantidad = 0;
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
                 db.BeginTransaction();
 
-                cantidad = GetCantidadDeEstrellasDadas(cantidadEstrellas,idUsuario, db);
+                var cantidad = GetCantidadCalificacionesDadas(cantidadEstrellas,idUsuario, db);
 
                 db.EndConnection();
 
@@ -86,11 +106,20 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
-        public static int GetCantidadDeEstrellasDadas(int cantidadEstrellas, int idUsuario, DataBaseHelper db)
+        private static int GetCantidadCalificacionesDadas(int cantidadEstrellas, int idUsuario, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
-            int cantidad = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_GetCantidadEstrellas", parameters);//TODO HACER ESTE SP
-            return cantidad;
+
+            SqlParameter cantidadEstrellasParameter = new SqlParameter("@CantidadEstrellas", SqlDbType.Int);
+            cantidadEstrellasParameter.Value = cantidadEstrellas;
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+            
+            parameters.Add(cantidadEstrellasParameter);
+            parameters.Add(idUsuarioParameter);
+
+            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_GetCantidadCalificacionesDadas", parameters);
         }
     }
 }

@@ -460,4 +460,25 @@
   <data name="Monto" xml:space="preserve">
     <value>Monto</value>
   </data>
+  <data name="Articulo" xml:space="preserve">
+    <value>Artículo</value>
+  </data>
+  <data name="Calificacion" xml:space="preserve">
+    <value>Calificación</value>
+  </data>
+  <data name="Observacion" xml:space="preserve">
+    <value>Observación</value>
+  </data>
+  <data name="IdCompra" xml:space="preserve">
+    <value>ID Compra</value>
+  </data>
+  <data name="Vendedor" xml:space="preserve">
+    <value>Vendedor</value>
+  </data>
+  <data name="Fecha" xml:space="preserve">
+    <value>Fecha</value>
+  </data>
+  <data name="TipoPublicacion" xml:space="preserve">
+    <value>Tipo de Publicación</value>
+  </data>
 </root>

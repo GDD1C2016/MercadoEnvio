@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
@@ -19,6 +18,8 @@ namespace MercadoEnvio.ABM_Usuario
         public AltaUsuario(Usuario usuario)
         {
             InitializeComponent();
+
+            Usuario = usuario;
 
             #region armadoDeGrillaRoles
             BindingList<Rol> dataSource = new BindingList<Rol>(usuario.Roles);

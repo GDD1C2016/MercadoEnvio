@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Servicios;
@@ -14,6 +10,7 @@ namespace MercadoEnvio.Calificar
     public partial class CalificarVendedor : Form
     {
         public Compra CompraSeleccionada { get; set; }
+
         public CalificarVendedor()
         {
             InitializeComponent();
@@ -41,14 +38,14 @@ namespace MercadoEnvio.Calificar
             calificacion.IdCompra = CompraSeleccionada.IdCompra;
 
             CalificacionesServices.InsertNewCalificacion(calificacion);
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

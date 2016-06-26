@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
+using MercadoEnvio.Properties;
 using MercadoEnvio.Servicios;
 
 namespace MercadoEnvio.Calificar
@@ -15,6 +12,7 @@ namespace MercadoEnvio.Calificar
     public partial class MainCalificaciones : Form
     {
         public Usuario Usuario { get; set; }
+
         public MainCalificaciones()
         {
             InitializeComponent();
@@ -23,49 +21,44 @@ namespace MercadoEnvio.Calificar
         private void MainCalificaciones_Load(object sender, EventArgs e)
         {
             #region armadoDeGrillaUltimas5
-            
-
             DgUltimas5.AutoGenerateColumns = false;
-            DgUltimas5.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DescripcionCompra", HeaderText = "Articulo", Name = "DescripcionCompra" });
-            DgUltimas5.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CantEstrellas", HeaderText = "Calificación", Name = "CantEstrellas" });
-            DgUltimas5.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Observaciones", HeaderText = "Observación", Name = "Observaciones" });
+            DgUltimas5.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DescripcionCompra", HeaderText = Resources.Articulo, Name = "DescripcionCompra" });
+            DgUltimas5.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CantEstrellas", HeaderText = Resources.Calificacion, Name = "CantEstrellas" });
+            DgUltimas5.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Observaciones", HeaderText = Resources.Observacion, Name = "Observaciones" });
 
             DgUltimas5.DataSource = GetUltimasCalificaciones();
             #endregion
 
-            #region armadoDeGrillaPendientes
-           
+            #region armadoDeGrillaPendientes          
             DgPendientes.AutoGenerateColumns = false;
-            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdCompra", HeaderText = "IdCompra", Name = "IdCompra" });
-            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DescripcionPublicacion", HeaderText = "Descripción", Name = "DescripcionPublicacion" });
-            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Vendedor", HeaderText = "Vendedor", Name = "Vendedor" });
-            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = "Fecha", Name = "Fecha" });
-            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "TipoPublicacion", HeaderText = "Tipo de Publicación", Name = "TipoPublicacion" });
-            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cantidad", HeaderText = "Cantidad", Name = "Cantidad" });
+            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdCompra", HeaderText = Resources.IdCompra, Name = "IdCompra" });
+            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DescripcionPublicacion", HeaderText = Resources.Descripcion, Name = "DescripcionPublicacion" });
+            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Vendedor", HeaderText = Resources.Vendedor, Name = "Vendedor" });
+            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = Resources.Fecha, Name = "Fecha" });
+            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "TipoPublicacion", HeaderText = Resources.TipoPublicacion, Name = "TipoPublicacion" });
+            DgPendientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cantidad", HeaderText = Resources.Cantidad, Name = "Cantidad" });
 
             DgPendientes.DataSource = GetPendientes();
             #endregion
 
             #region llenadoDatosUsuario
-
-            LabelReputacionTxt.Text = Usuario.Reputacion.ToString();
+            LabelReputacionTxt.Text = Usuario.Reputacion.ToString(CultureInfo.CurrentCulture);
             LabelUsuarioTxt.Text = Usuario.UserName;
-
             #endregion
-
         }
 
         private BindingSource GetPendientes()
         {
-            List<Compra> listAux = new List<Compra>(ComprasServices.GetAllData());
+            List<Compra> listAux = new List<Compra>(ComprasServices.GetComprasPendientesDeCalificacion(Usuario.IdUsuario));
             BindingList<Compra> list = new BindingList<Compra>(listAux);
             BindingSource bsPendientes = new BindingSource();
             bsPendientes.DataSource = list;
             return bsPendientes;
         }
+
         private BindingSource GetUltimasCalificaciones()
         {
-            BindingList<Calificacion> dataSourceUltimas5 = new BindingList<Calificacion>(CalificacionesServices.GetUltimas(5));
+            BindingList<Calificacion> dataSourceUltimas5 = new BindingList<Calificacion>(CalificacionesServices.GetUltimas(Usuario.IdUsuario, 5));
             BindingSource bsUltimas5 = new BindingSource();
             bsUltimas5.DataSource = dataSourceUltimas5;
 

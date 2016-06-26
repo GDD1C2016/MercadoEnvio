@@ -91,7 +91,7 @@ namespace MercadoEnvio.ComprarOfertar
             }
             else
             {
-                int numero = PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals("Subasta", StringComparison.CurrentCultureIgnoreCase) ? PublicacionesServices.Ofertar(PublicacionSeleccionada, UsuarioActivo, TxtOfertar.Text) : PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, TxtCantidad.Text, CheckBoxEnvio.Checked);
+                var numero = PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals("Subasta", StringComparison.CurrentCultureIgnoreCase) ? PublicacionesServices.Ofertar(PublicacionSeleccionada, UsuarioActivo, TxtOfertar.Text) : PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, TxtCantidad.Text, CheckBoxEnvio.Checked);
                 MessageBox.Show(Resources.NroDeCompra + numero, Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 DialogResult = DialogResult.OK;
             }
@@ -106,14 +106,14 @@ namespace MercadoEnvio.ComprarOfertar
 
             if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Contains("Compra"))
             {
-                int cantidad = Convert.ToInt32(TxtCantidad.Text);
+                var cantidad = Convert.ToInt32(TxtCantidad.Text);
 
                 if (cantidad > PublicacionSeleccionada.Stock)
                     errors.Add(Resources.ErrorStock);
             }
             else
             {
-                int oferta = Convert.ToInt32(TxtOfertar.Text);
+                var oferta = Convert.ToInt32(TxtOfertar.Text);
 
                 if (oferta < PublicacionSeleccionada.Precio)
                     errors.Add(Resources.ErrorOferta);

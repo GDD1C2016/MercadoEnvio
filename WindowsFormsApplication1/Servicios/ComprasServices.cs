@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using MercadoEnvio.Entidades;
 
 namespace MercadoEnvio.Servicios
@@ -14,9 +10,9 @@ namespace MercadoEnvio.Servicios
             return DataManagers.DataManagerPublicaciones.GetPendientesCalificar();
         }
 
-        public static List<Compra> GetAllData()
+        public static List<Compra> GetComprasPendientesDeCalificacion(int idUsuario)
         {
-            return DataManagers.DataManagerCompras.GetAllData();
+            return DataManagers.DataManagerCompras.GetComprasPendientesDeCalificacion(idUsuario);
         }
     }
 }
