@@ -63,7 +63,7 @@ namespace MercadoEnvio.Historial_Cliente
 
         private BindingList<Compra> FillDataforGrid()
         {
-            List<Compra> listAux = new List<Compra>(ComprasServices.GetComprasPendientesDeCalificacion());
+            List<Compra> listAux = new List<Compra>(ComprasServices.GetComprasPendientesDeCalificacion(Usuario.IdUsuario));
             BindingList<Compra> list = new BindingList<Compra>(listAux);
             return list;
         }

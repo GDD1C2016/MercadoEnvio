@@ -30,6 +30,15 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFacturas));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.TxtDirigidaA = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TxtImporteHasta = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.TxtImporteDesde = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.DatePickerFechaHasta = new System.Windows.Forms.DateTimePicker();
+            this.DatePickerFechaDesde = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.PagingPanel = new System.Windows.Forms.Panel();
@@ -46,16 +55,7 @@
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.DgFacturas = new System.Windows.Forms.DataGridView();
-            this.DatePickerFechaDesde = new System.Windows.Forms.DateTimePicker();
-            this.DatePickerFechaHasta = new System.Windows.Forms.DateTimePicker();
-            this.label3 = new System.Windows.Forms.Label();
-            this.TxtImporteDesde = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.TxtImporteHasta = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.TxtDetalles = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.TxtDirigidaA = new System.Windows.Forms.TextBox();
+            this.ComboDetalles = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.PagingPanel.SuspendLayout();
             this.toolStripPaging.SuspendLayout();
@@ -64,9 +64,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.ComboDetalles);
             this.groupBox1.Controls.Add(this.TxtDirigidaA);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.TxtDetalles);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.TxtImporteHasta);
             this.groupBox1.Controls.Add(this.label4);
@@ -83,6 +83,81 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de Búsqueda";
+            // 
+            // TxtDirigidaA
+            // 
+            this.TxtDirigidaA.Location = new System.Drawing.Point(421, 76);
+            this.TxtDirigidaA.Name = "TxtDirigidaA";
+            this.TxtDirigidaA.Size = new System.Drawing.Size(110, 20);
+            this.TxtDirigidaA.TabIndex = 45;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(363, 79);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 13);
+            this.label6.TabIndex = 44;
+            this.label6.Text = "Dirigida A";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 79);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(84, 13);
+            this.label5.TabIndex = 42;
+            this.label5.Text = "Detalles Factura";
+            // 
+            // TxtImporteHasta
+            // 
+            this.TxtImporteHasta.Location = new System.Drawing.Point(616, 26);
+            this.TxtImporteHasta.Name = "TxtImporteHasta";
+            this.TxtImporteHasta.Size = new System.Drawing.Size(86, 20);
+            this.TxtImporteHasta.TabIndex = 41;
+            this.TxtImporteHasta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtImporteDesde_KeyPress);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(537, 29);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(73, 13);
+            this.label4.TabIndex = 40;
+            this.label4.Text = "Importe Hasta";
+            // 
+            // TxtImporteDesde
+            // 
+            this.TxtImporteDesde.Location = new System.Drawing.Point(445, 26);
+            this.TxtImporteDesde.Name = "TxtImporteDesde";
+            this.TxtImporteDesde.Size = new System.Drawing.Size(86, 20);
+            this.TxtImporteDesde.TabIndex = 39;
+            this.TxtImporteDesde.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtImporteDesde_KeyPress);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(363, 29);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 13);
+            this.label3.TabIndex = 38;
+            this.label3.Text = "Importe Desde";
+            // 
+            // DatePickerFechaHasta
+            // 
+            this.DatePickerFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DatePickerFechaHasta.Location = new System.Drawing.Point(261, 26);
+            this.DatePickerFechaHasta.Name = "DatePickerFechaHasta";
+            this.DatePickerFechaHasta.Size = new System.Drawing.Size(96, 20);
+            this.DatePickerFechaHasta.TabIndex = 37;
+            // 
+            // DatePickerFechaDesde
+            // 
+            this.DatePickerFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.DatePickerFechaDesde.Location = new System.Drawing.Point(86, 26);
+            this.DatePickerFechaDesde.Name = "DatePickerFechaDesde";
+            this.DatePickerFechaDesde.Size = new System.Drawing.Size(95, 20);
+            this.DatePickerFechaDesde.TabIndex = 36;
             // 
             // label2
             // 
@@ -258,87 +333,13 @@
             this.DgFacturas.Size = new System.Drawing.Size(710, 346);
             this.DgFacturas.TabIndex = 9;
             // 
-            // DatePickerFechaDesde
+            // ComboDetalles
             // 
-            this.DatePickerFechaDesde.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatePickerFechaDesde.Location = new System.Drawing.Point(86, 26);
-            this.DatePickerFechaDesde.Name = "DatePickerFechaDesde";
-            this.DatePickerFechaDesde.Size = new System.Drawing.Size(95, 20);
-            this.DatePickerFechaDesde.TabIndex = 36;
-            // 
-            // DatePickerFechaHasta
-            // 
-            this.DatePickerFechaHasta.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.DatePickerFechaHasta.Location = new System.Drawing.Point(261, 26);
-            this.DatePickerFechaHasta.Name = "DatePickerFechaHasta";
-            this.DatePickerFechaHasta.Size = new System.Drawing.Size(96, 20);
-            this.DatePickerFechaHasta.TabIndex = 37;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(363, 29);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(76, 13);
-            this.label3.TabIndex = 38;
-            this.label3.Text = "Importe Desde";
-            // 
-            // TxtImporteDesde
-            // 
-            this.TxtImporteDesde.Location = new System.Drawing.Point(445, 26);
-            this.TxtImporteDesde.Name = "TxtImporteDesde";
-            this.TxtImporteDesde.Size = new System.Drawing.Size(86, 20);
-            this.TxtImporteDesde.TabIndex = 39;
-            this.TxtImporteDesde.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtImporteDesde_KeyPress);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(537, 29);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(73, 13);
-            this.label4.TabIndex = 40;
-            this.label4.Text = "Importe Hasta";
-            // 
-            // TxtImporteHasta
-            // 
-            this.TxtImporteHasta.Location = new System.Drawing.Point(616, 26);
-            this.TxtImporteHasta.Name = "TxtImporteHasta";
-            this.TxtImporteHasta.Size = new System.Drawing.Size(86, 20);
-            this.TxtImporteHasta.TabIndex = 41;
-            this.TxtImporteHasta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtImporteDesde_KeyPress);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 79);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(84, 13);
-            this.label5.TabIndex = 42;
-            this.label5.Text = "Detalles Factura";
-            // 
-            // TxtDetalles
-            // 
-            this.TxtDetalles.Location = new System.Drawing.Point(102, 76);
-            this.TxtDetalles.Name = "TxtDetalles";
-            this.TxtDetalles.Size = new System.Drawing.Size(255, 20);
-            this.TxtDetalles.TabIndex = 43;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(363, 79);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(52, 13);
-            this.label6.TabIndex = 44;
-            this.label6.Text = "Dirigida A";
-            // 
-            // TxtDirigidaA
-            // 
-            this.TxtDirigidaA.Location = new System.Drawing.Point(421, 76);
-            this.TxtDirigidaA.Name = "TxtDirigidaA";
-            this.TxtDirigidaA.Size = new System.Drawing.Size(110, 20);
-            this.TxtDirigidaA.TabIndex = 45;
+            this.ComboDetalles.FormattingEnabled = true;
+            this.ComboDetalles.Location = new System.Drawing.Point(102, 76);
+            this.ComboDetalles.Name = "ComboDetalles";
+            this.ComboDetalles.Size = new System.Drawing.Size(255, 21);
+            this.ComboDetalles.TabIndex = 46;
             // 
             // MainFacturas
             // 
@@ -387,7 +388,6 @@
         private System.Windows.Forms.DataGridView DgFacturas;
         private System.Windows.Forms.TextBox TxtDirigidaA;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox TxtDetalles;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox TxtImporteHasta;
         private System.Windows.Forms.Label label4;
@@ -395,5 +395,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DateTimePicker DatePickerFechaHasta;
         private System.Windows.Forms.DateTimePicker DatePickerFechaDesde;
+        private System.Windows.Forms.ComboBox ComboDetalles;
     }
 }

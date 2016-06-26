@@ -44,6 +44,16 @@ namespace MercadoEnvio.Facturas
             RefreshPagination();
             RebindGridForPageChange();
             #endregion
+
+            #region armadoComboDetalles
+            string detalleTodos = "--Todos--";
+
+            List<string> detalles = new List<string>();
+            detalles.Add(detalleTodos);
+
+            ComboDetalles.DataSource = detalles;
+            ComboDetalles.DropDownStyle = ComboBoxStyle.DropDownList;
+            #endregion
         }
 
         private BindingList<Factura> FillDataforGrid()
@@ -165,7 +175,7 @@ namespace MercadoEnvio.Facturas
 
             decimal filtroImporteDesde = Convert.ToDecimal(TxtImporteDesde.Text);
             decimal filtroImporteHasta = Convert.ToDecimal(TxtImporteHasta.Text);
-            string filtroDetallesFactura = TxtDetalles.Text;
+            string filtroDetallesFactura = ((string)ComboDetalles.SelectedItem);
             string filtroDirigidaA = TxtDirigidaA.Text;
 
             List<Factura> listAux = new List<Factura>(ComprasServices.FindFacturas(filtroFechaDesde,filtroFechaHasta,filtroImporteDesde,filtroImporteHasta,filtroDetallesFactura,filtroDirigidaA));
