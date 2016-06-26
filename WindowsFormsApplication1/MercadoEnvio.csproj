@@ -154,6 +154,7 @@
     <Compile Include="Generar Publicación\GenerarPublicacion.Designer.cs">
       <DependentUpon>GenerarPublicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FechaHelper.cs" />
     <Compile Include="Historial Cliente\MainHistorialCliente.cs">
       <SubType>Form</SubType>
     </Compile>

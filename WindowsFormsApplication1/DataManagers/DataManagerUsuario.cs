@@ -384,7 +384,7 @@ namespace MercadoEnvio.DataManagers
             rubroParameter.Value = newEmpresa.Rubro.Trim();
 
             SqlParameter fechaCreacionParameter = new SqlParameter("@FechaCreacion", SqlDbType.DateTime);
-            fechaCreacionParameter.Value = DateTime.Now; // TODO Recuperar del app.config
+            fechaCreacionParameter.Value = new FechaHelper().GetSystemDate();
 
             parameters.Add(idUsuarioParameter);
             parameters.Add(razonSocialParameter);
@@ -493,7 +493,7 @@ namespace MercadoEnvio.DataManagers
             fechaNacimientoParameter.Value = newCliente.FechaNacimiento.Date;
 
             SqlParameter fechaCreacionParameter = new SqlParameter("@FechaCreacion", SqlDbType.DateTime);
-            fechaCreacionParameter.Value = DateTime.Now; // TODO Recuperar del app.config
+            fechaCreacionParameter.Value = new FechaHelper().GetSystemDate();
 
             parameters.Add(idUsuarioParameter);
             parameters.Add(apellidoParameter);

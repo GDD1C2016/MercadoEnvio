@@ -460,4 +460,7 @@
   <data name="Monto" xml:space="preserve">
     <value>Monto</value>
   </data>
+  <data name="ErrorEnFechaSistema" xml:space="preserve">
+    <value>Error al obtener la fecha del archivo de configuración</value>
+  </data>
 </root>

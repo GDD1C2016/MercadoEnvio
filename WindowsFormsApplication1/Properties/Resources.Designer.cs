@@ -440,6 +440,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error al obtener la fecha del archivo de configuración.
+        /// </summary>
+        internal static string ErrorEnFechaSistema {
+            get {
+                return ResourceManager.GetString("ErrorEnFechaSistema", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error en la operación.
         /// </summary>
         internal static string ErrorEnLaOperacion {
