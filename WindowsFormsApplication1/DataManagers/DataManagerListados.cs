@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Helpers;
 
@@ -15,14 +12,13 @@ namespace MercadoEnvio.DataManagers
 
         public static List<Vendedor> GetListadoVendedoresMontos(int trimestre, int anio)
         {
-            List<Vendedor> listaVendedores = new List<Vendedor>();
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
                 db.BeginTransaction();
 
-                listaVendedores = GetListadoVendedoresMontos(trimestre, anio, db);
+                List<Vendedor> listaVendedores = GetListadoVendedoresMontos(trimestre, anio, db);
 
                 db.EndConnection();
 
@@ -50,14 +46,13 @@ namespace MercadoEnvio.DataManagers
 
         public static List<Vendedor> GetListadoVendedoresFacturas(int trimestre, int anio)
         {
-            List<Vendedor> listaVendedores = new List<Vendedor>();
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
                 db.BeginTransaction();
 
-                listaVendedores = GetListadoVendedoresFacturas(trimestre, anio, db);
+                List<Vendedor> listaVendedores = GetListadoVendedoresFacturas(trimestre, anio, db);
 
                 db.EndConnection();
 
@@ -85,14 +80,13 @@ namespace MercadoEnvio.DataManagers
 
         public static List<Cliente> GetListadoClientesProductosComprados(int trimestre, int anio, Rubro rubro)
         {
-            List<Cliente> clientes = new List<Cliente>();
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
                 db.BeginTransaction();
 
-                clientes = GetListadoClientesProductosComprados(trimestre, anio,rubro, db);
+                List<Cliente> clientes = GetListadoClientesProductosComprados(trimestre, anio, rubro, db);
 
                 db.EndConnection();
 
@@ -122,14 +116,13 @@ namespace MercadoEnvio.DataManagers
 
         public static List<Vendedor> GetListadoVendedoresProductosNoVendidos(int trimestre, int anio)
         {
-            List<Vendedor> listaVendedores = new List<Vendedor>();
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
                 db.BeginTransaction();
 
-                listaVendedores = GetListadoVendedoresProductosNoVendidos(trimestre, anio, db);
+                List<Vendedor> listaVendedores = GetListadoVendedoresProductosNoVendidos(trimestre, anio, db);
 
                 db.EndConnection();
 

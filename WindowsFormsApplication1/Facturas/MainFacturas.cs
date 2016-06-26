@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Properties;
@@ -16,11 +13,11 @@ namespace MercadoEnvio.Facturas
     public partial class MainFacturas : Form
     {
         #region variablesPaginador
-        private int CurrentPage = 1;
-        int PagesCount = 1;
-        int PageRows = 12;
-        BindingList<Factura> Baselist = null;
-        BindingList<Factura> Templist = null;
+        private int _currentPage = 1;
+        int _pagesCount = 1;
+        private const int PageRows = 12;
+        BindingList<Factura> _baselist;
+        BindingList<Factura> _templist;
         #endregion
 
         public Usuario Usuario { get; set; }
@@ -35,15 +32,15 @@ namespace MercadoEnvio.Facturas
             #region armadoDeGrillaPublicaciones
 
             DgFacturas.AutoGenerateColumns = false;
-            DgFacturas.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdFactura", HeaderText = "IdFactura", Name = "IdFactura" });
-            DgFacturas.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdPublicacion", HeaderText = "IdPublicacion", Name = "IdPublicacion" });
-            DgFacturas.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = "Fecha", Name = "Fecha" });
-            DgFacturas.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Total", HeaderText = "Total", Name = "Total" });
+            DgFacturas.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdFactura", HeaderText = Resources.IdFactura, Name = "IdFactura" });
+            DgFacturas.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdPublicacion", HeaderText = Resources.IdPublicacion, Name = "IdPublicacion" });
+            DgFacturas.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = Resources.Fecha, Name = "Fecha" });
+            DgFacturas.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Total", HeaderText = Resources.Total, Name = "Total" });
 
-            Baselist = FillDataforGrid();
-            PagesCount = Convert.ToInt32(Math.Ceiling(Baselist.Count * 1.0 / PageRows));
+            _baselist = FillDataforGrid();
+            _pagesCount = Convert.ToInt32(Math.Ceiling(_baselist.Count * 1.0 / PageRows));
 
-            CurrentPage = 1;
+            _currentPage = 1;
             RefreshPagination();
             RebindGridForPageChange();
             #endregion
@@ -51,25 +48,25 @@ namespace MercadoEnvio.Facturas
 
         private BindingList<Factura> FillDataforGrid()
         {
-            BindingList<Factura> list = new BindingList<Factura>(ComprasServices.GetFacturas());
+            BindingList<Factura> list = new BindingList<Factura>(ComprasServices.GetFacturas(Usuario.IdUsuario));
             return list;
         }
 
         #region MetodosPaginador
         private void RebindGridForPageChange()
         {
-            int datasourcestartIndex = (CurrentPage - 1) * PageRows;
-            Templist = new BindingList<Factura>();
+            int datasourcestartIndex = (_currentPage - 1) * PageRows;
+            _templist = new BindingList<Factura>();
             for (int i = datasourcestartIndex; i < datasourcestartIndex + PageRows; i++)
             {
-                if (i >= Baselist.Count)
+                if (i >= _baselist.Count)
                     break;
 
-                Templist.Add(Baselist[i]);
+                _templist.Add(_baselist[i]);
             }
 
             BindingSource bs = new BindingSource();
-            bs.DataSource = Templist;
+            bs.DataSource = _templist;
 
             DgFacturas.DataSource = bs;
             DgFacturas.Refresh();
@@ -82,15 +79,15 @@ namespace MercadoEnvio.Facturas
             //pageStartIndex contains the first button number of pagination
             int pageStartIndex = 1;
 
-            if (PagesCount > 5 && CurrentPage > 2)
-                pageStartIndex = CurrentPage - 2;
+            if (_pagesCount > 5 && _currentPage > 2)
+                pageStartIndex = _currentPage - 2;
 
-            if (PagesCount > 5 && CurrentPage > PagesCount - 2)
-                pageStartIndex = PagesCount - 4;
+            if (_pagesCount > 5 && _currentPage > _pagesCount - 2)
+                pageStartIndex = _pagesCount - 4;
 
             for (int i = pageStartIndex; i < pageStartIndex + 5; i++)
             {
-                if (i > PagesCount)
+                if (i > _pagesCount)
                 {
                     items[i - pageStartIndex].Visible = false;
                 }
@@ -100,7 +97,7 @@ namespace MercadoEnvio.Facturas
                     items[i - pageStartIndex].Text = i.ToString(CultureInfo.InvariantCulture);
 
                     //Setting the appearance of the page number buttons
-                    if (i == CurrentPage)
+                    if (i == _currentPage)
                     {
                         items[i - pageStartIndex].BackColor = Color.Black;
                         items[i - pageStartIndex].ForeColor = Color.White;
@@ -114,12 +111,12 @@ namespace MercadoEnvio.Facturas
             }
 
             //Enabling or disabling pagination first, last, previous, next buttons
-            if (CurrentPage == 1)
+            if (_currentPage == 1)
                 btnBackward.Enabled = btnFirst.Enabled = false;
             else
                 btnBackward.Enabled = btnFirst.Enabled = true;
 
-            if (CurrentPage == PagesCount)
+            if (_currentPage == _pagesCount)
                 btnForward.Enabled = btnLast.Enabled = false;
 
             else
@@ -132,20 +129,20 @@ namespace MercadoEnvio.Facturas
 
             //Determining the current page
             if (toolStripButton == btnBackward)
-                CurrentPage--;
+                _currentPage--;
             else if (toolStripButton == btnForward)
-                CurrentPage++;
+                _currentPage++;
             else if (toolStripButton == btnLast)
-                CurrentPage = PagesCount;
+                _currentPage = _pagesCount;
             else if (toolStripButton == btnFirst)
-                CurrentPage = 1;
+                _currentPage = 1;
             else
-                CurrentPage = Convert.ToInt32(toolStripButton.Text, CultureInfo.InvariantCulture);
+                _currentPage = Convert.ToInt32(toolStripButton.Text, CultureInfo.InvariantCulture);
 
-            if (CurrentPage < 1)
-                CurrentPage = 1;
-            else if (CurrentPage > PagesCount)
-                CurrentPage = PagesCount;
+            if (_currentPage < 1)
+                _currentPage = 1;
+            else if (_currentPage > _pagesCount)
+                _currentPage = _pagesCount;
 
             RebindGridForPageChange();
             RefreshPagination();
@@ -163,11 +160,8 @@ namespace MercadoEnvio.Facturas
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            DateTime filtroFechaDesde = new DateTime();
-            filtroFechaDesde = DatePickerFechaDesde.Value;
-
-            DateTime filtroFechaHasta = new DateTime();
-            filtroFechaHasta = DatePickerFechaHasta.Value;
+            DateTime filtroFechaDesde = DatePickerFechaDesde.Value; // TODO Si la fecha default es la del archivo de configuración, sumar 1 día
+            DateTime filtroFechaHasta = DatePickerFechaHasta.Value;
 
             decimal filtroImporteDesde = Convert.ToDecimal(TxtImporteDesde.Text);
             decimal filtroImporteHasta = Convert.ToDecimal(TxtImporteHasta.Text);

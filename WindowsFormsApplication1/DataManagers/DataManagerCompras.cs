@@ -35,7 +35,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(idUsuarioParameter);
             
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetCompras", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetComprasPendientesCalificacion", parameters);
             List<Compra> compras = new List<Compra>();
             foreach (DataRow row in res.Rows)
             {
@@ -55,16 +55,15 @@ namespace MercadoEnvio.DataManagers
             return compras;
         }
 
-        public static List<Factura> GetFacturas()
+        public static List<Factura> GetFacturas(int idUsuario)
         {
-            List<Factura> facturas = new List<Factura>();
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
                 db.BeginTransaction();
 
-                facturas = GetFacturas(db);
+                List<Factura> facturas = GetFacturas(idUsuario, db);
 
                 db.EndConnection();
 
@@ -72,9 +71,16 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
-        private static List<Factura> GetFacturas(DataBaseHelper db)
+        private static List<Factura> GetFacturas(int idUsuario, DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetFacturas"); //TODO HACER SP
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            parameters.Add(idUsuarioParameter);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetFacturas", parameters);
             List<Factura> facturas = new List<Factura>();
             foreach (DataRow row in res.Rows)
             {
@@ -93,14 +99,13 @@ namespace MercadoEnvio.DataManagers
 
         public static List<Factura> FindFacturas(DateTime filtroFechaDesde, DateTime filtroFechaHasta, decimal filtroImporteDesde, decimal filtroImporteHasta, string filtroDetallesFactura, string filtroDirigidaA)
         {
-            List<Factura> facturas = new List<Factura>();
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
                 db.BeginTransaction();
 
-                facturas = FindFacturas(filtroFechaDesde, filtroFechaHasta, filtroImporteDesde, filtroImporteHasta, filtroDetallesFactura, filtroDirigidaA, db);
+                List<Factura> facturas = FindFacturas(filtroFechaDesde, filtroFechaHasta, filtroImporteDesde, filtroImporteHasta, filtroDetallesFactura, filtroDirigidaA, db);
 
                 db.EndConnection();
 
@@ -110,7 +115,34 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Factura> FindFacturas(DateTime filtroFechaDesde, DateTime filtroFechaHasta, decimal filtroImporteDesde, decimal filtroImporteHasta, string filtroDetallesFactura, string filtroDirigidaA, DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_FindFacturas"); //TODO HACER SP Y PARAMETROS!!
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter filtroFechaDesdeParameter = new SqlParameter("@FiltroFechaDesde", SqlDbType.DateTime);
+            filtroFechaDesdeParameter.Value = filtroFechaDesde;
+
+            SqlParameter filtroFechaHastaParameter = new SqlParameter("@FiltroFechaHasta", SqlDbType.DateTime);
+            filtroFechaHastaParameter.Value = filtroFechaHasta;
+
+            SqlParameter filtroImporteDesdeParameter = new SqlParameter("@FiltroImporteDesde", SqlDbType.Decimal);
+            filtroImporteDesdeParameter.Value = filtroImporteDesde;
+
+            SqlParameter filtroImporteHastaParameter = new SqlParameter("@FiltroImporteHasta", SqlDbType.Decimal);
+            filtroImporteHastaParameter.Value = filtroImporteHasta;
+
+            SqlParameter filtroDetallesFacturaParameter = new SqlParameter("@FiltroDetallesFactura", SqlDbType.NVarChar);
+            filtroDetallesFacturaParameter.Value = filtroDetallesFactura;
+
+            SqlParameter filtroDirigidaAParameter = new SqlParameter("@FiltroDirigidaA", SqlDbType.NVarChar);
+            filtroDirigidaAParameter.Value = filtroDirigidaA;
+
+            parameters.Add(filtroFechaDesdeParameter);
+            parameters.Add(filtroFechaHastaParameter);
+            parameters.Add(filtroImporteDesdeParameter);
+            parameters.Add(filtroImporteHastaParameter);
+            parameters.Add(filtroDetallesFacturaParameter);
+            parameters.Add(filtroDirigidaAParameter);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_FindFacturas", parameters);
             List<Factura> facturas = new List<Factura>();
             foreach (DataRow row in res.Rows)
             {

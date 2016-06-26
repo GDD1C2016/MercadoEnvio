@@ -481,4 +481,13 @@
   <data name="TipoPublicacion" xml:space="preserve">
     <value>Tipo de Publicación</value>
   </data>
+  <data name="IdFactura" xml:space="preserve">
+    <value>IdFactura</value>
+  </data>
+  <data name="IdPublicacion" xml:space="preserve">
+    <value>IdPublicacion</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
 </root>

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MercadoEnvio.Entidades;
 
 namespace MercadoEnvio.Servicios
@@ -15,9 +16,9 @@ namespace MercadoEnvio.Servicios
             return DataManagers.DataManagerCompras.GetComprasPendientesDeCalificacion(idUsuario);
         }
 
-        public static List<Factura> GetFacturas()
+        public static List<Factura> GetFacturas(int idUsuario)
         {
-            return DataManagers.DataManagerCompras.GetFacturas();
+            return DataManagers.DataManagerCompras.GetFacturas(idUsuario);
         }
 
         public static List<Factura> FindFacturas(DateTime filtroFechaDesde, DateTime filtroFechaHasta, decimal filtroImporteDesde, decimal filtroImporteHasta, string filtroDetallesFactura, string filtroDirigidaA)

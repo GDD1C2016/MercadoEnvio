@@ -458,15 +458,6 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Error al obtener la fecha del archivo de configuración.
-        /// </summary>
-        internal static string ErrorEnFechaSistema {
-            get {
-                return ResourceManager.GetString("ErrorEnFechaSistema", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error en la operación.
         /// </summary>
         internal static string ErrorEnLaOperacion {
@@ -812,6 +803,24 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to IdFactura.
+        /// </summary>
+        internal static string IdFactura {
+            get {
+                return ResourceManager.GetString("IdFactura", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to IdPublicacion.
+        /// </summary>
+        internal static string IdPublicacion {
+            get {
+                return ResourceManager.GetString("IdPublicacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Intentos restantes: .
         /// </summary>
         internal static string IntentosRestantes {
@@ -1069,6 +1078,15 @@ namespace MercadoEnvio.Properties {
         internal static string TituloCompra {
             get {
                 return ResourceManager.GetString("TituloCompra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total.
+        /// </summary>
+        internal static string Total {
+            get {
+                return ResourceManager.GetString("Total", resourceCulture);
             }
         }
         
