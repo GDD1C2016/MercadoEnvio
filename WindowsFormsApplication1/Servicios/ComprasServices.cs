@@ -14,5 +14,15 @@ namespace MercadoEnvio.Servicios
         {
             return DataManagers.DataManagerCompras.GetComprasPendientesDeCalificacion(idUsuario);
         }
+
+        public static List<Factura> GetFacturas()
+        {
+            return DataManagers.DataManagerCompras.GetFacturas();
+        }
+
+        public static List<Factura> FindFacturas(DateTime filtroFechaDesde, DateTime filtroFechaHasta, decimal filtroImporteDesde, decimal filtroImporteHasta, string filtroDetallesFactura, string filtroDirigidaA)
+        {
+            return DataManagers.DataManagerCompras.FindFacturas(filtroFechaDesde,filtroFechaHasta, filtroImporteDesde, filtroImporteHasta, filtroDetallesFactura, filtroDirigidaA);
+        }
     }
 }

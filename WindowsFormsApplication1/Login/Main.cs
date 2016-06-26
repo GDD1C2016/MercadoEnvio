@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Windows.Forms;
 using MercadoEnvio.Helpers;
 using MercadoEnvio.Properties;
@@ -50,6 +51,18 @@ namespace MercadoEnvio.Login
                     if (login.Usuario != null)
                         LabelCantIntentos.Text = Resources.IntentosRestantes + (3 - login.Usuario.CantIntFallidos);
             }
+        }
+
+        private void Main_Load(object sender, EventArgs e)
+        {
+            #region ValidarFechaConfig
+            FechaHelper fechaHelper = new FechaHelper();
+            if (!fechaHelper.ConfigDateIsValid())
+            {
+                MessageBox.Show(Resources.ErrorEnFechaSistema, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+            #endregion
         }
     }
 }

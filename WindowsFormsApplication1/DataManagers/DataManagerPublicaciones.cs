@@ -271,7 +271,7 @@ namespace MercadoEnvio.DataManagers
             idPublicacionParameter.Value = publicacionSeleccionada.IdPublicacion;
 
             SqlParameter fechaParameter = new SqlParameter("@Fecha", SqlDbType.DateTime);
-            fechaParameter.Value = DateTime.Now; // TODO Recuperar del app.config
+            fechaParameter.Value = new FechaHelper().GetSystemDate();
 
             SqlParameter montoParameter = new SqlParameter("@Monto", SqlDbType.Decimal);
             montoParameter.Value = Convert.ToInt32(monto);
@@ -311,7 +311,7 @@ namespace MercadoEnvio.DataManagers
             idPublicacionParameter.Value = publicacionSeleccionada.IdPublicacion;
 
             SqlParameter fechaParameter = new SqlParameter("@Fecha", SqlDbType.DateTime);
-            fechaParameter.Value = DateTime.Now; // TODO Recuperar del app.config
+            fechaParameter.Value = new FechaHelper().GetSystemDate();
 
             SqlParameter cantidadParameter = new SqlParameter("@Cantidad", SqlDbType.Decimal);
             cantidadParameter.Value = Convert.ToInt32(cantidad);

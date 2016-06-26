@@ -6,6 +6,7 @@ using MercadoEnvio.Entidades;
 using MercadoEnvio.Properties;
 using MercadoEnvio.Servicios;
 using System.ComponentModel;
+using MercadoEnvio.Helpers;
 
 namespace MercadoEnvio.ABM_Usuario
 {
@@ -206,8 +207,8 @@ namespace MercadoEnvio.ABM_Usuario
 
         private void ValidarDatosCliente(List<string> errors)
         {
-            if (DatePickerFechaNacimiento.Value.CompareTo(DateTime.Now) >= 0)
-                errors.Add(Resources.ErrorFechaNacimiento); // TODO Recuperar del app.config
+            if (DatePickerFechaNacimiento.Value.CompareTo(new FechaHelper().GetSystemDate()) >= 0)
+                errors.Add(Resources.ErrorFechaNacimiento);
 
             if (string.IsNullOrEmpty(TxtNombre.Text))
                 errors.Add(Resources.ErrorNombre);

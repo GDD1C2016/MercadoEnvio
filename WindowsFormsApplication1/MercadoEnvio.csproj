@@ -154,6 +154,7 @@
     <Compile Include="Generar Publicación\GenerarPublicacion.Designer.cs">
       <DependentUpon>GenerarPublicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\FechaHelper.cs" />
     <Compile Include="Historial Cliente\MainHistorialCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ComprarOfertar\MainPublicacion.resx">
       <DependentUpon>MainPublicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Facturas\MainFacturas.resx">
+      <DependentUpon>MainFacturas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicación\GenerarPublicacion.resx">
       <DependentUpon>GenerarPublicacion.cs</DependentUpon>
