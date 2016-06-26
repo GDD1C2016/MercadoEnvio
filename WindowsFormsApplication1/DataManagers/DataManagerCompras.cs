@@ -91,6 +91,39 @@ namespace MercadoEnvio.DataManagers
             return facturas;
         }
 
+        public static List<string> FindDetallesFactura()
+        {
+            List<string> detalles = new List<string>();
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                detalles = FindDetallesFactura(db);
+
+                db.EndConnection();
+
+                return detalles;
+            }
+        }
+
+        private static List<string> FindDetallesFactura(DataBaseHelper db)
+        {
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetDetallesFactura"); //TODO HACER SP
+
+            List<string> detalles = new List<string>();
+            foreach (DataRow row in res.Rows)
+            {
+                var detalle = string.Empty;
+                detalle = Convert.ToString(row["Detalle"]);
+
+                detalles.Add(detalle);
+            }
+
+            return detalles;
+        }
+
         public static List<Factura> FindFacturas(DateTime filtroFechaDesde, DateTime filtroFechaHasta, decimal filtroImporteDesde, decimal filtroImporteHasta, string filtroDetallesFactura, string filtroDirigidaA)
         {
             List<Factura> facturas = new List<Factura>();

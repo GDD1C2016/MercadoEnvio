@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MercadoEnvio.Entidades;
 
 namespace MercadoEnvio.Servicios
@@ -23,6 +24,11 @@ namespace MercadoEnvio.Servicios
         public static List<Factura> FindFacturas(DateTime filtroFechaDesde, DateTime filtroFechaHasta, decimal filtroImporteDesde, decimal filtroImporteHasta, string filtroDetallesFactura, string filtroDirigidaA)
         {
             return DataManagers.DataManagerCompras.FindFacturas(filtroFechaDesde,filtroFechaHasta, filtroImporteDesde, filtroImporteHasta, filtroDetallesFactura, filtroDirigidaA);
+        }
+
+        public static List<string> FindDetallesFactura()
+        {
+            return DataManagers.DataManagerCompras.FindDetallesFactura();
         }
     }
 }
