@@ -35,9 +35,8 @@ namespace MercadoEnvio.Listado_Estadistico
 
             DgVendedores.AutoGenerateColumns = false;
             DgVendedores.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdUsuario", HeaderText = "IdUsuario", Name = "IdUsuario" });
-            DgVendedores.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = "Descripcion", Name = "Descripcion" });
-            DgVendedores.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Documento", HeaderText = "Documento", Name = "Documento" });
-            DgVendedores.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cantidad", HeaderText = "Cantidad", Name = "Cantidad" });
+            DgVendedores.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreUsuario", HeaderText = "Nombre", Name = "NombreUsuario" });
+            DgVendedores.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CantFacturas", HeaderText = "Cantidad Facturas", Name = "CantFacturas" });
 
             DgVendedores.DataSource = bs;
             #endregion

@@ -28,7 +28,7 @@ namespace MercadoEnvio.ABM_Usuario
             bs.DataSource = dataSource;
 
             DgRoles.AutoGenerateColumns = false;
-            DgRoles.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = Resources.Descripción, Name = "Descripcion" });
+            DgRoles.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = "Descripción", Name = "Descripcion" });
             DgRoles.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Estado", HeaderText = Resources.Estado, Name = "Estado" });
 
             DgRoles.DataSource = bs;

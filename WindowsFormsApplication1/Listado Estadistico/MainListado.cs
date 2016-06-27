@@ -35,10 +35,14 @@ namespace MercadoEnvio.Listado_Estadistico
             ComboTipo.DropDownStyle = ComboBoxStyle.DropDownList;
             #endregion
 
-            #region cargarComboRubro
-            List<Rubro> rubros = new List<Rubro>(RubrosServices.GetAllData());
-            ComboRubro.DataSource = rubros;
-            ComboRubro.DisplayMember = "DescripcionCorta";
+            #region cargarComboVisibilidades
+            LabelRubro.Visible = true;
+            LabelRubro.Text = "Visibilidad";
+            ComboRubro.Visible = true;
+
+            List<Visibilidad> visibilidades = new List<Visibilidad>(VisibilidadServices.GetAllData());
+            ComboRubro.DataSource = visibilidades;
+            ComboRubro.DisplayMember = "Descripcion";
             ComboRubro.DropDownStyle = ComboBoxStyle.DropDownList;
             #endregion
         }
@@ -64,7 +68,8 @@ namespace MercadoEnvio.Listado_Estadistico
                     var listadoDialog = new ListadoNoVendidos
                     {
                         Trimestre = (int) ComboTrimestres.SelectedItem,
-                        Anio = Convert.ToInt32(TxtAnio.Text)
+                        Anio = Convert.ToInt32(TxtAnio.Text),
+                        IdVisibilidad = ((Visibilidad)ComboRubro.SelectedItem).IdVisibilidad
                     };
                     listadoDialog.ShowDialog();
                 }
@@ -127,11 +132,33 @@ namespace MercadoEnvio.Listado_Estadistico
             {
                 LabelRubro.Visible = true;
                 ComboRubro.Visible = true;
+                LabelRubro.Text = "Rubro";
+
+                #region cargarComboRubro
+                List<Rubro> rubros = new List<Rubro>(RubrosServices.GetAllData());
+                ComboRubro.DataSource = rubros;
+                ComboRubro.DisplayMember = "DescripcionCorta";
+                ComboRubro.DropDownStyle = ComboBoxStyle.DropDownList;
+                #endregion
             }
             else
             {
                 LabelRubro.Visible = false;
                 ComboRubro.Visible = false;
+            }
+
+            if (tipoSeleccionado.Equals(Resources.TipoListadoVendedoresProductosNoVendidos,StringComparison.CurrentCultureIgnoreCase))
+            {
+                LabelRubro.Visible = true;
+                LabelRubro.Text = "Visibilidad";
+                ComboRubro.Visible = true;
+
+                #region cargarComboVisibilidades
+                List<Visibilidad> visibilidades = new List<Visibilidad>(VisibilidadServices.GetAllData());
+                ComboRubro.DataSource = visibilidades;
+                ComboRubro.DisplayMember = "Descripcion";
+                ComboRubro.DropDownStyle = ComboBoxStyle.DropDownList;
+                #endregion
             }
         }
     }

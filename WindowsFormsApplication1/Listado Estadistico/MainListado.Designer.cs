@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ComboRubro = new System.Windows.Forms.ComboBox();
+            this.LabelRubro = new System.Windows.Forms.Label();
             this.ComboTipo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.ComboTrimestres = new System.Windows.Forms.ComboBox();
@@ -38,8 +40,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.BtnGenerar = new System.Windows.Forms.Button();
-            this.LabelRubro = new System.Windows.Forms.Label();
-            this.ComboRubro = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -61,6 +61,25 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parametros";
+            // 
+            // ComboRubro
+            // 
+            this.ComboRubro.FormattingEnabled = true;
+            this.ComboRubro.Location = new System.Drawing.Point(284, 25);
+            this.ComboRubro.Name = "ComboRubro";
+            this.ComboRubro.Size = new System.Drawing.Size(144, 21);
+            this.ComboRubro.TabIndex = 7;
+            this.ComboRubro.Visible = false;
+            // 
+            // LabelRubro
+            // 
+            this.LabelRubro.AutoSize = true;
+            this.LabelRubro.Location = new System.Drawing.Point(218, 28);
+            this.LabelRubro.Name = "LabelRubro";
+            this.LabelRubro.Size = new System.Drawing.Size(36, 13);
+            this.LabelRubro.TabIndex = 6;
+            this.LabelRubro.Text = "Rubro";
+            this.LabelRubro.Visible = false;
             // 
             // ComboTipo
             // 
@@ -145,25 +164,6 @@
             this.BtnGenerar.Text = "Generar";
             this.BtnGenerar.UseVisualStyleBackColor = true;
             this.BtnGenerar.Click += new System.EventHandler(this.BtnGenerar_Click);
-            // 
-            // LabelRubro
-            // 
-            this.LabelRubro.AutoSize = true;
-            this.LabelRubro.Location = new System.Drawing.Point(186, 28);
-            this.LabelRubro.Name = "LabelRubro";
-            this.LabelRubro.Size = new System.Drawing.Size(92, 13);
-            this.LabelRubro.TabIndex = 6;
-            this.LabelRubro.Text = "Seleccione Rubro";
-            this.LabelRubro.Visible = false;
-            // 
-            // ComboRubro
-            // 
-            this.ComboRubro.FormattingEnabled = true;
-            this.ComboRubro.Location = new System.Drawing.Point(284, 25);
-            this.ComboRubro.Name = "ComboRubro";
-            this.ComboRubro.Size = new System.Drawing.Size(144, 21);
-            this.ComboRubro.TabIndex = 7;
-            this.ComboRubro.Visible = false;
             // 
             // MainListado
             // 

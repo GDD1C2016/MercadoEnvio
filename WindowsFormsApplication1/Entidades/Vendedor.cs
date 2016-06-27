@@ -1,4 +1,7 @@
-﻿namespace MercadoEnvio.Entidades
+﻿using System.Runtime.InteropServices;
+using System.Xml.Schema;
+
+namespace MercadoEnvio.Entidades
 {
     public class Vendedor
     {
@@ -9,6 +12,8 @@
         private string _documento;
         private int _cantidad;
         private decimal _montoFacturado;
+        private string _nombreUsuario;
+        private int _idFactura;
 
         #endregion
 
@@ -43,6 +48,19 @@
             get { return _montoFacturado; }
             set { _montoFacturado = value; }
         }
+
+        public string NombreUsuario
+        {
+            get { return _nombreUsuario; }
+            set { _nombreUsuario = value; }
+        }
+
+        public int IdFactura
+        {
+            get { return _idFactura; }
+            set { _idFactura = value; }
+        }
+
         #endregion
     }
 }
