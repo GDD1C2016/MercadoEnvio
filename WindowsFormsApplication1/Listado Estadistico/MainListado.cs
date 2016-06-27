@@ -39,8 +39,13 @@ namespace MercadoEnvio.Listado_Estadistico
             LabelRubro.Visible = true;
             LabelRubro.Text = "Visibilidad";
             ComboRubro.Visible = true;
+            
+            Visibilidad visibilidadTodos = new Visibilidad(){IdVisibilidad = 0, Descripcion = "--Todos--"};
+            List<Visibilidad> visibilidades = new List<Visibilidad>();
+            visibilidades.Add(visibilidadTodos);
 
-            List<Visibilidad> visibilidades = new List<Visibilidad>(VisibilidadServices.GetAllData());
+            visibilidades.AddRange(VisibilidadServices.GetAllData());
+
             ComboRubro.DataSource = visibilidades;
             ComboRubro.DisplayMember = "Descripcion";
             ComboRubro.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -135,7 +140,11 @@ namespace MercadoEnvio.Listado_Estadistico
                 LabelRubro.Text = "Rubro";
 
                 #region cargarComboRubro
-                List<Rubro> rubros = new List<Rubro>(RubrosServices.GetAllData());
+
+                Rubro rubroTodos = new Rubro(){DescripcionCorta = "--Todos--", IdRubro = 0};
+                List<Rubro> rubros = new List<Rubro>();
+                rubros.Add(rubroTodos);
+                rubros.AddRange(RubrosServices.GetAllData());
                 ComboRubro.DataSource = rubros;
                 ComboRubro.DisplayMember = "DescripcionCorta";
                 ComboRubro.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -154,7 +163,11 @@ namespace MercadoEnvio.Listado_Estadistico
                 ComboRubro.Visible = true;
 
                 #region cargarComboVisibilidades
-                List<Visibilidad> visibilidades = new List<Visibilidad>(VisibilidadServices.GetAllData());
+                Visibilidad visibilidadTodos = new Visibilidad() { IdVisibilidad = 0, Descripcion = "--Todos--" };
+                List<Visibilidad> visibilidades = new List<Visibilidad>();
+                visibilidades.Add(visibilidadTodos);
+                visibilidades.AddRange(VisibilidadServices.GetAllData());
+
                 ComboRubro.DataSource = visibilidades;
                 ComboRubro.DisplayMember = "Descripcion";
                 ComboRubro.DropDownStyle = ComboBoxStyle.DropDownList;
