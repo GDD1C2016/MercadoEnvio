@@ -130,7 +130,7 @@ namespace MercadoEnvio.DataManagers
             SqlParameter anioParameter = new SqlParameter("@Año", SqlDbType.Int);
             anioParameter.Value = anio;
 
-            SqlParameter rubroParameter = new SqlParameter("@Rubro", SqlDbType.Int);
+            SqlParameter rubroParameter = new SqlParameter("@IdRubro", SqlDbType.Int);
             rubroParameter.Value = rubro.IdRubro;
 
             parameters.Add(trimestreParameter);
