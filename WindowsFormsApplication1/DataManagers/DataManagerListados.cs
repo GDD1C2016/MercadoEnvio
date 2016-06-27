@@ -46,10 +46,10 @@ namespace MercadoEnvio.DataManagers
             {
                 var vendedor = new Vendedor
                 {
-                    MontoFacturado = Convert.ToInt32(row["MontoFacturado"]),
-                    Documento = Convert.ToString(row["Documento"]),
+                    MontoFacturado = Convert.ToInt32(row["Total"]),
+                    Documento = Convert.ToString(row["IdFactura"]),
                     IdUsuario = Convert.ToInt32(row["IdUsuario"])
-                    // TODO Agregar NombreUsuario
+                    // TODO Agregar "NombreUsuario"
                 };
 
                 vendedores.Add(vendedor);
@@ -93,9 +93,9 @@ namespace MercadoEnvio.DataManagers
             {
                 var vendedor = new Vendedor
                 {
-                    Cantidad = Convert.ToInt32(row["Cantidad"]),
+                    Cantidad = Convert.ToInt32(row["CantFacturas"]),
                     IdUsuario = Convert.ToInt32(row["IdUsuario"])
-                    // TODO Agregar NombreUsuario
+                    // TODO Agregar "NombreUsuario"
                 };
 
                 vendedores.Add(vendedor);
@@ -137,18 +137,19 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(anioParameter);
             parameters.Add(rubroParameter);
 
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetListadoClientesProductosComprados", parameters); // TODO HACER ESTE SP Y MANDAR PARAMETROS!
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetListadoClientesProductosComprados", parameters);
             List<Cliente> clientes = new List<Cliente>();
             foreach (DataRow row in res.Rows)
             {
                 var cliente = new Cliente
                 {
-                    Nombre = Convert.ToString(row["Nombre"]),
-                    Apellido = Convert.ToString(row["Apellido"]),
-                    Email = Convert.ToString(row["Email"]),
+                    Nombre = Convert.ToString(row["Nombre"]), // TODO Borrar
+                    Apellido = Convert.ToString(row["Apellido"]), // TODO Borrar
+                    Email = Convert.ToString(row["Email"]), // TODO Borrar
                     IdUsuario = Convert.ToInt32(row["IdUsuario"]),
-                    NumeroDoc = Convert.ToInt32(row["NumeroDoc"]),
+                    NumeroDoc = Convert.ToInt32(row["NumeroDoc"]), // TODO Borrar
                     CantidadProductosComprados = Convert.ToInt32(row["CantProdComprados"])
+                    // TODO Agregar "NombreUsuario"
                 };
 
                 clientes.Add(cliente);
