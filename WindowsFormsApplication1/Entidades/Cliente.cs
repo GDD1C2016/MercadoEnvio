@@ -12,6 +12,7 @@ namespace MercadoEnvio.Entidades
         private int _numeroDoc;
         private DateTime _fechaNacimiento;
         private int _cantidadProductosComprados;
+        private string _nombreUsuario;
 
         #endregion
 
@@ -51,6 +52,12 @@ namespace MercadoEnvio.Entidades
         {
             get { return _cantidadProductosComprados; }
             set { _cantidadProductosComprados = value; }
+        }
+
+        public string NombreUsuario
+        {
+            get { return _nombreUsuario; }
+            set { _nombreUsuario = value; }
         }
 
         #endregion

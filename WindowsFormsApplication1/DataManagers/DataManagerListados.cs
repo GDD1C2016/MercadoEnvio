@@ -48,8 +48,8 @@ namespace MercadoEnvio.DataManagers
                 {
                     MontoFacturado = Convert.ToInt32(row["Total"]),
                     Documento = Convert.ToString(row["IdFactura"]),
-                    IdUsuario = Convert.ToInt32(row["IdUsuario"])
-                    // TODO Agregar "NombreUsuario"
+                    IdUsuario = Convert.ToInt32(row["IdUsuario"]),
+                    NombreUsuario = Convert.ToString(row["NombreUsuario"])
                 };
 
                 vendedores.Add(vendedor);
@@ -94,8 +94,8 @@ namespace MercadoEnvio.DataManagers
                 var vendedor = new Vendedor
                 {
                     Cantidad = Convert.ToInt32(row["CantFacturas"]),
-                    IdUsuario = Convert.ToInt32(row["IdUsuario"])
-                    // TODO Agregar "NombreUsuario"
+                    IdUsuario = Convert.ToInt32(row["IdUsuario"]),
+                    NombreUsuario = Convert.ToString(row["NombreUsuario"])
                 };
 
                 vendedores.Add(vendedor);
@@ -143,13 +143,9 @@ namespace MercadoEnvio.DataManagers
             {
                 var cliente = new Cliente
                 {
-                    Nombre = Convert.ToString(row["Nombre"]), // TODO Borrar
-                    Apellido = Convert.ToString(row["Apellido"]), // TODO Borrar
-                    Email = Convert.ToString(row["Email"]), // TODO Borrar
                     IdUsuario = Convert.ToInt32(row["IdUsuario"]),
-                    NumeroDoc = Convert.ToInt32(row["NumeroDoc"]), // TODO Borrar
-                    CantidadProductosComprados = Convert.ToInt32(row["CantProdComprados"])
-                    // TODO Agregar "NombreUsuario"
+                    CantidadProductosComprados = Convert.ToInt32(row["CantProdComprados"]),
+                    NombreUsuario = Convert.ToString(row["NombreUsuario"])
                 };
 
                 clientes.Add(cliente);
@@ -158,7 +154,7 @@ namespace MercadoEnvio.DataManagers
             return clientes;
         }
 
-        public static List<Vendedor> GetListadoVendedoresProductosNoVendidos(int trimestre, int anio) // TODO Agregar parámetro visibilidad
+        public static List<Vendedor> GetListadoVendedoresProductosNoVendidos(int trimestre, int anio, int idVisibilidad)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
@@ -166,7 +162,7 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
-                List<Vendedor> listaVendedores = GetListadoVendedoresProductosNoVendidos(trimestre, anio, db);
+                List<Vendedor> listaVendedores = GetListadoVendedoresProductosNoVendidos(trimestre, anio, idVisibilidad, db);
 
                 db.EndConnection();
 
@@ -174,7 +170,7 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
-        private static List<Vendedor> GetListadoVendedoresProductosNoVendidos(int trimestre, int anio, DataBaseHelper db)
+        private static List<Vendedor> GetListadoVendedoresProductosNoVendidos(int trimestre, int anio,int idVisibilidad, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
@@ -184,8 +180,12 @@ namespace MercadoEnvio.DataManagers
             SqlParameter anioParameter = new SqlParameter("@Año", SqlDbType.Int);
             anioParameter.Value = anio;
 
+            SqlParameter idVisibilidadParameter = new SqlParameter("@IdVisibilidad", SqlDbType.Int);
+            idVisibilidadParameter.Value = idVisibilidad;
+
             parameters.Add(trimestreParameter);
             parameters.Add(anioParameter);
+            parameters.Add(idVisibilidadParameter);
 
             DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetListadoVendedoresProductosNoVendidos", parameters); //TODO HACER ESTE SP Y MANDAR PARAMETROS!
             List<Vendedor> vendedores = new List<Vendedor>();

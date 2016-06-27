@@ -9,9 +9,9 @@ namespace MercadoEnvio.Servicios
 {
     public class ListadoServices
     {
-        public static List<Vendedor> GetListadoVendedoresProductosNoVendidos(int trimestre, int anio)
+        public static List<Vendedor> GetListadoVendedoresProductosNoVendidos(int trimestre, int anio, int idVisibilidad)
         {
-            return DataManagers.DataManagerListados.GetListadoVendedoresProductosNoVendidos(trimestre,anio);
+            return DataManagers.DataManagerListados.GetListadoVendedoresProductosNoVendidos(trimestre,anio, idVisibilidad);
         }
 
         public static List<Cliente> GetListadoClientesProductosComprados(int trimestre, int anio, Rubro rubro)

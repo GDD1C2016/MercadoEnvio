@@ -16,6 +16,7 @@ namespace MercadoEnvio.Listado_Estadistico
     {
         public int Trimestre { get; set; }
         public int Anio { get; set; }
+        public int IdVisibilidad { get; set; }
 
         public ListadoNoVendidos()
         {
@@ -30,7 +31,7 @@ namespace MercadoEnvio.Listado_Estadistico
         private void ListadoNoVendidos_Load(object sender, EventArgs e)
         {
             #region armadoDeGrillaVendedores
-            BindingList<Vendedor> dataSource = new BindingList<Vendedor>(ListadoServices.GetListadoVendedoresProductosNoVendidos(Trimestre,Anio));
+            BindingList<Vendedor> dataSource = new BindingList<Vendedor>(ListadoServices.GetListadoVendedoresProductosNoVendidos(Trimestre,Anio,IdVisibilidad));
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
 
