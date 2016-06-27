@@ -51,16 +51,14 @@ namespace MercadoEnvio.Calificar
         {
             List<Compra> listAux = new List<Compra>(ComprasServices.GetComprasPendientesDeCalificacion(Usuario.IdUsuario));
             BindingList<Compra> list = new BindingList<Compra>(listAux);
-            BindingSource bsPendientes = new BindingSource();
-            bsPendientes.DataSource = list;
+            BindingSource bsPendientes = new BindingSource {DataSource = list};
             return bsPendientes;
         }
 
         private BindingSource GetUltimasCalificaciones()
         {
             BindingList<Calificacion> dataSourceUltimas5 = new BindingList<Calificacion>(CalificacionesServices.GetUltimas(Usuario.IdUsuario, 5));
-            BindingSource bsUltimas5 = new BindingSource();
-            bsUltimas5.DataSource = dataSourceUltimas5;
+            BindingSource bsUltimas5 = new BindingSource {DataSource = dataSourceUltimas5};
 
             return bsUltimas5;
         }
@@ -76,8 +74,7 @@ namespace MercadoEnvio.Calificar
                     compraSeleccionada = (Compra)bs.List[bs.Position];
             }
 
-            var calificarDialog = new CalificarVendedor();
-            calificarDialog.CompraSeleccionada = compraSeleccionada;
+            var calificarDialog = new CalificarVendedor {CompraSeleccionada = compraSeleccionada};
             var result = calificarDialog.ShowDialog();
 
             if (result.Equals(DialogResult.OK))

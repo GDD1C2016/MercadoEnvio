@@ -1,10 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Properties;
@@ -25,14 +20,13 @@ namespace MercadoEnvio.ABM_Visibilidad
         {
             #region armadoDeGrillaVisibilidad
             BindingList<Visibilidad> dataSource = new BindingList<Visibilidad>(VisibilidadServices.GetAllData());
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgVisibilidad.AutoGenerateColumns = false;
-            DgVisibilidad.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = "Descripción", Name = "Descripcion" });
-            DgVisibilidad.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = "Precio", Name = "Precio" });
-            DgVisibilidad.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Porcentaje", HeaderText = "Porcentaje", Name = "Porcentaje" });
-            DgVisibilidad.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "EnvioPorcentaje", HeaderText = "Porcentaje Envío", Name = "EnvioPorcentaje" });
+            DgVisibilidad.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = Resources.Descripcion, Name = "Descripcion" });
+            DgVisibilidad.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Precio", HeaderText = Resources.Precio, Name = "Precio" });
+            DgVisibilidad.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Porcentaje", HeaderText = Resources.Porcentaje, Name = "Porcentaje" });
+            DgVisibilidad.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "EnvioPorcentaje", HeaderText = Resources.PorcentajeEnvio, Name = "EnvioPorcentaje" });
 
             DgVisibilidad.DataSource = bs;
             #endregion
@@ -41,8 +35,7 @@ namespace MercadoEnvio.ABM_Visibilidad
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             BindingList<Visibilidad> dataSource = new BindingList<Visibilidad>();
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgVisibilidad.DataSource = bs;
         }
@@ -52,8 +45,7 @@ namespace MercadoEnvio.ABM_Visibilidad
             string filtroDescripcion = TxtFiltroDescripcion.Text;
 
             BindingList<Visibilidad> dataSource = new BindingList<Visibilidad>(VisibilidadServices.FindVisibilidades(filtroDescripcion));
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgVisibilidad.DataSource = bs;
         }
@@ -74,8 +66,7 @@ namespace MercadoEnvio.ABM_Visibilidad
             if (string.IsNullOrEmpty(message))
             {
                 BindingList<Visibilidad> dataSource = new BindingList<Visibilidad>(VisibilidadServices.FindVisibilidades(string.Empty));
-                BindingSource bs = new BindingSource();
-                bs.DataSource = dataSource;
+                BindingSource bs = new BindingSource {DataSource = dataSource};
 
                 DgVisibilidad.DataSource = bs;
 
@@ -102,8 +93,7 @@ namespace MercadoEnvio.ABM_Visibilidad
                     visibilidadSeleccionada = (Visibilidad)bs.List[bs.Position];
             }
 
-            var altaVisibilidad = new AltaVisibilidad(visibilidadSeleccionada);
-            altaVisibilidad.Text = Resources.EdicionVisibilidad;
+            var altaVisibilidad = new AltaVisibilidad(visibilidadSeleccionada) {Text = Resources.EdicionVisibilidad};
             altaVisibilidad.ShowDialog();
         }
     }

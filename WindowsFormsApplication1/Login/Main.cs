@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Windows.Forms;
 using MercadoEnvio.Helpers;
 using MercadoEnvio.Properties;
@@ -30,14 +29,12 @@ namespace MercadoEnvio.Login
 
                 if (login.Usuario.Roles.Count > 1)
                 {
-                    var seleccionRol = new MainSeleccionRol();
-                    seleccionRol.Usuario = login.Usuario;
+                    var seleccionRol = new MainSeleccionRol {Usuario = login.Usuario};
                     seleccionRol.ShowDialog();
                 }
                 else
                 {
-                    var menuDialog = new MainMenu();
-                    menuDialog.Usuario = login.Usuario;
+                    var menuDialog = new MainMenu {Usuario = login.Usuario};
                     menuDialog.ShowDialog();
                 }
             }
@@ -57,11 +54,11 @@ namespace MercadoEnvio.Login
         {
             #region ValidarFechaConfig
             FechaHelper fechaHelper = new FechaHelper();
-            if (!fechaHelper.ConfigDateIsValid())
-            {
-                MessageBox.Show(Resources.ErrorEnFechaSistema, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                Application.Exit();
-            }
+
+            if (fechaHelper.ConfigDateIsValid()) return;
+            
+            MessageBox.Show(Resources.ErrorFechaSistema, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            Application.Exit();
             #endregion
         }
     }

@@ -30,7 +30,6 @@ namespace MercadoEnvio.Facturas
         private void MainFacturas_Load(object sender, EventArgs e)
         {
             #region armadoDeGrillaPublicaciones
-
             DgFacturas.AutoGenerateColumns = false;
             DgFacturas.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdFactura", HeaderText = Resources.IdFactura, Name = "IdFactura" });
             DgFacturas.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdPublicacion", HeaderText = Resources.IdPublicacion, Name = "IdPublicacion" });
@@ -46,12 +45,14 @@ namespace MercadoEnvio.Facturas
             #endregion
 
             #region armadoComboDetalles
-            string detalleTodos = "--Todos--";
+            const string detalleTodos = "--Todos--";
+            const string detalleEnvio = "Comisión por Envío";
+            const string detallePublicacion = "Comisión por Publicación";
+            const string detalleVenta = "Comisión por Venta";
 
-            List<string> detalles = new List<string>();
-            detalles.Add(detalleTodos);
+            List<string> detalles = new List<string> {detalleTodos, detalleEnvio, detallePublicacion, detalleVenta};
 
-            ComboDetalles.DataSource = detalles;
+            ComboDetalles.DataSource = detalles;            
             ComboDetalles.DropDownStyle = ComboBoxStyle.DropDownList;
             #endregion
         }
@@ -162,8 +163,7 @@ namespace MercadoEnvio.Facturas
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             BindingList<Factura> dataSource = new BindingList<Factura>();
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgFacturas.DataSource = bs;
         }
@@ -181,8 +181,7 @@ namespace MercadoEnvio.Facturas
             List<Factura> listAux = new List<Factura>(ComprasServices.FindFacturas(filtroFechaDesde,filtroFechaHasta,filtroImporteDesde,filtroImporteHasta,filtroDetallesFactura,filtroDirigidaA));
 
             BindingList<Factura> dataSource = new BindingList<Factura>(listAux);
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgFacturas.DataSource = bs;
         }

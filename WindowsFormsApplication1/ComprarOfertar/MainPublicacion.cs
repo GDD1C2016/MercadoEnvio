@@ -153,8 +153,7 @@ namespace MercadoEnvio.ComprarOfertar
 
         private void BtnSeleccionarRubro_Click(object sender, EventArgs e)
         {
-            var mainRubro = new MainRubro();
-            mainRubro.FormPublicacion = this;
+            var mainRubro = new MainRubro {FormPublicacion = this};
             var res = mainRubro.ShowDialog();
 
             if (res.Equals(DialogResult.OK))
@@ -173,8 +172,7 @@ namespace MercadoEnvio.ComprarOfertar
             List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.FindPublicaciones(filtroDescripcion, RubrosFiltro).OrderByDescending(x => x.Visibilidad.Precio).ToList());
 
             BindingList<Publicacion> dataSource = new BindingList<Publicacion>(listAux);
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgPublicaciones.DataSource = bs;
         }
@@ -182,8 +180,7 @@ namespace MercadoEnvio.ComprarOfertar
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             BindingList<Publicacion> dataSource = new BindingList<Publicacion>();
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgPublicaciones.DataSource = bs;
         }
@@ -201,15 +198,14 @@ namespace MercadoEnvio.ComprarOfertar
                 }
             }
 
-            var comprarDialog = new ComprarDialog();
-            comprarDialog.UsuarioActivo = Usuario;
-            comprarDialog.PublicacionSeleccionada = publicacionSeleccionada;
+            var comprarDialog = new ComprarDialog
+            {
+                UsuarioActivo = Usuario,
+                PublicacionSeleccionada = publicacionSeleccionada
+            };
 
-            if (publicacionSeleccionada.TipoPublicacion.Descripcion.Equals("Subasta",
-                StringComparison.CurrentCultureIgnoreCase))
-                comprarDialog.Text = Resources.Ofertar;
-            else
-                comprarDialog.Text = Resources.Comprar;
+            comprarDialog.Text = publicacionSeleccionada.TipoPublicacion.Descripcion.Equals("Subasta",
+                StringComparison.CurrentCultureIgnoreCase) ? Resources.Ofertar : Resources.Comprar;
             
             var res = comprarDialog.ShowDialog();
 
@@ -218,8 +214,7 @@ namespace MercadoEnvio.ComprarOfertar
                 List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.GetAllData().OrderByDescending(x => x.Visibilidad.Precio).ToList());
 
                 BindingList<Publicacion> dataSource = new BindingList<Publicacion>(listAux);
-                BindingSource bs = new BindingSource();
-                bs.DataSource = dataSource;
+                BindingSource bs = new BindingSource {DataSource = dataSource};
 
                 DgPublicaciones.DataSource = bs;
             }

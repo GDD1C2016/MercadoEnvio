@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Helpers;
 
@@ -28,15 +29,28 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Vendedor> GetListadoVendedoresMontos(int trimestre, int anio, DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("GetListadoVendedoresMontos"); //TODO HACER ESTE SP Y MANDAR PARAMETROS!
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter trimestreParameter = new SqlParameter("@NroTrimestre", SqlDbType.Int);
+            trimestreParameter.Value = trimestre;
+
+            SqlParameter anioParameter = new SqlParameter("@Año", SqlDbType.Int);
+            anioParameter.Value = anio;
+
+            parameters.Add(trimestreParameter);
+            parameters.Add(anioParameter);
+
+            DataTable res = db.GetDataAsTable("GetListadoVendedoresMontos", parameters);
             List<Vendedor> vendedores = new List<Vendedor>();
             foreach (DataRow row in res.Rows)
             {
-                var vendedor = new Vendedor();
-                vendedor.MontoFacturado = Convert.ToInt32(row["MontoFacturado"]);
-                vendedor.Descripcion = Convert.ToString(row["Descripcion"]);
-                vendedor.Documento = Convert.ToString(row["Documento"]);
-                vendedor.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
+                var vendedor = new Vendedor
+                {
+                    MontoFacturado = Convert.ToInt32(row["MontoFacturado"]),
+                    Documento = Convert.ToString(row["Documento"]),
+                    IdUsuario = Convert.ToInt32(row["IdUsuario"])
+                    // TODO Agregar NombreUsuario
+                };
 
                 vendedores.Add(vendedor);
             }
@@ -62,15 +76,27 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Vendedor> GetListadoVendedoresFacturas(int trimestre, int anio, DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("GetListadoVendedoresFacturas"); //TODO HACER ESTE SP Y MANDAR PARAMETROS!
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter trimestreParameter = new SqlParameter("@NroTrimestre", SqlDbType.Int);
+            trimestreParameter.Value = trimestre;
+
+            SqlParameter anioParameter = new SqlParameter("@Año", SqlDbType.Int);
+            anioParameter.Value = anio;
+
+            parameters.Add(trimestreParameter);
+            parameters.Add(anioParameter);
+
+            DataTable res = db.GetDataAsTable("GetListadoVendedoresFacturas", parameters);
             List<Vendedor> vendedores = new List<Vendedor>();
             foreach (DataRow row in res.Rows)
             {
-                var vendedor = new Vendedor();
-                vendedor.Cantidad = Convert.ToInt32(row["Cantidad"]);
-                vendedor.Descripcion = Convert.ToString(row["Descripcion"]);
-                vendedor.Documento = Convert.ToString(row["Documento"]);
-                vendedor.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
+                var vendedor = new Vendedor
+                {
+                    Cantidad = Convert.ToInt32(row["Cantidad"]),
+                    IdUsuario = Convert.ToInt32(row["IdUsuario"])
+                    // TODO Agregar NombreUsuario
+                };
 
                 vendedores.Add(vendedor);
             }
@@ -94,19 +120,36 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
-        private static List<Cliente> GetListadoClientesProductosComprados(int trimestre, int anio, Rubro rubro,DataBaseHelper db)
+        private static List<Cliente> GetListadoClientesProductosComprados(int trimestre, int anio, Rubro rubro, DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetListadoClientesProductosComprados"); //TODO HACER ESTE SP Y MANDAR PARAMETROS!
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter trimestreParameter = new SqlParameter("@NroTrimestre", SqlDbType.Int);
+            trimestreParameter.Value = trimestre;
+
+            SqlParameter anioParameter = new SqlParameter("@Año", SqlDbType.Int);
+            anioParameter.Value = anio;
+
+            SqlParameter rubroParameter = new SqlParameter("@Rubro", SqlDbType.Int);
+            rubroParameter.Value = rubro.IdRubro;
+
+            parameters.Add(trimestreParameter);
+            parameters.Add(anioParameter);
+            parameters.Add(rubroParameter);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetListadoClientesProductosComprados", parameters); // TODO HACER ESTE SP Y MANDAR PARAMETROS!
             List<Cliente> clientes = new List<Cliente>();
             foreach (DataRow row in res.Rows)
             {
-                var cliente = new Cliente();
-                cliente.Nombre = Convert.ToString(row["Nombre"]);
-                cliente.Apellido = Convert.ToString(row["Apellido"]);
-                cliente.Email = Convert.ToString(row["Email"]);
-                cliente.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
-                cliente.NumeroDoc = Convert.ToInt32(row["NumeroDoc"]);
-                cliente.CantidadProductosComprados = Convert.ToInt32(row["CantProdComprados"]);
+                var cliente = new Cliente
+                {
+                    Nombre = Convert.ToString(row["Nombre"]),
+                    Apellido = Convert.ToString(row["Apellido"]),
+                    Email = Convert.ToString(row["Email"]),
+                    IdUsuario = Convert.ToInt32(row["IdUsuario"]),
+                    NumeroDoc = Convert.ToInt32(row["NumeroDoc"]),
+                    CantidadProductosComprados = Convert.ToInt32(row["CantProdComprados"])
+                };
 
                 clientes.Add(cliente);
             }
@@ -114,7 +157,7 @@ namespace MercadoEnvio.DataManagers
             return clientes;
         }
 
-        public static List<Vendedor> GetListadoVendedoresProductosNoVendidos(int trimestre, int anio)
+        public static List<Vendedor> GetListadoVendedoresProductosNoVendidos(int trimestre, int anio) // TODO Agregar parámetro visibilidad
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
@@ -132,15 +175,28 @@ namespace MercadoEnvio.DataManagers
 
         private static List<Vendedor> GetListadoVendedoresProductosNoVendidos(int trimestre, int anio, DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetListadoVendedoresProductosNoVendidos"); //TODO HACER ESTE SP Y MANDAR PARAMETROS!
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter trimestreParameter = new SqlParameter("@NroTrimestre", SqlDbType.Int);
+            trimestreParameter.Value = trimestre;
+
+            SqlParameter anioParameter = new SqlParameter("@Año", SqlDbType.Int);
+            anioParameter.Value = anio;
+
+            parameters.Add(trimestreParameter);
+            parameters.Add(anioParameter);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetListadoVendedoresProductosNoVendidos", parameters); //TODO HACER ESTE SP Y MANDAR PARAMETROS!
             List<Vendedor> vendedores = new List<Vendedor>();
             foreach (DataRow row in res.Rows)
             {
-                var vendedor = new Vendedor();
-                vendedor.Cantidad = Convert.ToInt32(row["Cantidad"]);
-                vendedor.Descripcion = Convert.ToString(row["Descripcion"]);
-                vendedor.Documento = Convert.ToString(row["Documento"]);
-                vendedor.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
+                var vendedor = new Vendedor
+                {
+                    Cantidad = Convert.ToInt32(row["Cantidad"]),
+                    Descripcion = Convert.ToString(row["Descripcion"]),
+                    Documento = Convert.ToString(row["Documento"]),
+                    IdUsuario = Convert.ToInt32(row["IdUsuario"])
+                };
 
                 vendedores.Add(vendedor);
             }

@@ -22,8 +22,7 @@ namespace MercadoEnvio.ABM_Rol
         {
             #region armadoDeGrillaRol
             BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.GetAllData());
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgRoles.AutoGenerateColumns = false;
             DgRoles.ColumnCount = 2;
@@ -43,11 +42,7 @@ namespace MercadoEnvio.ABM_Rol
             Estado estadoTodos = new Estado { Descripcion = "--Todos--" };
             Estado estadoHabilitado = new Estado { Valor = true };
             Estado estadoDeshabilitado = new Estado { Valor = false };
-            List<Estado> estados = new List<Estado>();
-            estados.Add(estadoTodos);
-            estados.Add(estadoHabilitado);
-            estados.Add(estadoDeshabilitado);
-
+            List<Estado> estados = new List<Estado> {estadoTodos, estadoHabilitado, estadoDeshabilitado};
             ComboEstado.DataSource = estados;
             ComboEstado.DisplayMember = "Descripcion";
             ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -55,8 +50,10 @@ namespace MercadoEnvio.ABM_Rol
 
             #region armadoComboFuncionalidad
             Funcionalidad funcionalidadTodas = new Funcionalidad { IdFuncionalidad = 0, Descripcion = "--Todas--" };
-            List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolesServices.GetAllFuncionalidades());
-            funcionalidades.Add(funcionalidadTodas);
+            List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolesServices.GetAllFuncionalidades())
+            {
+                funcionalidadTodas
+            };
             funcionalidades.RemoveAll(x => x.Descripcion.Equals(Resources.LoginSeguridad, StringComparison.CurrentCultureIgnoreCase));
             funcionalidades = funcionalidades.OrderBy(x => x.IdFuncionalidad).ToList();
 
@@ -84,8 +81,7 @@ namespace MercadoEnvio.ABM_Rol
                 if (string.IsNullOrEmpty(message))
                 {
                     BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.FindRoles(string.Empty, 0, string.Empty));
-                    BindingSource bs = new BindingSource();
-                    bs.DataSource = dataSource;
+                    BindingSource bs = new BindingSource {DataSource = dataSource};
 
                     DgRoles.DataSource = bs;
 
@@ -105,8 +101,7 @@ namespace MercadoEnvio.ABM_Rol
             string filtroEstado = ((Estado)ComboEstado.SelectedItem).Descripcion;
 
             BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.FindRoles(filtroNombre, filtroFuncionalidad, filtroEstado));
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgRoles.DataSource = bs;
         }
@@ -114,8 +109,7 @@ namespace MercadoEnvio.ABM_Rol
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             BindingList<Rol> dataSource = new BindingList<Rol>();
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgRoles.DataSource = bs;
         }
@@ -131,15 +125,13 @@ namespace MercadoEnvio.ABM_Rol
                     rolSeleccionado = (Rol)bs.List[bs.Position];
             }
 
-            var altaRol = new AltaRol(rolSeleccionado);
-            altaRol.Text = Resources.EdicionRol;
+            var altaRol = new AltaRol(rolSeleccionado) {Text = Resources.EdicionRol};
             var result = altaRol.ShowDialog();
 
             if (result.Equals(DialogResult.OK))
             {
                 BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.GetAllData());
-                BindingSource bs = new BindingSource();
-                bs.DataSource = dataSource;
+                BindingSource bs = new BindingSource {DataSource = dataSource};
 
                 DgRoles.DataSource = bs;
             }
@@ -153,8 +145,7 @@ namespace MercadoEnvio.ABM_Rol
             if (result.Equals(DialogResult.OK))
             {
                 BindingList<Rol> dataSource = new BindingList<Rol>(RolesServices.GetAllData());
-                BindingSource bs = new BindingSource();
-                bs.DataSource = dataSource;
+                BindingSource bs = new BindingSource {DataSource = dataSource};
 
                 DgRoles.DataSource = bs;
             }

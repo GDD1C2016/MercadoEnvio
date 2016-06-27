@@ -197,11 +197,20 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Descripción.
+        ///   Looks up a localized string similar to Descripción Corta.
         /// </summary>
-        internal static string Descripción {
+        internal static string DescripcionCorta {
             get {
-                return ResourceManager.GetString("Descripción", resourceCulture);
+                return ResourceManager.GetString("DescripcionCorta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descripción Larga.
+        /// </summary>
+        internal static string DescripcionLarga {
+            get {
+                return ResourceManager.GetString("DescripcionLarga", resourceCulture);
             }
         }
         
@@ -481,6 +490,15 @@ namespace MercadoEnvio.Properties {
         internal static string ErrorFechaNacimiento {
             get {
                 return ResourceManager.GetString("ErrorFechaNacimiento", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La fecha ingresada en el archivo de configuración no es válida..
+        /// </summary>
+        internal static string ErrorFechaSistema {
+            get {
+                return ResourceManager.GetString("ErrorFechaSistema", resourceCulture);
             }
         }
         
@@ -925,6 +943,24 @@ namespace MercadoEnvio.Properties {
         internal static string OperacionExitosa {
             get {
                 return ResourceManager.GetString("OperacionExitosa", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Porcentaje.
+        /// </summary>
+        internal static string Porcentaje {
+            get {
+                return ResourceManager.GetString("Porcentaje", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Porcentaje Envío.
+        /// </summary>
+        internal static string PorcentajeEnvio {
+            get {
+                return ResourceManager.GetString("PorcentajeEnvio", resourceCulture);
             }
         }
         

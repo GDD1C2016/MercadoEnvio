@@ -99,14 +99,13 @@ namespace MercadoEnvio.DataManagers
 
         public static List<string> FindDetallesFactura()
         {
-            List<string> detalles = new List<string>();
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
             using (db.Connection)
             {
                 db.BeginTransaction();
 
-                detalles = FindDetallesFactura(db);
+                List<string> detalles = FindDetallesFactura(db);
 
                 db.EndConnection();
 
@@ -116,13 +115,11 @@ namespace MercadoEnvio.DataManagers
 
         private static List<string> FindDetallesFactura(DataBaseHelper db)
         {
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetDetallesFactura"); //TODO HACER SP
-
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetDetallesFactura");
             List<string> detalles = new List<string>();
             foreach (DataRow row in res.Rows)
             {
-                var detalle = string.Empty;
-                detalle = Convert.ToString(row["Detalle"]);
+                var detalle = Convert.ToString(row["Detalle"]);
 
                 detalles.Add(detalle);
             }

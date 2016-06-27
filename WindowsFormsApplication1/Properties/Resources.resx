@@ -328,9 +328,6 @@
   <data name="ErrorRolBorrado3" xml:space="preserve">
     <value>El rol ya ha sido dado de baja.</value>
   </data>
-  <data name="Descripción" xml:space="preserve">
-    <value>Descripción</value>
-  </data>
   <data name="Email" xml:space="preserve">
     <value>Email</value>
   </data>
@@ -489,5 +486,20 @@
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
+  </data>
+  <data name="DescripcionCorta" xml:space="preserve">
+    <value>Descripción Corta</value>
+  </data>
+  <data name="DescripcionLarga" xml:space="preserve">
+    <value>Descripción Larga</value>
+  </data>
+  <data name="Porcentaje" xml:space="preserve">
+    <value>Porcentaje</value>
+  </data>
+  <data name="PorcentajeEnvio" xml:space="preserve">
+    <value>Porcentaje Envío</value>
+  </data>
+  <data name="ErrorFechaSistema" xml:space="preserve">
+    <value>La fecha ingresada en el archivo de configuración no es válida.</value>
   </data>
 </root>

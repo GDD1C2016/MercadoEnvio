@@ -5,7 +5,6 @@ using MercadoEnvio.Entidades;
 using MercadoEnvio.Properties;
 using MercadoEnvio.Servicios;
 using System.ComponentModel;
-using System.Globalization;
 
 namespace MercadoEnvio.ABM_Usuario
 {
@@ -30,8 +29,7 @@ namespace MercadoEnvio.ABM_Usuario
 
             #region armadoDeGrillaUsuarios
             BindingList<Cliente> dataSource = new BindingList<Cliente>();
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgUsuarios.AutoGenerateColumns = false;
             DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre", HeaderText = Resources.Nombre, Name = "Nombre" });
@@ -41,7 +39,6 @@ namespace MercadoEnvio.ABM_Usuario
 
             DgUsuarios.DataSource = bs;
             #endregion
-
         }
 
         private void ComboTipoDeUsuario_SelectionChangeCommitted(object sender, EventArgs e)
@@ -76,8 +73,7 @@ namespace MercadoEnvio.ABM_Usuario
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             BindingList<Usuario> dataSource = new BindingList<Usuario>();
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgUsuarios.DataSource = bs;
         }
@@ -93,8 +89,7 @@ namespace MercadoEnvio.ABM_Usuario
                 string filtroEmail = TxtFiltroEmail.Text;
 
                 BindingList<Empresa> dataSource = new BindingList<Empresa>(UsuarioService.FindEmpresas(filtroRazonSocial, filtroCuit, filtroEmail));
-                BindingSource bs = new BindingSource();
-                bs.DataSource = dataSource;
+                BindingSource bs = new BindingSource {DataSource = dataSource};
 
                 DgUsuarios.Columns.Clear();
 
@@ -114,8 +109,7 @@ namespace MercadoEnvio.ABM_Usuario
                 string filtroEmail = TxtFiltroEmail.Text.Trim();
 
                 BindingList<Cliente> dataSource = new BindingList<Cliente>(UsuarioService.FindClientes(filtroNombre, filtroApellido, filtroDni, filtroEmail));
-                BindingSource bs = new BindingSource();
-                bs.DataSource = dataSource;
+                BindingSource bs = new BindingSource {DataSource = dataSource};
 
                 #region rearmadoDeGrilla
                 DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre", HeaderText = Resources.Nombre, Name = "Nombre" });
@@ -160,8 +154,7 @@ namespace MercadoEnvio.ABM_Usuario
                     string filtroEmail = TxtFiltroEmail.Text;
 
                     BindingList<Empresa> dataSource = new BindingList<Empresa>(UsuarioService.FindEmpresas(filtroRazonSocial, filtroCuit, filtroEmail));
-                    BindingSource bs = new BindingSource();
-                    bs.DataSource = dataSource;
+                    BindingSource bs = new BindingSource {DataSource = dataSource};
 
                     DgUsuarios.Columns.Clear();
 
@@ -181,8 +174,7 @@ namespace MercadoEnvio.ABM_Usuario
                     string filtroEmail = TxtFiltroEmail.Text.Trim();
 
                     BindingList<Cliente> dataSource = new BindingList<Cliente>(UsuarioService.FindClientes(filtroNombre, filtroApellido, filtroDni, filtroEmail));
-                    BindingSource bs = new BindingSource();
-                    bs.DataSource = dataSource;
+                    BindingSource bs = new BindingSource {DataSource = dataSource};
 
                     #region rearmadoDeGrilla
                     DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre", HeaderText = Resources.Nombre, Name = "Nombre" });
@@ -207,56 +199,51 @@ namespace MercadoEnvio.ABM_Usuario
             if (rolSeleccionado.Descripcion.Equals("Empresa", StringComparison.CurrentCultureIgnoreCase))
             {
                 Empresa empresaSeleccionada = new Empresa();
+                BindingSource bs;
 
                 if (DgUsuarios.SelectedRows.Count > 0)
                 {
-                    BindingSource bs = DgUsuarios.DataSource as BindingSource;
+                    bs = DgUsuarios.DataSource as BindingSource;
                     if (bs != null)
                         empresaSeleccionada = (Empresa)bs.List[bs.Position];
                 }
 
-                var altaUsuario = new AltaUsuario(empresaSeleccionada);
-                altaUsuario.Text = Resources.EdicionUsuario;
+                var altaUsuario = new AltaUsuario(empresaSeleccionada) {Text = Resources.EdicionUsuario};
                 var result = altaUsuario.ShowDialog();
 
-                if (result.Equals(DialogResult.OK))
+                if (!result.Equals(DialogResult.OK)) return;
+                
+                string filtroRazonSocial = TxtFiltroNombre.Text.Trim();
+                string filtroCuit = TxtFiltroCuit.Text.Trim();
+                string filtroEmail = TxtFiltroEmail.Text;
+
+                BindingList<Empresa> dataSource = new BindingList<Empresa>(UsuarioService.FindEmpresas(filtroRazonSocial, filtroCuit, filtroEmail));
+                bs = new BindingSource {DataSource = dataSource};
+
+                DgUsuarios.Columns.Clear();
+
+                #region rearmadoDeGrilla
+                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn
                 {
-                    string filtroRazonSocial = TxtFiltroNombre.Text.Trim();
-                    string filtroCuit = TxtFiltroCuit.Text.Trim();
-                    string filtroEmail = TxtFiltroEmail.Text;
+                    DataPropertyName = "RazonSocial",
+                    HeaderText = Resources.RazonSocial,
+                    Name = "RazonSocial"
+                });
+                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "Cuit",
+                    HeaderText = Resources.CUIT,
+                    Name = "Cuit"
+                });
+                DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn
+                {
+                    DataPropertyName = "Email",
+                    HeaderText = Resources.Email,
+                    Name = "Email"
+                });
+                #endregion
 
-                    BindingList<Empresa> dataSource =
-                        new BindingList<Empresa>(UsuarioService.FindEmpresas(filtroRazonSocial, filtroCuit, filtroEmail));
-                    BindingSource bs = new BindingSource();
-                    bs.DataSource = dataSource;
-
-                    DgUsuarios.Columns.Clear();
-
-                    #region rearmadoDeGrilla
-
-                    DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn
-                    {
-                        DataPropertyName = "RazonSocial",
-                        HeaderText = Resources.RazonSocial,
-                        Name = "RazonSocial"
-                    });
-                    DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn
-                    {
-                        DataPropertyName = "Cuit",
-                        HeaderText = Resources.CUIT,
-                        Name = "Cuit"
-                    });
-                    DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn
-                    {
-                        DataPropertyName = "Email",
-                        HeaderText = Resources.Email,
-                        Name = "Email"
-                    });
-
-                    #endregion
-
-                    DgUsuarios.DataSource = bs;
-                }
+                DgUsuarios.DataSource = bs;
             }
             else
             {
@@ -269,8 +256,7 @@ namespace MercadoEnvio.ABM_Usuario
                         clienteSeleccionado = (Cliente)bs.List[bs.Position];
                 }
 
-                var altaUsuario = new AltaUsuario(clienteSeleccionado);
-                altaUsuario.Text = Resources.EdicionUsuario;
+                var altaUsuario = new AltaUsuario(clienteSeleccionado) {Text = Resources.EdicionUsuario};
                 var result = altaUsuario.ShowDialog();
 
                 if (result.Equals(DialogResult.OK))
@@ -287,7 +273,6 @@ namespace MercadoEnvio.ABM_Usuario
                     bs.DataSource = dataSource;
 
                     #region rearmadoDeGrilla
-
                     DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn
                     {
                         DataPropertyName = "Nombre",
@@ -312,7 +297,6 @@ namespace MercadoEnvio.ABM_Usuario
                         HeaderText = Resources.NoDoc,
                         Name = "NumeroDoc"
                     });
-
                     #endregion
 
                     DgUsuarios.DataSource = bs;

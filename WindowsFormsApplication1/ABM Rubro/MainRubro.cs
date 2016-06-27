@@ -3,6 +3,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using MercadoEnvio.ComprarOfertar;
 using MercadoEnvio.Entidades;
+using MercadoEnvio.Properties;
 using MercadoEnvio.Servicios;
 
 namespace MercadoEnvio.ABM_Rubro
@@ -10,7 +11,9 @@ namespace MercadoEnvio.ABM_Rubro
     public partial class MainRubro : Form
     {
         public Usuario Usuario { get; set; }
+
         public MainPublicacion FormPublicacion { get; set; }
+        
         public MainRubro()
         {
             InitializeComponent();
@@ -21,36 +24,29 @@ namespace MercadoEnvio.ABM_Rubro
             #region ArmadoGrillaRubros
             DgRubros.AutoGenerateColumns = false;
             BindingList<Rubro> dataSource = new BindingList<Rubro>(RubrosServices.GetAllData());
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
-            DgRubros.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DescripcionCorta", HeaderText = "Descripción Corta", Name = "DescripcionCorta" });
-            DgRubros.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DescripcionLarga", HeaderText = "Descripción Larga", Name = "DescripcionLarga" });
+            DgRubros.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DescripcionCorta", HeaderText = Resources.DescripcionCorta, Name = "DescripcionCorta" });
+            DgRubros.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DescripcionLarga", HeaderText = Resources.DescripcionLarga, Name = "DescripcionLarga" });
             DgRubros.DataSource = bs;
-
             #endregion
         }
 
         private void BtnLimpiar_Click(object sender, EventArgs e)
         {
             BindingList<Rubro> dataSource = new BindingList<Rubro>();
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgRubros.DataSource = bs;
         }
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            string filtroDescripcionCorta = string.Empty;
-            string filtroDescripcionLarga = string.Empty;
-
-            filtroDescripcionCorta = TxtFiltroDescripcionCorta.Text;
-            filtroDescripcionLarga = TxtFiltroDescripcionLarga.Text;
+            string filtroDescripcionCorta = TxtFiltroDescripcionCorta.Text;
+            string filtroDescripcionLarga = TxtFiltroDescripcionLarga.Text;
 
             BindingList<Rubro> dataSource = new BindingList<Rubro>(RubrosServices.FindRubros(filtroDescripcionCorta,filtroDescripcionLarga));
-            BindingSource bs = new BindingSource();
-            bs.DataSource = dataSource;
+            BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgRubros.DataSource = bs;
         }
@@ -61,21 +57,22 @@ namespace MercadoEnvio.ABM_Rubro
 
             if (DgRubros.SelectedRows.Count > 0)
             {
-                BindingSource bs = new BindingSource();
-                bs = DgRubros.DataSource as BindingSource;
-                rubroSeleccionado = (Rubro)bs.List[bs.Position];
+                BindingSource bs = DgRubros.DataSource as BindingSource;
+
+                if (bs != null)
+                    rubroSeleccionado = (Rubro)bs.List[bs.Position];
             }
 
             FormPublicacion.RubroSeleccionado = rubroSeleccionado;
 
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            DialogResult = DialogResult.OK;
+            Close();
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

@@ -37,8 +37,7 @@ namespace MercadoEnvio.Menu
 
         private void BtnPublicacion_Click(object sender, EventArgs e)
         {
-            var publicacionDialog = new MainPublicacion();
-            publicacionDialog.Usuario = Usuario;
+            var publicacionDialog = new MainPublicacion {Usuario = Usuario};
             publicacionDialog.ShowDialog();
         }
 
@@ -50,15 +49,13 @@ namespace MercadoEnvio.Menu
 
         private void BtnCalificar_Click(object sender, EventArgs e)
         {
-            var calificacionesDialog = new MainCalificaciones();
-            calificacionesDialog.Usuario = Usuario;
+            var calificacionesDialog = new MainCalificaciones {Usuario = Usuario};
             calificacionesDialog.ShowDialog();
         }
 
         private void BtnHistorial_Click(object sender, EventArgs e)
         {
-            var historialDialog = new MainHistorialCliente();
-            historialDialog.Usuario = Usuario;
+            var historialDialog = new MainHistorialCliente {Usuario = Usuario};
             historialDialog.ShowDialog();
         }
 
@@ -74,29 +71,25 @@ namespace MercadoEnvio.Menu
 
         private void BtnRol_Click(object sender, EventArgs e)
         {
-            var rolDialog = new MainRol();
-            rolDialog.Usuario = Usuario;
+            var rolDialog = new MainRol {Usuario = Usuario};
             rolDialog.ShowDialog();
         }
 
         private void BtnRubro_Click(object sender, EventArgs e)
         {
-            var rubroDialog = new MainRubro();
-            rubroDialog.Usuario = Usuario;
+            var rubroDialog = new MainRubro {Usuario = Usuario};
             rubroDialog.ShowDialog();
         }
 
         private void BtnUsuario_Click(object sender, EventArgs e)
         {
-            var usuarioDialog = new MainUsuario();
-            usuarioDialog.Usuario = Usuario;
+            var usuarioDialog = new MainUsuario {Usuario = Usuario};
             usuarioDialog.ShowDialog();
         }
 
         private void BtnVisibilidad_Click(object sender, EventArgs e)
         {
-            var visibilidadDialog = new MainVisibilidad();
-            visibilidadDialog.Usuario = Usuario;
+            var visibilidadDialog = new MainVisibilidad {Usuario = Usuario};
             visibilidadDialog.ShowDialog();
         }
     }
