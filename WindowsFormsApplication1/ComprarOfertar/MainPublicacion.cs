@@ -183,6 +183,10 @@ namespace MercadoEnvio.ComprarOfertar
             BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgPublicaciones.DataSource = bs;
+
+            RubrosFiltro.Clear();
+            TxtFiltroRubro.Text = string.Empty;
+            TxtFiltroDescripcion.Text = string.Empty;
         }
 
         private void BtnComprar_Click(object sender, EventArgs e)
