@@ -50,6 +50,10 @@ namespace MercadoEnvio.ComprarOfertar
             RefreshPagination();
             RebindGridForPageChange();
             #endregion
+
+            #region validarUsuario
+            BtnComprar.Enabled = !Usuario.UserName.Equals("admin", StringComparison.CurrentCultureIgnoreCase);
+            #endregion
         }
 
         private BindingList<Publicacion> FillDataforGrid()

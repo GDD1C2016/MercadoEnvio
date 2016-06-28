@@ -5,6 +5,7 @@ using MercadoEnvio.Helpers;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace MercadoEnvio.DataManagers
 {
@@ -68,7 +69,7 @@ namespace MercadoEnvio.DataManagers
             return publicaciones;
         }
 
-        public static List<Publicacion> FindPublicaciones(string filtroDescripcion, List<Rubro> rubrosFiltro)
+        public static List<Publicacion> FindPublicaciones(string filtroDescripcion, List<Rubro> rubrosFiltro) //TODO PROBAR ORDENAMIENTO
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
@@ -80,7 +81,7 @@ namespace MercadoEnvio.DataManagers
 
                 db.EndConnection();
 
-                return publicaciones;
+                return publicaciones.OrderByDescending(x => x.Visibilidad.Precio).ToList();
             }
         }
 
