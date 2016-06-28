@@ -278,6 +278,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(envioParameter);
             parameters.Add(idUsuarioParameter);
 
+            // Actualizar stock, englobar dentro de transacción
             return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertCompra", parameters); // TODO Insertar factura
         }
     }
