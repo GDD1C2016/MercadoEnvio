@@ -104,7 +104,7 @@ namespace MercadoEnvio.DataManagers
                 List<string> publicaciones = DeletePublicacionesVisibilidad(visibilidad.IdVisibilidad, db);
                 if (publicaciones.Count > 0)
                 {
-                    //return Resources.ErrorRolBorrado + "\n" + string.Join(Environment.NewLine, publicaciones);
+                    //return Resources.ErrorRolBorrado + "\n" + string.Join(Environment.NewLine, publicaciones); // TODO Arreglar error
                     return Resources.ErrorVisibilidadBorrada;
                 }
 

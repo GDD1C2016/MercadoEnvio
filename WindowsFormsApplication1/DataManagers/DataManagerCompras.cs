@@ -39,16 +39,18 @@ namespace MercadoEnvio.DataManagers
             List<Compra> compras = new List<Compra>();
             foreach (DataRow row in res.Rows)
             {
-                var compra = new Compra();
-                compra.IdCompra = Convert.ToInt32(row["IdCompra"]);
-                compra.IdPublicacion = Convert.ToInt32(row["IdPublicacion"]);
-                compra.Fecha = Convert.ToDateTime(row["Fecha"]);
-                compra.Cantidad = Convert.ToDecimal(row["Cantidad"]);
-                compra.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
-                compra.TipoPublicacion = Convert.ToString(row["TipoPublicacion"]);
-                compra.DescripcionPublicacion = Convert.ToString(row["DescripcionPublicacion"]);
-                compra.Vendedor = Convert.ToString(row["Vendedor"]);
-                
+                var compra = new Compra
+                {
+                    IdCompra = Convert.ToInt32(row["IdCompra"]),
+                    IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
+                    Fecha = Convert.ToDateTime(row["Fecha"]),
+                    Cantidad = Convert.ToDecimal(row["Cantidad"]),
+                    IdUsuario = Convert.ToInt32(row["IdUsuario"]),
+                    TipoPublicacion = Convert.ToString(row["TipoPublicacion"]),
+                    DescripcionPublicacion = Convert.ToString(row["DescripcionPublicacion"]),
+                    Vendedor = Convert.ToString(row["Vendedor"])
+                };
+
                 compras.Add(compra);
             }
 
@@ -84,12 +86,14 @@ namespace MercadoEnvio.DataManagers
             List<Factura> facturas = new List<Factura>();
             foreach (DataRow row in res.Rows)
             {
-                var factura = new Factura();
-                factura.IdFactura = Convert.ToInt32(row["IdFactura"]);
-                factura.IdPublicacion = Convert.ToInt32(row["IdPublicacion"]);
-                factura.IdFormaDePago = Convert.ToInt32(row["IdFormaDePago"]);
-                factura.Total = Convert.ToDecimal(row["Total"]);
-                factura.Fecha = Convert.ToDateTime(row["Fecha"]);
+                var factura = new Factura
+                {
+                    IdFactura = Convert.ToInt32(row["IdFactura"]),
+                    IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
+                    IdFormaDePago = Convert.ToInt32(row["IdFormaDePago"]),
+                    Total = Convert.ToDecimal(row["Total"]),
+                    Fecha = Convert.ToDateTime(row["Fecha"])
+                };
 
                 facturas.Add(factura);
             }
@@ -176,12 +180,14 @@ namespace MercadoEnvio.DataManagers
             List<Factura> facturas = new List<Factura>();
             foreach (DataRow row in res.Rows)
             {
-                var factura = new Factura();
-                factura.IdFactura = Convert.ToInt32(row["IdFactura"]);
-                factura.IdPublicacion = Convert.ToInt32(row["IdPublicacion"]);
-                factura.IdFormaDePago = Convert.ToInt32(row["IdFormaDePago"]);
-                factura.Total = Convert.ToDecimal(row["Total"]);
-                factura.Fecha = Convert.ToDateTime(row["Fecha"]);
+                var factura = new Factura
+                {
+                    IdFactura = Convert.ToInt32(row["IdFactura"]),
+                    IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
+                    IdFormaDePago = Convert.ToInt32(row["IdFormaDePago"]),
+                    Total = Convert.ToDecimal(row["Total"]),
+                    Fecha = Convert.ToDateTime(row["Fecha"])
+                };
 
                 facturas.Add(factura);
             }

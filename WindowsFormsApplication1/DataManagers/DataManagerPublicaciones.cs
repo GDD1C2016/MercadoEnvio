@@ -32,33 +32,35 @@ namespace MercadoEnvio.DataManagers
             List<Publicacion> publicaciones = new List<Publicacion>();
             foreach (DataRow row in res.Rows)
             {
-                var publicacion = new Publicacion();
-
-                publicacion.IdPublicacion = Convert.ToInt32(row["IdPublicacion"]);
-                publicacion.Descripcion = Convert.ToString(row["Descripcion"]);
-                publicacion.Stock = Convert.ToInt32(row["Stock"]);
-                publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
-                publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
-                publicacion.Precio = Convert.ToDecimal(row["Precio"]);
-                publicacion.PrecioReserva = row["PrecioReserva"] == DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
-                publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
-                publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
-                publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
-                publicacion.Envio = Convert.ToBoolean(row["Envio"]);
-                publicacion.Visibilidad = new Visibilidad
+                var publicacion = new Publicacion
                 {
-                    IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
-                    Descripcion = Convert.ToString(row["DescripcionVisibilidad"]),
+                    IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
+                    Descripcion = Convert.ToString(row["Descripcion"]),
+                    Stock = Convert.ToInt32(row["Stock"]),
+                    FechaInicio = Convert.ToDateTime(row["FechaInicio"]),
+                    FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]),
                     Precio = Convert.ToDecimal(row["Precio"]),
-                    Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
-                    EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
-                };
-                publicacion.TipoPublicacion = new TipoPublicacion
-                {
-                    IdTipo = Convert.ToInt32(row["IdTipo"]),
-                    Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"]),
+                    PrecioReserva = row["PrecioReserva"] == DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]),
+                    IdRubro = Convert.ToInt32(row["IdRubro"]),
+                    IdUsuario = Convert.ToInt32(row["IdUsuario"]),
+                    IdEstado = Convert.ToInt32(row["IdEstado"]),
                     Envio = Convert.ToBoolean(row["Envio"]),
+                    Visibilidad = new Visibilidad
+                    {
+                        IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
+                        Descripcion = Convert.ToString(row["DescripcionVisibilidad"]),
+                        Precio = Convert.ToDecimal(row["Precio"]),
+                        Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
+                        EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
+                    },
+                    TipoPublicacion = new TipoPublicacion
+                    {
+                        IdTipo = Convert.ToInt32(row["IdTipo"]),
+                        Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"]),
+                        Envio = Convert.ToBoolean(row["Envio"]),
+                    }
                 };
+
 
                 publicaciones.Add(publicacion);
             }
@@ -82,8 +84,7 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
-        private static List<Publicacion> FindPublicaciones(string filtroDescripcion, List<Rubro> rubrosFiltro,
-            DataBaseHelper db)
+        private static List<Publicacion> FindPublicaciones(string filtroDescripcion, List<Rubro> rubrosFiltro, DataBaseHelper db)
         {
             List<Publicacion> publicaciones = new List<Publicacion>();
             List<SqlParameter> parameters = new List<SqlParameter>();
@@ -104,33 +105,36 @@ namespace MercadoEnvio.DataManagers
                     DataTable res = db.GetDataAsTable("MASTERDBA.SP_FindPublicaciones", parameters);
                     foreach (DataRow row in res.Rows)
                     {
-                        var publicacion = new Publicacion();
-
-                        publicacion.IdPublicacion = Convert.ToInt32(row["IdPublicacion"]);
-                        publicacion.Descripcion = Convert.ToString(row["Descripcion"]);
-                        publicacion.Stock = Convert.ToInt32(row["Stock"]);
-                        publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
-                        publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
-                        publicacion.Precio = Convert.ToDecimal(row["Precio"]);
-                        publicacion.PrecioReserva = row["PrecioReserva"] == DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
-                        publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
-                        publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
-                        publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
-                        publicacion.Envio = Convert.ToBoolean(row["Envio"]);
-                        publicacion.Visibilidad = new Visibilidad
+                        var publicacion = new Publicacion
                         {
-                            IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
-                            Descripcion = Convert.ToString(row["DescripcionVisibilidad"]),
+                            IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
+                            Descripcion = Convert.ToString(row["Descripcion"]),
+                            Stock = Convert.ToInt32(row["Stock"]),
+                            FechaInicio = Convert.ToDateTime(row["FechaInicio"]),
+                            FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]),
                             Precio = Convert.ToDecimal(row["Precio"]),
-                            Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
-                            EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
-                        };
-                        publicacion.TipoPublicacion = new TipoPublicacion
-                        {
-                            IdTipo = Convert.ToInt32(row["IdTipo"]),
-                            Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"]),
+                            PrecioReserva =
+                                row["PrecioReserva"] == DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]),
+                            IdRubro = Convert.ToInt32(row["IdRubro"]),
+                            IdUsuario = Convert.ToInt32(row["IdUsuario"]),
+                            IdEstado = Convert.ToInt32(row["IdEstado"]),
                             Envio = Convert.ToBoolean(row["Envio"]),
+                            Visibilidad = new Visibilidad
+                            {
+                                IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
+                                Descripcion = Convert.ToString(row["DescripcionVisibilidad"]),
+                                Precio = Convert.ToDecimal(row["Precio"]),
+                                Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
+                                EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
+                            },
+                            TipoPublicacion = new TipoPublicacion
+                            {
+                                IdTipo = Convert.ToInt32(row["IdTipo"]),
+                                Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"]),
+                                Envio = Convert.ToBoolean(row["Envio"]),
+                            }
                         };
+
 
                         if (!publicaciones.Exists(x => x.IdPublicacion == publicacion.IdPublicacion))
                             publicaciones.Add(publicacion);
@@ -153,95 +157,41 @@ namespace MercadoEnvio.DataManagers
                 DataTable res = db.GetDataAsTable("MASTERDBA.SP_FindPublicaciones", parameters);
                 foreach (DataRow row in res.Rows)
                 {
-                    var publicacion = new Publicacion();
-
-                    publicacion.IdPublicacion = Convert.ToInt32(row["IdPublicacion"]);
-                    publicacion.Descripcion = Convert.ToString(row["Descripcion"]);
-                    publicacion.Stock = Convert.ToInt32(row["Stock"]);
-                    publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
-                    publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
-                    publicacion.Precio = Convert.ToDecimal(row["Precio"]);
-                    publicacion.PrecioReserva = row["PrecioReserva"] == DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
-                    publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
-                    publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
-                    publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
-                    publicacion.Envio = Convert.ToBoolean(row["Envio"]);
-                    publicacion.Visibilidad = new Visibilidad
+                    var publicacion = new Publicacion
                     {
-                        IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
-                        Descripcion = Convert.ToString(row["DescripcionVisibilidad"]),
+                        IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
+                        Descripcion = Convert.ToString(row["Descripcion"]),
+                        Stock = Convert.ToInt32(row["Stock"]),
+                        FechaInicio = Convert.ToDateTime(row["FechaInicio"]),
+                        FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]),
                         Precio = Convert.ToDecimal(row["Precio"]),
-                        Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
-                        EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
-                    };
-                    publicacion.TipoPublicacion = new TipoPublicacion
-                    {
-                        IdTipo = Convert.ToInt32(row["IdTipo"]),
-                        Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"]),
+                        PrecioReserva =
+                            row["PrecioReserva"] == DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]),
+                        IdRubro = Convert.ToInt32(row["IdRubro"]),
+                        IdUsuario = Convert.ToInt32(row["IdUsuario"]),
+                        IdEstado = Convert.ToInt32(row["IdEstado"]),
                         Envio = Convert.ToBoolean(row["Envio"]),
+                        Visibilidad = new Visibilidad
+                        {
+                            IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
+                            Descripcion = Convert.ToString(row["DescripcionVisibilidad"]),
+                            Precio = Convert.ToDecimal(row["Precio"]),
+                            Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
+                            EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
+                        },
+                        TipoPublicacion = new TipoPublicacion
+                        {
+                            IdTipo = Convert.ToInt32(row["IdTipo"]),
+                            Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"]),
+                            Envio = Convert.ToBoolean(row["Envio"]),
+                        }
                     };
+
 
                     publicaciones.Add(publicacion);
 
                     parameters.Clear();
                 }
-            }
-
-            return publicaciones;
-        }
-
-        public static List<Publicacion> GetPendientesCalificar()
-        {
-            List<Publicacion> listaPublicaciones;
-            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
-
-            using (db.Connection)
-            {
-                db.BeginTransaction();
-
-                listaPublicaciones = GetPendientesCalificar(db);
-
-                db.EndConnection();
-
-                return listaPublicaciones;
-            }
-        }
-
-        public static List<Publicacion> GetPendientesCalificar(DataBaseHelper db)
-        {
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetPendientesCalificar"); //TODO HACER ESTE SP Y VER SI VALE LA PENA LLENAR TODAS LAS PROPIEDADES
-            List<Publicacion> publicaciones = new List<Publicacion>();
-            foreach (DataRow row in res.Rows)
-            {
-                var publicacion = new Publicacion();
-
-                publicacion.IdPublicacion = Convert.ToInt32(row["IdPublicacion"]);
-                publicacion.Descripcion = Convert.ToString(row["Descripcion"]);
-                publicacion.Stock = Convert.ToInt32(row["Stock"]);
-                publicacion.FechaInicio = Convert.ToDateTime(row["FechaInicio"]);
-                publicacion.FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]);
-                publicacion.Precio = Convert.ToDecimal(row["Precio"]);
-                publicacion.PrecioReserva = row["PrecioReserva"] == DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]);
-                publicacion.IdRubro = Convert.ToInt32(row["IdRubro"]);
-                publicacion.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
-                publicacion.IdEstado = Convert.ToInt32(row["IdEstado"]);
-                publicacion.Envio = Convert.ToBoolean(row["Envio"]);
-                publicacion.Visibilidad = new Visibilidad
-                {
-                    IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
-                    Descripcion = Convert.ToString(row["DescripcionVisibilidad"]),
-                    Precio = Convert.ToDecimal(row["Precio"]),
-                    Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
-                    EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
-                };
-                publicacion.TipoPublicacion = new TipoPublicacion
-                {
-                    IdTipo = Convert.ToInt32(row["IdTipo"]),
-                    Descripcion = Convert.ToString(row["DescripcionTipoPublicacion"]),
-                    Envio = Convert.ToBoolean(row["Envio"]),
-                };
-
-                publicaciones.Add(publicacion);
             }
 
             return publicaciones;
