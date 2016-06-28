@@ -54,7 +54,7 @@ namespace MercadoEnvio.ComprarOfertar
 
         private BindingList<Publicacion> FillDataforGrid()
         {
-            List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.GetAllData().OrderByDescending(x=>x.Visibilidad.Precio).ToList());
+            List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.GetAllData());
             BindingList<Publicacion> list = new BindingList<Publicacion>(listAux);
             return list;
         }
@@ -169,7 +169,7 @@ namespace MercadoEnvio.ComprarOfertar
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
             string filtroDescripcion = TxtFiltroDescripcion.Text;
-            List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.FindPublicaciones(filtroDescripcion, RubrosFiltro).OrderByDescending(x => x.Visibilidad.Precio).ToList());
+            List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.FindPublicaciones(filtroDescripcion, RubrosFiltro));
 
             BindingList<Publicacion> dataSource = new BindingList<Publicacion>(listAux);
             BindingSource bs = new BindingSource {DataSource = dataSource};
@@ -215,7 +215,7 @@ namespace MercadoEnvio.ComprarOfertar
 
             if (res.Equals(DialogResult.OK))
             {
-                List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.GetAllData().OrderByDescending(x => x.Visibilidad.Precio).ToList());
+                List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.GetAllData());
 
                 BindingList<Publicacion> dataSource = new BindingList<Publicacion>(listAux);
                 BindingSource bs = new BindingSource {DataSource = dataSource};
