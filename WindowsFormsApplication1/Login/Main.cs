@@ -55,10 +55,12 @@ namespace MercadoEnvio.Login
             #region ValidarFechaConfig
             FechaHelper fechaHelper = new FechaHelper();
 
-            if (fechaHelper.ConfigDateIsValid()) return;
-            
-            MessageBox.Show(Resources.ErrorFechaSistema, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Error);
-            Application.Exit();
+            if (!fechaHelper.ConfigDateIsValid())
+            {
+                MessageBox.Show(Resources.ErrorFechaSistema, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Application.Exit();
+            }
+           
             #endregion
         }
     }

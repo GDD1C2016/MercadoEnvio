@@ -18,7 +18,8 @@ namespace MercadoEnvio.Helpers
         public bool ConfigDateIsValid()
         {
             DateTime resultParse;
-            return DateTime.TryParse(ConfigurationManager.AppSettings["lastRunTime"], out resultParse);
+            bool res = DateTime.TryParse(ConfigurationManager.AppSettings["systemTime"], out resultParse);
+            return res;
         }
     }
 }

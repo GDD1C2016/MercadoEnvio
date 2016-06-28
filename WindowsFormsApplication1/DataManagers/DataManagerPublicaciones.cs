@@ -269,7 +269,7 @@ namespace MercadoEnvio.DataManagers
             SqlParameter envioParameter = new SqlParameter("@Envio", SqlDbType.Bit);
             envioParameter.Value = envio;
 
-            SqlParameter idUsuarioParameter = new SqlParameter("@IdPublicacion", SqlDbType.Int);
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
             idUsuarioParameter.Value = usuarioActivo.IdUsuario;
 
             parameters.Add(idPublicacionParameter);
