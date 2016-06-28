@@ -14,6 +14,7 @@ namespace MercadoEnvio.Entidades
         private decimal _montoFacturado;
         private string _nombreUsuario;
         private int _idFactura;
+        private string _visibilidadDescripcion;
 
         #endregion
 
@@ -59,6 +60,12 @@ namespace MercadoEnvio.Entidades
         {
             get { return _idFactura; }
             set { _idFactura = value; }
+        }
+
+        public string VisibilidadDescripcion
+        {
+            get { return _visibilidadDescripcion; }
+            set { _visibilidadDescripcion = value; }
         }
 
         #endregion

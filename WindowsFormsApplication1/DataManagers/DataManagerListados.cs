@@ -145,8 +145,8 @@ namespace MercadoEnvio.DataManagers
                 {
                     IdUsuario = Convert.ToInt32(row["IdUsuario"]),
                     CantidadProductosComprados = Convert.ToInt32(row["CantProductosComprados"]),
-                    NombreUsuario = Convert.ToString(row["NombreUsuario"])
-                    // TODO Agregar "RubroDescripcion"
+                    NombreUsuario = Convert.ToString(row["NombreUsuario"]),
+                    RubroDescripcion = Convert.ToString(row["RubroDescripcion"])
                 };
 
                 clientes.Add(cliente);
@@ -192,7 +192,7 @@ namespace MercadoEnvio.DataManagers
             List<Vendedor> vendedores = new List<Vendedor>();
             foreach (DataRow row in res.Rows)
             {
-                var vendedor = new Vendedor // TODO Verificar que coincidan estos campos con los del grid
+                var vendedor = new Vendedor
                 {
                     Cantidad = Convert.ToInt32(row["CantProductosNoVendidos"]),
                     VisibilidadDescripcion = Convert.ToString(row["VisibilidadDescripcion"]),
