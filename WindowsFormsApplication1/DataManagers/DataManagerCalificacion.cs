@@ -43,12 +43,14 @@ namespace MercadoEnvio.DataManagers
             List<Calificacion> calificaciones = new List<Calificacion>();
             foreach (DataRow row in res.Rows)
             {
-                var calificacion = new Calificacion();
-                calificacion.CantEstrellas = Convert.ToDecimal(row["CantEstrellas"]);
-                calificacion.DescripcionCompra = Convert.ToString(row["DescripcionCompra"]);
-                calificacion.IdCalificacion = Convert.ToDecimal(row["IdCalificacion"]);
-                calificacion.IdCompra = Convert.ToInt32(row["IdCompra"]);
-                calificacion.Observaciones = Convert.ToString(row["Descripcion"]);
+                var calificacion = new Calificacion
+                {
+                    CantEstrellas = Convert.ToDecimal(row["CantEstrellas"]),
+                    DescripcionCompra = Convert.ToString(row["DescripcionCompra"]),
+                    IdCalificacion = Convert.ToDecimal(row["IdCalificacion"]),
+                    IdCompra = Convert.ToInt32(row["IdCompra"]),
+                    Observaciones = Convert.ToString(row["Descripcion"])
+                };
 
                 calificaciones.Add(calificacion);
             }
