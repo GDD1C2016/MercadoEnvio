@@ -13,11 +13,15 @@ namespace MercadoEnvio.Entidades
         private decimal _precio;
         private decimal _precioReserva;
         private int _idRubro;
+        private string _rubroDescripcionCorta;
+        private string _rubroDescripcionLarga;
         private int _idUsuario;
+        private string _nombreUsuario;
         private int _idEstado;
+        private string _estadoDescripcion;
         private bool _envio;
-        private Visibilidad _visibilidad;
         private TipoPublicacion _tipoPublicacion;
+        private Visibilidad _visibilidad;
         #endregion
 
         #region properties
@@ -69,10 +73,28 @@ namespace MercadoEnvio.Entidades
             set { _idRubro = value; }
         }
 
+        public string RubroDescripcionCorta
+        {
+            get { return _rubroDescripcionCorta; }
+            set { _rubroDescripcionCorta = value; }
+        }
+
+        public string RubroDescripcionLarga
+        {
+            get { return _rubroDescripcionLarga; }
+            set { _rubroDescripcionLarga = value; }
+        }
+
         public int IdUsuario
         {
             get { return _idUsuario; }
             set { _idUsuario = value; }
+        }
+
+        public string NombreUsuario
+        {
+            get { return _nombreUsuario; }
+            set { _nombreUsuario = value; }
         }
 
         public int IdEstado
@@ -81,22 +103,28 @@ namespace MercadoEnvio.Entidades
             set { _idEstado = value; }
         }
 
+        public string EstadoDescripcion
+        {
+            get { return _estadoDescripcion; }
+            set { _estadoDescripcion = value; }
+        }
+
         public TipoPublicacion TipoPublicacion
         {
             get { return _tipoPublicacion; }
             set { _tipoPublicacion = value; }
         }
 
-        public bool Envio
-        {
-            get { return _envio; }
-            set { _envio = value; }
-        }
-
         public Visibilidad Visibilidad
         {
             get { return _visibilidad; }
             set { _visibilidad = value; }
+        }
+
+        public bool Envio
+        {
+            get { return _envio; }
+            set { _envio = value; }
         }
         #endregion
     }
