@@ -5,7 +5,6 @@ namespace MercadoEnvio.Entidades
     public class Usuario
     {
         #region attributes
-
         private int _idUsuario;
         private string _userName;
         private string _password;
@@ -23,11 +22,9 @@ namespace MercadoEnvio.Entidades
         private string _codigoPostal;
         private decimal _reputacion;
         private Rol _rolActivo;
-
         #endregion
 
         #region properties
-
         public int IdUsuario
         {
             get { return _idUsuario; }
@@ -137,7 +134,6 @@ namespace MercadoEnvio.Entidades
             get { return _rolActivo; }
             set { _rolActivo = value; }
         }
-
         #endregion
 
         #region constructor

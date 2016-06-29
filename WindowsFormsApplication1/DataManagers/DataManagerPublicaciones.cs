@@ -204,5 +204,46 @@ namespace MercadoEnvio.DataManagers
             // Actualizar stock, englobar dentro de transacción
             return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertCompra", parameters); // TODO Insertar factura
         }
+
+        public static List<Publicacion> GetEstados(Publicacion publicacionSeleccionada)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                List<Publicacion> publicaciones = GetEstados(publicacionSeleccionada, db);
+
+                db.EndConnection();
+
+                return publicaciones;
+            }
+        }
+
+        private static List<Publicacion> GetEstados(Publicacion publicacionSeleccionada, DataBaseHelper db)
+        {
+            List<Publicacion> publicaciones = new List<Publicacion>();
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
+            descripcionParameter.Value = publicacionSeleccionada.EstadoDescripcion;
+
+            parameters.Add(descripcionParameter);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetEstados", parameters);
+            foreach (DataRow row in res.Rows)
+            {
+                var publicacion = new Publicacion
+                {
+                    IdEstado = Convert.ToInt32(row["IdEstado"]),
+                    EstadoDescripcion = Convert.ToString(row["EstadoDescripcion"])
+                };
+
+                publicaciones.Add(publicacion);
+            }
+
+            return publicaciones;
+        }
     }
 }

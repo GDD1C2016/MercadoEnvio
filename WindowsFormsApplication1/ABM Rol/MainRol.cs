@@ -43,6 +43,7 @@ namespace MercadoEnvio.ABM_Rol
             Estado estadoHabilitado = new Estado { Valor = true };
             Estado estadoDeshabilitado = new Estado { Valor = false };
             List<Estado> estados = new List<Estado> {estadoTodos, estadoHabilitado, estadoDeshabilitado};
+
             ComboEstado.DataSource = estados;
             ComboEstado.DisplayMember = "Descripcion";
             ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;

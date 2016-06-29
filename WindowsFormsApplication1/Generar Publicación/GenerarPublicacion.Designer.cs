@@ -32,13 +32,14 @@
             this.BtnGuardar = new System.Windows.Forms.Button();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.RichTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.ComboVisibilidad = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.ComboRubro = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.ComboTipoPublicacion = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -56,7 +57,6 @@
             this.label14 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.RichTextBoxObservaciones = new System.Windows.Forms.RichTextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -97,11 +97,11 @@
             this.groupBox1.Controls.Add(this.RichTextBoxObservaciones);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.comboBox3);
+            this.groupBox1.Controls.Add(this.ComboVisibilidad);
             this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.comboBox2);
+            this.groupBox1.Controls.Add(this.ComboRubro);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.ComboTipoPublicacion);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
@@ -115,6 +115,15 @@
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información básica de la publicación";
+            // 
+            // RichTextBoxObservaciones
+            // 
+            this.RichTextBoxObservaciones.Location = new System.Drawing.Point(73, 81);
+            this.RichTextBoxObservaciones.MaxLength = 255;
+            this.RichTextBoxObservaciones.Name = "RichTextBoxObservaciones";
+            this.RichTextBoxObservaciones.Size = new System.Drawing.Size(569, 44);
+            this.RichTextBoxObservaciones.TabIndex = 22;
+            this.RichTextBoxObservaciones.Text = "";
             // 
             // label9
             // 
@@ -134,13 +143,13 @@
             this.label8.TabIndex = 20;
             this.label8.Text = "Usuario responsable";
             // 
-            // comboBox3
+            // ComboVisibilidad
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(104, 131);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(175, 21);
-            this.comboBox3.TabIndex = 19;
+            this.ComboVisibilidad.FormattingEnabled = true;
+            this.ComboVisibilidad.Location = new System.Drawing.Point(104, 131);
+            this.ComboVisibilidad.Name = "ComboVisibilidad";
+            this.ComboVisibilidad.Size = new System.Drawing.Size(175, 21);
+            this.ComboVisibilidad.TabIndex = 19;
             // 
             // label7
             // 
@@ -151,13 +160,13 @@
             this.label7.TabIndex = 18;
             this.label7.Text = "Tipo de visibilidad";
             // 
-            // comboBox2
+            // ComboRubro
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(419, 52);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(223, 21);
-            this.comboBox2.TabIndex = 17;
+            this.ComboRubro.FormattingEnabled = true;
+            this.ComboRubro.Location = new System.Drawing.Point(419, 52);
+            this.ComboRubro.Name = "ComboRubro";
+            this.ComboRubro.Size = new System.Drawing.Size(223, 21);
+            this.ComboRubro.TabIndex = 17;
             // 
             // label6
             // 
@@ -168,13 +177,13 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "Rubro";
             // 
-            // comboBox1
+            // ComboTipoPublicacion
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(113, 52);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(166, 21);
-            this.comboBox1.TabIndex = 15;
+            this.ComboTipoPublicacion.FormattingEnabled = true;
+            this.ComboTipoPublicacion.Location = new System.Drawing.Point(113, 52);
+            this.ComboTipoPublicacion.Name = "ComboTipoPublicacion";
+            this.ComboTipoPublicacion.Size = new System.Drawing.Size(166, 21);
+            this.ComboTipoPublicacion.TabIndex = 15;
             // 
             // label1
             // 
@@ -324,15 +333,6 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.Visible = false;
             // 
-            // RichTextBoxObservaciones
-            // 
-            this.RichTextBoxObservaciones.Location = new System.Drawing.Point(73, 81);
-            this.RichTextBoxObservaciones.MaxLength = 255;
-            this.RichTextBoxObservaciones.Name = "RichTextBoxObservaciones";
-            this.RichTextBoxObservaciones.Size = new System.Drawing.Size(569, 44);
-            this.RichTextBoxObservaciones.TabIndex = 22;
-            this.RichTextBoxObservaciones.Text = "";
-            // 
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(9, 260);
@@ -383,13 +383,13 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox ComboTipoPublicacion;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox ComboRubro;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox ComboVisibilidad;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox TxtPorcentaje;
         private System.Windows.Forms.Label label10;

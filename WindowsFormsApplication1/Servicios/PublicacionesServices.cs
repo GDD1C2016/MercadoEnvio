@@ -24,5 +24,10 @@ namespace MercadoEnvio.Servicios
         {
             return DataManagers.DataManagerPublicaciones.Comprar(publicacionSeleccionada, usuarioActivo, cantidad, envio);
         }
+
+        public static List<Publicacion> GetEstados(Publicacion publicacionSeleccionada)
+        {
+            return DataManagers.DataManagerPublicaciones.GetEstados(publicacionSeleccionada);
+        }
     }
 }
