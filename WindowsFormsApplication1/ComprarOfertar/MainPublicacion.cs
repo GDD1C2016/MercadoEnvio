@@ -227,5 +227,28 @@ namespace MercadoEnvio.ComprarOfertar
                 DgPublicaciones.DataSource = bs;
             }
         }
+
+        private void DgPublicaciones_SelectionChanged(object sender, EventArgs e)
+        {
+            Publicacion publicacionSeleccionada = new Publicacion();
+
+            if (DgPublicaciones.SelectedRows.Count > 0)
+            {
+                BindingSource bs = (BindingSource)DgPublicaciones.DataSource;
+                if (bs != null)
+                {
+                    publicacionSeleccionada = (Publicacion)bs[DgPublicaciones.SelectedRows[0].Index];
+
+                    if (publicacionSeleccionada.EstadoDescripcion.Equals("Pausada", StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        BtnComprar.Enabled = false;
+                    }
+                    else
+                    {
+                        BtnComprar.Enabled = true;
+                    }
+                }
+            }
+        }
     }
 }
