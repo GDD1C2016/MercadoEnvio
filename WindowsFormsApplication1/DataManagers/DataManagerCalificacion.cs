@@ -46,7 +46,7 @@ namespace MercadoEnvio.DataManagers
                 var calificacion = new Calificacion
                 {
                     CantEstrellas = Convert.ToDecimal(row["CantEstrellas"]),
-                    DescripcionCompra = Convert.ToString(row["DescripcionCompra"]),
+                    DescripcionCompra = Convert.ToString(row["DescripcionPublicacion"]),
                     IdCalificacion = Convert.ToDecimal(row["IdCalificacion"]),
                     IdCompra = Convert.ToInt32(row["IdCompra"]),
                     Observaciones = Convert.ToString(row["Descripcion"])
