@@ -502,4 +502,13 @@
   <data name="ErrorFechaSistema" xml:space="preserve">
     <value>La fecha ingresada en el archivo de configuración no es válida.</value>
   </data>
+  <data name="ErrorPublicacionPausada" xml:space="preserve">
+    <value>La Publicación se encuentra Pausada.</value>
+  </data>
+  <data name="ErrorCalificacionesPendientes" xml:space="preserve">
+    <value>Se deben calificar las compras pendientes antes de continuar.</value>
+  </data>
+  <data name="ErrorCompra" xml:space="preserve">
+    <value>Error al comprar</value>
+  </data>
 </root>

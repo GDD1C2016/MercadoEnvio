@@ -82,7 +82,7 @@ namespace MercadoEnvio.DataManagers
             SqlParameter cantEstrellasParameter = new SqlParameter("@CantEstrellas", SqlDbType.Int);
             cantEstrellasParameter.Value = calificacion.CantEstrellas;
 
-            SqlParameter descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.Int);
+            SqlParameter descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
             descripcionParameter.Value = calificacion.Observaciones;
 
             parameters.Add(idCompraParameter);

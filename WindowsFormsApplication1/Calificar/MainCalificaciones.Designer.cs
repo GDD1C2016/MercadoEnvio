@@ -29,25 +29,25 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LabelReputacionTxt = new System.Windows.Forms.Label();
+            this.LabelReputacion = new System.Windows.Forms.Label();
+            this.LabelUsuarioTxt = new System.Windows.Forms.Label();
+            this.LabelUsuario = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BtnCalificar = new System.Windows.Forms.Button();
             this.BtnCancelar = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.DgPendientes = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.DgUltimas5 = new System.Windows.Forms.DataGridView();
-            this.DgPendientes = new System.Windows.Forms.DataGridView();
-            this.LabelUsuario = new System.Windows.Forms.Label();
-            this.LabelUsuarioTxt = new System.Windows.Forms.Label();
-            this.LabelReputacion = new System.Windows.Forms.Label();
-            this.LabelReputacionTxt = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.DgPendientes)).BeginInit();
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgUltimas5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DgPendientes)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -63,6 +63,40 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Usuario";
+            // 
+            // LabelReputacionTxt
+            // 
+            this.LabelReputacionTxt.AutoSize = true;
+            this.LabelReputacionTxt.Location = new System.Drawing.Point(273, 28);
+            this.LabelReputacionTxt.Name = "LabelReputacionTxt";
+            this.LabelReputacionTxt.Size = new System.Drawing.Size(0, 13);
+            this.LabelReputacionTxt.TabIndex = 3;
+            // 
+            // LabelReputacion
+            // 
+            this.LabelReputacion.AutoSize = true;
+            this.LabelReputacion.Location = new System.Drawing.Point(205, 28);
+            this.LabelReputacion.Name = "LabelReputacion";
+            this.LabelReputacion.Size = new System.Drawing.Size(62, 13);
+            this.LabelReputacion.TabIndex = 2;
+            this.LabelReputacion.Text = "Reputación";
+            // 
+            // LabelUsuarioTxt
+            // 
+            this.LabelUsuarioTxt.AutoSize = true;
+            this.LabelUsuarioTxt.Location = new System.Drawing.Point(62, 28);
+            this.LabelUsuarioTxt.Name = "LabelUsuarioTxt";
+            this.LabelUsuarioTxt.Size = new System.Drawing.Size(0, 13);
+            this.LabelUsuarioTxt.TabIndex = 1;
+            // 
+            // LabelUsuario
+            // 
+            this.LabelUsuario.AutoSize = true;
+            this.LabelUsuario.Location = new System.Drawing.Point(12, 28);
+            this.LabelUsuario.Name = "LabelUsuario";
+            this.LabelUsuario.Size = new System.Drawing.Size(43, 13);
+            this.LabelUsuario.TabIndex = 0;
+            this.LabelUsuario.Text = "Usuario";
             // 
             // groupBox2
             // 
@@ -118,6 +152,17 @@
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Pendientes de Calificar";
             // 
+            // DgPendientes
+            // 
+            this.DgPendientes.AllowUserToAddRows = false;
+            this.DgPendientes.AllowUserToDeleteRows = false;
+            this.DgPendientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgPendientes.Location = new System.Drawing.Point(9, 19);
+            this.DgPendientes.Name = "DgPendientes";
+            this.DgPendientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.DgPendientes.Size = new System.Drawing.Size(610, 130);
+            this.DgPendientes.TabIndex = 0;
+            // 
             // groupBox4
             // 
             this.groupBox4.Controls.Add(this.DgUltimas5);
@@ -142,48 +187,6 @@
             this.DgUltimas5.Size = new System.Drawing.Size(610, 138);
             this.DgUltimas5.TabIndex = 2;
             // 
-            // DgPendientes
-            // 
-            this.DgPendientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DgPendientes.Location = new System.Drawing.Point(9, 19);
-            this.DgPendientes.Name = "DgPendientes";
-            this.DgPendientes.Size = new System.Drawing.Size(610, 130);
-            this.DgPendientes.TabIndex = 0;
-            // 
-            // LabelUsuario
-            // 
-            this.LabelUsuario.AutoSize = true;
-            this.LabelUsuario.Location = new System.Drawing.Point(12, 28);
-            this.LabelUsuario.Name = "LabelUsuario";
-            this.LabelUsuario.Size = new System.Drawing.Size(43, 13);
-            this.LabelUsuario.TabIndex = 0;
-            this.LabelUsuario.Text = "Usuario";
-            // 
-            // LabelUsuarioTxt
-            // 
-            this.LabelUsuarioTxt.AutoSize = true;
-            this.LabelUsuarioTxt.Location = new System.Drawing.Point(62, 28);
-            this.LabelUsuarioTxt.Name = "LabelUsuarioTxt";
-            this.LabelUsuarioTxt.Size = new System.Drawing.Size(0, 13);
-            this.LabelUsuarioTxt.TabIndex = 1;
-            // 
-            // LabelReputacion
-            // 
-            this.LabelReputacion.AutoSize = true;
-            this.LabelReputacion.Location = new System.Drawing.Point(205, 28);
-            this.LabelReputacion.Name = "LabelReputacion";
-            this.LabelReputacion.Size = new System.Drawing.Size(62, 13);
-            this.LabelReputacion.TabIndex = 2;
-            this.LabelReputacion.Text = "Reputación";
-            // 
-            // LabelReputacionTxt
-            // 
-            this.LabelReputacionTxt.AutoSize = true;
-            this.LabelReputacionTxt.Location = new System.Drawing.Point(273, 28);
-            this.LabelReputacionTxt.Name = "LabelReputacionTxt";
-            this.LabelReputacionTxt.Size = new System.Drawing.Size(0, 13);
-            this.LabelReputacionTxt.TabIndex = 3;
-            // 
             // MainCalificaciones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,6 +198,7 @@
             this.MaximumSize = new System.Drawing.Size(650, 535);
             this.MinimumSize = new System.Drawing.Size(650, 535);
             this.Name = "MainCalificaciones";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calificaciones";
             this.Load += new System.EventHandler(this.MainCalificaciones_Load);
             this.groupBox1.ResumeLayout(false);
@@ -202,9 +206,9 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.DgPendientes)).EndInit();
             this.groupBox4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.DgUltimas5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.DgPendientes)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -208,29 +208,51 @@ namespace MercadoEnvio.ComprarOfertar
                 if (bs != null)
                 {
                     publicacionSeleccionada = (Publicacion) bs[DgPublicaciones.SelectedRows[0].Index];
+
+                    List<string> errors = new List<string>(ValidarCompra(publicacionSeleccionada));
+                    if (errors.Count > 0)
+                    {
+                        var message = string.Join(Environment.NewLine, errors);
+                        MessageBox.Show(message, Resources.ErrorCompra, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        var comprarDialog = new ComprarDialog
+                        {
+                            UsuarioActivo = Usuario,
+                            PublicacionSeleccionada = publicacionSeleccionada
+                        };
+
+                        comprarDialog.Text = publicacionSeleccionada.TipoPublicacion.Descripcion.Equals("Subasta",
+                            StringComparison.CurrentCultureIgnoreCase) ? Resources.Ofertar : Resources.Comprar;
+
+                        var res = comprarDialog.ShowDialog();
+
+                        if (res.Equals(DialogResult.OK))
+                        {
+                            List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.GetAllData());
+
+                            BindingList<Publicacion> dataSource = new BindingList<Publicacion>(listAux);
+                            BindingSource bs2 = new BindingSource { DataSource = dataSource };
+
+                            DgPublicaciones.DataSource = bs2;
+                        }
+                    }
                 }
             }
+        }
 
-            var comprarDialog = new ComprarDialog
-            {
-                UsuarioActivo = Usuario,
-                PublicacionSeleccionada = publicacionSeleccionada
-            };
+        private List<string> ValidarCompra(Publicacion publicacionSeleccionada)
+        {
+            List<string> errors = new List<string>();
 
-            comprarDialog.Text = publicacionSeleccionada.TipoPublicacion.Descripcion.Equals("Subasta",
-                StringComparison.CurrentCultureIgnoreCase) ? Resources.Ofertar : Resources.Comprar;
-            
-            var res = comprarDialog.ShowDialog();
+            if (publicacionSeleccionada.EstadoDescripcion.Equals("Pausada", StringComparison.CurrentCultureIgnoreCase))
+                errors.Add(Resources.ErrorPublicacionPausada);
 
-            if (res.Equals(DialogResult.OK))
-            {
-                List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.GetAllData());
+            if (ComprasServices.GetComprasPendientesDeCalificacion(Usuario.IdUsuario).Count >= 3)
+                errors.Add(Resources.ErrorCalificacionesPendientes);
 
-                BindingList<Publicacion> dataSource = new BindingList<Publicacion>(listAux);
-                BindingSource bs = new BindingSource {DataSource = dataSource};
-
-                DgPublicaciones.DataSource = bs;
-            }
+            return errors;
         }
 
         private void DgPublicaciones_SelectionChanged(object sender, EventArgs e)
