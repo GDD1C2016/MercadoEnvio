@@ -128,6 +128,7 @@
             this.DgPublicaciones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DgPublicaciones.Size = new System.Drawing.Size(710, 300);
             this.DgPublicaciones.TabIndex = 2;
+            this.DgPublicaciones.SelectionChanged += new System.EventHandler(this.DgPublicaciones_SelectionChanged);
             // 
             // BtnLimpiar
             // 
