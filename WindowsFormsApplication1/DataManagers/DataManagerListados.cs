@@ -40,7 +40,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(trimestreParameter);
             parameters.Add(anioParameter);
 
-            DataTable res = db.GetDataAsTable("GetListadoVendedoresMontos", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.GetListadoVendedoresMontos", parameters);
             List<Vendedor> vendedores = new List<Vendedor>();
             foreach (DataRow row in res.Rows)
             {
@@ -87,7 +87,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(trimestreParameter);
             parameters.Add(anioParameter);
 
-            DataTable res = db.GetDataAsTable("GetListadoVendedoresFacturas", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.GetListadoVendedoresFacturas", parameters);
             List<Vendedor> vendedores = new List<Vendedor>();
             foreach (DataRow row in res.Rows)
             {
