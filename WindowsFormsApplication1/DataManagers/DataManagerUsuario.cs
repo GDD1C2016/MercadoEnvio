@@ -217,6 +217,14 @@ namespace MercadoEnvio.DataManagers
                     Password = Convert.ToString(row["PasswordEnc"]),
                 };
 
+                List<Calificacion> calificaciones = GetCalificaciones(usuario.IdUsuario);
+                foreach (Calificacion calificacion in calificaciones)
+                {
+                    usuario.Reputacion = usuario.Reputacion + calificacion.CantEstrellas * 10;
+                }
+
+                usuario.Reputacion = usuario.Reputacion / calificaciones.Count;
+
                 usuario.Roles = GetRolesUsuario(usuario.IdUsuario, db);
 
                 usuarios.Add(usuario);
@@ -282,6 +290,14 @@ namespace MercadoEnvio.DataManagers
                     Rubro = Convert.ToString(row["Rubro"]),
                     Telefono = Convert.ToString(row["Telefono"]),
                 };
+
+                List<Calificacion> calificaciones = GetCalificaciones(usuario.IdUsuario);
+                foreach (Calificacion calificacion in calificaciones)
+                {
+                    usuario.Reputacion = usuario.Reputacion + calificacion.CantEstrellas * 10;
+                }
+
+                usuario.Reputacion = usuario.Reputacion / calificaciones.Count;
 
                 usuario.Roles = GetRolesUsuario(usuario.IdUsuario, db);
 
@@ -782,6 +798,14 @@ namespace MercadoEnvio.DataManagers
                 cliente.UserName = Convert.ToString(row["UserName"]);
                 cliente.Activo = Convert.ToBoolean(row["Activo"]);
                 cliente.Password = Convert.ToString(row["PasswordEnc"]);
+
+                List<Calificacion> calificaciones = GetCalificaciones(cliente.IdUsuario);
+                foreach (Calificacion calificacion in calificaciones)
+                {
+                    cliente.Reputacion = cliente.Reputacion + calificacion.CantEstrellas * 10;
+                }
+
+                cliente.Reputacion = cliente.Reputacion / calificaciones.Count;
             }
 
             return cliente;
@@ -833,6 +857,14 @@ namespace MercadoEnvio.DataManagers
                 empresa.RazonSocial = Convert.ToString(row["RazonSocial"]);
                 empresa.Rubro = Convert.ToString(row["Rubro"]);
                 empresa.Telefono = Convert.ToString(row["Telefono"]);
+
+                List<Calificacion> calificaciones = GetCalificaciones(empresa.IdUsuario);
+                foreach (Calificacion calificacion in calificaciones)
+                {
+                    empresa.Reputacion = empresa.Reputacion + calificacion.CantEstrellas * 10;
+                }
+
+                empresa.Reputacion = empresa.Reputacion / calificaciones.Count;
             }
 
             return empresa;
@@ -884,6 +916,14 @@ namespace MercadoEnvio.DataManagers
                 empresa.RazonSocial = Convert.ToString(row["RazonSocial"]);
                 empresa.Rubro = Convert.ToString(row["Rubro"]);
                 empresa.Telefono = Convert.ToString(row["Telefono"]);
+
+                List<Calificacion> calificaciones = GetCalificaciones(empresa.IdUsuario);
+                foreach (Calificacion calificacion in calificaciones)
+                {
+                    empresa.Reputacion = empresa.Reputacion + calificacion.CantEstrellas * 10;
+                }
+
+                empresa.Reputacion = empresa.Reputacion / calificaciones.Count;
             }
 
             return empresa;
@@ -962,7 +1002,13 @@ namespace MercadoEnvio.DataManagers
                 cliente.Activo = Convert.ToBoolean(row["Activo"]);
                 cliente.Password = Convert.ToString(row["PasswordEnc"]);
 
-                cliente.Reputacion = 10; // TODO SP get by id y reputacion
+                List<Calificacion> calificaciones = GetCalificaciones(cliente.IdUsuario);
+                foreach (Calificacion calificacion in calificaciones)
+                {
+                    cliente.Reputacion = cliente.Reputacion + calificacion.CantEstrellas * 10;
+                }
+
+                cliente.Reputacion = cliente.Reputacion / calificaciones.Count;
             }
 
             return cliente;
@@ -1015,10 +1061,60 @@ namespace MercadoEnvio.DataManagers
                 empresa.Rubro = Convert.ToString(row["Rubro"]);
                 empresa.Telefono = Convert.ToString(row["Telefono"]);
 
-                empresa.Reputacion = 10; // TODO SP get by id y reputacion
+                List<Calificacion> calificaciones = GetCalificaciones(empresa.IdUsuario);
+                foreach (Calificacion calificacion in calificaciones)
+                {
+                    empresa.Reputacion = empresa.Reputacion + calificacion.CantEstrellas * 10;
+                }
+
+                empresa.Reputacion = empresa.Reputacion / calificaciones.Count;
             }
 
             return empresa;
+        }
+
+        public static List<Calificacion> GetCalificaciones(int idUsuario)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                List<Calificacion> calificaciones = GetCalificaciones(idUsuario, db);
+
+                db.EndConnection();
+
+                return calificaciones;
+            }
+        }
+
+        private static List<Calificacion> GetCalificaciones(int idUsuario, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            parameters.Add(idUsuarioParameter);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetCalificacionesUsuario", parameters);
+            List<Calificacion> calificaciones = new List<Calificacion>();
+            foreach (DataRow row in res.Rows)
+            {
+                var calificacion = new Calificacion
+                {
+                    CantEstrellas = Convert.ToDecimal(row["CantEstrellas"]),
+                    DescripcionCompra = Convert.ToString(row["DescripcionPublicacion"]),
+                    IdCalificacion = Convert.ToDecimal(row["IdCalificacion"]),
+                    IdCompra = Convert.ToInt32(row["IdCompra"]),
+                    Observaciones = Convert.ToString(row["Descripcion"])
+                };
+
+                calificaciones.Add(calificacion);
+            }
+
+            return calificaciones;
         }
     }
 }
