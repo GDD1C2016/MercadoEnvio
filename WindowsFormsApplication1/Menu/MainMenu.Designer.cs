@@ -53,7 +53,7 @@
             this.BtnRol.Name = "BtnRol";
             this.BtnRol.Size = new System.Drawing.Size(382, 23);
             this.BtnRol.TabIndex = 0;
-            this.BtnRol.Text = "ROL";
+            this.BtnRol.Text = "Rol";
             this.BtnRol.UseVisualStyleBackColor = true;
             this.BtnRol.Click += new System.EventHandler(this.BtnRol_Click);
             // 
@@ -77,7 +77,7 @@
             this.BtnVisibilidad.Name = "BtnVisibilidad";
             this.BtnVisibilidad.Size = new System.Drawing.Size(382, 23);
             this.BtnVisibilidad.TabIndex = 3;
-            this.BtnVisibilidad.Text = "VISIBILIDAD";
+            this.BtnVisibilidad.Text = "Visibilidad";
             this.BtnVisibilidad.UseVisualStyleBackColor = true;
             this.BtnVisibilidad.Click += new System.EventHandler(this.BtnVisibilidad_Click);
             // 
@@ -87,7 +87,7 @@
             this.BtnUsuario.Name = "BtnUsuario";
             this.BtnUsuario.Size = new System.Drawing.Size(382, 23);
             this.BtnUsuario.TabIndex = 2;
-            this.BtnUsuario.Text = "USUARIO";
+            this.BtnUsuario.Text = "Usuario";
             this.BtnUsuario.UseVisualStyleBackColor = true;
             this.BtnUsuario.Click += new System.EventHandler(this.BtnUsuario_Click);
             // 
@@ -97,7 +97,7 @@
             this.BtnRubro.Name = "BtnRubro";
             this.BtnRubro.Size = new System.Drawing.Size(382, 23);
             this.BtnRubro.TabIndex = 1;
-            this.BtnRubro.Text = "RUBRO";
+            this.BtnRubro.Text = "Rubro";
             this.BtnRubro.UseVisualStyleBackColor = true;
             this.BtnRubro.Click += new System.EventHandler(this.BtnRubro_Click);
             // 
@@ -107,7 +107,7 @@
             this.BtnCalificar.Name = "BtnCalificar";
             this.BtnCalificar.Size = new System.Drawing.Size(382, 23);
             this.BtnCalificar.TabIndex = 2;
-            this.BtnCalificar.Text = "CALIFICAR";
+            this.BtnCalificar.Text = "Calificar al Vendedor";
             this.BtnCalificar.UseVisualStyleBackColor = true;
             this.BtnCalificar.Click += new System.EventHandler(this.BtnCalificar_Click);
             // 
@@ -117,7 +117,7 @@
             this.BtnPublicacion.Name = "BtnPublicacion";
             this.BtnPublicacion.Size = new System.Drawing.Size(382, 23);
             this.BtnPublicacion.TabIndex = 3;
-            this.BtnPublicacion.Text = "COMPRAR/OFERTAR";
+            this.BtnPublicacion.Text = "Comprar/Ofertar";
             this.BtnPublicacion.UseVisualStyleBackColor = true;
             this.BtnPublicacion.Click += new System.EventHandler(this.BtnPublicacion_Click);
             // 
@@ -127,7 +127,7 @@
             this.BtnFactura.Name = "BtnFactura";
             this.BtnFactura.Size = new System.Drawing.Size(382, 23);
             this.BtnFactura.TabIndex = 4;
-            this.BtnFactura.Text = "FACTURAS";
+            this.BtnFactura.Text = "Consulta de Facturas Realizadas al Vendedor";
             this.BtnFactura.UseVisualStyleBackColor = true;
             this.BtnFactura.Click += new System.EventHandler(this.BtnFactura_Click);
             // 
@@ -137,7 +137,7 @@
             this.BtnPublicar.Name = "BtnPublicar";
             this.BtnPublicar.Size = new System.Drawing.Size(382, 23);
             this.BtnPublicar.TabIndex = 5;
-            this.BtnPublicar.Text = "PUBLICAR";
+            this.BtnPublicar.Text = "Generar Publicación";
             this.BtnPublicar.UseVisualStyleBackColor = true;
             this.BtnPublicar.Click += new System.EventHandler(this.BtnPublicar_Click);
             // 
@@ -147,7 +147,7 @@
             this.BtnHistorial.Name = "BtnHistorial";
             this.BtnHistorial.Size = new System.Drawing.Size(382, 23);
             this.BtnHistorial.TabIndex = 6;
-            this.BtnHistorial.Text = "HISTORIAL";
+            this.BtnHistorial.Text = "Historial del Cliente";
             this.BtnHistorial.UseVisualStyleBackColor = true;
             this.BtnHistorial.Click += new System.EventHandler(this.BtnHistorial_Click);
             // 
@@ -157,7 +157,7 @@
             this.BtnListado.Name = "BtnListado";
             this.BtnListado.Size = new System.Drawing.Size(382, 23);
             this.BtnListado.TabIndex = 7;
-            this.BtnListado.Text = "LISTADO ESTADISTICO";
+            this.BtnListado.Text = "Listado Estadístico";
             this.BtnListado.UseVisualStyleBackColor = true;
             this.BtnListado.Click += new System.EventHandler(this.BtnListado_Click);
             // 
@@ -177,7 +177,7 @@
             this.BtnCerrar.Name = "BtnCerrar";
             this.BtnCerrar.Size = new System.Drawing.Size(382, 23);
             this.BtnCerrar.TabIndex = 0;
-            this.BtnCerrar.Text = "CERRAR SESIÓN";
+            this.BtnCerrar.Text = "Cerrar Sesión";
             this.BtnCerrar.UseVisualStyleBackColor = true;
             this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
