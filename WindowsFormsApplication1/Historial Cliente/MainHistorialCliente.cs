@@ -47,13 +47,17 @@ namespace MercadoEnvio.Historial_Cliente
             #endregion
 
             #region cargaDatosUsuario
-            LabelUsuarioTxt.Text = Usuario.UserName;
-            LabelReputacionTxt.Text = Usuario.Reputacion.ToString();
+
+            Cliente cliente = new Cliente();
+            cliente = UsuarioService.GetClienteById(Usuario.IdUsuario);
+
+            LabelUsuarioTxt.Text = cliente.UserName;
+            LabelReputacionTxt.Text = Math.Round(cliente.Reputacion,2,MidpointRounding.AwayFromZero).ToString();
             LabelFaltantesTxt.Text = ComprasServices.GetComprasPendientesDeCalificacion(Usuario.IdUsuario).Count.ToString();
             #endregion
 
             #region cargaDeEstrellas
-            Label1EstrellaTxt.Text = CalificacionesServices.GetCantidadCalificacionesDadas(1,Usuario.IdUsuario).ToString();
+            Label1EstrellaTxt.Text = CalificacionesServices.GetCantidadCalificacionesDadas(1, Usuario.IdUsuario).ToString();
             Label2EstrellasTxt.Text = CalificacionesServices.GetCantidadCalificacionesDadas(2, Usuario.IdUsuario).ToString();
             Label3EstrellasTxt.Text = CalificacionesServices.GetCantidadCalificacionesDadas(3, Usuario.IdUsuario).ToString();
             Label4EstrellasTxt.Text = CalificacionesServices.GetCantidadCalificacionesDadas(4, Usuario.IdUsuario).ToString();
