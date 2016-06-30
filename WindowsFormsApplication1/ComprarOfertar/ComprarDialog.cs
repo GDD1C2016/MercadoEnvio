@@ -30,7 +30,7 @@ namespace MercadoEnvio.ComprarOfertar
 
             LabelNombreTxt.Text = cliente.Nombre;
             LabelEmailTxt.Text = cliente.Email;
-            LabelReputacionTxt.Text = cliente.Reputacion.ToString();
+            LabelReputacionTxt.Text = Math.Round(cliente.Reputacion, 2, MidpointRounding.AwayFromZero).ToString();
             LabelTelefonoTxt.Text = cliente.Telefono;
 
             if (cliente.IdUsuario == 0)
@@ -40,7 +40,7 @@ namespace MercadoEnvio.ComprarOfertar
 
                 LabelNombreTxt.Text = empresa.RazonSocial;
                 LabelEmailTxt.Text = empresa.Email;
-                LabelReputacionTxt.Text = empresa.Reputacion.ToString();
+                LabelReputacionTxt.Text = Math.Round(empresa.Reputacion, 2, MidpointRounding.AwayFromZero).ToString();
                 LabelTelefonoTxt.Text = empresa.Telefono;
             }
 
@@ -50,7 +50,7 @@ namespace MercadoEnvio.ComprarOfertar
         private void ArmarFormularioSegunTipo()
         {
             CheckBoxEnvio.Enabled = PublicacionSeleccionada.Envio;
-            if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.Compra, StringComparison.CurrentCultureIgnoreCase))
+            if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.CompraInmediata, StringComparison.CurrentCultureIgnoreCase))
             {
                 LabelCantidad.Text = Resources.Cantidad;
                 LabelCantidad.Visible = true;
@@ -133,7 +133,7 @@ namespace MercadoEnvio.ComprarOfertar
 
             if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.CompraInmediata, StringComparison.CurrentCultureIgnoreCase))
             {
-                var cantidad = Convert.ToInt32(TxtCantidad.Text);
+                var cantidad = string.IsNullOrEmpty(TxtCantidad.Text) ? 0 : Convert.ToInt32(TxtCantidad.Text);
 
                 if (cantidad > PublicacionSeleccionada.Stock)
                     errors.Add(Resources.ErrorStock);

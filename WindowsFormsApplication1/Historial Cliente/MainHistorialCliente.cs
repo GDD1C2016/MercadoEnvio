@@ -48,7 +48,7 @@ namespace MercadoEnvio.Historial_Cliente
 
             #region cargaDatosUsuario
             LabelUsuarioTxt.Text = Usuario.UserName;
-            LabelReputacionTxt.Text = Usuario.Reputacion.ToString(CultureInfo.CurrentCulture);
+            LabelReputacionTxt.Text = Usuario.Reputacion.ToString();
             LabelFaltantesTxt.Text = ComprasServices.GetComprasPendientesDeCalificacion(Usuario.IdUsuario).Count.ToString();
             #endregion
 
