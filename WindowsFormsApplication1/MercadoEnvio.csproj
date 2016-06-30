@@ -340,6 +340,7 @@
     <Content Include="Scripts\SP\MASTERDBA.SP_GetListadoVendedoresMontos.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetListadoVendedoresProductosNoVendidos.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetPublicacionesVisibilidad.StoredProcedure.sql" />
+    <Content Include="Scripts\SP\MASTERDBA.SP_GetReputacion.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetRolByDescripcion.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetRoles.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetRolesUsuario.StoredProcedure.sql" />
