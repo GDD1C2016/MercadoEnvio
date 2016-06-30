@@ -170,7 +170,7 @@ namespace MercadoEnvio.Facturas
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            DateTime filtroFechaDesde = DatePickerFechaDesde.Value; // TODO Si la fecha default es la del archivo de configuración, sumar 1 día
+            DateTime filtroFechaDesde = DatePickerFechaDesde.Value;
             DateTime filtroFechaHasta = DatePickerFechaHasta.Value;
 
             decimal filtroImporteDesde = string.IsNullOrEmpty(TxtImporteDesde.Text) ? 0 : Convert.ToDecimal(TxtImporteDesde.Text);

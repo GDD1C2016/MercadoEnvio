@@ -217,14 +217,7 @@ namespace MercadoEnvio.DataManagers
                     Password = Convert.ToString(row["PasswordEnc"]),
                 };
 
-                List<Calificacion> calificaciones = GetCalificaciones(usuario.IdUsuario);
-                foreach (Calificacion calificacion in calificaciones)
-                {
-                    usuario.Reputacion = usuario.Reputacion + calificacion.CantEstrellas * 10;
-                }
-
-                usuario.Reputacion = usuario.Reputacion / calificaciones.Count;
-
+                usuario.Reputacion = GetReputacion(usuario.IdUsuario, db);
                 usuario.Roles = GetRolesUsuario(usuario.IdUsuario, db);
 
                 usuarios.Add(usuario);
@@ -291,14 +284,7 @@ namespace MercadoEnvio.DataManagers
                     Telefono = Convert.ToString(row["Telefono"]),
                 };
 
-                List<Calificacion> calificaciones = GetCalificaciones(usuario.IdUsuario);
-                foreach (Calificacion calificacion in calificaciones)
-                {
-                    usuario.Reputacion = usuario.Reputacion + calificacion.CantEstrellas * 10;
-                }
-
-                usuario.Reputacion = usuario.Reputacion / calificaciones.Count;
-
+                usuario.Reputacion = GetReputacion(usuario.IdUsuario, db);
                 usuario.Roles = GetRolesUsuario(usuario.IdUsuario, db);
 
                 usuarios.Add(usuario);
@@ -799,13 +785,7 @@ namespace MercadoEnvio.DataManagers
                 cliente.Activo = Convert.ToBoolean(row["Activo"]);
                 cliente.Password = Convert.ToString(row["PasswordEnc"]);
 
-                List<Calificacion> calificaciones = GetCalificaciones(cliente.IdUsuario);
-                foreach (Calificacion calificacion in calificaciones)
-                {
-                    cliente.Reputacion = cliente.Reputacion + calificacion.CantEstrellas * 10;
-                }
-
-                cliente.Reputacion = cliente.Reputacion / calificaciones.Count;
+                cliente.Reputacion = GetReputacion(cliente.IdUsuario, db);
             }
 
             return cliente;
@@ -858,13 +838,7 @@ namespace MercadoEnvio.DataManagers
                 empresa.Rubro = Convert.ToString(row["Rubro"]);
                 empresa.Telefono = Convert.ToString(row["Telefono"]);
 
-                List<Calificacion> calificaciones = GetCalificaciones(empresa.IdUsuario);
-                foreach (Calificacion calificacion in calificaciones)
-                {
-                    empresa.Reputacion = empresa.Reputacion + calificacion.CantEstrellas * 10;
-                }
-
-                empresa.Reputacion = empresa.Reputacion / calificaciones.Count;
+                empresa.Reputacion = GetReputacion(empresa.IdUsuario, db);
             }
 
             return empresa;
@@ -917,13 +891,7 @@ namespace MercadoEnvio.DataManagers
                 empresa.Rubro = Convert.ToString(row["Rubro"]);
                 empresa.Telefono = Convert.ToString(row["Telefono"]);
 
-                List<Calificacion> calificaciones = GetCalificaciones(empresa.IdUsuario);
-                foreach (Calificacion calificacion in calificaciones)
-                {
-                    empresa.Reputacion = empresa.Reputacion + calificacion.CantEstrellas * 10;
-                }
-
-                empresa.Reputacion = empresa.Reputacion / calificaciones.Count;
+                empresa.Reputacion = GetReputacion(empresa.IdUsuario, db);
             }
 
             return empresa;
@@ -1002,13 +970,7 @@ namespace MercadoEnvio.DataManagers
                 cliente.Activo = Convert.ToBoolean(row["Activo"]);
                 cliente.Password = Convert.ToString(row["PasswordEnc"]);
 
-                List<Calificacion> calificaciones = GetCalificaciones(cliente.IdUsuario);
-                foreach (Calificacion calificacion in calificaciones)
-                {
-                    cliente.Reputacion = cliente.Reputacion + calificacion.CantEstrellas * 10;
-                }
-
-                cliente.Reputacion = cliente.Reputacion / calificaciones.Count;
+                cliente.Reputacion = GetReputacion(cliente.IdUsuario, db);
             }
 
             return cliente;
@@ -1061,13 +1023,7 @@ namespace MercadoEnvio.DataManagers
                 empresa.Rubro = Convert.ToString(row["Rubro"]);
                 empresa.Telefono = Convert.ToString(row["Telefono"]);
 
-                List<Calificacion> calificaciones = GetCalificaciones(empresa.IdUsuario);
-                foreach (Calificacion calificacion in calificaciones)
-                {
-                    empresa.Reputacion = empresa.Reputacion + calificacion.CantEstrellas * 10;
-                }
-
-                empresa.Reputacion = empresa.Reputacion / calificaciones.Count;
+                empresa.Reputacion = GetReputacion(empresa.IdUsuario, db);
             }
 
             return empresa;
@@ -1116,5 +1072,17 @@ namespace MercadoEnvio.DataManagers
 
             return calificaciones;
         }
+
+        private static decimal GetReputacion(int idUsuario, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            parameters.Add(idUsuarioParameter);
+
+            return (decimal)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_GetReputacion", parameters);
+        }    
     }
 }
