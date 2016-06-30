@@ -175,7 +175,7 @@ namespace MercadoEnvio.Facturas
 
             decimal filtroImporteDesde = string.IsNullOrEmpty(TxtImporteDesde.Text) ? 0 : Convert.ToDecimal(TxtImporteDesde.Text);
             decimal filtroImporteHasta = string.IsNullOrEmpty(TxtImporteHasta.Text) ? 0 : Convert.ToDecimal(TxtImporteHasta.Text);
-            string filtroDetallesFactura = ((string)ComboDetalles.SelectedItem);
+            string filtroDetallesFactura = ((string)ComboDetalles.SelectedItem).Equals("--Todos--", StringComparison.CurrentCultureIgnoreCase) ? String.Empty : ((string)ComboDetalles.SelectedItem); 
             string filtroDirigidaA = TxtDirigidaA.Text;
 
             List<Factura> listAux = new List<Factura>(ComprasServices.FindFacturas(filtroFechaDesde,filtroFechaHasta,filtroImporteDesde,filtroImporteHasta,filtroDetallesFactura,filtroDirigidaA));
