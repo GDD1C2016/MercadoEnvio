@@ -46,14 +46,14 @@
             this.DgClientes.Name = "DgClientes";
             this.DgClientes.ReadOnly = true;
             this.DgClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgClientes.Size = new System.Drawing.Size(549, 294);
+            this.DgClientes.Size = new System.Drawing.Size(549, 147);
             this.DgClientes.TabIndex = 4;
             // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.BtnVolver);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(0, 355);
+            this.groupBox2.Location = new System.Drawing.Point(0, 208);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(573, 53);
             this.groupBox2.TabIndex = 5;
@@ -83,12 +83,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(573, 408);
+            this.ClientSize = new System.Drawing.Size(573, 261);
             this.Controls.Add(this.LabelRubro);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.DgClientes);
-            this.MaximumSize = new System.Drawing.Size(589, 447);
-            this.MinimumSize = new System.Drawing.Size(589, 447);
+            this.MaximumSize = new System.Drawing.Size(589, 300);
+            this.MinimumSize = new System.Drawing.Size(589, 300);
             this.Name = "ListadoComprados";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clientes con mayor cantidad de productos comprados";

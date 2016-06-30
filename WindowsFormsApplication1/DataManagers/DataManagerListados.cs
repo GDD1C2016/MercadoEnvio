@@ -40,14 +40,14 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(trimestreParameter);
             parameters.Add(anioParameter);
 
-            DataTable res = db.GetDataAsTable("MASTERDBA.GetListadoVendedoresMontos", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetListadoVendedoresMontos", parameters);
             List<Vendedor> vendedores = new List<Vendedor>();
             foreach (DataRow row in res.Rows)
             {
                 var vendedor = new Vendedor
                 {
                     MontoFacturado = Convert.ToInt32(row["Total"]),
-                    Documento = Convert.ToString(row["IdFactura"]),
+                    IdFactura = Convert.ToInt32(row["IdFactura"]),
                     IdUsuario = Convert.ToInt32(row["IdUsuario"]),
                     NombreUsuario = Convert.ToString(row["NombreUsuario"])
                 };
@@ -87,7 +87,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(trimestreParameter);
             parameters.Add(anioParameter);
 
-            DataTable res = db.GetDataAsTable("MASTERDBA.GetListadoVendedoresFacturas", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetListadoVendedoresFacturas", parameters);
             List<Vendedor> vendedores = new List<Vendedor>();
             foreach (DataRow row in res.Rows)
             {
