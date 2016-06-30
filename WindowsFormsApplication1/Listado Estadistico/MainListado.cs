@@ -10,6 +10,8 @@ namespace MercadoEnvio.Listado_Estadistico
 {
     public partial class MainListado : Form
     {
+        public Usuario Usuario { get; set; }
+
         public MainListado()
         {
             InitializeComponent();

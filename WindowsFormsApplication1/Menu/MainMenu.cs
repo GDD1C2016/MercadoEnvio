@@ -9,8 +9,10 @@ using MercadoEnvio.ABM_Visibilidad;
 using MercadoEnvio.Calificar;
 using MercadoEnvio.ComprarOfertar;
 using MercadoEnvio.Entidades;
+using MercadoEnvio.Facturas;
 using MercadoEnvio.Generar_Publicación;
 using MercadoEnvio.Historial_Cliente;
+using MercadoEnvio.Listado_Estadistico;
 using MercadoEnvio.Properties;
 using MercadoEnvio.Servicios;
 
@@ -62,12 +64,14 @@ namespace MercadoEnvio.Menu
 
         private void BtnFactura_Click(object sender, EventArgs e)
         {
-
+            var facturasDialog = new MainFacturas {Usuario = Usuario};
+            facturasDialog.ShowDialog();
         }
 
         private void BtnListado_Click(object sender, EventArgs e)
         {
-        
+            var listadoDialog = new MainListado {Usuario = Usuario};
+            listadoDialog.ShowDialog();
         }
 
         private void BtnRol_Click(object sender, EventArgs e)
@@ -92,6 +96,11 @@ namespace MercadoEnvio.Menu
         {
             var visibilidadDialog = new MainVisibilidad {Usuario = Usuario};
             visibilidadDialog.ShowDialog();
+        }
+
+        private void BtnCerrar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
         }
     }
 }

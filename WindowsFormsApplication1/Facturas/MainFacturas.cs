@@ -173,8 +173,8 @@ namespace MercadoEnvio.Facturas
             DateTime filtroFechaDesde = DatePickerFechaDesde.Value; // TODO Si la fecha default es la del archivo de configuración, sumar 1 día
             DateTime filtroFechaHasta = DatePickerFechaHasta.Value;
 
-            decimal filtroImporteDesde = Convert.ToDecimal(TxtImporteDesde.Text);
-            decimal filtroImporteHasta = Convert.ToDecimal(TxtImporteHasta.Text);
+            decimal filtroImporteDesde = string.IsNullOrEmpty(TxtImporteDesde.Text) ? 0 : Convert.ToDecimal(TxtImporteDesde.Text);
+            decimal filtroImporteHasta = string.IsNullOrEmpty(TxtImporteHasta.Text) ? 0 : Convert.ToDecimal(TxtImporteHasta.Text);
             string filtroDetallesFactura = ((string)ComboDetalles.SelectedItem);
             string filtroDirigidaA = TxtDirigidaA.Text;
 

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFacturas));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ComboDetalles = new System.Windows.Forms.ComboBox();
             this.TxtDirigidaA = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -55,7 +56,6 @@
             this.BtnLimpiar = new System.Windows.Forms.Button();
             this.BtnBuscar = new System.Windows.Forms.Button();
             this.DgFacturas = new System.Windows.Forms.DataGridView();
-            this.ComboDetalles = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.PagingPanel.SuspendLayout();
             this.toolStripPaging.SuspendLayout();
@@ -83,6 +83,14 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Filtros de Búsqueda";
+            // 
+            // ComboDetalles
+            // 
+            this.ComboDetalles.FormattingEnabled = true;
+            this.ComboDetalles.Location = new System.Drawing.Point(102, 76);
+            this.ComboDetalles.Name = "ComboDetalles";
+            this.ComboDetalles.Size = new System.Drawing.Size(255, 21);
+            this.ComboDetalles.TabIndex = 46;
             // 
             // TxtDirigidaA
             // 
@@ -330,30 +338,23 @@
             this.DgFacturas.Name = "DgFacturas";
             this.DgFacturas.ReadOnly = true;
             this.DgFacturas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.DgFacturas.Size = new System.Drawing.Size(710, 346);
+            this.DgFacturas.Size = new System.Drawing.Size(710, 291);
             this.DgFacturas.TabIndex = 9;
-            // 
-            // ComboDetalles
-            // 
-            this.ComboDetalles.FormattingEnabled = true;
-            this.ComboDetalles.Location = new System.Drawing.Point(102, 76);
-            this.ComboDetalles.Name = "ComboDetalles";
-            this.ComboDetalles.Size = new System.Drawing.Size(255, 21);
-            this.ComboDetalles.TabIndex = 46;
             // 
             // MainFacturas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 501);
+            this.ClientSize = new System.Drawing.Size(734, 446);
             this.Controls.Add(this.DgFacturas);
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.BtnLimpiar);
             this.Controls.Add(this.PagingPanel);
             this.Controls.Add(this.groupBox1);
-            this.MaximumSize = new System.Drawing.Size(750, 540);
-            this.MinimumSize = new System.Drawing.Size(750, 540);
+            this.MaximumSize = new System.Drawing.Size(750, 485);
+            this.MinimumSize = new System.Drawing.Size(750, 485);
             this.Name = "MainFacturas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Facturas";
             this.Load += new System.EventHandler(this.MainFacturas_Load);
             this.groupBox1.ResumeLayout(false);
