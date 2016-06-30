@@ -90,7 +90,7 @@ namespace MercadoEnvio.DataManagers
                 {
                     IdFactura = Convert.ToInt32(row["IdFactura"]),
                     IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
-                    IdFormaDePago = Convert.ToInt32(row["IdFormaDePago"]),
+                    IdFormaDePago = Convert.ToInt32(row["IdFormaPago"]),
                     Total = Convert.ToDecimal(row["Total"]),
                     Fecha = Convert.ToDateTime(row["Fecha"])
                 };

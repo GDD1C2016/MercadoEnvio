@@ -179,6 +179,7 @@
             this.BtnCerrar.TabIndex = 0;
             this.BtnCerrar.Text = "CERRAR SESIÓN";
             this.BtnCerrar.UseVisualStyleBackColor = true;
+            this.BtnCerrar.Click += new System.EventHandler(this.BtnCerrar_Click);
             // 
             // groupBox2
             // 

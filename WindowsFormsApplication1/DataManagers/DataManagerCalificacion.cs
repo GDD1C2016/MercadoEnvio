@@ -112,7 +112,7 @@ namespace MercadoEnvio.DataManagers
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter cantidadEstrellasParameter = new SqlParameter("@CantidadEstrellas", SqlDbType.Int);
+            SqlParameter cantidadEstrellasParameter = new SqlParameter("@CantEstrellas", SqlDbType.Int);
             cantidadEstrellasParameter.Value = cantidadEstrellas;
 
             SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
