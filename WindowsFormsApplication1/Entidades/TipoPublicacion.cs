@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Schema;
-
-namespace MercadoEnvio.Entidades
+﻿namespace MercadoEnvio.Entidades
 {
     public class TipoPublicacion
     {
