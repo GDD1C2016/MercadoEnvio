@@ -137,7 +137,7 @@ namespace MercadoEnvio.Listado_Estadistico
             {
                 LabelRubro.Visible = true;
                 ComboRubro.Visible = true;
-                LabelRubro.Text = "Rubro";
+                LabelRubro.Text = Resources.Rubro;
 
                 #region cargarComboRubro
 
@@ -159,7 +159,7 @@ namespace MercadoEnvio.Listado_Estadistico
             if (tipoSeleccionado.Equals(Resources.TipoListadoVendedoresProductosNoVendidos,StringComparison.CurrentCultureIgnoreCase))
             {
                 LabelRubro.Visible = true;
-                LabelRubro.Text = "Visibilidad";
+                LabelRubro.Text = Resources.Visibilidad;
                 ComboRubro.Visible = true;
 
                 #region cargarComboVisibilidades

@@ -21,7 +21,7 @@ namespace MercadoEnvio.ABM_Usuario
         {
             #region armadoComboRol
             List<Rol> roles = new List<Rol>(RolesServices.GetAllData());
-            roles = roles.FindAll(x => x.Descripcion != "Administrativo");
+            roles = roles.FindAll(x => !x.Descripcion.Equals(Resources.Administrativo, StringComparison.CurrentCultureIgnoreCase));
             ComboTipoDeUsuario.DataSource = roles;
             ComboTipoDeUsuario.DisplayMember = "Descripcion";
             ComboTipoDeUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -50,7 +50,7 @@ namespace MercadoEnvio.ABM_Usuario
 
         private void ReorganizarPantallaDeAcuerdoARol(Rol rol)
         {
-            if (rol.Descripcion.Equals("Empresa", StringComparison.CurrentCultureIgnoreCase))
+            if (rol.Descripcion.Equals(Resources.Empresa, StringComparison.CurrentCultureIgnoreCase))
             {
                 LabelNombre.Text = Resources.RazonSocial;
                 LabelDNI.Text = Resources.CUIT;
@@ -82,7 +82,7 @@ namespace MercadoEnvio.ABM_Usuario
         {
             Rol rolSeleccionado = ((Rol)ComboTipoDeUsuario.SelectedItem);
 
-            if (rolSeleccionado.Descripcion.Equals("Empresa", StringComparison.CurrentCultureIgnoreCase))
+            if (rolSeleccionado.Descripcion.Equals(Resources.Empresa, StringComparison.CurrentCultureIgnoreCase))
             {
                 string filtroRazonSocial = TxtFiltroNombre.Text.Trim();
                 string filtroCuit = TxtFiltroCuit.Text.Trim();
@@ -147,7 +147,7 @@ namespace MercadoEnvio.ABM_Usuario
 
                 Rol rolSeleccionado = ((Rol)ComboTipoDeUsuario.SelectedItem);
 
-                if (rolSeleccionado.Descripcion.Equals("Empresa", StringComparison.CurrentCultureIgnoreCase))
+                if (rolSeleccionado.Descripcion.Equals(Resources.Empresa, StringComparison.CurrentCultureIgnoreCase))
                 {
                     string filtroRazonSocial = TxtFiltroNombre.Text.Trim();
                     string filtroCuit = TxtFiltroCuit.Text.Trim();
@@ -196,7 +196,7 @@ namespace MercadoEnvio.ABM_Usuario
         {
             Rol rolSeleccionado = ((Rol)ComboTipoDeUsuario.SelectedItem);
 
-            if (rolSeleccionado.Descripcion.Equals("Empresa", StringComparison.CurrentCultureIgnoreCase))
+            if (rolSeleccionado.Descripcion.Equals(Resources.Empresa, StringComparison.CurrentCultureIgnoreCase))
             {
                 Empresa empresaSeleccionada = new Empresa();
                 BindingSource bs;

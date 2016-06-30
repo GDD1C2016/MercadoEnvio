@@ -7,7 +7,6 @@ using MercadoEnvio.ABM_Rubro;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Servicios;
 using System.Collections.Generic;
-using System.Linq;
 using MercadoEnvio.Properties;
 
 namespace MercadoEnvio.ComprarOfertar
@@ -224,7 +223,7 @@ namespace MercadoEnvio.ComprarOfertar
                             PublicacionSeleccionada = publicacionSeleccionada
                         };
 
-                        comprarDialog.Text = publicacionSeleccionada.TipoPublicacion.Descripcion.Equals("Subasta",
+            comprarDialog.Text = publicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.Subasta,
                             StringComparison.CurrentCultureIgnoreCase) ? Resources.Ofertar : Resources.Comprar;
 
                         var res = comprarDialog.ShowDialog();
@@ -247,7 +246,7 @@ namespace MercadoEnvio.ComprarOfertar
         {
             List<string> errors = new List<string>();
 
-            if (publicacionSeleccionada.EstadoDescripcion.Equals("Pausada", StringComparison.CurrentCultureIgnoreCase))
+            if (publicacionSeleccionada.EstadoDescripcion.Equals(Resources.Pausada, StringComparison.CurrentCultureIgnoreCase))
                 errors.Add(Resources.ErrorPublicacionPausada);
 
             if (ComprasServices.GetComprasPendientesDeCalificacion(Usuario.IdUsuario).Count >= 3)
@@ -266,7 +265,7 @@ namespace MercadoEnvio.ComprarOfertar
                 if (bs != null)
                 {
                     publicacionSeleccionada = (Publicacion)bs[DgPublicaciones.SelectedRows[0].Index];
-                    BtnComprar.Enabled = !publicacionSeleccionada.EstadoDescripcion.Equals("Pausada", StringComparison.CurrentCultureIgnoreCase) && ValidarUsuario();
+                    BtnComprar.Enabled = !publicacionSeleccionada.EstadoDescripcion.Equals(Resources.Pausada, StringComparison.CurrentCultureIgnoreCase) && ValidarUsuario();
                 }
             }
         }

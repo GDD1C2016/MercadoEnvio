@@ -11,6 +11,7 @@ using MercadoEnvio.ComprarOfertar;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Generar_Publicación;
 using MercadoEnvio.Historial_Cliente;
+using MercadoEnvio.Properties;
 using MercadoEnvio.Servicios;
 
 namespace MercadoEnvio.Menu
@@ -28,7 +29,7 @@ namespace MercadoEnvio.Menu
         {
             #region habilitacionSeccionABM
             List<Rol> roles = new List<Rol>(RolesServices.GetAllData());
-            Rol rolAdmin = roles.Find(x => x.Descripcion.Equals("Administrativo", StringComparison.CurrentCultureIgnoreCase));
+            Rol rolAdmin = roles.Find(x => x.Descripcion.Equals(Resources.Administrativo, StringComparison.CurrentCultureIgnoreCase));
             
             bool condABM = Usuario.Roles.Any(x=>x.IdRol == rolAdmin.IdRol);
             GroupBoxABM.Enabled = condABM;
