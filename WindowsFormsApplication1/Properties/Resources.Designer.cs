@@ -61,6 +61,24 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to admin.
+        /// </summary>
+        internal static string Admin {
+            get {
+                return ResourceManager.GetString("Admin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Administrativo.
+        /// </summary>
+        internal static string Administrativo {
+            get {
+                return ResourceManager.GetString("Administrativo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Advertencia.
         /// </summary>
         internal static string Advertencia {
@@ -125,6 +143,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cliente.
+        /// </summary>
+        internal static string Cliente {
+            get {
+                return ResourceManager.GetString("Cliente", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Codigo Publicación.
         /// </summary>
         internal static string CodigoPublicacion {
@@ -139,6 +166,15 @@ namespace MercadoEnvio.Properties {
         internal static string Compra {
             get {
                 return ResourceManager.GetString("Compra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compra Inmediata.
+        /// </summary>
+        internal static string CompraInmediata {
+            get {
+                return ResourceManager.GetString("CompraInmediata", resourceCulture);
             }
         }
         
@@ -274,6 +310,15 @@ namespace MercadoEnvio.Properties {
         internal static string Email {
             get {
                 return ResourceManager.GetString("Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empresa.
+        /// </summary>
+        internal static string Empresa {
+            get {
+                return ResourceManager.GetString("Empresa", resourceCulture);
             }
         }
         
@@ -947,6 +992,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pausada.
+        /// </summary>
+        internal static string Pausada {
+            get {
+                return ResourceManager.GetString("Pausada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Porcentaje.
         /// </summary>
         internal static string Porcentaje {
@@ -1186,6 +1240,15 @@ namespace MercadoEnvio.Properties {
         internal static string Vendedor {
             get {
                 return ResourceManager.GetString("Vendedor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visibilidad.
+        /// </summary>
+        internal static string Visibilidad {
+            get {
+                return ResourceManager.GetString("Visibilidad", resourceCulture);
             }
         }
         

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using MercadoEnvio.Properties;
 
 namespace MercadoEnvio.Entidades
 {
@@ -61,7 +62,8 @@ namespace MercadoEnvio.Entidades
         #region methods
         public bool IsClienteOEmpresa()
         {
-            return Descripcion.Equals("Cliente", StringComparison.CurrentCultureIgnoreCase) || Descripcion.Equals("Empresa", StringComparison.CurrentCultureIgnoreCase);
+            return Descripcion.Equals(Resources.Cliente, StringComparison.CurrentCultureIgnoreCase)
+                || Descripcion.Equals(Resources.Empresa, StringComparison.CurrentCultureIgnoreCase);
         }
         #endregion
     }

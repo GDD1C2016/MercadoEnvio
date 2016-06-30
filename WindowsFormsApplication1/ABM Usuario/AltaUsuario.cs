@@ -28,7 +28,7 @@ namespace MercadoEnvio.ABM_Usuario
             bs.DataSource = dataSource;
 
             DgRoles.AutoGenerateColumns = false;
-            DgRoles.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = "Descripción", Name = "Descripcion" });
+            DgRoles.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Descripcion", HeaderText = Resources.Descripcion, Name = "Descripcion" });
             DgRoles.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Estado", HeaderText = Resources.Estado, Name = "Estado" });
 
             DgRoles.DataSource = bs;
@@ -39,7 +39,8 @@ namespace MercadoEnvio.ABM_Usuario
         {
             #region armadoComboRol
             List<Rol> roles = new List<Rol>(RolesServices.GetAllData());
-            roles = roles.FindAll(x => x.Descripcion == "Cliente" || x.Descripcion == "Empresa");
+            roles = roles.FindAll(x => x.Descripcion.Equals(Resources.Cliente, StringComparison.CurrentCultureIgnoreCase)
+                                    || x.Descripcion.Equals(Resources.Empresa, StringComparison.CurrentCultureIgnoreCase));
 
             ComboTipoDeUsuario.DataSource = roles;
             ComboTipoDeUsuario.DisplayMember = "Descripcion";
@@ -48,7 +49,9 @@ namespace MercadoEnvio.ABM_Usuario
 
             #region armadoComboRolGrilla
             List<Rol> rolesGrilla = new List<Rol>(RolesServices.GetAllData());
-            rolesGrilla = rolesGrilla.FindAll(x => x.Descripcion != "Administrativo" && x.Descripcion != "Cliente" && x.Descripcion != "Empresa");
+            rolesGrilla = rolesGrilla.FindAll(x => !x.Descripcion.Equals(Resources.Administrativo, StringComparison.CurrentCultureIgnoreCase)
+                                                && !x.Descripcion.Equals(Resources.Cliente, StringComparison.CurrentCultureIgnoreCase)
+                                                && !x.Descripcion.Equals(Resources.Empresa, StringComparison.CurrentCultureIgnoreCase));
 
             ComboRol.DataSource = rolesGrilla;
             ComboRol.DisplayMember = "Descripcion";
@@ -64,7 +67,7 @@ namespace MercadoEnvio.ABM_Usuario
 
         private void ReorganizarPantallaDeAcuerdoARol(Rol rol)
         {
-            if (rol.Descripcion.Equals("Empresa", StringComparison.CurrentCultureIgnoreCase))
+            if (rol.Descripcion.Equals(Resources.Empresa, StringComparison.CurrentCultureIgnoreCase))
             {
                 LabelNombre.Text = Resources.RazonSocial;
                 LabelDNI.Text = Resources.CUIT;
@@ -193,7 +196,7 @@ namespace MercadoEnvio.ABM_Usuario
             if (string.IsNullOrEmpty(TxtEmail.Text))
                 errors.Add(Resources.ErrorEmail);
 
-            if (tipoUsuario.Descripcion.Equals("Cliente", StringComparison.CurrentCultureIgnoreCase))
+            if (tipoUsuario.Descripcion.Equals(Resources.Cliente, StringComparison.CurrentCultureIgnoreCase))
             {
                 ValidarDatosCliente(errors);
             }
@@ -282,7 +285,7 @@ namespace MercadoEnvio.ABM_Usuario
             }
             else
             {
-                if (rolSeleccionado.Descripcion.Equals("Cliente", StringComparison.CurrentCultureIgnoreCase))
+                if (rolSeleccionado.Descripcion.Equals(Resources.Cliente, StringComparison.CurrentCultureIgnoreCase))
                 {
                     var usuario = new Cliente
                     {

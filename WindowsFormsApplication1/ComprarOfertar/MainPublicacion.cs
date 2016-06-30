@@ -7,7 +7,6 @@ using MercadoEnvio.ABM_Rubro;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Servicios;
 using System.Collections.Generic;
-using System.Linq;
 using MercadoEnvio.Properties;
 
 namespace MercadoEnvio.ComprarOfertar
@@ -52,7 +51,7 @@ namespace MercadoEnvio.ComprarOfertar
             #endregion
 
             #region validarUsuario
-            BtnComprar.Enabled = !Usuario.UserName.Equals("admin", StringComparison.CurrentCultureIgnoreCase);
+            BtnComprar.Enabled = !Usuario.UserName.Equals(Resources.Admin, StringComparison.CurrentCultureIgnoreCase);
             #endregion
         }
 
@@ -212,7 +211,7 @@ namespace MercadoEnvio.ComprarOfertar
                 PublicacionSeleccionada = publicacionSeleccionada
             };
 
-            comprarDialog.Text = publicacionSeleccionada.TipoPublicacion.Descripcion.Equals("Subasta",
+            comprarDialog.Text = publicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.Subasta,
                 StringComparison.CurrentCultureIgnoreCase) ? Resources.Ofertar : Resources.Comprar;
             
             var res = comprarDialog.ShowDialog();
@@ -230,16 +229,14 @@ namespace MercadoEnvio.ComprarOfertar
 
         private void DgPublicaciones_SelectionChanged(object sender, EventArgs e)
         {
-            Publicacion publicacionSeleccionada = new Publicacion();
-
             if (DgPublicaciones.SelectedRows.Count > 0)
             {
                 BindingSource bs = (BindingSource)DgPublicaciones.DataSource;
                 if (bs != null)
                 {
-                    publicacionSeleccionada = (Publicacion)bs[DgPublicaciones.SelectedRows[0].Index];
+                    Publicacion publicacionSeleccionada = (Publicacion)bs[DgPublicaciones.SelectedRows[0].Index];
 
-                    if (publicacionSeleccionada.EstadoDescripcion.Equals("Pausada", StringComparison.CurrentCultureIgnoreCase))
+                    if (publicacionSeleccionada.EstadoDescripcion.Equals(Resources.Pausada, StringComparison.CurrentCultureIgnoreCase))
                     {
                         BtnComprar.Enabled = false;
                     }

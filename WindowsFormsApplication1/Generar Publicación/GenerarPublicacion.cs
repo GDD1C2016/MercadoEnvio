@@ -14,6 +14,10 @@ namespace MercadoEnvio.Generar_Publicación
 
         public Usuario Usuario { get; set; }
 
+        public Cliente Cliente { get; set; }
+
+        public Empresa Empresa { get; set; }
+
         public GenerarPublicacion()
         {
             InitializeComponent();
@@ -22,18 +26,25 @@ namespace MercadoEnvio.Generar_Publicación
         private void GenerarPublicacion_Load(object sender, EventArgs e)
         {
             const string fmt = "000000000000000000";
+            const string espacio = " ";
 
             if (Publicacion.IdPublicacion != 0)
+            {
                 label4.Text = Publicacion.IdPublicacion.ToString(fmt);
-
-            if (Publicacion.IdPublicacion != 0)
                 label9.Text = Publicacion.NombreUsuario;
+            }
+            else if (
+                Usuario.Roles.Exists(
+                    x => x.Descripcion.Equals(Resources.Cliente, StringComparison.CurrentCultureIgnoreCase)))
+            {
+                Cliente = UsuarioService.GetClienteById(Usuario.IdUsuario);
+                label9.Text = Cliente.Nombre + espacio + Cliente.Apellido;
+            }
             else
-                if (Usuario.IdUsuario != 0)
-                    if (Usuario.Roles.Exists(x => x.Descripcion == "Cliente"))
-                    {
-                        label9.Text = Usuario.UserName;
-                    }
+            {
+                Empresa = UsuarioService.GetEmpresaById(Usuario.IdUsuario);
+                label9.Text = Empresa.RazonSocial;
+            }
 
             #region armadoComboEstado
             List<Publicacion> publicaciones = new List<Publicacion>(PublicacionesServices.GetEstados(Publicacion));
@@ -45,10 +56,10 @@ namespace MercadoEnvio.Generar_Publicación
             #endregion
 
             #region armadoComboTipoPublicacion
-            const string tipoSubasta = "Subasta";
-            const string tipoCompraDirecta = "Compra directa";
+            string tipoSubasta = Resources.Subasta;
+            string tipoCompraInmediata = Resources.CompraInmediata;
 
-            List<string> tipos = new List<string> { tipoSubasta, tipoCompraDirecta };
+            List<string> tipos = new List<string> { tipoSubasta, tipoCompraInmediata };
             tipos = tipos.OrderBy(x => x).ToList();
 
             ComboEstado.DataSource = tipos;

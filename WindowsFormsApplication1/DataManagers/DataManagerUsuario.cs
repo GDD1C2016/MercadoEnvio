@@ -133,6 +133,28 @@ namespace MercadoEnvio.DataManagers
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_ResetCountLogin", parameters);
         }
 
+        private static List<Rol> GetRolesUsuario(int idUsuario, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            parameters.Add(idUsuarioParameter);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetRolesUsuario", parameters);
+            List<Rol> roles = new List<Rol>();
+            List<Rol> rolesAux = new List<Rol>(RolesServices.GetAllData());
+            foreach (DataRow row in res.Rows)
+            {
+                var idRol = Convert.ToInt32(row["IdRol"]);
+
+                roles.Add(rolesAux.Find(x => x.IdRol == idRol));
+            }
+
+            return roles;
+        }
+
         public static List<Cliente> FindClientes(string filtroNombre, string filtroApellido, string filtroDni, string filtroEmail)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
@@ -203,28 +225,6 @@ namespace MercadoEnvio.DataManagers
             return usuarios;
         }
 
-        private static List<Rol> GetRolesUsuario(int idUsuario, DataBaseHelper db)
-        {
-            List<SqlParameter> parameters = new List<SqlParameter>();
-
-            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
-            idUsuarioParameter.Value = idUsuario;
-
-            parameters.Add(idUsuarioParameter);
-
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetRolesUsuario", parameters);
-            List<Rol> roles = new List<Rol>();
-            List<Rol> rolesAux = new List<Rol>(RolesServices.GetAllData());
-            foreach (DataRow row in res.Rows)
-            {
-                var idRol = Convert.ToInt32(row["IdRol"]);
-
-                roles.Add(rolesAux.Find(x => x.IdRol == idRol));
-            }
-
-            return roles;
-        }
-
         public static List<Empresa> FindEmpresas(string filtroRazonSocial, string filtroCuit, string filtroEmail)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
@@ -291,27 +291,6 @@ namespace MercadoEnvio.DataManagers
             return usuarios;
         }
 
-        public static void SaveNewEmpresa(Empresa newEmpresa)
-        {
-            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
-
-            using (db.Connection)
-            {
-                db.BeginTransaction();
-
-                InsertUsuario(newEmpresa, db);
-                InsertEmpresa(newEmpresa, db);
-                newEmpresa.Roles.Add(RolesServices.GetRolByDescription("Empresa"));
-
-                foreach (Rol rol in newEmpresa.Roles)
-                {
-                    InsertUsuarioRol(newEmpresa.IdUsuario, rol.IdRol, true, db);
-                }
-
-                db.EndConnection();
-            }
-        }
-
         private static void InsertUsuario(Usuario newUsuario, DataBaseHelper db)
         {
             EncryptHelper encryptHelper = new EncryptHelper();
@@ -335,6 +314,47 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(activoParameter);
 
             newUsuario.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertUsuario", parameters);
+        }
+
+        private static void InsertUsuarioRol(int idUsuario, int idRol, bool activa, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            SqlParameter idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
+            idRolParameter.Value = idRol;
+
+            SqlParameter activaParameter = new SqlParameter("@Activa", SqlDbType.Bit);
+            activaParameter.Value = activa;
+
+            parameters.Add(idUsuarioParameter);
+            parameters.Add(idRolParameter);
+            parameters.Add(activaParameter);
+
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertUsuarioRol", parameters);
+        }
+
+        public static void SaveNewEmpresa(Empresa newEmpresa)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                InsertUsuario(newEmpresa, db);
+                InsertEmpresa(newEmpresa, db);
+                newEmpresa.Roles.Add(RolesServices.GetRolByDescription(Resources.Empresa));
+
+                foreach (Rol rol in newEmpresa.Roles)
+                {
+                    InsertUsuarioRol(newEmpresa.IdUsuario, rol.IdRol, true, db);
+                }
+
+                db.EndConnection();
+            }
         }
 
         private static void InsertEmpresa(Empresa newEmpresa, DataBaseHelper db)
@@ -405,26 +425,6 @@ namespace MercadoEnvio.DataManagers
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertEmpresa", parameters);
         }
 
-        private static void InsertUsuarioRol(int idUsuario, int idRol, bool activa, DataBaseHelper db)
-        {
-            List<SqlParameter> parameters = new List<SqlParameter>();
-
-            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
-            idUsuarioParameter.Value = idUsuario;
-
-            SqlParameter idRolParameter = new SqlParameter("@IdRol", SqlDbType.Int);
-            idRolParameter.Value = idRol;
-
-            SqlParameter activaParameter = new SqlParameter("@Activa", SqlDbType.Bit);
-            activaParameter.Value = activa;
-
-            parameters.Add(idUsuarioParameter);
-            parameters.Add(idRolParameter);
-            parameters.Add(activaParameter);
-
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertUsuarioRol", parameters);
-        }
-
         public static void SaveNewCliente(Cliente newCliente)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
@@ -435,7 +435,7 @@ namespace MercadoEnvio.DataManagers
 
                 InsertUsuario(newCliente, db);
                 InsertCliente(newCliente, db);
-                newCliente.Roles.Add(RolesServices.GetRolByDescription("Cliente"));
+                newCliente.Roles.Add(RolesServices.GetRolByDescription(Resources.Cliente));
 
                 foreach (Rol rol in newCliente.Roles)
                 {
@@ -913,6 +913,112 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idUsuarioParameter);
 
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_DeleteUsuario", parameters);
+        }
+
+        public static Cliente GetClienteById(int idUsuario)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                Cliente cliente = GetClienteById(idUsuario, db);
+
+                db.EndConnection();
+
+                return cliente;
+            }
+        }
+
+        private static Cliente GetClienteById(int idUsuario, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            parameters.Add(idUsuarioParameter);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetClienteById", parameters);
+            Cliente cliente = new Cliente();
+            foreach (DataRow row in res.Rows)
+            {
+                cliente.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
+                cliente.Nombre = Convert.ToString(row["Nombre"]);
+                cliente.Apellido = Convert.ToString(row["Apellido"]);
+                cliente.Calle = Convert.ToString(row["Calle"]);
+                cliente.NroCalle = Convert.ToInt32(row["NroCalle"]);
+                cliente.CodigoPostal = Convert.ToString(row["CodigoPostal"]);
+                cliente.Departamento = Convert.ToString(row["Departamento"]);
+                cliente.Email = Convert.ToString(row["Email"]);
+                cliente.FechaNacimiento = Convert.ToDateTime(row["FechaNacimiento"]);
+                cliente.Localidad = Convert.ToString(row["Localidad"]);
+                cliente.NumeroDoc = Convert.ToInt32(row["NroDoc"]);
+                cliente.Piso = Convert.ToInt32(row["Piso"]);
+                cliente.Telefono = Convert.ToString(row["Telefono"]);
+                cliente.TipoDoc = Convert.ToString(row["TipoDoc"]);
+                cliente.UserName = Convert.ToString(row["UserName"]);
+                cliente.Activo = Convert.ToBoolean(row["Activo"]);
+                cliente.Password = Convert.ToString(row["PasswordEnc"]);
+
+                cliente.Reputacion = 10; // TODO SP get by id y reputacion
+            }
+
+            return cliente;
+        }
+
+        public static Empresa GetEmpresaById(int idUsuario)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                Empresa empresa = GetEmpresaById(idUsuario, db);
+
+                db.EndConnection();
+
+                return empresa;
+            }
+        }
+
+        private static Empresa GetEmpresaById(int idUsuario, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            parameters.Add(idUsuarioParameter);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetEmpresaById", parameters);
+            Empresa empresa = new Empresa();
+            foreach (DataRow row in res.Rows)
+            {
+                empresa.IdUsuario = Convert.ToInt32(row["IdUsuario"]);
+                empresa.UserName = Convert.ToString(row["UserName"]);
+                empresa.Activo = Convert.ToBoolean(row["Activo"]);
+                empresa.Password = Convert.ToString(row["PasswordEnc"]);
+                empresa.Calle = Convert.ToString(row["Calle"]);
+                empresa.Ciudad = Convert.ToString(row["Ciudad"]);
+                empresa.CodigoPostal = Convert.ToString(row["CodigoPostal"]);
+                empresa.Contacto = Convert.ToString(row["Contacto"]);
+                empresa.Cuit = Convert.ToString(row["Cuit"]);
+                empresa.Departamento = Convert.ToString(row["Departamento"]);
+                empresa.Email = Convert.ToString(row["Email"]);
+                empresa.Localidad = Convert.ToString(row["Localidad"]);
+                empresa.NroCalle = Convert.ToInt32(row["NroCalle"]);
+                empresa.Piso = Convert.ToInt32(row["Piso"]);
+                empresa.RazonSocial = Convert.ToString(row["RazonSocial"]);
+                empresa.Rubro = Convert.ToString(row["Rubro"]);
+                empresa.Telefono = Convert.ToString(row["Telefono"]);
+
+                empresa.Reputacion = 10; // TODO SP get by id y reputacion
+            }
+
+            return empresa;
         }
     }
 }

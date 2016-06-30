@@ -502,4 +502,25 @@
   <data name="ErrorFechaSistema" xml:space="preserve">
     <value>La fecha ingresada en el archivo de configuración no es válida.</value>
   </data>
+  <data name="Cliente" xml:space="preserve">
+    <value>Cliente</value>
+  </data>
+  <data name="Empresa" xml:space="preserve">
+    <value>Empresa</value>
+  </data>
+  <data name="Administrativo" xml:space="preserve">
+    <value>Administrativo</value>
+  </data>
+  <data name="Admin" xml:space="preserve">
+    <value>admin</value>
+  </data>
+  <data name="CompraInmediata" xml:space="preserve">
+    <value>Compra Inmediata</value>
+  </data>
+  <data name="Pausada" xml:space="preserve">
+    <value>Pausada</value>
+  </data>
+  <data name="Visibilidad" xml:space="preserve">
+    <value>Visibilidad</value>
+  </data>
 </root>

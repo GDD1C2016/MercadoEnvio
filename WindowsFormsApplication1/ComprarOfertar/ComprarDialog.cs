@@ -27,7 +27,7 @@ namespace MercadoEnvio.ComprarOfertar
         private void ArmarFormularioSegunTipo()
         {
             CheckBoxEnvio.Enabled = PublicacionSeleccionada.Envio;
-            if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Contains("Compra"))
+            if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.Compra, StringComparison.CurrentCultureIgnoreCase))
             {
                 LabelCantidad.Text = Resources.Cantidad;
                 LabelCantidad.Visible = true;
@@ -55,7 +55,7 @@ namespace MercadoEnvio.ComprarOfertar
 
         private void LlenarFormularioSegunTipo()
         {
-            if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Contains("Compra"))
+            if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.Compra, StringComparison.CurrentCultureIgnoreCase))
                 CheckBoxEnvio.Checked = PublicacionSeleccionada.Envio;
             else
                 LabelPrecioReservaNum.Text = PublicacionSeleccionada.PrecioReserva.ToString(CultureInfo.CurrentCulture);
@@ -91,7 +91,11 @@ namespace MercadoEnvio.ComprarOfertar
             }
             else
             {
-                var numero = PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals("Subasta", StringComparison.CurrentCultureIgnoreCase) ? PublicacionesServices.Ofertar(PublicacionSeleccionada, UsuarioActivo, TxtOfertar.Text) : PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, TxtCantidad.Text, CheckBoxEnvio.Checked);
+                var numero = PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.Subasta,
+                    StringComparison.CurrentCultureIgnoreCase)
+                    ? PublicacionesServices.Ofertar(PublicacionSeleccionada, UsuarioActivo, TxtOfertar.Text)
+                    : PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, TxtCantidad.Text,
+                        CheckBoxEnvio.Checked);
                 MessageBox.Show(Resources.NroDeCompra + numero, Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 DialogResult = DialogResult.OK;
             }
@@ -104,7 +108,7 @@ namespace MercadoEnvio.ComprarOfertar
             if (PublicacionSeleccionada.IdUsuario == UsuarioActivo.IdUsuario)
                 errors.Add(Resources.ErrorUsuarioCompraSuPublicacion);
 
-            if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Contains("Compra"))
+            if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.CompraInmediata, StringComparison.CurrentCultureIgnoreCase))
             {
                 var cantidad = Convert.ToInt32(TxtCantidad.Text);
 
