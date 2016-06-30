@@ -42,7 +42,6 @@ namespace MercadoEnvio.Calificar
             #endregion
 
             #region llenadoDatosUsuario
-            LabelReputacionTxt.Text = Usuario.Reputacion.ToString(CultureInfo.CurrentCulture);
             LabelUsuarioTxt.Text = Usuario.UserName;
             #endregion
         }

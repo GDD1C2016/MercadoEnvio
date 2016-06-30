@@ -58,7 +58,8 @@ namespace MercadoEnvio.ComprarOfertar
 
         private bool ValidarUsuario()
         {
-            return !Usuario.UserName.Equals("admin", StringComparison.CurrentCultureIgnoreCase);
+            bool esEmpresa = Usuario.Roles.Exists(x => x.Descripcion == "Empresa");
+            return !Usuario.UserName.Equals("admin", StringComparison.CurrentCultureIgnoreCase) && !esEmpresa;
         }
 
         private BindingList<Publicacion> FillDataforGrid()

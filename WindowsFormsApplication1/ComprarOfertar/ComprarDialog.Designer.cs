@@ -38,8 +38,18 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.BtnAceptar = new System.Windows.Forms.Button();
             this.BtnCancelar = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.LabelNombre = new System.Windows.Forms.Label();
+            this.LabelEmail = new System.Windows.Forms.Label();
+            this.LabelNombreTxt = new System.Windows.Forms.Label();
+            this.LabelEmailTxt = new System.Windows.Forms.Label();
+            this.LabelTelefono = new System.Windows.Forms.Label();
+            this.LabelTelefonoTxt = new System.Windows.Forms.Label();
+            this.LabelReputacion = new System.Windows.Forms.Label();
+            this.LabelReputacionTxt = new System.Windows.Forms.Label();
             this.GroupBoxDetalles.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // GroupBoxDetalles
@@ -50,8 +60,7 @@
             this.GroupBoxDetalles.Controls.Add(this.CheckBoxEnvio);
             this.GroupBoxDetalles.Controls.Add(this.TxtCantidad);
             this.GroupBoxDetalles.Controls.Add(this.LabelCantidad);
-            this.GroupBoxDetalles.Dock = System.Windows.Forms.DockStyle.Top;
-            this.GroupBoxDetalles.Location = new System.Drawing.Point(0, 0);
+            this.GroupBoxDetalles.Location = new System.Drawing.Point(0, 92);
             this.GroupBoxDetalles.Name = "GroupBoxDetalles";
             this.GroupBoxDetalles.Size = new System.Drawing.Size(534, 58);
             this.GroupBoxDetalles.TabIndex = 2;
@@ -121,7 +130,7 @@
             this.groupBox2.Controls.Add(this.BtnAceptar);
             this.groupBox2.Controls.Add(this.BtnCancelar);
             this.groupBox2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox2.Location = new System.Drawing.Point(0, 56);
+            this.groupBox2.Location = new System.Drawing.Point(0, 156);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(534, 55);
             this.groupBox2.TabIndex = 9;
@@ -148,15 +157,102 @@
             this.BtnCancelar.UseVisualStyleBackColor = true;
             this.BtnCancelar.Click += new System.EventHandler(this.BtnCancelar_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.LabelReputacionTxt);
+            this.groupBox1.Controls.Add(this.LabelReputacion);
+            this.groupBox1.Controls.Add(this.LabelTelefonoTxt);
+            this.groupBox1.Controls.Add(this.LabelTelefono);
+            this.groupBox1.Controls.Add(this.LabelEmailTxt);
+            this.groupBox1.Controls.Add(this.LabelNombreTxt);
+            this.groupBox1.Controls.Add(this.LabelEmail);
+            this.groupBox1.Controls.Add(this.LabelNombre);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBox1.Location = new System.Drawing.Point(0, 0);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(534, 86);
+            this.groupBox1.TabIndex = 10;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Detalles Vendedor";
+            // 
+            // LabelNombre
+            // 
+            this.LabelNombre.AutoSize = true;
+            this.LabelNombre.Location = new System.Drawing.Point(6, 27);
+            this.LabelNombre.Name = "LabelNombre";
+            this.LabelNombre.Size = new System.Drawing.Size(44, 13);
+            this.LabelNombre.TabIndex = 0;
+            this.LabelNombre.Text = "Nombre";
+            // 
+            // LabelEmail
+            // 
+            this.LabelEmail.AutoSize = true;
+            this.LabelEmail.Location = new System.Drawing.Point(6, 55);
+            this.LabelEmail.Name = "LabelEmail";
+            this.LabelEmail.Size = new System.Drawing.Size(32, 13);
+            this.LabelEmail.TabIndex = 1;
+            this.LabelEmail.Text = "Email";
+            // 
+            // LabelNombreTxt
+            // 
+            this.LabelNombreTxt.AutoSize = true;
+            this.LabelNombreTxt.Location = new System.Drawing.Point(56, 27);
+            this.LabelNombreTxt.Name = "LabelNombreTxt";
+            this.LabelNombreTxt.Size = new System.Drawing.Size(0, 13);
+            this.LabelNombreTxt.TabIndex = 2;
+            // 
+            // LabelEmailTxt
+            // 
+            this.LabelEmailTxt.AutoSize = true;
+            this.LabelEmailTxt.Location = new System.Drawing.Point(56, 55);
+            this.LabelEmailTxt.Name = "LabelEmailTxt";
+            this.LabelEmailTxt.Size = new System.Drawing.Size(0, 13);
+            this.LabelEmailTxt.TabIndex = 3;
+            // 
+            // LabelTelefono
+            // 
+            this.LabelTelefono.AutoSize = true;
+            this.LabelTelefono.Location = new System.Drawing.Point(180, 27);
+            this.LabelTelefono.Name = "LabelTelefono";
+            this.LabelTelefono.Size = new System.Drawing.Size(49, 13);
+            this.LabelTelefono.TabIndex = 4;
+            this.LabelTelefono.Text = "Telefono";
+            // 
+            // LabelTelefonoTxt
+            // 
+            this.LabelTelefonoTxt.AutoSize = true;
+            this.LabelTelefonoTxt.Location = new System.Drawing.Point(235, 27);
+            this.LabelTelefonoTxt.Name = "LabelTelefonoTxt";
+            this.LabelTelefonoTxt.Size = new System.Drawing.Size(0, 13);
+            this.LabelTelefonoTxt.TabIndex = 5;
+            // 
+            // LabelReputacion
+            // 
+            this.LabelReputacion.AutoSize = true;
+            this.LabelReputacion.Location = new System.Drawing.Point(340, 27);
+            this.LabelReputacion.Name = "LabelReputacion";
+            this.LabelReputacion.Size = new System.Drawing.Size(62, 13);
+            this.LabelReputacion.TabIndex = 6;
+            this.LabelReputacion.Text = "Reputación";
+            // 
+            // LabelReputacionTxt
+            // 
+            this.LabelReputacionTxt.AutoSize = true;
+            this.LabelReputacionTxt.Location = new System.Drawing.Point(408, 27);
+            this.LabelReputacionTxt.Name = "LabelReputacionTxt";
+            this.LabelReputacionTxt.Size = new System.Drawing.Size(0, 13);
+            this.LabelReputacionTxt.TabIndex = 7;
+            // 
             // ComprarDialog
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(534, 111);
+            this.ClientSize = new System.Drawing.Size(534, 211);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.GroupBoxDetalles);
-            this.MaximumSize = new System.Drawing.Size(550, 150);
-            this.MinimumSize = new System.Drawing.Size(550, 150);
+            this.MaximumSize = new System.Drawing.Size(550, 250);
+            this.MinimumSize = new System.Drawing.Size(550, 250);
             this.Name = "ComprarDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Compra";
@@ -164,6 +260,8 @@
             this.GroupBoxDetalles.ResumeLayout(false);
             this.GroupBoxDetalles.PerformLayout();
             this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -180,5 +278,14 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Button BtnAceptar;
         private System.Windows.Forms.Button BtnCancelar;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label LabelReputacionTxt;
+        private System.Windows.Forms.Label LabelReputacion;
+        private System.Windows.Forms.Label LabelTelefonoTxt;
+        private System.Windows.Forms.Label LabelTelefono;
+        private System.Windows.Forms.Label LabelEmailTxt;
+        private System.Windows.Forms.Label LabelNombreTxt;
+        private System.Windows.Forms.Label LabelEmail;
+        private System.Windows.Forms.Label LabelNombre;
     }
 }

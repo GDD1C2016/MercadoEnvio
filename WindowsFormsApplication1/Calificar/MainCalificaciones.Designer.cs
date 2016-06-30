@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.LabelReputacionTxt = new System.Windows.Forms.Label();
-            this.LabelReputacion = new System.Windows.Forms.Label();
             this.LabelUsuarioTxt = new System.Windows.Forms.Label();
             this.LabelUsuario = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -52,8 +50,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.LabelReputacionTxt);
-            this.groupBox1.Controls.Add(this.LabelReputacion);
             this.groupBox1.Controls.Add(this.LabelUsuarioTxt);
             this.groupBox1.Controls.Add(this.LabelUsuario);
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -63,23 +59,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Usuario";
-            // 
-            // LabelReputacionTxt
-            // 
-            this.LabelReputacionTxt.AutoSize = true;
-            this.LabelReputacionTxt.Location = new System.Drawing.Point(273, 28);
-            this.LabelReputacionTxt.Name = "LabelReputacionTxt";
-            this.LabelReputacionTxt.Size = new System.Drawing.Size(0, 13);
-            this.LabelReputacionTxt.TabIndex = 3;
-            // 
-            // LabelReputacion
-            // 
-            this.LabelReputacion.AutoSize = true;
-            this.LabelReputacion.Location = new System.Drawing.Point(205, 28);
-            this.LabelReputacion.Name = "LabelReputacion";
-            this.LabelReputacion.Size = new System.Drawing.Size(62, 13);
-            this.LabelReputacion.TabIndex = 2;
-            this.LabelReputacion.Text = "Reputación";
             // 
             // LabelUsuarioTxt
             // 
@@ -224,8 +203,6 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.DataGridView DgPendientes;
         private System.Windows.Forms.DataGridView DgUltimas5;
-        private System.Windows.Forms.Label LabelReputacionTxt;
-        private System.Windows.Forms.Label LabelReputacion;
         private System.Windows.Forms.Label LabelUsuarioTxt;
         private System.Windows.Forms.Label LabelUsuario;
     }

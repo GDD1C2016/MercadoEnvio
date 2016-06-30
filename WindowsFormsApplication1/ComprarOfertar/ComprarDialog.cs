@@ -22,6 +22,29 @@ namespace MercadoEnvio.ComprarOfertar
         {
             ArmarFormularioSegunTipo();
             LlenarFormularioSegunTipo();
+
+            #region armadoDatosVendedor
+            
+            Cliente cliente = new Cliente();
+            cliente = UsuarioService.GetClienteById(PublicacionSeleccionada.IdUsuario);
+
+            LabelNombreTxt.Text = cliente.Nombre;
+            LabelEmailTxt.Text = cliente.Email;
+            LabelReputacionTxt.Text = cliente.Reputacion.ToString();
+            LabelTelefonoTxt.Text = cliente.Telefono;
+
+            if (cliente.IdUsuario == 0)
+            {
+                Empresa empresa = new Empresa();
+                empresa = UsuarioService.GetEmpresaById(PublicacionSeleccionada.IdUsuario);
+
+                LabelNombreTxt.Text = empresa.RazonSocial;
+                LabelEmailTxt.Text = empresa.Email;
+                LabelReputacionTxt.Text = empresa.Reputacion.ToString();
+                LabelTelefonoTxt.Text = empresa.Telefono;
+            }
+
+            #endregion
         }
 
         private void ArmarFormularioSegunTipo()
