@@ -51,8 +51,13 @@ namespace MercadoEnvio.ComprarOfertar
             #endregion
 
             #region validarUsuario
-            BtnComprar.Enabled = !Usuario.UserName.Equals(Resources.Admin, StringComparison.CurrentCultureIgnoreCase);
+            BtnComprar.Enabled = ValidarUsuario();
             #endregion
+        }
+
+        private bool ValidarUsuario()
+        {
+            return !Usuario.UserName.Equals(Resources.Admin, StringComparison.CurrentCultureIgnoreCase);
         }
 
         private BindingList<Publicacion> FillDataforGrid()
@@ -202,9 +207,15 @@ namespace MercadoEnvio.ComprarOfertar
                 if (bs != null)
                 {
                     publicacionSeleccionada = (Publicacion) bs[DgPublicaciones.SelectedRows[0].Index];
-                }
-            }
 
+                    List<string> errors = new List<string>(ValidarCompra(publicacionSeleccionada));
+                    if (errors.Count > 0)
+                    {
+                        var message = string.Join(Environment.NewLine, errors);
+                        MessageBox.Show(message, Resources.ErrorCompra, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
             var comprarDialog = new ComprarDialog
             {
                 UsuarioActivo = Usuario,
@@ -221,10 +232,26 @@ namespace MercadoEnvio.ComprarOfertar
                 List<Publicacion> listAux = new List<Publicacion>(PublicacionesServices.GetAllData());
 
                 BindingList<Publicacion> dataSource = new BindingList<Publicacion>(listAux);
-                BindingSource bs = new BindingSource {DataSource = dataSource};
+                            BindingSource bs2 = new BindingSource { DataSource = dataSource };
 
-                DgPublicaciones.DataSource = bs;
+                            DgPublicaciones.DataSource = bs2;
+                        }
+                    }
+                }
             }
+            }
+
+        private List<string> ValidarCompra(Publicacion publicacionSeleccionada)
+        {
+            List<string> errors = new List<string>();
+
+            if (publicacionSeleccionada.EstadoDescripcion.Equals(Resources.Pausada, StringComparison.CurrentCultureIgnoreCase))
+                errors.Add(Resources.ErrorPublicacionPausada);
+
+            if (ComprasServices.GetComprasPendientesDeCalificacion(Usuario.IdUsuario).Count >= 3)
+                errors.Add(Resources.ErrorCalificacionesPendientes);
+
+            return errors;
         }
 
         private void DgPublicaciones_SelectionChanged(object sender, EventArgs e)
@@ -234,16 +261,8 @@ namespace MercadoEnvio.ComprarOfertar
                 BindingSource bs = (BindingSource)DgPublicaciones.DataSource;
                 if (bs != null)
                 {
-                    Publicacion publicacionSeleccionada = (Publicacion)bs[DgPublicaciones.SelectedRows[0].Index];
-
-                    if (publicacionSeleccionada.EstadoDescripcion.Equals(Resources.Pausada, StringComparison.CurrentCultureIgnoreCase))
-                    {
-                        BtnComprar.Enabled = false;
-                    }
-                    else
-                    {
-                        BtnComprar.Enabled = true;
-                    }
+                    publicacionSeleccionada = (Publicacion)bs[DgPublicaciones.SelectedRows[0].Index];
+                    BtnComprar.Enabled = !publicacionSeleccionada.EstadoDescripcion.Equals(Resources.Pausada, StringComparison.CurrentCultureIgnoreCase) && ValidarUsuario();
                 }
             }
         }
