@@ -395,7 +395,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Se deben calificar las compras pendientes antes de continuar..
+        ///   Looks up a localized string similar to Calificaciones pendientes.
         /// </summary>
         internal static string ErrorCalificacionesPendientes {
             get {
@@ -638,7 +638,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La Publicación se encuentra Pausada..
+        ///   Looks up a localized string similar to La publicación se encuentra pausada.
         /// </summary>
         internal static string ErrorPublicacionPausada {
             get {

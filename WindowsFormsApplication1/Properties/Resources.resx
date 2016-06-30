@@ -523,4 +523,13 @@
   <data name="Visibilidad" xml:space="preserve">
     <value>Visibilidad</value>
   </data>
+  <data name="ErrorCalificacionesPendientes" xml:space="preserve">
+    <value>Calificaciones pendientes</value>
+  </data>
+  <data name="ErrorCompra" xml:space="preserve">
+    <value>Error al comprar</value>
+  </data>
+  <data name="ErrorPublicacionPausada" xml:space="preserve">
+    <value>La publicación se encuentra pausada</value>
+  </data>
 </root>
