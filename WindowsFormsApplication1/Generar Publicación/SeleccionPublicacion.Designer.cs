@@ -67,7 +67,10 @@
             this.Controls.Add(this.BtnBuscar);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBoxCodPublicacion);
+            this.MaximumSize = new System.Drawing.Size(307, 172);
+            this.MinimumSize = new System.Drawing.Size(307, 172);
             this.Name = "SeleccionPublicacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Selección de Publicación";
             this.ResumeLayout(false);
             this.PerformLayout();

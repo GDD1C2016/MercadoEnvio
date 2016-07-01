@@ -69,7 +69,7 @@ namespace MercadoEnvio.Menu
 
         private void BtnPublicar_Click(object sender, EventArgs e)
         {
-            var generarPublicacionDialog = new GenerarPublicacion();
+            var generarPublicacionDialog = new GenerarPublicacion {Usuario = Usuario};
             generarPublicacionDialog.ShowDialog();
         }
 

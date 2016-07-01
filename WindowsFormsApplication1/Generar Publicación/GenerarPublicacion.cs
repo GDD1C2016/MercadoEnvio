@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
+using MercadoEnvio.Helpers;
 using MercadoEnvio.Properties;
 using MercadoEnvio.Servicios;
 
@@ -12,6 +13,8 @@ namespace MercadoEnvio.Generar_Publicación
 {
     public partial class GenerarPublicacion : Form
     {
+        FechaHelper _helper = new FechaHelper();
+
         public Usuario Usuario { get; set; }
 
         public GenerarPublicacion()
@@ -21,20 +24,13 @@ namespace MercadoEnvio.Generar_Publicación
 
         private void GenerarPublicacion_Load(object sender, EventArgs e)
         {
-            Publicacion publicacion = new Publicacion
-            {
-                EstadoPublicacion = { Descripcion = Resources.Borrador },
-                TipoPublicacion = { Descripcion = Resources.CompraInmediata },
-                RubroDescripcionLarga = (string)ComboRubro.SelectedItem,
-                Visibilidad = { Descripcion = (string)ComboVisibilidad.SelectedItem }
-            };
 
             #region armadoComboTipoPublicacion
             List<TipoPublicacion> tipos = new List<TipoPublicacion>(TiposPublicacionServices.GetAllData());
             tipos = tipos.OrderBy(x => x.Descripcion).ToList();
 
             ComboTipoPublicacion.DataSource = tipos;
-            ComboEstado.DisplayMember = "Descripcion";
+            ComboTipoPublicacion.DisplayMember = "Descripcion";
             ComboTipoPublicacion.DropDownStyle = ComboBoxStyle.DropDownList;
             #endregion
 
@@ -56,12 +52,22 @@ namespace MercadoEnvio.Generar_Publicación
             ComboVisibilidad.DropDownStyle = ComboBoxStyle.DropDownList;
             #endregion
 
+            Publicacion publicacion = new Publicacion
+            {
+                EstadoPublicacion = { Descripcion = Resources.Borrador },
+                TipoPublicacion = { Descripcion = Resources.CompraInmediata },
+                RubroDescripcionLarga = ((Rubro)ComboRubro.SelectedItem).DescripcionLarga,
+                Visibilidad = { Descripcion = ((Visibilidad)ComboVisibilidad.SelectedItem).Descripcion },
+                FechaInicio = _helper.GetSystemDate(),
+                FechaVencimiento = _helper.GetSystemDate()
+            };
+
             InicializarPantalla(publicacion);
         }
 
         private void ComboTipoPublicacion_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (((string)(ComboTipoPublicacion.SelectedItem)).Equals(Resources.Subasta, StringComparison.CurrentCultureIgnoreCase))
+            if (((TipoPublicacion)(ComboTipoPublicacion.SelectedItem)).Descripcion.Equals(Resources.Subasta, StringComparison.CurrentCultureIgnoreCase))
             {
                 label12.Visible = false;
                 textBoxStock.Visible = false;
@@ -145,6 +151,7 @@ namespace MercadoEnvio.Generar_Publicación
         private void ButtonEditar_Click(object sender, EventArgs e)
         {
             var seleccionPublicacion = new SeleccionPublicacion();
+            seleccionPublicacion.Usuario = Usuario;
             var result = seleccionPublicacion.ShowDialog();
 
             if (result.Equals(DialogResult.OK))

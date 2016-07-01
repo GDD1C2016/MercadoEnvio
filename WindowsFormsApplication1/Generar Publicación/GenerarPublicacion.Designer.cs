@@ -377,7 +377,10 @@
             this.Controls.Add(this.label10);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
+            this.MaximumSize = new System.Drawing.Size(670, 400);
+            this.MinimumSize = new System.Drawing.Size(670, 400);
             this.Name = "GenerarPublicacion";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Generar Publicación";
             this.Load += new System.EventHandler(this.GenerarPublicacion_Load);
             this.groupBox2.ResumeLayout(false);
