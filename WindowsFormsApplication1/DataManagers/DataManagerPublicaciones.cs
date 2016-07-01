@@ -74,8 +74,11 @@ namespace MercadoEnvio.DataManagers
                     RubroDescripcionLarga = Convert.ToString(row["RubroDescripcionLarga"]),
                     IdUsuario = Convert.ToInt32(row["IdUsuario"]),
                     NombreUsuario = Convert.ToString(row["NombreUsuario"]),
-                    IdEstado = Convert.ToInt32(row["IdEstado"]),
-                    EstadoDescripcion = Convert.ToString(row["EstadoDescripcion"]),
+                    EstadoPublicacion = new EstadoPublicacion
+                    {
+                        IdEstado = Convert.ToInt32(row["IdEstado"]),
+                        Descripcion = Convert.ToString(row["EstadoDescripcion"])
+                    },
                     Envio = Convert.ToBoolean(row["Envio"]),
                     TipoPublicacion = new TipoPublicacion
                     {
@@ -205,7 +208,7 @@ namespace MercadoEnvio.DataManagers
             return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertCompra", parameters); // TODO Insertar factura
         }
 
-        public static List<Publicacion> GetEstados(Publicacion publicacionSeleccionada)
+        public static List<EstadoPublicacion> GetEstados(string descripcionEstado)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
@@ -213,37 +216,147 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
-                List<Publicacion> publicaciones = GetEstados(publicacionSeleccionada, db);
+                List<EstadoPublicacion> estados = GetEstados(descripcionEstado, db);
 
                 db.EndConnection();
 
-                return publicaciones;
+                return estados;
             }
         }
 
-        private static List<Publicacion> GetEstados(Publicacion publicacionSeleccionada, DataBaseHelper db)
+        private static List<EstadoPublicacion> GetEstados(string descripcionEstado, DataBaseHelper db)
         {
-            List<Publicacion> publicaciones = new List<Publicacion>();
+            List<EstadoPublicacion> estados = new List<EstadoPublicacion>();
             List<SqlParameter> parameters = new List<SqlParameter>();
 
             SqlParameter descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
-            descripcionParameter.Value = publicacionSeleccionada.EstadoDescripcion;
+            descripcionParameter.Value = descripcionEstado;
 
             parameters.Add(descripcionParameter);
 
             DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetEstados", parameters);
             foreach (DataRow row in res.Rows)
             {
-                var publicacion = new Publicacion
+                var estado = new EstadoPublicacion
                 {
                     IdEstado = Convert.ToInt32(row["IdEstado"]),
-                    EstadoDescripcion = Convert.ToString(row["EstadoDescripcion"])
+                    Descripcion = Convert.ToString(row["Descripcion"])
                 };
 
-                publicaciones.Add(publicacion);
+                estados.Add(estado);
             }
 
-            return publicaciones;
+            return estados;
+        }
+
+        public static Publicacion GetPublicacion(int idPublicacion, int idUsuario)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                Publicacion publicacion = GetPublicacion(idPublicacion, idUsuario, db);
+
+                db.EndConnection();
+
+                return publicacion;
+            }
+        }
+
+        private static Publicacion GetPublicacion(int idPublicacion, int idUsuario, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idPublicacionParameter = new SqlParameter("@IdPublicacion", SqlDbType.Int);
+            idPublicacionParameter.Value = idPublicacion;
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            parameters.Add(idPublicacionParameter);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetPublicacion", parameters);
+            Publicacion publicacion = null;
+            foreach (DataRow row in res.Rows)
+            {
+                publicacion = new Publicacion
+                {
+                    IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
+                    Descripcion = Convert.ToString(row["Descripcion"]),
+                    Stock = Convert.ToInt32(row["Stock"]),
+                    FechaInicio = Convert.ToDateTime(row["FechaInicio"]),
+                    FechaVencimiento = Convert.ToDateTime(row["FechaVencimiento"]),
+                    Precio = Convert.ToDecimal(row["Precio"]),
+                    PrecioReserva = row["PrecioReserva"] == DBNull.Value ? 0 : Convert.ToDecimal(row["PrecioReserva"]),
+                    IdRubro = Convert.ToInt32(row["IdRubro"]),
+                    RubroDescripcionCorta = Convert.ToString(row["RubroDescripcionCorta"]),
+                    RubroDescripcionLarga = Convert.ToString(row["RubroDescripcionLarga"]),
+                    IdUsuario = Convert.ToInt32(row["IdUsuario"]),
+                    NombreUsuario = Convert.ToString(row["NombreUsuario"]),
+                    EstadoPublicacion = new EstadoPublicacion
+                    {
+                        IdEstado = Convert.ToInt32(row["IdEstado"]),
+                        Descripcion = Convert.ToString(row["EstadoDescripcion"])
+                    },
+                    Envio = Convert.ToBoolean(row["Envio"]),
+                    TipoPublicacion = new TipoPublicacion
+                    {
+                        IdTipo = Convert.ToInt32(row["IdTipo"]),
+                        Descripcion = Convert.ToString(row["TipoDescripcion"]),
+                        Envio = Convert.ToBoolean(row["TipoEnvio"]),
+                    },
+                    Visibilidad = new Visibilidad
+                    {
+                        IdVisibilidad = Convert.ToInt32(row["IdVisibilidad"]),
+                        Descripcion = Convert.ToString(row["VisibilidadDescripcion"]),
+                        Precio = Convert.ToDecimal(row["VisibilidadPrecio"]),
+                        Porcentaje = Convert.ToDecimal(row["Porcentaje"]),
+                        EnvioPorcentaje = Convert.ToDecimal(row["EnvioPorcentaje"])
+                    }
+                };
+            }
+
+            return publicacion;
+        }
+
+        public static void UpdatePublicacion(string idPublicacion, string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                UpdatePublicacion(idPublicacion, descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo, db);
+
+                db.EndConnection();
+            }
+        }
+
+        private static void UpdatePublicacion(string idPublicacion, string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, DataBaseHelper db)
+        {
+            //PublicacionesServices.UpdatePublicacion(RichTextBoxDescripcion.Text, Convert.ToDecimal(textBoxStock.Text), DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, Convert.ToDecimal(textBoxPrecio), Convert.ToDecimal(textBoxPrecioReserva), Convert.ToInt32(((Rubro)ComboRubro.SelectedItem).IdTipo, Usuario.IdUsuario, Convert.ToInt32(((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado), Convert.ToInt32(((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo)));
+        }
+
+        public static void InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                InsertPublicacion(descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo, db);
+
+                db.EndConnection();
+            }
+        }
+
+        private static void InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, DataBaseHelper db)
+        {
+            //PublicacionesServices.UpdatePublicacion(RichTextBoxDescripcion.Text, Convert.ToDecimal(textBoxStock.Text), DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, Convert.ToDecimal(textBoxPrecio), Convert.ToDecimal(textBoxPrecioReserva), Convert.ToInt32(((Rubro)ComboRubro.SelectedItem).IdTipo, Usuario.IdUsuario, Convert.ToInt32(((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado), Convert.ToInt32(((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo)));
         }
     }
 }

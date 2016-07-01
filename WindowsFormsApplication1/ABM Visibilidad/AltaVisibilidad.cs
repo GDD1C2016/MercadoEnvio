@@ -21,9 +21,9 @@ namespace MercadoEnvio.ABM_Visibilidad
             Visibilidad = visibilidad;
 
             TxtDescripcion.Text = Visibilidad.Descripcion;
-            TxtPrecio.Text = Visibilidad.Precio.ToString();
-            TxtEnvioPorcentaje.Text = Visibilidad.EnvioPorcentaje.ToString();
-            TxtPorcentaje.Text = Visibilidad.Porcentaje.ToString();
+            TxtPrecio.Text = Visibilidad.Precio.ToString(CultureInfo.CurrentCulture);
+            TxtEnvioPorcentaje.Text = Visibilidad.EnvioPorcentaje.ToString(CultureInfo.CurrentCulture);
+            TxtPorcentaje.Text = Visibilidad.Porcentaje.ToString(CultureInfo.CurrentCulture);
 
             #region armadoComboEstado
             Estado estadoHabilitado = new Estado { Valor = true };
@@ -57,7 +57,7 @@ namespace MercadoEnvio.ABM_Visibilidad
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void BtnGuardar_Click(object sender, EventArgs e)
@@ -82,7 +82,7 @@ namespace MercadoEnvio.ABM_Visibilidad
 
                 if (Visibilidad.IdVisibilidad == 0)
                 {
-                    VisibilidadServices.SaveNewVisibilidad(visibilidad);
+                    VisibilidadesServices.SaveNewVisibilidad(visibilidad);
 
                     MessageBox.Show(Resources.VisibilidadCreada, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -90,7 +90,7 @@ namespace MercadoEnvio.ABM_Visibilidad
                 {
                     visibilidad.IdVisibilidad = Visibilidad.IdVisibilidad;
 
-                    VisibilidadServices.UpdateVisibilidad(visibilidad);
+                    VisibilidadesServices.UpdateVisibilidad(visibilidad);
 
                     MessageBox.Show(Resources.VisibilidadActualizada, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -104,7 +104,7 @@ namespace MercadoEnvio.ABM_Visibilidad
             if (string.IsNullOrEmpty(TxtDescripcion.Text))
                 errors.Add(Resources.ErrorDescripcionVacia);
 
-            Visibilidad visibilidad = VisibilidadServices.GetVisibilidadByDescription(TxtDescripcion.Text);
+            Visibilidad visibilidad = VisibilidadesServices.GetVisibilidadByDescription(TxtDescripcion.Text);
             if (visibilidad.IdVisibilidad != 0 && visibilidad.IdVisibilidad != Visibilidad.IdVisibilidad)
                 errors.Add(Resources.ErrorVisibilidadExistente);
 

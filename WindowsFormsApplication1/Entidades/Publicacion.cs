@@ -17,8 +17,7 @@ namespace MercadoEnvio.Entidades
         private string _rubroDescripcionLarga;
         private int _idUsuario;
         private string _nombreUsuario;
-        private int _idEstado;
-        private string _estadoDescripcion;
+        private EstadoPublicacion _estadoPublicacion;
         private bool _envio;
         private TipoPublicacion _tipoPublicacion;
         private Visibilidad _visibilidad;
@@ -97,16 +96,10 @@ namespace MercadoEnvio.Entidades
             set { _nombreUsuario = value; }
         }
 
-        public int IdEstado
+        public EstadoPublicacion EstadoPublicacion
         {
-            get { return _idEstado; }
-            set { _idEstado = value; }
-        }
-
-        public string EstadoDescripcion
-        {
-            get { return _estadoDescripcion; }
-            set { _estadoDescripcion = value; }
+            get { return _estadoPublicacion; }
+            set { _estadoPublicacion = value; }
         }
 
         public TipoPublicacion TipoPublicacion

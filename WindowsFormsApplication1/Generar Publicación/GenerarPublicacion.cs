@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
@@ -10,13 +12,7 @@ namespace MercadoEnvio.Generar_Publicación
 {
     public partial class GenerarPublicacion : Form
     {
-        public Publicacion Publicacion { get; set; }
-
         public Usuario Usuario { get; set; }
-
-        public Cliente Cliente { get; set; }
-
-        public Empresa Empresa { get; set; }
 
         public GenerarPublicacion()
         {
@@ -25,20 +21,16 @@ namespace MercadoEnvio.Generar_Publicación
 
         private void GenerarPublicacion_Load(object sender, EventArgs e)
         {
-            const string fmt = "000000000000000000";
-            const string espacio = " ";
-
-            #region armadoComboEstado
-            List<Publicacion> publicaciones = new List<Publicacion>(PublicacionesServices.GetEstados(Publicacion));
-            publicaciones = publicaciones.OrderBy(x => x.EstadoDescripcion).ToList();
-
-            ComboEstado.DataSource = publicaciones;
-            ComboEstado.DisplayMember = "EstadoDescripcion";
-            ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-            #endregion
+            Publicacion publicacion = new Publicacion
+            {
+                EstadoPublicacion = { Descripcion = Resources.Borrador },
+                TipoPublicacion = { Descripcion = Resources.CompraInmediata },
+                RubroDescripcionLarga = (string)ComboRubro.SelectedItem,
+                Visibilidad = { Descripcion = (string)ComboVisibilidad.SelectedItem }
+            };
 
             #region armadoComboTipoPublicacion
-            List<TipoPublicacion> tipos = new List<TipoPublicacion>();
+            List<TipoPublicacion> tipos = new List<TipoPublicacion>(TiposPublicacionServices.GetAllData());
             tipos = tipos.OrderBy(x => x.Descripcion).ToList();
 
             ComboTipoPublicacion.DataSource = tipos;
@@ -56,7 +48,7 @@ namespace MercadoEnvio.Generar_Publicación
             #endregion
 
             #region armadoComboVisibilidad
-            List<Visibilidad> tiposVisibilidad = new List<Visibilidad>(VisibilidadServices.GetAllData());
+            List<Visibilidad> tiposVisibilidad = new List<Visibilidad>(VisibilidadesServices.GetAllData());
             tiposVisibilidad = tiposVisibilidad.OrderBy(x => x.Descripcion).ToList();
 
             ComboVisibilidad.DataSource = tiposVisibilidad;
@@ -64,28 +56,114 @@ namespace MercadoEnvio.Generar_Publicación
             ComboVisibilidad.DropDownStyle = ComboBoxStyle.DropDownList;
             #endregion
 
-            if (Publicacion.IdPublicacion != 0)
+            InicializarPantalla(publicacion);
+        }
+
+        private void ComboTipoPublicacion_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (((string)(ComboTipoPublicacion.SelectedItem)).Equals(Resources.Subasta, StringComparison.CurrentCultureIgnoreCase))
             {
-                label4.Text = Publicacion.IdPublicacion.ToString(fmt);
-                label9.Text = Publicacion.NombreUsuario;
-                RichTextBoxObservaciones.Text = Publicacion.Descripcion;
-                ComboEstado.SelectedItem = Publicacion.EstadoDescripcion;
-                ComboTipoPublicacion.SelectedItem = Publicacion.TipoPublicacion.Descripcion;
-                ComboRubro.SelectedItem = Publicacion.RubroDescripcionLarga;
-                ComboVisibilidad.SelectedItem = Publicacion.Visibilidad.Descripcion;
-            }
-            else if (
-                Usuario.Roles.Exists(
-                    x => x.Descripcion.Equals(Resources.Cliente, StringComparison.CurrentCultureIgnoreCase)))
-            {
-                Cliente = UsuarioService.GetClienteById(Usuario.IdUsuario);
-                label9.Text = Cliente.Nombre + espacio + Cliente.Apellido;
+                label12.Visible = false;
+                textBoxStock.Visible = false;
+                checkBoxAceptaEnvio.Visible = false;
+                label11.Visible = true;
+                textBoxPrecioReserva.Visible = true;
             }
             else
             {
-                Empresa = UsuarioService.GetEmpresaById(Usuario.IdUsuario);
-                label9.Text = Empresa.RazonSocial;
+                label12.Visible = true;
+                textBoxStock.Visible = true;
+                checkBoxAceptaEnvio.Visible = true;
+                label11.Visible = false;
+                textBoxPrecioReserva.Visible = false;
             }
+        }
+
+        private void InicializarPantalla(Publicacion publicacion)
+        {
+            const string fmt = "000000000000000000";
+            const string espacio = " ";
+
+            #region armadoComboEstado
+            List<EstadoPublicacion> estados = new List<EstadoPublicacion>(PublicacionesServices.GetEstados(publicacion.EstadoPublicacion.Descripcion));
+            estados = estados.OrderBy(x => x.Descripcion).ToList();
+
+            ComboEstado.DataSource = estados;
+            ComboEstado.DisplayMember = "Descripcion";
+            ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            #endregion
+
+            if (Usuario.Roles.Exists(x => x.Descripcion.Equals(Resources.Cliente, StringComparison.CurrentCultureIgnoreCase)))
+            {
+                var cliente = UsuariosService.GetClienteById(Usuario.IdUsuario);
+                labelNomUsuario.Text = cliente.Nombre + espacio + cliente.Apellido;
+            }
+            else
+            {
+                var empresa = UsuariosService.GetEmpresaById(Usuario.IdUsuario);
+                labelNomUsuario.Text = empresa.RazonSocial;
+            }
+
+            labelCodPublicacion.Text = publicacion.IdPublicacion.ToString(fmt);
+            RichTextBoxDescripcion.Text = publicacion.Descripcion;
+            ComboEstado.SelectedItem = publicacion.EstadoPublicacion;
+            ComboTipoPublicacion.SelectedItem = publicacion.TipoPublicacion;
+            ComboRubro.SelectedIndex = ComboRubro.Items.IndexOf(publicacion.RubroDescripcionLarga);
+            ComboVisibilidad.SelectedItem = publicacion.Visibilidad;
+            DatePickerFechaInicio.Value = publicacion.FechaInicio;
+            DatePickerFechaVencimiento.Value = publicacion.FechaVencimiento;
+            textBoxStock.Text = publicacion.Stock.ToString();
+            checkBoxAceptaEnvio.Checked = publicacion.Envio;
+            textBoxPrecio.Text = publicacion.Precio.ToString(CultureInfo.CurrentCulture);
+            textBoxPrecioReserva.Text = publicacion.PrecioReserva.ToString(CultureInfo.CurrentCulture);
+
+            if (publicacion.IdPublicacion != 0)
+            {
+                ButtonGenerar.Visible = true;
+                ButtonEditar.Visible = false;
+            }
+            else
+            {
+                ButtonGenerar.Visible = false;
+                ButtonEditar.Visible = true;
+            }
+        }
+
+        private void ButtonGenerar_Click(object sender, EventArgs e)
+        {
+            Publicacion publicacion = new Publicacion
+            {
+                EstadoPublicacion = { Descripcion = Resources.Borrador },
+                TipoPublicacion = { Descripcion = Resources.CompraInmediata },
+                RubroDescripcionLarga = (string)ComboRubro.SelectedItem,
+                Visibilidad = { Descripcion = (string)ComboVisibilidad.SelectedItem }
+            };
+
+            InicializarPantalla(publicacion);
+        }
+
+        private void ButtonEditar_Click(object sender, EventArgs e)
+        {
+            var seleccionPublicacion = new SeleccionPublicacion();
+            var result = seleccionPublicacion.ShowDialog();
+
+            if (result.Equals(DialogResult.OK))
+            {
+                InicializarPantalla(seleccionPublicacion.Publicacion);
+            }
+        }
+
+        private void BtnGuardar_Click(object sender, EventArgs e)
+        {
+            if (Convert.ToInt32(labelCodPublicacion) != 0)
+                PublicacionesServices.UpdatePublicacion(labelCodPublicacion.Text, RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo);
+            else
+                PublicacionesServices.InsertPublicacion(RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo);
+        }
+
+        private void BtnCancelar_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

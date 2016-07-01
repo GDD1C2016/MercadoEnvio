@@ -15,13 +15,11 @@ namespace MercadoEnvio.ABM_Rol
         public Rol Rol { get; set; }
         #endregion
 
-        public AltaRol(Rol rol)
+        public AltaRol()
         {
             InitializeComponent();
 
-            Rol = rol;
-
-            TxtNombre.Text = rol.Descripcion;
+            TxtNombre.Text = Rol.Descripcion;
 
             #region armadoDeGrillaFuncionalidad
             BindingList<Funcionalidad> dataSource = new BindingList<Funcionalidad>(Rol.Funcionalidades);

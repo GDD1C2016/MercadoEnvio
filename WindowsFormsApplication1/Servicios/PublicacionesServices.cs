@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using MercadoEnvio.Entidades;
 
 namespace MercadoEnvio.Servicios
@@ -25,9 +26,24 @@ namespace MercadoEnvio.Servicios
             return DataManagers.DataManagerPublicaciones.Comprar(publicacionSeleccionada, usuarioActivo, cantidad, envio);
         }
 
-        public static List<Publicacion> GetEstados(Publicacion publicacionSeleccionada)
+        public static List<EstadoPublicacion> GetEstados(string descripcionEstado)
         {
-            return DataManagers.DataManagerPublicaciones.GetEstados(publicacionSeleccionada);
+            return DataManagers.DataManagerPublicaciones.GetEstados(descripcionEstado);
+        }
+
+        public static Publicacion GetPublicacion(int idPublicacion, int idUsuario)
+        {
+            return DataManagers.DataManagerPublicaciones.GetPublicacion(idPublicacion, idUsuario);
+        }
+
+        public static void UpdatePublicacion(string idPublicacion, string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo)
+        {
+            DataManagers.DataManagerPublicaciones.UpdatePublicacion(idPublicacion, descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo);
+        }
+
+        public static void InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo)
+        {
+            DataManagers.DataManagerPublicaciones.InsertPublicacion(descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo);
         }
     }
 }

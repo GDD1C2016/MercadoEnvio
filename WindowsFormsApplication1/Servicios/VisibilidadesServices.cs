@@ -3,7 +3,7 @@ using MercadoEnvio.Entidades;
 
 namespace MercadoEnvio.Servicios
 {
-    public class VisibilidadServices
+    public class VisibilidadesServices
     {
         public static List<Visibilidad> GetAllData()
         {

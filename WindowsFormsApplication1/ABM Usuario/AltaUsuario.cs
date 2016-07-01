@@ -229,7 +229,7 @@ namespace MercadoEnvio.ABM_Usuario
 
             if (!string.IsNullOrEmpty(TxtDNI.Text) && !string.IsNullOrEmpty(TxtTipoDoc.Text))
             {
-                Cliente cliente = UsuarioService.GetClienteByTipoDocNroDoc(TxtTipoDoc.Text, TxtDNI.Text);
+                Cliente cliente = UsuariosService.GetClienteByTipoDocNroDoc(TxtTipoDoc.Text, TxtDNI.Text);
                 if (cliente.IdUsuario != 0)
                     if (cliente.IdUsuario != Usuario.IdUsuario)
                         errors.Add(Resources.ErrorClienteExistente);
@@ -242,7 +242,7 @@ namespace MercadoEnvio.ABM_Usuario
                 errors.Add(Resources.ErrorRazonSocial);
             else
             {
-                Empresa empresa = UsuarioService.GetEmpresaByRazonSocial(TxtNombre.Text);
+                Empresa empresa = UsuariosService.GetEmpresaByRazonSocial(TxtNombre.Text);
                 if (empresa.IdUsuario != 0)
                     if (empresa.IdUsuario != Usuario.IdUsuario)
                         errors.Add(Resources.ErrorEmpresaExistenteRazonSocial);
@@ -252,7 +252,7 @@ namespace MercadoEnvio.ABM_Usuario
                 errors.Add(Resources.ErrorCuit);
             else
             {
-                Empresa empresa = UsuarioService.GetEmpresaByCuit(TxtCuit.Text);
+                Empresa empresa = UsuariosService.GetEmpresaByCuit(TxtCuit.Text);
                 if (empresa.IdUsuario != 0)
                     if (empresa.IdUsuario != Usuario.IdUsuario)
                         errors.Add(Resources.ErrorEmpresaExistenteCUIT);
@@ -308,13 +308,13 @@ namespace MercadoEnvio.ABM_Usuario
 
                     if (Usuario.IdUsuario == 0)
                     {
-                        UsuarioService.SaveNewCliente(usuario);
+                        UsuariosService.SaveNewCliente(usuario);
                         MessageBox.Show(Resources.UsuarioCreado, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         usuario.IdUsuario = Usuario.IdUsuario;
-                        UsuarioService.UpdateCliente(usuario);
+                        UsuariosService.UpdateCliente(usuario);
                         MessageBox.Show(Resources.UsuarioActualizado, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -341,13 +341,13 @@ namespace MercadoEnvio.ABM_Usuario
 
                     if (Usuario.IdUsuario == 0)
                     {
-                        UsuarioService.SaveNewEmpresa(usuario);
+                        UsuariosService.SaveNewEmpresa(usuario);
                         MessageBox.Show(Resources.UsuarioCreado, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
                         usuario.IdUsuario = Usuario.IdUsuario;
-                        UsuarioService.UpdateEmpresa(usuario);
+                        UsuariosService.UpdateEmpresa(usuario);
                         MessageBox.Show(Resources.UsuarioActualizado, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }

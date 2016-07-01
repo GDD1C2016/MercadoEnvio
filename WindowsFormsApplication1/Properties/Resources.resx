@@ -532,4 +532,10 @@
   <data name="ErrorPublicacionPausada" xml:space="preserve">
     <value>La publicación se encuentra pausada</value>
   </data>
+  <data name="Borrador" xml:space="preserve">
+    <value>Borrador</value>
+  </data>
+  <data name="ErrorNoExisteCodPublicacion" xml:space="preserve">
+    <value>No se ha podido encontrar un borrador para el código de publicación ingresado o el mismo no le pertenece.</value>
+  </data>
 </root>

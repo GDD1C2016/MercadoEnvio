@@ -117,6 +117,7 @@
     <Compile Include="ComprarOfertar\MainPublicacion.Designer.cs">
       <DependentUpon>MainPublicacion.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataManagers\DataManagerTipoPublicacion.cs" />
     <Compile Include="DataManagers\DataManagerCalificacion.cs" />
     <Compile Include="DataManagers\DataManagerCompras.cs" />
     <Compile Include="DataManagers\DataManagerListados.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="DataManagers\DataManagerUsuario.cs" />
     <Compile Include="DataManagers\DataManagerVisibilidad.cs" />
     <Compile Include="Entidades\Calificacion.cs" />
+    <Compile Include="Entidades\EstadoPublicacion.cs" />
     <Compile Include="Entidades\Cliente.cs" />
     <Compile Include="Entidades\Compra.cs" />
     <Compile Include="Entidades\Empresa.cs" />
@@ -145,6 +147,12 @@
     </Compile>
     <Compile Include="Facturas\MainFacturas.Designer.cs">
       <DependentUpon>MainFacturas.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Publicación\SeleccionPublicacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Publicación\SeleccionPublicacion.Designer.cs">
+      <DependentUpon>SeleccionPublicacion.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DataBaseHelper.cs" />
     <Compile Include="Helpers\EncryptHelper.cs" />
@@ -212,13 +220,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Servicios\CalificacionesServices.cs" />
+    <Compile Include="Servicios\TiposPublicacionServices.cs" />
     <Compile Include="Servicios\ComprasServices.cs" />
-    <Compile Include="Servicios\ListadoServices.cs" />
+    <Compile Include="Servicios\ListadosServices.cs" />
     <Compile Include="Servicios\PublicacionesServices.cs" />
     <Compile Include="Servicios\RolesServices.cs" />
     <Compile Include="Servicios\RubrosServices.cs" />
-    <Compile Include="Servicios\UsuarioService.cs" />
-    <Compile Include="Servicios\VisibilidadServices.cs" />
+    <Compile Include="Servicios\UsuariosService.cs" />
+    <Compile Include="Servicios\VisibilidadesServices.cs" />
     <EmbeddedResource Include="ABM Rol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>
     </EmbeddedResource>
@@ -257,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Publicación\GenerarPublicacion.resx">
       <DependentUpon>GenerarPublicacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Publicación\SeleccionPublicacion.resx">
+      <DependentUpon>SeleccionPublicacion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Historial Cliente\MainHistorialCliente.resx">
       <DependentUpon>MainHistorialCliente.cs</DependentUpon>

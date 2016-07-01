@@ -29,7 +29,7 @@ namespace MercadoEnvio.Listado_Estadistico
         private void ListadoFacturas_Load(object sender, EventArgs e)
         {
             #region armadoDeGrillaVendedores
-            BindingList<Vendedor> dataSource = new BindingList<Vendedor>(ListadoServices.GetListadoVendedoresFacturas(Trimestre, Anio));
+            BindingList<Vendedor> dataSource = new BindingList<Vendedor>(ListadosServices.GetListadoVendedoresFacturas(Trimestre, Anio));
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
 

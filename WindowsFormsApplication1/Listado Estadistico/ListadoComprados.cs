@@ -33,7 +33,7 @@ namespace MercadoEnvio.Listado_Estadistico
             LabelRubro.Text = Resources.ResultadosRubro + Rubro.DescripcionCorta;
 
             #region armadoDeGrillaClientes
-            BindingList<Cliente> dataSource = new BindingList<Cliente>(ListadoServices.GetListadoClientesProductosComprados(Trimestre, Anio, Rubro));
+            BindingList<Cliente> dataSource = new BindingList<Cliente>(ListadosServices.GetListadoClientesProductosComprados(Trimestre, Anio, Rubro));
             BindingSource bs = new BindingSource();
             bs.DataSource = dataSource;
 

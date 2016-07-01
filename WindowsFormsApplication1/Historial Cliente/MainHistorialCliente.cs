@@ -49,7 +49,7 @@ namespace MercadoEnvio.Historial_Cliente
             #region cargaDatosUsuario
 
             Cliente cliente = new Cliente();
-            cliente = UsuarioService.GetClienteById(Usuario.IdUsuario);
+            cliente = UsuariosService.GetClienteById(Usuario.IdUsuario);
 
             LabelUsuarioTxt.Text = cliente.UserName;
             LabelReputacionTxt.Text = Math.Round(cliente.Reputacion,2,MidpointRounding.AwayFromZero).ToString();

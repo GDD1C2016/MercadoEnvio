@@ -1,15 +1,9 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using MercadoEnvio.Entidades;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MercadoEnvio.Entidades;
 
 namespace MercadoEnvio.Servicios
 {
-    public class UsuarioService
+    public class UsuariosService
     {
         public static Entidades.Login LoginUser(string userName, string password)
         {

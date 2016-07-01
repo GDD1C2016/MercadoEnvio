@@ -88,7 +88,7 @@ namespace MercadoEnvio.ABM_Usuario
                 string filtroCuit = TxtFiltroCuit.Text.Trim();
                 string filtroEmail = TxtFiltroEmail.Text;
 
-                BindingList<Empresa> dataSource = new BindingList<Empresa>(UsuarioService.FindEmpresas(filtroRazonSocial, filtroCuit, filtroEmail));
+                BindingList<Empresa> dataSource = new BindingList<Empresa>(UsuariosService.FindEmpresas(filtroRazonSocial, filtroCuit, filtroEmail));
                 BindingSource bs = new BindingSource {DataSource = dataSource};
 
                 DgUsuarios.Columns.Clear();
@@ -108,7 +108,7 @@ namespace MercadoEnvio.ABM_Usuario
                 string filtroApellido = TxtFiltroApellido.Text.Trim();
                 string filtroEmail = TxtFiltroEmail.Text.Trim();
 
-                BindingList<Cliente> dataSource = new BindingList<Cliente>(UsuarioService.FindClientes(filtroNombre, filtroApellido, filtroDni, filtroEmail));
+                BindingList<Cliente> dataSource = new BindingList<Cliente>(UsuariosService.FindClientes(filtroNombre, filtroApellido, filtroDni, filtroEmail));
                 BindingSource bs = new BindingSource {DataSource = dataSource};
 
                 #region rearmadoDeGrilla
@@ -143,7 +143,7 @@ namespace MercadoEnvio.ABM_Usuario
 
             if (usuarioSeleccionado.Activo)
             {
-                UsuarioService.DeleteUsuario(usuarioSeleccionado);
+                UsuariosService.DeleteUsuario(usuarioSeleccionado);
 
                 Rol rolSeleccionado = ((Rol)ComboTipoDeUsuario.SelectedItem);
 
@@ -153,7 +153,7 @@ namespace MercadoEnvio.ABM_Usuario
                     string filtroCuit = TxtFiltroCuit.Text.Trim();
                     string filtroEmail = TxtFiltroEmail.Text;
 
-                    BindingList<Empresa> dataSource = new BindingList<Empresa>(UsuarioService.FindEmpresas(filtroRazonSocial, filtroCuit, filtroEmail));
+                    BindingList<Empresa> dataSource = new BindingList<Empresa>(UsuariosService.FindEmpresas(filtroRazonSocial, filtroCuit, filtroEmail));
                     BindingSource bs = new BindingSource {DataSource = dataSource};
 
                     DgUsuarios.Columns.Clear();
@@ -173,7 +173,7 @@ namespace MercadoEnvio.ABM_Usuario
                     string filtroApellido = TxtFiltroApellido.Text.Trim();
                     string filtroEmail = TxtFiltroEmail.Text.Trim();
 
-                    BindingList<Cliente> dataSource = new BindingList<Cliente>(UsuarioService.FindClientes(filtroNombre, filtroApellido, filtroDni, filtroEmail));
+                    BindingList<Cliente> dataSource = new BindingList<Cliente>(UsuariosService.FindClientes(filtroNombre, filtroApellido, filtroDni, filtroEmail));
                     BindingSource bs = new BindingSource {DataSource = dataSource};
 
                     #region rearmadoDeGrilla
@@ -217,7 +217,7 @@ namespace MercadoEnvio.ABM_Usuario
                 string filtroCuit = TxtFiltroCuit.Text.Trim();
                 string filtroEmail = TxtFiltroEmail.Text;
 
-                BindingList<Empresa> dataSource = new BindingList<Empresa>(UsuarioService.FindEmpresas(filtroRazonSocial, filtroCuit, filtroEmail));
+                BindingList<Empresa> dataSource = new BindingList<Empresa>(UsuariosService.FindEmpresas(filtroRazonSocial, filtroCuit, filtroEmail));
                 bs = new BindingSource {DataSource = dataSource};
 
                 DgUsuarios.Columns.Clear();
@@ -267,7 +267,7 @@ namespace MercadoEnvio.ABM_Usuario
                     string filtroEmail = TxtFiltroEmail.Text.Trim();
 
                     BindingList<Cliente> dataSource =
-                        new BindingList<Cliente>(UsuarioService.FindClientes(filtroNombre, filtroApellido, filtroDni,
+                        new BindingList<Cliente>(UsuariosService.FindClientes(filtroNombre, filtroApellido, filtroDni,
                             filtroEmail));
                     BindingSource bs = new BindingSource();
                     bs.DataSource = dataSource;

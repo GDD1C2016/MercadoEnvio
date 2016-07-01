@@ -26,7 +26,7 @@ namespace MercadoEnvio.ComprarOfertar
             #region armadoDatosVendedor
             
             Cliente cliente = new Cliente();
-            cliente = UsuarioService.GetClienteById(PublicacionSeleccionada.IdUsuario);
+            cliente = UsuariosService.GetClienteById(PublicacionSeleccionada.IdUsuario);
 
             LabelNombreTxt.Text = cliente.Nombre;
             LabelEmailTxt.Text = cliente.Email;
@@ -36,7 +36,7 @@ namespace MercadoEnvio.ComprarOfertar
             if (cliente.IdUsuario == 0)
             {
                 Empresa empresa = new Empresa();
-                empresa = UsuarioService.GetEmpresaById(PublicacionSeleccionada.IdUsuario);
+                empresa = UsuariosService.GetEmpresaById(PublicacionSeleccionada.IdUsuario);
 
                 LabelNombreTxt.Text = empresa.RazonSocial;
                 LabelEmailTxt.Text = empresa.Email;

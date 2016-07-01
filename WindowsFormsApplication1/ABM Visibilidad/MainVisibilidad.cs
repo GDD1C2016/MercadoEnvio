@@ -19,7 +19,7 @@ namespace MercadoEnvio.ABM_Visibilidad
         private void MainVisibilidad_Load(object sender, EventArgs e)
         {
             #region armadoDeGrillaVisibilidad
-            BindingList<Visibilidad> dataSource = new BindingList<Visibilidad>(VisibilidadServices.GetAllData());
+            BindingList<Visibilidad> dataSource = new BindingList<Visibilidad>(VisibilidadesServices.GetAllData());
             BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgVisibilidad.AutoGenerateColumns = false;
@@ -44,7 +44,7 @@ namespace MercadoEnvio.ABM_Visibilidad
         {
             string filtroDescripcion = TxtFiltroDescripcion.Text;
 
-            BindingList<Visibilidad> dataSource = new BindingList<Visibilidad>(VisibilidadServices.FindVisibilidades(filtroDescripcion));
+            BindingList<Visibilidad> dataSource = new BindingList<Visibilidad>(VisibilidadesServices.FindVisibilidades(filtroDescripcion));
             BindingSource bs = new BindingSource {DataSource = dataSource};
 
             DgVisibilidad.DataSource = bs;
@@ -61,11 +61,11 @@ namespace MercadoEnvio.ABM_Visibilidad
                     visibilidadSeleccionada = (Visibilidad)bs.List[bs.Position];
             }
 
-            string message = VisibilidadServices.DeleteVisibilidad(visibilidadSeleccionada);
+            string message = VisibilidadesServices.DeleteVisibilidad(visibilidadSeleccionada);
 
             if (string.IsNullOrEmpty(message))
             {
-                BindingList<Visibilidad> dataSource = new BindingList<Visibilidad>(VisibilidadServices.FindVisibilidades(string.Empty));
+                BindingList<Visibilidad> dataSource = new BindingList<Visibilidad>(VisibilidadesServices.FindVisibilidades(string.Empty));
                 BindingSource bs = new BindingSource {DataSource = dataSource};
 
                 DgVisibilidad.DataSource = bs;

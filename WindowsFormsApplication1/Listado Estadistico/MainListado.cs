@@ -46,7 +46,7 @@ namespace MercadoEnvio.Listado_Estadistico
             List<Visibilidad> visibilidades = new List<Visibilidad>();
             visibilidades.Add(visibilidadTodos);
 
-            visibilidades.AddRange(VisibilidadServices.GetAllData());
+            visibilidades.AddRange(VisibilidadesServices.GetAllData());
 
             ComboRubro.DataSource = visibilidades;
             ComboRubro.DisplayMember = "Descripcion";
@@ -168,7 +168,7 @@ namespace MercadoEnvio.Listado_Estadistico
                 Visibilidad visibilidadTodos = new Visibilidad() { IdVisibilidad = 0, Descripcion = "--Todos--" };
                 List<Visibilidad> visibilidades = new List<Visibilidad>();
                 visibilidades.Add(visibilidadTodos);
-                visibilidades.AddRange(VisibilidadServices.GetAllData());
+                visibilidades.AddRange(VisibilidadesServices.GetAllData());
 
                 ComboRubro.DataSource = visibilidades;
                 ComboRubro.DisplayMember = "Descripcion";

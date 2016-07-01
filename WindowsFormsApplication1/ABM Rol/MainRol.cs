@@ -126,7 +126,7 @@ namespace MercadoEnvio.ABM_Rol
                     rolSeleccionado = (Rol)bs.List[bs.Position];
             }
 
-            var altaRol = new AltaRol(rolSeleccionado) {Text = Resources.EdicionRol};
+            var altaRol = new AltaRol {Text = Resources.EdicionRol, Rol = rolSeleccionado};
             var result = altaRol.ShowDialog();
 
             if (result.Equals(DialogResult.OK))
@@ -140,7 +140,7 @@ namespace MercadoEnvio.ABM_Rol
 
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
-            var altaRol = new AltaRol(new Rol());
+            var altaRol = new AltaRol();
             var result = altaRol.ShowDialog();
 
             if (result.Equals(DialogResult.OK))

@@ -7,7 +7,7 @@ using MercadoEnvio.Entidades;
 
 namespace MercadoEnvio.Servicios
 {
-    public class ListadoServices
+    public class ListadosServices
     {
         public static List<Vendedor> GetListadoVendedoresProductosNoVendidos(int trimestre, int anio, int idVisibilidad)
         {
