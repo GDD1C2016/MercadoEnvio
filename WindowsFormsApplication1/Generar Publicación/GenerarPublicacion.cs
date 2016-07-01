@@ -189,12 +189,19 @@ namespace MercadoEnvio.Generar_Publicación
         {
             List<string> errors = new List<string>();
             TipoPublicacion tipo = (TipoPublicacion)ComboTipoPublicacion.SelectedItem;
+            FechaHelper helper = new FechaHelper();
 
             if (string.IsNullOrEmpty(RichTextBoxDescripcion.Text))
                 errors.Add(Resources.ErrorDescripcionVacia);
 
             if (string.IsNullOrEmpty(textBoxPrecio.Text) || Convert.ToInt32(textBoxPrecio.Text) <= 0)
                 errors.Add(Resources.PrecioInvalido);
+
+            if(DatePickerFechaInicio.Value < helper.GetSystemDate())
+                errors.Add(Resources.ErrorFechaInicio);
+
+            if(DatePickerFechaVencimiento.Value < helper.GetSystemDate())
+                errors.Add(Resources.ErrorFechaVencimiento);
 
             if (tipo.Descripcion.Equals(Resources.CompraInmediata, StringComparison.CurrentCultureIgnoreCase))
             {
