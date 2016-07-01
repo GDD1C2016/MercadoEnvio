@@ -539,10 +539,10 @@
     <value>No se ha podido encontrar un borrador para el código de publicación ingresado o el mismo no le pertenece.</value>
   </data>
   <data name="PrecioInvalido" xml:space="preserve">
-    <value>El Precio debe ser mayor a 0</value>
+    <value>El precio del producto debe ser mayor a 0.</value>
   </data>
   <data name="PrecioReservaInvalido" xml:space="preserve">
-    <value />
+    <value>El precio de reserva de la subasta debe ser mayor a 0.</value>
   </data>
   <data name="StockInvalido" xml:space="preserve">
     <value>El Stock debe ser mayor a 0</value>

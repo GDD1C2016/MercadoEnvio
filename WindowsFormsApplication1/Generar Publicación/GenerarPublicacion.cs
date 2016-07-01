@@ -179,17 +179,16 @@ namespace MercadoEnvio.Generar_Publicación
             else
             {
                 if (Convert.ToInt32(labelCodPublicacion) != 0)
-                    PublicacionesServices.UpdatePublicacion(labelCodPublicacion.Text, RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo);
+                    PublicacionesServices.UpdatePublicacion(labelCodPublicacion.Text, RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked);
                 else
-                    PublicacionesServices.InsertPublicacion(RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo);
+                    PublicacionesServices.InsertPublicacion(RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked);
             }
         }
 
         private List<string> ValidarDatosPublicacion()
         {
             List<string> errors = new List<string>();
-            TipoPublicacion tipo = new TipoPublicacion();
-            tipo = (TipoPublicacion)ComboTipoPublicacion.SelectedItem;
+            TipoPublicacion tipo = (TipoPublicacion)ComboTipoPublicacion.SelectedItem;
 
             if (string.IsNullOrEmpty(RichTextBoxDescripcion.Text))
                 errors.Add(Resources.ErrorDescripcionVacia);
@@ -232,7 +231,6 @@ namespace MercadoEnvio.Generar_Publicación
                 e.Handled = true;
             }
 
-            // only allow one decimal point
             if ((e.KeyChar == decimalSeparator) && ((sender as TextBox).Text.IndexOf(decimalSeparator) > -1))
             {
                 e.Handled = true;
