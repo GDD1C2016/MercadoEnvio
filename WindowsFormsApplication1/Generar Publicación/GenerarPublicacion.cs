@@ -141,8 +141,10 @@ namespace MercadoEnvio.Generar_Publicación
             {
                 EstadoPublicacion = { Descripcion = Resources.Borrador },
                 TipoPublicacion = { Descripcion = Resources.CompraInmediata },
-                RubroDescripcionLarga = (string)ComboRubro.SelectedItem,
-                Visibilidad = { Descripcion = (string)ComboVisibilidad.SelectedItem }
+                RubroDescripcionLarga = ((Rubro)ComboRubro.SelectedItem).DescripcionLarga,
+                Visibilidad = { Descripcion = ((Visibilidad)ComboVisibilidad.SelectedItem).Descripcion },
+                FechaInicio = _helper.GetSystemDate(),
+                FechaVencimiento = _helper.GetSystemDate()
             };
 
             InicializarPantalla(publicacion);
