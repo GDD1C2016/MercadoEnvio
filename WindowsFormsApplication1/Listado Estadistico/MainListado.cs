@@ -62,7 +62,7 @@ namespace MercadoEnvio.Listado_Estadistico
             {
                 var message = string.Join(Environment.NewLine, errors);
                 MessageBox.Show(message, Resources.ErrorDeDatos, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                DialogResult = DialogResult.Cancel;
+                
             }
             else
             {

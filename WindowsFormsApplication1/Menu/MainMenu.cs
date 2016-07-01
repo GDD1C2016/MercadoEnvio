@@ -29,12 +29,35 @@ namespace MercadoEnvio.Menu
 
         private void MainMenu_Load(object sender, EventArgs e)
         {
-            #region habilitacionSeccionABM
             List<Rol> roles = new List<Rol>(RolesServices.GetAllData());
+            
+            #region habilitacionSeccionABM
             Rol rolAdmin = roles.Find(x => x.Descripcion.Equals(Resources.Administrativo, StringComparison.CurrentCultureIgnoreCase));
             
             bool condABM = Usuario.Roles.Any(x=>x.IdRol == rolAdmin.IdRol);
             GroupBoxABM.Enabled = condABM;
+            #endregion
+
+            #region habilitacionSecciones
+
+            if (Usuario.RolActivo != null)
+            {
+                BtnPublicacion.Enabled = Usuario.RolActivo.Funcionalidades.Any(x=>x.Descripcion.Equals(BtnPublicacion.Text,StringComparison.CurrentCultureIgnoreCase));
+                BtnPublicar.Enabled = Usuario.RolActivo.Funcionalidades.Any(x=>x.Descripcion.Equals(BtnPublicar.Text,StringComparison.CurrentCultureIgnoreCase));
+                BtnCalificar.Enabled = Usuario.RolActivo.Funcionalidades.Any(x=>x.Descripcion.Equals(BtnCalificar.Text,StringComparison.CurrentCultureIgnoreCase));
+                BtnHistorial.Enabled = Usuario.RolActivo.Funcionalidades.Any(x=>x.Descripcion.Equals(BtnHistorial.Text,StringComparison.CurrentCultureIgnoreCase));
+                BtnFactura.Enabled = Usuario.RolActivo.Funcionalidades.Any(x=>x.Descripcion.Equals(BtnFactura.Text,StringComparison.CurrentCultureIgnoreCase));
+                BtnListado.Enabled = Usuario.RolActivo.Funcionalidades.Any(x=>x.Descripcion.Equals(BtnListado.Text,StringComparison.CurrentCultureIgnoreCase));
+            }
+            else
+            {
+                BtnPublicacion.Enabled = Usuario.Roles.First().Funcionalidades.Any(x => x.Descripcion.Equals(BtnPublicacion.Text, StringComparison.CurrentCultureIgnoreCase));
+                BtnPublicar.Enabled = Usuario.Roles.First().Funcionalidades.Any(x => x.Descripcion.Equals(BtnPublicar.Text, StringComparison.CurrentCultureIgnoreCase));
+                BtnCalificar.Enabled = Usuario.Roles.First().Funcionalidades.Any(x => x.Descripcion.Equals(BtnCalificar.Text, StringComparison.CurrentCultureIgnoreCase));
+                BtnHistorial.Enabled = Usuario.Roles.First().Funcionalidades.Any(x => x.Descripcion.Equals(BtnHistorial.Text, StringComparison.CurrentCultureIgnoreCase));
+                BtnFactura.Enabled = Usuario.Roles.First().Funcionalidades.Any(x => x.Descripcion.Equals(BtnFactura.Text, StringComparison.CurrentCultureIgnoreCase));
+                BtnListado.Enabled = Usuario.Roles.First().Funcionalidades.Any(x => x.Descripcion.Equals(BtnListado.Text, StringComparison.CurrentCultureIgnoreCase));
+            }
             #endregion
         }
 
