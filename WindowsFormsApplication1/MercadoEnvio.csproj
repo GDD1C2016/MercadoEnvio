@@ -322,7 +322,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\MASTERDBA-Drop.sql" />
-    <Content Include="Scripts\MASTERDBA.SP_GetPublicaciones.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_BloqUser.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_DeleteRol.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_DeleteRolFuncionalidad.StoredProcedure.sql" />
