@@ -1082,7 +1082,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(idUsuarioParameter);
 
-            return (decimal)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_GetReputacion", parameters);
+            return Convert.ToDecimal(db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_GetReputacion", parameters));
         }    
     }
 }

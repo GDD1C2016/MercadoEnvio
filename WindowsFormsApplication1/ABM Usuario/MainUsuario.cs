@@ -303,5 +303,11 @@ namespace MercadoEnvio.ABM_Usuario
                 }
             }
         }
+
+        private void BtnAgregar_Click(object sender, EventArgs e)
+        {
+            var altaUsuario = new AltaUsuario(new Usuario());
+            altaUsuario.ShowDialog();
+        }
     }
 }

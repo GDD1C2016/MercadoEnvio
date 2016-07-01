@@ -18,7 +18,10 @@ namespace MercadoEnvio.ABM_Rol
         public AltaRol()
         {
             InitializeComponent();
+        }
 
+        private void AltaRol_Load(object sender, EventArgs e)
+        {
             TxtNombre.Text = Rol.Descripcion;
 
             #region armadoDeGrillaFuncionalidad
@@ -43,17 +46,14 @@ namespace MercadoEnvio.ABM_Rol
             estados.Add(estadoHabilitado);
             estados.Add(estadoDeshabilitado);
 
-            Estado estado = new Estado(); // TODO Arreglar combo estado en edición
+            Estado estado = new Estado();
             estado.Valor = Rol.Activo;
             ComboEstado.DataSource = estados;
             ComboEstado.DisplayMember = "Descripcion";
             ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComboEstado.SelectedItem = estado;
+            ComboEstado.SelectedIndex = ComboEstado.FindStringExact(estado.Descripcion);
             #endregion
-        }
 
-        private void AltaRol_Load(object sender, EventArgs e)
-        {
             List<Funcionalidad> funcionalidades = new List<Funcionalidad>(RolesServices.GetAllFuncionalidades());
             funcionalidades.RemoveAll(x => x.Descripcion.Equals(Resources.LoginSeguridad, StringComparison.CurrentCultureIgnoreCase));
             funcionalidades = funcionalidades.OrderBy(x => x.IdFuncionalidad).ToList();
