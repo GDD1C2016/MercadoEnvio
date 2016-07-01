@@ -337,6 +337,13 @@ namespace MercadoEnvio.DataManagers
 
         private static void UpdatePublicacion(string idPublicacion, string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, DataBaseHelper db)
         {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idPublicacionParameter = new SqlParameter("@IdPublicacion", SqlDbType.Int);
+            idPublicacionParameter.Value = idPublicacion;
+
+            parameters.Add(idPublicacionParameter);
+
             //PublicacionesServices.UpdatePublicacion(RichTextBoxDescripcion.Text, Convert.ToDecimal(textBoxStock.Text), DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, Convert.ToDecimal(textBoxPrecio), Convert.ToDecimal(textBoxPrecioReserva), Convert.ToInt32(((Rubro)ComboRubro.SelectedItem).IdTipo, Usuario.IdUsuario, Convert.ToInt32(((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado), Convert.ToInt32(((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo)));
         }
 

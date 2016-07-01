@@ -9,6 +9,7 @@ namespace MercadoEnvio.Generar_Publicación
     public partial class SeleccionPublicacion : Form
     {
         public Usuario Usuario { get; set; }
+
         public Publicacion Publicacion { get; set; }
 
         public SeleccionPublicacion()

@@ -358,6 +358,7 @@
     <Content Include="Scripts\SP\MASTERDBA.SP_GetRolesUsuario.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetRolFuncionalidades.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetRubros.StoredProcedure.sql" />
+    <Content Include="Scripts\SP\MASTERDBA.SP_GetTiposPublicacion.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetUltimasCalificaciones.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetUsuarioByUserName.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetVisibilidadByDescripcion.StoredProcedure.sql" />
