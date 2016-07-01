@@ -249,6 +249,7 @@
             this.textBoxPrecioReserva.Size = new System.Drawing.Size(100, 20);
             this.textBoxPrecioReserva.TabIndex = 17;
             this.textBoxPrecioReserva.Visible = false;
+            this.textBoxPrecioReserva.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPrecio_KeyPress);
             // 
             // label10
             // 
@@ -265,6 +266,7 @@
             this.textBoxPrecio.Name = "textBoxPrecio";
             this.textBoxPrecio.Size = new System.Drawing.Size(100, 20);
             this.textBoxPrecio.TabIndex = 19;
+            this.textBoxPrecio.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxPrecio_KeyPress);
             // 
             // label12
             // 
@@ -281,6 +283,7 @@
             this.textBoxStock.Name = "textBoxStock";
             this.textBoxStock.Size = new System.Drawing.Size(100, 20);
             this.textBoxStock.TabIndex = 21;
+            this.textBoxStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBoxStock_KeyPress);
             // 
             // label11
             // 

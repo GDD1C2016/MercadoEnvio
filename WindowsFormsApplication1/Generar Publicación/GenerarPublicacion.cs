@@ -97,6 +97,7 @@ namespace MercadoEnvio.Generar_Publicación
             ComboEstado.DataSource = estados;
             ComboEstado.DisplayMember = "Descripcion";
             ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+            ComboEstado.SelectedIndex = ComboEstado.FindStringExact(publicacion.EstadoPublicacion.Descripcion);
             #endregion
 
             if (Usuario.Roles.Exists(x => x.Descripcion.Equals(Resources.Cliente, StringComparison.CurrentCultureIgnoreCase)))
@@ -119,10 +120,10 @@ namespace MercadoEnvio.Generar_Publicación
 
             labelCodPublicacion.Text = publicacion.IdPublicacion.ToString(fmt);
             RichTextBoxDescripcion.Text = publicacion.Descripcion;
-            ComboEstado.SelectedItem = publicacion.EstadoPublicacion;
-            ComboTipoPublicacion.SelectedItem = publicacion.TipoPublicacion;
-            ComboRubro.SelectedItem = rubro;
-            ComboVisibilidad.SelectedItem = publicacion.Visibilidad;
+            
+            ComboTipoPublicacion.SelectedIndex = ComboTipoPublicacion.FindStringExact(publicacion.TipoPublicacion.Descripcion);
+            ComboRubro.SelectedIndex = ComboRubro.FindStringExact(rubro.DescripcionLarga);
+            ComboVisibilidad.SelectedIndex = ComboVisibilidad.FindStringExact(publicacion.Visibilidad.Descripcion);
             DatePickerFechaInicio.Value = publicacion.FechaInicio;
             DatePickerFechaVencimiento.Value = publicacion.FechaVencimiento;
             textBoxStock.Text = publicacion.Stock.ToString();
@@ -170,15 +171,73 @@ namespace MercadoEnvio.Generar_Publicación
 
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
-            if (Convert.ToInt32(labelCodPublicacion) != 0)
-                PublicacionesServices.UpdatePublicacion(labelCodPublicacion.Text, RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo);
+            List<string> errors = new List<string>(ValidarDatosPublicacion());
+            if (errors.Count > 0)
+            {
+                var message = string.Join(Environment.NewLine, errors);
+                MessageBox.Show(message, Resources.ErrorGuardado, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
             else
-                PublicacionesServices.InsertPublicacion(RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo);
+            {
+                if (Convert.ToInt32(labelCodPublicacion) != 0)
+                    PublicacionesServices.UpdatePublicacion(labelCodPublicacion.Text, RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo);
+                else
+                    PublicacionesServices.InsertPublicacion(RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo);
+            }
+        }
+
+        private List<string> ValidarDatosPublicacion()
+        {
+            List<string> errors = new List<string>();
+            TipoPublicacion tipo = new TipoPublicacion();
+            tipo = (TipoPublicacion)ComboTipoPublicacion.SelectedItem;
+
+            if (string.IsNullOrEmpty(RichTextBoxDescripcion.Text))
+                errors.Add(Resources.ErrorDescripcionVacia);
+
+            if (string.IsNullOrEmpty(textBoxPrecio.Text) || Convert.ToInt32(textBoxPrecio.Text) <= 0)
+                errors.Add(Resources.PrecioInvalido);
+
+            if (tipo.Descripcion.Equals(Resources.CompraInmediata, StringComparison.CurrentCultureIgnoreCase))
+            {
+                if (string.IsNullOrEmpty(textBoxStock.Text) || Convert.ToInt32(textBoxStock.Text) <= 0)
+                    errors.Add(Resources.StockInvalido);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(textBoxPrecioReserva.Text) || Convert.ToInt32(textBoxPrecioReserva.Text) <= 0)
+                    errors.Add(Resources.PrecioReservaInvalido);
+            }
+
+            return errors;
         }
 
         private void BtnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void textBoxStock_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void textBoxPrecio_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            char decimalSeparator = Convert.ToChar(CultureInfo.CurrentCulture.NumberFormat.NumberDecimalSeparator);
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != decimalSeparator))
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if ((e.KeyChar == decimalSeparator) && ((sender as TextBox).Text.IndexOf(decimalSeparator) > -1))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
