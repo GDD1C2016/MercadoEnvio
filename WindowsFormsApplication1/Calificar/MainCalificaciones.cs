@@ -71,15 +71,15 @@ namespace MercadoEnvio.Calificar
                 BindingSource bs = DgPendientes.DataSource as BindingSource;
                 if (bs != null)
                     compraSeleccionada = (Compra)bs.List[bs.Position];
-            }
 
-            var calificarDialog = new CalificarVendedor {CompraSeleccionada = compraSeleccionada};
-            var result = calificarDialog.ShowDialog();
+                var calificarDialog = new CalificarVendedor { CompraSeleccionada = compraSeleccionada };
+                var result = calificarDialog.ShowDialog();
 
-            if (result.Equals(DialogResult.OK))
-            {
-                DgUltimas5.DataSource = GetUltimasCalificaciones();
-                DgPendientes.DataSource = GetPendientes();
+                if (result.Equals(DialogResult.OK))
+                {
+                    DgUltimas5.DataSource = GetUltimasCalificaciones();
+                    DgPendientes.DataSource = GetPendientes();
+                }
             }
         }
     }
