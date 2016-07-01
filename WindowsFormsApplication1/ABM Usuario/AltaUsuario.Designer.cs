@@ -168,7 +168,7 @@
             // 
             // TxtCiudad
             // 
-            this.TxtCiudad.Location = new System.Drawing.Point(517, 123);
+            this.TxtCiudad.Location = new System.Drawing.Point(517, 149);
             this.TxtCiudad.Name = "TxtCiudad";
             this.TxtCiudad.Size = new System.Drawing.Size(123, 20);
             this.TxtCiudad.TabIndex = 44;
@@ -277,7 +277,7 @@
             // 
             // TxtLocalidad
             // 
-            this.TxtLocalidad.Location = new System.Drawing.Point(517, 149);
+            this.TxtLocalidad.Location = new System.Drawing.Point(517, 123);
             this.TxtLocalidad.Name = "TxtLocalidad";
             this.TxtLocalidad.Size = new System.Drawing.Size(123, 20);
             this.TxtLocalidad.TabIndex = 31;

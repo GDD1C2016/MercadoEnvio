@@ -6,6 +6,7 @@ using MercadoEnvio.Entidades;
 using MercadoEnvio.Properties;
 using MercadoEnvio.Servicios;
 using System.ComponentModel;
+using System.Xml.Serialization;
 using MercadoEnvio.Helpers;
 
 namespace MercadoEnvio.ABM_Usuario
@@ -33,6 +34,21 @@ namespace MercadoEnvio.ABM_Usuario
 
             DgRoles.DataSource = bs;
             #endregion
+
+            #region armadoComboEstado
+            Estado estadoHabilitado = new Estado { Valor = true };
+            Estado estadoDeshabilitado = new Estado { Valor = false };
+            List<Estado> estados = new List<Estado>();
+            estados.Add(estadoHabilitado);
+            estados.Add(estadoDeshabilitado);
+
+            ComboEstado.DataSource = estados;
+            ComboEstado.DisplayMember = "Descripcion";
+            ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            if (Usuario.IdUsuario != 0)
+                ComboEstado.SelectedIndex = ComboEstado.FindStringExact(usuario.Estado);
+            #endregion
         }
 
         private void AltaUsuario_Load(object sender, EventArgs e)
@@ -45,6 +61,18 @@ namespace MercadoEnvio.ABM_Usuario
             ComboTipoDeUsuario.DataSource = roles;
             ComboTipoDeUsuario.DisplayMember = "Descripcion";
             ComboTipoDeUsuario.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            if (Usuario.Roles.Count > 0)
+            {
+                Rol rolAux = new Rol();
+                rolAux = Usuario.Roles.First(x => x.Descripcion.Equals("Cliente", StringComparison.CurrentCultureIgnoreCase) || x.Descripcion.Equals("Empresa", StringComparison.CurrentCultureIgnoreCase));
+                ReorganizarPantallaDeAcuerdoARol(rolAux);
+                ComboTipoDeUsuario.SelectedIndex = ComboTipoDeUsuario.FindStringExact(rolAux.Descripcion);
+            }
+                
+
+            if (Usuario.IdUsuario != 0)
+                ComboTipoDeUsuario.Enabled = false;
             #endregion
 
             #region armadoComboRolGrilla
@@ -73,14 +101,34 @@ namespace MercadoEnvio.ABM_Usuario
                 LabelDNI.Text = Resources.CUIT;
                 LabelApellido.Text = Resources.Rubro;
 
+                Empresa emp = new Empresa();
+                emp = UsuariosService.GetEmpresaById(Usuario.IdUsuario);
+                TxtNombre.Text = emp.RazonSocial;
+                TxtUserName.Text = emp.UserName;
+                TxtPassword.Text = emp.Password;
+                TxtCalle.Text = emp.Calle;
+                TxtNumero.Text = emp.NroCalle.ToString();
+                TxtPiso.Text = emp.Piso.ToString();
+                TxtDepto.Text = emp.Departamento;
+                TxtEmail.Text = emp.Email;
+                TxtTelefono.Text = emp.Telefono;
+                TxtContacto.Text = emp.Contacto;
+                TxtCp.Text = emp.CodigoPostal;
+                TxtLocalidad.Text = emp.Localidad;
+                TxtCiudad.Text = emp.Ciudad;
+                TxtApellido.Text = emp.Rubro;
+
                 TxtDNI.Visible = false;
                 TxtCuit.Visible = true;
+                TxtCuit.Text = emp.Cuit;
                 LabelContacto.Visible = true;
                 TxtContacto.Visible = true;
+                TxtContacto.Text = emp.Contacto;
                 LabelFechaNacimiento.Visible = false;
                 DatePickerFechaNacimiento.Visible = false;
                 TxtTipoDoc.Enabled = false;
                 TxtCiudad.Visible = true;
+                TxtCiudad.Text = emp.Ciudad;
                 LabelCiudad.Visible = true;
             }
             else
@@ -89,20 +137,35 @@ namespace MercadoEnvio.ABM_Usuario
                 LabelDNI.Text = Resources.NoDoc;
                 LabelApellido.Text = Resources.Apellido;
 
+                Cliente cli = new Cliente();
+                cli = UsuariosService.GetClienteById(Usuario.IdUsuario);
+                TxtNombre.Text = cli.Nombre;
+                TxtUserName.Text = cli.UserName;
+                TxtPassword.Text = cli.Password;
+                TxtCalle.Text = cli.Calle;
+                TxtNumero.Text = cli.NroCalle.ToString();
+                TxtPiso.Text = cli.Piso.ToString();
+                TxtDepto.Text = cli.Departamento;
+                TxtEmail.Text = cli.Email;
+                TxtTelefono.Text = cli.Telefono;
+                TxtCp.Text = cli.CodigoPostal;
+                TxtLocalidad.Text = cli.Localidad;
+                TxtLocalidad.Visible = true;
                 TxtApellido.Visible = true;
+                TxtApellido.Text = cli.Apellido;
                 TxtDNI.Visible = true;
+                TxtDNI.Text = cli.NumeroDoc.ToString();
                 TxtCuit.Visible = false;
                 LabelContacto.Visible = false;
                 TxtContacto.Visible = false;
                 LabelFechaNacimiento.Visible = true;
                 DatePickerFechaNacimiento.Visible = true;
+                DatePickerFechaNacimiento.Value = cli.IdUsuario != 0 ? cli.FechaNacimiento : new FechaHelper().GetSystemDate();
                 TxtTipoDoc.Enabled = true;
+                TxtTipoDoc.Text = cli.TipoDoc;
                 TxtCiudad.Visible = false;
                 LabelCiudad.Visible = false;
-
             }
-
-            LimpiarCampos();
         }
 
         private void LimpiarCampos()
@@ -256,7 +319,7 @@ namespace MercadoEnvio.ABM_Usuario
                 if (empresa.IdUsuario != 0)
                     if (empresa.IdUsuario != Usuario.IdUsuario)
                         errors.Add(Resources.ErrorEmpresaExistenteCUIT);
-            }            
+            }
         }
 
         private List<Rol> GetRolesFromDg()
@@ -303,7 +366,9 @@ namespace MercadoEnvio.ABM_Usuario
                         NumeroDoc = Convert.ToInt32(TxtDNI.Text.Trim()),
                         Localidad = TxtLocalidad.Text.Trim(),
                         Telefono = TxtTelefono.Text.Trim(),
-                        Roles = GetRolesFromDg()
+                        Roles = GetRolesFromDg(),
+                        UserName = TxtUserName.Text,
+                        Password = TxtPassword.Text
                     };
 
                     if (Usuario.IdUsuario == 0)
@@ -336,7 +401,9 @@ namespace MercadoEnvio.ABM_Usuario
                         NroCalle = Convert.ToInt32(TxtNumero.Text.Trim()),
                         Localidad = TxtLocalidad.Text.Trim(),
                         Telefono = TxtTelefono.Text.Trim(),
-                        Roles = GetRolesFromDg()
+                        Roles = GetRolesFromDg(),
+                        UserName = TxtUserName.Text,
+                        Password = TxtPassword.Text
                     };
 
                     if (Usuario.IdUsuario == 0)
