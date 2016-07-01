@@ -150,8 +150,7 @@ namespace MercadoEnvio.Generar_Publicación
 
         private void ButtonEditar_Click(object sender, EventArgs e)
         {
-            var seleccionPublicacion = new SeleccionPublicacion();
-            seleccionPublicacion.Usuario = Usuario;
+            var seleccionPublicacion = new SeleccionPublicacion {Usuario = Usuario};
             var result = seleccionPublicacion.ShowDialog();
 
             if (result.Equals(DialogResult.OK))
