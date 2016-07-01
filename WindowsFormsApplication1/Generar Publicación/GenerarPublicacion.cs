@@ -119,7 +119,7 @@ namespace MercadoEnvio.Generar_Publicación
 
             labelCodPublicacion.Text = publicacion.IdPublicacion.ToString(fmt);
             RichTextBoxDescripcion.Text = publicacion.Descripcion;
-            
+
             ComboTipoPublicacion.SelectedIndex = ComboTipoPublicacion.FindStringExact(publicacion.TipoPublicacion.Descripcion);
             ComboRubro.SelectedIndex = ComboRubro.FindStringExact(rubro.DescripcionLarga);
             ComboVisibilidad.SelectedIndex = ComboVisibilidad.FindStringExact(publicacion.Visibilidad.Descripcion);
@@ -159,7 +159,7 @@ namespace MercadoEnvio.Generar_Publicación
 
         private void ButtonEditar_Click(object sender, EventArgs e)
         {
-            var seleccionPublicacion = new SeleccionPublicacion {Usuario = Usuario};
+            var seleccionPublicacion = new SeleccionPublicacion { Usuario = Usuario };
             var result = seleccionPublicacion.ShowDialog();
 
             if (result.Equals(DialogResult.OK))
@@ -178,7 +178,7 @@ namespace MercadoEnvio.Generar_Publicación
             }
             else
             {
-                if (Convert.ToInt32(labelCodPublicacion) != 0)
+                if (Convert.ToInt32(labelCodPublicacion.Text) != 0)
                     PublicacionesServices.UpdatePublicacion(labelCodPublicacion.Text, RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked, ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
                 else
                     PublicacionesServices.InsertPublicacion(RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked, ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
