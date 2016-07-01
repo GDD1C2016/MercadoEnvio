@@ -4,6 +4,13 @@ namespace MercadoEnvio.Entidades
 {
     public class Publicacion
     {
+        public Publicacion()
+        {
+            TipoPublicacion = new TipoPublicacion();
+            EstadoPublicacion = new EstadoPublicacion();
+            Visibilidad = new Visibilidad();
+        }
+
         #region attributes
         private int _idPublicacion;
         private string _descripcion;
