@@ -4,13 +4,6 @@ namespace MercadoEnvio.Entidades
 {
     public class Publicacion
     {
-        public Publicacion()
-        {
-            TipoPublicacion = new TipoPublicacion();
-            EstadoPublicacion = new EstadoPublicacion();
-            Visibilidad = new Visibilidad();
-        }
-
         #region attributes
         private int _idPublicacion;
         private string _descripcion;
@@ -125,6 +118,15 @@ namespace MercadoEnvio.Entidades
         {
             get { return _envio; }
             set { _envio = value; }
+        }
+        #endregion
+
+        #region constructor
+        public Publicacion()
+        {
+            TipoPublicacion = new TipoPublicacion();
+            EstadoPublicacion = new EstadoPublicacion();
+            Visibilidad = new Visibilidad();
         }
         #endregion
     }

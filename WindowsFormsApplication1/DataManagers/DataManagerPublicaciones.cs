@@ -340,7 +340,7 @@ namespace MercadoEnvio.DataManagers
             List<SqlParameter> parameters = new List<SqlParameter>();
 
             SqlParameter idPublicacionParameter = new SqlParameter("@IdPublicacion", SqlDbType.Int);
-            idPublicacionParameter.Value = idPublicacion;
+            idPublicacionParameter.Value = idPublicacion.Trim();
 
             parameters.Add(idPublicacionParameter);
 
