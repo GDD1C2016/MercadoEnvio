@@ -244,7 +244,7 @@ namespace MercadoEnvio.ComprarOfertar
         {
             List<string> errors = new List<string>();
 
-            if (publicacionSeleccionada.EstadoDescripcion.Equals(Resources.Pausada, StringComparison.CurrentCultureIgnoreCase))
+            if (publicacionSeleccionada.EstadoPublicacion.Descripcion.Equals(Resources.Pausada, StringComparison.CurrentCultureIgnoreCase))
                 errors.Add(Resources.ErrorPublicacionPausada);
 
             if (ComprasServices.GetComprasPendientesDeCalificacion(Usuario.IdUsuario).Count >= 3)
@@ -261,7 +261,7 @@ namespace MercadoEnvio.ComprarOfertar
                 if (bs != null)
                 {
                     Publicacion publicacionSeleccionada = (Publicacion)bs[DgPublicaciones.SelectedRows[0].Index];
-                    BtnComprar.Enabled = !publicacionSeleccionada.EstadoDescripcion.Equals(Resources.Pausada, StringComparison.CurrentCultureIgnoreCase) && ValidarUsuario();
+                    BtnComprar.Enabled = !publicacionSeleccionada.EstadoPublicacion.Descripcion.Equals(Resources.Pausada, StringComparison.CurrentCultureIgnoreCase) && ValidarUsuario();
                 }
             }
         }

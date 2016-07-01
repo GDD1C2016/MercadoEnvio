@@ -8,6 +8,7 @@ namespace MercadoEnvio.Generar_Publicación
 {
     public partial class SeleccionPublicacion : Form
     {
+        public Usuario Usuario { get; set; }
         public Publicacion Publicacion { get; set; }
 
         public SeleccionPublicacion()
@@ -17,7 +18,7 @@ namespace MercadoEnvio.Generar_Publicación
 
         private void BtnBuscar_Click(object sender, EventArgs e)
         {
-            var publicacion = PublicacionesServices.GetPublicacion(Convert.ToInt32(textBoxCodPublicacion.Text.Trim()));
+            var publicacion = PublicacionesServices.GetPublicacion(Convert.ToInt32(textBoxCodPublicacion.Text.Trim()), Usuario.IdUsuario);
 
             if (publicacion != null)
             {
