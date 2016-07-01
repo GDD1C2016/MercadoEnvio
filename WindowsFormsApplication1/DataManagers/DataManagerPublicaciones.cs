@@ -276,6 +276,7 @@ namespace MercadoEnvio.DataManagers
             idUsuarioParameter.Value = idUsuario;
 
             parameters.Add(idPublicacionParameter);
+            parameters.Add(idUsuarioParameter);
 
             DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetPublicacion", parameters);
             Publicacion publicacion = null;
