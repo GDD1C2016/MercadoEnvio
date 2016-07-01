@@ -330,13 +330,13 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
-                UpdatePublicacion(idPublicacion, descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo, envio, db);
+                UpdatePublicacion(idPublicacion, descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo, envio, new FechaHelper().GetSystemDate(), db);
 
                 db.EndConnection();
             }
         }
 
-        private static void UpdatePublicacion(string idPublicacion, string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, bool envio, DataBaseHelper db)
+        private static void UpdatePublicacion(string idPublicacion, string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, bool envio, DateTime fechaActual, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
@@ -376,6 +376,9 @@ namespace MercadoEnvio.DataManagers
             SqlParameter envioParameter = new SqlParameter("@Envio", SqlDbType.Bit);
             envioParameter.Value = envio;
 
+            SqlParameter fechaActualParameter = new SqlParameter("@FechaActual", SqlDbType.DateTime);
+            fechaActualParameter.Value = fechaActual;
+
             parameters.Add(idPublicacionParameter);
             parameters.Add(descripcionParameter);
             parameters.Add(stockParameter);
@@ -388,6 +391,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idEstadoParameter);
             parameters.Add(idTipoParameter);
             parameters.Add(envioParameter);
+            parameters.Add(fechaActualParameter);
 
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_UpdatePublicacion", parameters);
         }
@@ -400,13 +404,13 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
-                InsertPublicacion(descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo, envio, db);
+                InsertPublicacion(descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo, envio, new FechaHelper().GetSystemDate(), db);
 
                 db.EndConnection();
             }
         }
 
-        private static void InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, bool envio, DataBaseHelper db)
+        private static void InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, bool envio, DateTime fechaActual, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
@@ -443,6 +447,9 @@ namespace MercadoEnvio.DataManagers
             SqlParameter envioParameter = new SqlParameter("@Envio", SqlDbType.Bit);
             envioParameter.Value = envio;
 
+            SqlParameter fechaActualParameter = new SqlParameter("@FechaActual", SqlDbType.DateTime);
+            fechaActualParameter.Value = fechaActual;
+
             parameters.Add(descripcionParameter);
             parameters.Add(stockParameter);
             parameters.Add(fechaInicioParameter);
@@ -454,6 +461,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idEstadoParameter);
             parameters.Add(idTipoParameter);
             parameters.Add(envioParameter);
+            parameters.Add(fechaActualParameter);
 
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertPublicacion", parameters);
         }
