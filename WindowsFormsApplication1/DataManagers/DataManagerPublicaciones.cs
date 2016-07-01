@@ -340,15 +340,52 @@ namespace MercadoEnvio.DataManagers
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter idPublicacionParameter = new SqlParameter("@IdPublicacion", SqlDbType.Int);
-            idPublicacionParameter.Value = idPublicacion.Trim();
+            SqlParameter idPublicacionParameter = new SqlParameter("@IdPublicacion", SqlDbType.Decimal);
+            idPublicacionParameter.Value = Convert.ToDecimal(idPublicacion.Trim());
 
-            SqlParameter descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.Int);
-            descripcionParameter.Value = idPublicacion.Trim();
+            SqlParameter descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
+            descripcionParameter.Value = descripcion.Trim();
+
+            SqlParameter stockParameter = new SqlParameter("@Stock", SqlDbType.Decimal);
+            stockParameter.Value = Convert.ToDecimal(stock.Trim());
+
+            SqlParameter fechaInicioParameter = new SqlParameter("@FechaInicio", SqlDbType.DateTime);
+            fechaInicioParameter.Value = fechaInicio;
+
+            SqlParameter fechaVencimientoParameter = new SqlParameter("@FechaVencimiento", SqlDbType.DateTime);
+            fechaVencimientoParameter.Value = fechaVencimiento;
+
+            SqlParameter precioParameter = new SqlParameter("@Precio", SqlDbType.Decimal);
+            precioParameter.Value = Convert.ToDecimal(precio.Trim());
+
+            SqlParameter precioReservaParameter = new SqlParameter("@PrecioReserva", SqlDbType.Decimal);
+            precioReservaParameter.Value = Convert.ToDecimal(precioReserva.Trim());
+
+            SqlParameter idRubroParameter = new SqlParameter("@IdRubro", SqlDbType.Int);
+            idRubroParameter.Value = idRubro;
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            SqlParameter idEstadoParameter = new SqlParameter("@IdEstado", SqlDbType.Int);
+            idEstadoParameter.Value = idEstado;
+
+            SqlParameter idTipoParameter = new SqlParameter("@IdTipo", SqlDbType.Int);
+            idTipoParameter.Value = idTipo;
 
             parameters.Add(idPublicacionParameter);
+            parameters.Add(descripcionParameter);
+            parameters.Add(stockParameter);
+            parameters.Add(fechaInicioParameter);
+            parameters.Add(fechaVencimientoParameter);
+            parameters.Add(precioParameter);
+            parameters.Add(precioReservaParameter);
+            parameters.Add(idRubroParameter);
+            parameters.Add(idUsuarioParameter);
+            parameters.Add(idEstadoParameter);
+            parameters.Add(idTipoParameter);
 
-            //PublicacionesServices.UpdatePublicacion(RichTextBoxDescripcion.Text, Convert.ToDecimal(textBoxStock.Text), DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, Convert.ToDecimal(textBoxPrecio), Convert.ToDecimal(textBoxPrecioReserva), Convert.ToInt32(((Rubro)ComboRubro.SelectedItem).IdTipo, Usuario.IdUsuario, Convert.ToInt32(((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado), Convert.ToInt32(((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo)));
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_UpdatePublicacion", parameters);
         }
 
         public static void InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo)
@@ -367,7 +404,50 @@ namespace MercadoEnvio.DataManagers
 
         private static void InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, DataBaseHelper db)
         {
-            //PublicacionesServices.UpdatePublicacion(RichTextBoxDescripcion.Text, Convert.ToDecimal(textBoxStock.Text), DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, Convert.ToDecimal(textBoxPrecio), Convert.ToDecimal(textBoxPrecioReserva), Convert.ToInt32(((Rubro)ComboRubro.SelectedItem).IdTipo, Usuario.IdUsuario, Convert.ToInt32(((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado), Convert.ToInt32(((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo)));
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter descripcionParameter = new SqlParameter("@Descripcion", SqlDbType.NVarChar);
+            descripcionParameter.Value = descripcion.Trim();
+
+            SqlParameter stockParameter = new SqlParameter("@Stock", SqlDbType.Decimal);
+            stockParameter.Value = Convert.ToDecimal(stock.Trim());
+
+            SqlParameter fechaInicioParameter = new SqlParameter("@FechaInicio", SqlDbType.DateTime);
+            fechaInicioParameter.Value = fechaInicio;
+
+            SqlParameter fechaVencimientoParameter = new SqlParameter("@FechaVencimiento", SqlDbType.DateTime);
+            fechaVencimientoParameter.Value = fechaVencimiento;
+
+            SqlParameter precioParameter = new SqlParameter("@Precio", SqlDbType.Decimal);
+            precioParameter.Value = Convert.ToDecimal(precio.Trim());
+
+            SqlParameter precioReservaParameter = new SqlParameter("@PrecioReserva", SqlDbType.Decimal);
+            precioReservaParameter.Value = Convert.ToDecimal(precioReserva.Trim());
+
+            SqlParameter idRubroParameter = new SqlParameter("@IdRubro", SqlDbType.Int);
+            idRubroParameter.Value = idRubro;
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            SqlParameter idEstadoParameter = new SqlParameter("@IdEstado", SqlDbType.Int);
+            idEstadoParameter.Value = idEstado;
+
+            SqlParameter idTipoParameter = new SqlParameter("@IdTipo", SqlDbType.Int);
+            idTipoParameter.Value = idTipo;
+
+            parameters.Add(descripcionParameter);
+            parameters.Add(stockParameter);
+            parameters.Add(fechaInicioParameter);
+            parameters.Add(fechaVencimientoParameter);
+            parameters.Add(precioParameter);
+            parameters.Add(precioReservaParameter);
+            parameters.Add(idRubroParameter);
+            parameters.Add(idUsuarioParameter);
+            parameters.Add(idEstadoParameter);
+            parameters.Add(idTipoParameter);
+
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertPublicacion", parameters);
         }
     }
 }
