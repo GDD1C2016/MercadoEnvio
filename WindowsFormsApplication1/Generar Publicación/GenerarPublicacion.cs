@@ -110,11 +110,18 @@ namespace MercadoEnvio.Generar_Publicación
                 labelNomUsuario.Text = empresa.RazonSocial;
             }
 
+            var rubro = new Rubro
+            {
+                IdRubro = publicacion.IdRubro,
+                DescripcionCorta = publicacion.RubroDescripcionCorta,
+                DescripcionLarga = publicacion.RubroDescripcionLarga
+            };
+
             labelCodPublicacion.Text = publicacion.IdPublicacion.ToString(fmt);
             RichTextBoxDescripcion.Text = publicacion.Descripcion;
             ComboEstado.SelectedItem = publicacion.EstadoPublicacion;
             ComboTipoPublicacion.SelectedItem = publicacion.TipoPublicacion;
-            ComboRubro.SelectedIndex = ComboRubro.Items.IndexOf(publicacion.RubroDescripcionLarga);
+            ComboRubro.SelectedItem = rubro;
             ComboVisibilidad.SelectedItem = publicacion.Visibilidad;
             DatePickerFechaInicio.Value = publicacion.FechaInicio;
             DatePickerFechaVencimiento.Value = publicacion.FechaVencimiento;
