@@ -18,6 +18,8 @@ namespace MercadoEnvio.Entidades
         private string _tipoPublicacion;
         private string _descripcionPublicacion;
         private string _vendedor;
+        private string _adjudicada;
+        private decimal _precio;
         #endregion
 
         #region properties
@@ -59,7 +61,7 @@ namespace MercadoEnvio.Entidades
 
         public string DescripcionPublicacion
         {
-            get{return _descripcionPublicacion;}
+            get { return _descripcionPublicacion; }
             set { _descripcionPublicacion = value; }
         }
 
@@ -67,6 +69,18 @@ namespace MercadoEnvio.Entidades
         {
             get { return _vendedor; }
             set { _vendedor = value; }
+        }
+
+        public string Adjudicada
+        {
+            get { return _adjudicada; }
+            set { _adjudicada = value; }
+        }
+
+        public decimal Precio
+        {
+            get { return _precio; }
+            set { _precio = value; }
         }
         #endregion
     }

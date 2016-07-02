@@ -31,12 +31,14 @@ namespace MercadoEnvio.Historial_Cliente
         {
             #region armadoDeGrillaCompras
             DgCompras.AutoGenerateColumns = false;
-            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdCompra", HeaderText = Resources.IdCompra, Name = "IdCompra" });
+            DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdCompra", HeaderText = Resources.IdCompraIdOferta, Name = "IdCompra" });
             DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "DescripcionPublicacion", HeaderText = Resources.Descripcion, Name = "DescripcionPublicacion" });
             DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Vendedor", HeaderText = Resources.Vendedor, Name = "Vendedor" });
             DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = Resources.Fecha, Name = "Fecha" });
             DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "TipoPublicacion", HeaderText = Resources.TipoPublicacion, Name = "TipoPublicacion" });
             DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cantidad", HeaderText = Resources.Cantidad, Name = "Cantidad" });
+            DgCompras.Columns.Add(new DataGridViewTextBoxColumn {DataPropertyName = "Adjudicada", HeaderText = "Adjudicada", Name = "Adjudicada"});
+            DgCompras.Columns.Add(new DataGridViewTextBoxColumn {DataPropertyName = "Precio", HeaderText = Resources.MontoOferta, Name = "Precio"});
 
             _baselist = FillDataforGrid();
             _pagesCount = Convert.ToInt32(Math.Ceiling(_baselist.Count * 1.0 / PageRows));
@@ -67,7 +69,7 @@ namespace MercadoEnvio.Historial_Cliente
 
         private BindingList<Compra> FillDataforGrid()
         {
-            List<Compra> listAux = new List<Compra>(ComprasServices.GetComprasPendientesDeCalificacion(Usuario.IdUsuario));
+            List<Compra> listAux = new List<Compra>(ComprasServices.GetComprasOfertas(Usuario.IdUsuario));
             BindingList<Compra> list = new BindingList<Compra>(listAux);
             return list;
         }

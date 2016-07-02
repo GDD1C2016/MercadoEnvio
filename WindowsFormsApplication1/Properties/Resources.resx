@@ -556,4 +556,10 @@
   <data name="MensajeDespedida" xml:space="preserve">
     <value>Gracias por su visita, ¡lo esperamos de vuelta!</value>
   </data>
+  <data name="IdCompraIdOferta" xml:space="preserve">
+    <value>IdCompra/IdOferta</value>
+  </data>
+  <data name="MontoOferta" xml:space="preserve">
+    <value>Monto/Oferta</value>
+  </data>
 </root>

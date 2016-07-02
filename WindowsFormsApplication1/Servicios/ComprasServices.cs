@@ -25,5 +25,10 @@ namespace MercadoEnvio.Servicios
         {
             return DataManagers.DataManagerCompras.FindDetallesFactura();
         }
+
+        public static List<Compra> GetComprasOfertas(int idUsuario)
+        {
+            return DataManagers.DataManagerCompras.GetComprasOfertas(idUsuario);
+        }
     }
 }

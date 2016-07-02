@@ -26,6 +26,55 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
+        public static List<Compra> GetComprasOfertas(int idUsuario)
+        {
+            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+
+            using (db.Connection)
+            {
+                db.BeginTransaction();
+
+                List<Compra> compras = GetComprasOfertas(idUsuario, db);
+
+                db.EndConnection();
+
+                return compras;
+            }
+        }
+
+        private static List<Compra> GetComprasOfertas(int idUsuario, DataBaseHelper db)
+        {
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
+            parameters.Add(idUsuarioParameter);
+
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetComprasOfertas", parameters); //TODO HACER SP
+            List<Compra> compras = new List<Compra>();
+            foreach (DataRow row in res.Rows)
+            {
+                var compra = new Compra
+                {
+                    IdCompra = Convert.ToInt32(row["IdCompra"]),
+                    IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
+                    Fecha = Convert.ToDateTime(row["Fecha"]),
+                    Cantidad = Convert.ToDecimal(row["Cantidad"]),
+                    IdUsuario = Convert.ToInt32(row["IdUsuario"]),
+                    TipoPublicacion = Convert.ToString(row["TipoPublicacion"]),
+                    DescripcionPublicacion = Convert.ToString(row["DescripcionPublicacion"]),
+                    Vendedor = Convert.ToString(row["Vendedor"]),
+                    Adjudicada = Convert.ToString(row["Adjudicada"]),
+                    Precio = Convert.ToDecimal(row["Precio"])
+                };
+
+                compras.Add(compra);
+            }
+
+            return compras;
+        }
+
         private static List<Compra> GetComprasPendientesDeCalificacion(int idUsuario, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
@@ -48,7 +97,7 @@ namespace MercadoEnvio.DataManagers
                     IdUsuario = Convert.ToInt32(row["IdUsuario"]),
                     TipoPublicacion = Convert.ToString(row["TipoPublicacion"]),
                     DescripcionPublicacion = Convert.ToString(row["DescripcionPublicacion"]),
-                    Vendedor = Convert.ToString(row["Vendedor"])
+                    Vendedor = Convert.ToString(row["Vendedor"]),
                 };
 
                 compras.Add(compra);
