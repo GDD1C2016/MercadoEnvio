@@ -10,7 +10,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE [MASTERDBA].[SP_GetComprasOfertas] 
+CREATE PROCEDURE [MASTERDBA].[SP_GetComprasOfertas] 
 	@IdUsuario int
 AS
 BEGIN
