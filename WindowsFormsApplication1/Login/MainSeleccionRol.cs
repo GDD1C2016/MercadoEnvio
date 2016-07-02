@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
+using MercadoEnvio.Servicios;
 using MainMenu = MercadoEnvio.Menu.MainMenu;
 
 namespace MercadoEnvio.Login
@@ -31,6 +32,8 @@ namespace MercadoEnvio.Login
             Rol rolSeleccionado = (Rol) ComboRoles.SelectedItem;
 
             Usuario.RolActivo = rolSeleccionado;
+            ActualizacionServices.ConfigurarFechas();
+            ActualizacionServices.CerrarSubastas();
             var menuDialog = new MainMenu {Usuario = Usuario};
 
             menuDialog.ShowDialog();

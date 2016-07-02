@@ -34,6 +34,8 @@ namespace MercadoEnvio.Login
                 }
                 else
                 {
+                    ActualizacionServices.ConfigurarFechas();
+                    ActualizacionServices.CerrarSubastas();
                     var menuDialog = new MainMenu {Usuario = login.Usuario};
                     menuDialog.ShowDialog();
                 }
