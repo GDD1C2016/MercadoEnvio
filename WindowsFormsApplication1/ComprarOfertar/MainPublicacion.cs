@@ -49,16 +49,12 @@ namespace MercadoEnvio.ComprarOfertar
             RefreshPagination();
             RebindGridForPageChange();
             #endregion
-
-            #region validarUsuario
-            BtnComprar.Enabled = ValidarUsuario();
-            #endregion
         }
 
-        private bool ValidarUsuario()
+        private bool ValidarUsuario(Publicacion publicacion)
         {
             bool esEmpresa = Usuario.Roles.Exists(x => x.Descripcion.Equals(Resources.Empresa));
-            return !Usuario.UserName.Equals(Resources.Admin, StringComparison.CurrentCultureIgnoreCase) && !esEmpresa;
+            return !Usuario.UserName.Equals(Resources.Admin, StringComparison.CurrentCultureIgnoreCase) && !esEmpresa && publicacion.IdUsuario != Usuario.IdUsuario;
         }
 
         private BindingList<Publicacion> FillDataforGrid()
@@ -261,7 +257,7 @@ namespace MercadoEnvio.ComprarOfertar
                 if (bs != null)
                 {
                     Publicacion publicacionSeleccionada = (Publicacion)bs[DgPublicaciones.SelectedRows[0].Index];
-                    BtnComprar.Enabled = !publicacionSeleccionada.EstadoPublicacion.Descripcion.Equals(Resources.Pausada, StringComparison.CurrentCultureIgnoreCase) && ValidarUsuario();
+                    BtnComprar.Enabled = !publicacionSeleccionada.EstadoPublicacion.Descripcion.Equals(Resources.Pausada, StringComparison.CurrentCultureIgnoreCase) && ValidarUsuario(publicacionSeleccionada);
                 }
             }
         }
