@@ -180,7 +180,7 @@ namespace MercadoEnvio.DataManagers
             return detalles;
         }
 
-        public static List<Factura> FindFacturas(DateTime filtroFechaDesde, DateTime filtroFechaHasta, decimal filtroImporteDesde, decimal filtroImporteHasta, string filtroDetallesFactura, string filtroDirigidaA)
+        public static List<Factura> FindFacturas(DateTime filtroFechaDesde, DateTime filtroFechaHasta, decimal filtroImporteDesde, decimal filtroImporteHasta, string filtroDetallesFactura, string filtroDirigidaA, int idUsuario)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
@@ -188,7 +188,7 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
-                List<Factura> facturas = FindFacturas(filtroFechaDesde, filtroFechaHasta, filtroImporteDesde, filtroImporteHasta, filtroDetallesFactura, filtroDirigidaA, db);
+                List<Factura> facturas = FindFacturas(filtroFechaDesde, filtroFechaHasta, filtroImporteDesde, filtroImporteHasta, filtroDetallesFactura, filtroDirigidaA,idUsuario, db);
 
                 db.EndConnection();
 
@@ -196,7 +196,7 @@ namespace MercadoEnvio.DataManagers
             }
         }
 
-        private static List<Factura> FindFacturas(DateTime filtroFechaDesde, DateTime filtroFechaHasta, decimal filtroImporteDesde, decimal filtroImporteHasta, string filtroDetallesFactura, string filtroDirigidaA, DataBaseHelper db)
+        private static List<Factura> FindFacturas(DateTime filtroFechaDesde, DateTime filtroFechaHasta, decimal filtroImporteDesde, decimal filtroImporteHasta, string filtroDetallesFactura, string filtroDirigidaA,int idUsuario, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
@@ -218,12 +218,16 @@ namespace MercadoEnvio.DataManagers
             SqlParameter filtroDirigidaAParameter = new SqlParameter("@FiltroDirigidaA", SqlDbType.NVarChar);
             filtroDirigidaAParameter.Value = filtroDirigidaA;
 
+            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
+            idUsuarioParameter.Value = idUsuario;
+
             parameters.Add(filtroFechaDesdeParameter);
             parameters.Add(filtroFechaHastaParameter);
             parameters.Add(filtroImporteDesdeParameter);
             parameters.Add(filtroImporteHastaParameter);
             parameters.Add(filtroDetallesFacturaParameter);
             parameters.Add(filtroDirigidaAParameter);
+            parameters.Add(idUsuarioParameter);
 
             DataTable res = db.GetDataAsTable("MASTERDBA.SP_FindFacturas", parameters);
             List<Factura> facturas = new List<Factura>();
