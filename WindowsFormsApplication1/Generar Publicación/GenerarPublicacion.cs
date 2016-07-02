@@ -246,11 +246,15 @@ namespace MercadoEnvio.Generar_Publicación
                 errors.Add(Resources.ErrorFechaVencimiento);
 
             if (tipo.Descripcion.Equals(Resources.CompraInmediata, StringComparison.CurrentCultureIgnoreCase))
+            {
                 if (string.IsNullOrEmpty(textBoxStock.Text) || Convert.ToInt32(textBoxStock.Text) <= 0)
                     errors.Add(Resources.StockInvalido);
-                else
-                    if (string.IsNullOrEmpty(textBoxPrecioReserva.Text) || Convert.ToInt32(textBoxPrecioReserva.Text) <= 0)
-                        errors.Add(Resources.PrecioReservaInvalido);
+            }
+            else
+            {
+                if (string.IsNullOrEmpty(textBoxPrecioReserva.Text) || Convert.ToInt32(textBoxPrecioReserva.Text) <= 0)
+                    errors.Add(Resources.PrecioReservaInvalido);
+            }
 
             if (Usuario.Roles.Exists(x => x.Descripcion.Equals(Resources.Empresa, StringComparison.CurrentCultureIgnoreCase)))
                 if (!((Rubro)ComboRubro.SelectedItem).DescripcionLarga.Equals(Resources.Electronicos, StringComparison.CurrentCultureIgnoreCase))
