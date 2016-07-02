@@ -120,8 +120,8 @@ namespace MercadoEnvio.ComprarOfertar
                     numero = PublicacionesServices.Ofertar(PublicacionSeleccionada, UsuarioActivo, TxtOfertar.Text);
                     if (PublicacionSeleccionada.PrecioReserva == Convert.ToDecimal(TxtOfertar.Text))
                     {
-                        numero = PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, string.Empty, false);
-                        MessageBox.Show(Resources.NroCompraPrecioReserva + numero.ToString(CultureInfo.CurrentCulture), Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        //var idCompra = PublicacionesServices.CerrarSubasta(PublicacionSeleccionada, UsuarioActivo);
+                        //MessageBox.Show(Resources.NroCompraPrecioReserva + idCompra.ToString(CultureInfo.CurrentCulture), Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         DialogResult = DialogResult.OK;
                     }
                     else

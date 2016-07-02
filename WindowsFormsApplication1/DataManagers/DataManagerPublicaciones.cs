@@ -190,7 +190,7 @@ namespace MercadoEnvio.DataManagers
             fechaParameter.Value = new FechaHelper().GetSystemDate();
 
             SqlParameter cantidadParameter = new SqlParameter("@Cantidad", SqlDbType.Decimal);
-            cantidadParameter.Value = string.IsNullOrEmpty(cantidad) ? Convert.ToInt32(cantidad) : 1;
+            cantidadParameter.Value = Convert.ToInt32(cantidad);
 
             SqlParameter envioParameter = new SqlParameter("@Envio", SqlDbType.Bit);
             envioParameter.Value = envio;

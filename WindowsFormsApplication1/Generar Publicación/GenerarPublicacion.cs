@@ -219,7 +219,7 @@ namespace MercadoEnvio.Generar_Publicación
                         ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado,
                         ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked,
                         ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
-                    MessageBox.Show(Resources.NroPublicacion + idPublicacion, Resources.OperacionExitosa,
+                    MessageBox.Show(Resources.NroPublicacion + idPublicacion.ToString(CultureInfo.CurrentCulture), Resources.OperacionExitosa,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     Close();
