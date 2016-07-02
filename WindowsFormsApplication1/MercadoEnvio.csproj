@@ -341,7 +341,6 @@
     <Content Include="Scripts\SP\MASTERDBA.SP_GetClienteById.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetClienteByTipoDocNroDoc.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetComprasPendientesCalificacion.StoredProcedure.sql" />
-    <Content Include="Scripts\SP\MASTERDBA.SP_GetDetallesFactura.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetEmpresaByCUIT.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetEmpresaById.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetFacturas.StoredProcedure.sql" />
@@ -380,6 +379,7 @@
     <Content Include="Scripts\SP\MASTERDBA.SP_ResetCountLogin.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_UpdateCliente.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_UpdateEmpresa.StoredProcedure.sql" />
+    <Content Include="Scripts\SP\MASTERDBA.SP_UpdatePublicacion.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_UpdateRol.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_UpdateVisibilidad.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.VW_Calificaciones.View.sql" />

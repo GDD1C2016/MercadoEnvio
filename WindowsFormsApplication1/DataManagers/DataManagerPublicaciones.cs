@@ -321,7 +321,7 @@ namespace MercadoEnvio.DataManagers
             return publicacion;
         }
 
-        public static void UpdatePublicacion(string idPublicacion, string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, bool envio, int idVisibilidad)
+        public static void UpdatePublicacion(string idPublicacion, string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idEstado, int idTipo, bool envio, int idVisibilidad)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
@@ -329,13 +329,13 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
-                UpdatePublicacion(idPublicacion, descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo, envio, idVisibilidad, new FechaHelper().GetSystemDate(), db);
+                UpdatePublicacion(idPublicacion, descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idEstado, idTipo, envio, idVisibilidad, new FechaHelper().GetSystemDate(), db);
 
                 db.EndConnection();
             }
         }
 
-        private static void UpdatePublicacion(string idPublicacion, string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, bool envio, int idVisibilidad, DateTime fechaActual, DataBaseHelper db)
+        private static void UpdatePublicacion(string idPublicacion, string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idEstado, int idTipo, bool envio, int idVisibilidad, DateTime fechaActual, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
@@ -363,9 +363,6 @@ namespace MercadoEnvio.DataManagers
             SqlParameter idRubroParameter = new SqlParameter("@IdRubro", SqlDbType.Int);
             idRubroParameter.Value = idRubro;
 
-            SqlParameter idUsuarioParameter = new SqlParameter("@IdUsuario", SqlDbType.Int);
-            idUsuarioParameter.Value = idUsuario;
-
             SqlParameter idEstadoParameter = new SqlParameter("@IdEstado", SqlDbType.Int);
             idEstadoParameter.Value = idEstado;
 
@@ -389,7 +386,6 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(precioParameter);
             parameters.Add(precioReservaParameter);
             parameters.Add(idRubroParameter);
-            parameters.Add(idUsuarioParameter);
             parameters.Add(idEstadoParameter);
             parameters.Add(idTipoParameter);
             parameters.Add(envioParameter);
