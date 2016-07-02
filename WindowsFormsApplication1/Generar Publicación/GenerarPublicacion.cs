@@ -62,6 +62,15 @@ namespace MercadoEnvio.Generar_Publicación
             };
 
             InicializarPantalla(publicacion);
+            ReordenarPantallaDeAcuerdoAEstado(publicacion);
+
+            #region habilitacionGuardar
+            List<Rol> roles = new List<Rol>(RolesServices.GetAllData());
+            Rol rolAdmin = roles.Find(x => x.Descripcion.Equals(Resources.Administrativo, StringComparison.CurrentCultureIgnoreCase));
+
+            bool condGuardar = Usuario.Roles.Any(x => x.IdRol == rolAdmin.IdRol);
+            BtnGuardar.Enabled = !condGuardar;
+            #endregion
         }
 
         private void ComboTipoPublicacion_SelectionChangeCommitted(object sender, EventArgs e)
@@ -165,6 +174,7 @@ namespace MercadoEnvio.Generar_Publicación
             if (result.Equals(DialogResult.OK))
             {
                 InicializarPantalla(seleccionPublicacion.Publicacion);
+                ReordenarPantallaDeAcuerdoAEstado(seleccionPublicacion.Publicacion);
             }
         }
 
@@ -182,6 +192,7 @@ namespace MercadoEnvio.Generar_Publicación
                     PublicacionesServices.UpdatePublicacion(labelCodPublicacion.Text, RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked, ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
                 else
                     PublicacionesServices.InsertPublicacion(RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked, ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
+                this.Close();
             }
         }
 
@@ -194,7 +205,7 @@ namespace MercadoEnvio.Generar_Publicación
             if (string.IsNullOrEmpty(RichTextBoxDescripcion.Text))
                 errors.Add(Resources.ErrorDescripcionVacia);
 
-            if (string.IsNullOrEmpty(textBoxPrecio.Text) || Convert.ToInt32(textBoxPrecio.Text) <= 0)
+            if (string.IsNullOrEmpty(textBoxPrecio.Text) || Convert.ToDecimal(textBoxPrecio.Text) <= 0)
                 errors.Add(Resources.PrecioInvalido);
 
             if(DatePickerFechaInicio.Value < helper.GetSystemDate())
@@ -242,6 +253,37 @@ namespace MercadoEnvio.Generar_Publicación
             {
                 e.Handled = true;
             }
+        }
+
+        private void ReordenarPantallaDeAcuerdoAEstado(Publicacion publicacion)
+        {
+            if (!publicacion.EstadoPublicacion.Descripcion.Equals(Resources.Borrador))
+            {
+                ComboTipoPublicacion.Enabled = false;
+                RichTextBoxDescripcion.Enabled = false;
+                ComboRubro.Enabled = false;
+                ComboVisibilidad.Enabled = false;
+                DatePickerFechaInicio.Enabled = false;
+                DatePickerFechaVencimiento.Enabled = false;
+                textBoxStock.Enabled = false;
+                checkBoxAceptaEnvio.Enabled = false;
+                textBoxPrecio.Enabled = false;
+                textBoxPrecioReserva.Enabled = false;
+            }
+            else
+            {
+                ComboTipoPublicacion.Enabled = true;
+                RichTextBoxDescripcion.Enabled = true;
+                ComboRubro.Enabled = true;
+                ComboVisibilidad.Enabled = true;
+                DatePickerFechaInicio.Enabled = true;
+                DatePickerFechaVencimiento.Enabled = true;
+                textBoxStock.Enabled = true;
+                checkBoxAceptaEnvio.Enabled = true;
+                textBoxPrecio.Enabled = true;
+                textBoxPrecioReserva.Enabled = true;
+            }
+            
         }
     }
 }

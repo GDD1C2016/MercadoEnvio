@@ -43,7 +43,7 @@ namespace MercadoEnvio.Menu
             if (Usuario.RolActivo != null)
             {
                 BtnPublicacion.Enabled = Usuario.RolActivo.Funcionalidades.Any(x=>x.Descripcion.Equals(BtnPublicacion.Text,StringComparison.CurrentCultureIgnoreCase));
-                BtnPublicar.Enabled = Usuario.RolActivo.Funcionalidades.Any(x => x.Descripcion.Equals(BtnPublicar.Text, StringComparison.CurrentCultureIgnoreCase)) && !condABM;
+                BtnPublicar.Enabled = Usuario.RolActivo.Funcionalidades.Any(x => x.Descripcion.Equals(BtnPublicar.Text, StringComparison.CurrentCultureIgnoreCase));
                 BtnCalificar.Enabled = Usuario.RolActivo.Funcionalidades.Any(x=>x.Descripcion.Equals(BtnCalificar.Text,StringComparison.CurrentCultureIgnoreCase));
                 BtnHistorial.Enabled = Usuario.RolActivo.Funcionalidades.Any(x=>x.Descripcion.Equals(BtnHistorial.Text,StringComparison.CurrentCultureIgnoreCase));
                 BtnFactura.Enabled = Usuario.RolActivo.Funcionalidades.Any(x=>x.Descripcion.Equals(BtnFactura.Text,StringComparison.CurrentCultureIgnoreCase));
@@ -52,7 +52,7 @@ namespace MercadoEnvio.Menu
             else
             {
                 BtnPublicacion.Enabled = Usuario.Roles.First().Funcionalidades.Any(x => x.Descripcion.Equals(BtnPublicacion.Text, StringComparison.CurrentCultureIgnoreCase)) ;
-                BtnPublicar.Enabled = Usuario.Roles.First().Funcionalidades.Any(x => x.Descripcion.Equals(BtnPublicar.Text, StringComparison.CurrentCultureIgnoreCase)) && !condABM;
+                BtnPublicar.Enabled = Usuario.Roles.First().Funcionalidades.Any(x => x.Descripcion.Equals(BtnPublicar.Text, StringComparison.CurrentCultureIgnoreCase));
                 BtnCalificar.Enabled = Usuario.Roles.First().Funcionalidades.Any(x => x.Descripcion.Equals(BtnCalificar.Text, StringComparison.CurrentCultureIgnoreCase));
                 BtnHistorial.Enabled = Usuario.Roles.First().Funcionalidades.Any(x => x.Descripcion.Equals(BtnHistorial.Text, StringComparison.CurrentCultureIgnoreCase));
                 BtnFactura.Enabled = Usuario.Roles.First().Funcionalidades.Any(x => x.Descripcion.Equals(BtnFactura.Text, StringComparison.CurrentCultureIgnoreCase));
