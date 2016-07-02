@@ -269,6 +269,7 @@ namespace MercadoEnvio.Generar_Publicación
                 checkBoxAceptaEnvio.Enabled = false;
                 textBoxPrecio.Enabled = false;
                 textBoxPrecioReserva.Enabled = false;
+                ButtonGenerar.Enabled = false;
             }
             else
             {
@@ -282,6 +283,7 @@ namespace MercadoEnvio.Generar_Publicación
                 checkBoxAceptaEnvio.Enabled = true;
                 textBoxPrecio.Enabled = true;
                 textBoxPrecioReserva.Enabled = true;
+                ButtonGenerar.Enabled = false;
             }
             
         }
