@@ -33,7 +33,7 @@ BEGIN
 	WHERE C.[IdPublicacion] = P.[IdPublicacion]
 	AND C.[IdRubro] = P.[IdRubro]
 	AND P.[VisibilidadActual] = 1
-	AND C.[IdUsuario] = @IdUsuario
+	AND P.[IdUsuario] = @IdUsuario
 	AND C.[IdCompra] NOT IN (SELECT O.[IdCompra] FROM [GD1C2016].[MASTERDBA].[Ofertas] O WHERE O.[IdCompra] IS NOT NULL)
 	UNION ALL
 	SELECT
@@ -53,7 +53,7 @@ BEGIN
 	WHERE O.[IdPublicacion] = P.[IdPublicacion]
 	AND O.[IdRubro] = P.[IdRubro]
 	AND P.[VisibilidadActual] = 1
-	AND O.[IdUsuario] = @IdUsuario
+	AND P.[IdUsuario] = @IdUsuario
 END
 
 GO
