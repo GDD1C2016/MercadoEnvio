@@ -57,7 +57,7 @@ namespace MercadoEnvio.DataManagers
             {
                 var compra = new Compra
                 {
-                    IdCompra = Convert.ToInt32(row["IdCompra"]),
+                    IdCompra = Convert.ToInt32(row["Id"]),
                     IdPublicacion = Convert.ToInt32(row["IdPublicacion"]),
                     Fecha = Convert.ToDateTime(row["Fecha"]),
                     Cantidad = Convert.ToDecimal(row["Cantidad"]),
