@@ -16,9 +16,9 @@ namespace MercadoEnvio.Servicios
             return DataManagers.DataManagerCompras.GetFacturas(idUsuario);
         }
 
-        public static List<Factura> FindFacturas(DateTime filtroFechaDesde, DateTime filtroFechaHasta, decimal filtroImporteDesde, decimal filtroImporteHasta, string filtroDetallesFactura, string filtroDirigidaA)
+        public static List<Factura> FindFacturas(DateTime filtroFechaDesde, DateTime filtroFechaHasta, decimal filtroImporteDesde, decimal filtroImporteHasta, string filtroDetallesFactura, string filtroDirigidaA, int idUsuario)
         {
-            return DataManagers.DataManagerCompras.FindFacturas(filtroFechaDesde,filtroFechaHasta, filtroImporteDesde, filtroImporteHasta, filtroDetallesFactura, filtroDirigidaA);
+            return DataManagers.DataManagerCompras.FindFacturas(filtroFechaDesde,filtroFechaHasta, filtroImporteDesde, filtroImporteHasta, filtroDetallesFactura, filtroDirigidaA, idUsuario);
         }
 
         public static List<string> FindDetallesFactura()

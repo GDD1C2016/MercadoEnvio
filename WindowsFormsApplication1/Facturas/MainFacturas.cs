@@ -178,7 +178,7 @@ namespace MercadoEnvio.Facturas
             string filtroDetallesFactura = ((string)ComboDetalles.SelectedItem).Equals("--Todos--", StringComparison.CurrentCultureIgnoreCase) ? String.Empty : ((string)ComboDetalles.SelectedItem); 
             string filtroDirigidaA = TxtDirigidaA.Text;
 
-            List<Factura> listAux = new List<Factura>(ComprasServices.FindFacturas(filtroFechaDesde,filtroFechaHasta,filtroImporteDesde,filtroImporteHasta,filtroDetallesFactura,filtroDirigidaA));
+            List<Factura> listAux = new List<Factura>(ComprasServices.FindFacturas(filtroFechaDesde,filtroFechaHasta,filtroImporteDesde,filtroImporteHasta,filtroDetallesFactura,filtroDirigidaA, Usuario.IdUsuario));
 
             BindingList<Factura> dataSource = new BindingList<Factura>(listAux);
             BindingSource bs = new BindingSource {DataSource = dataSource};
