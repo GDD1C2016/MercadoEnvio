@@ -28,7 +28,7 @@ namespace MercadoEnvio.DataManagers
 
         private static void ConfigurarFechas(DataBaseHelper db)
         {
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_ConfigurarFechas",new List<SqlParameter>());
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_ConfigurarFechas",new List<SqlParameter>()); //TODO HACER SP
         }
 
         public static void CerrarSubastas()
@@ -47,7 +47,7 @@ namespace MercadoEnvio.DataManagers
 
         private static void CerrarSubastas(DataBaseHelper db)
         {
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_CerrarSubastas", new List<SqlParameter>());
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_CerrarSubastas", new List<SqlParameter>()); //TODO HACER SP
         }
     }
 }
