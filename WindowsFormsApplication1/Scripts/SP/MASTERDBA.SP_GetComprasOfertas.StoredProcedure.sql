@@ -1,6 +1,6 @@
 USE [GD1C2016]
 GO
-/****** Object:  StoredProcedure [MASTERDBA].[SP_GetComprasOfertas]    Script Date: 02/07/2016 12:25:54 a.m. ******/
+/****** Object:  StoredProcedure [MASTERDBA].[SP_GetComprasOfertas]    Script Date: 02/07/2016 12:41:50 a.m. ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -10,7 +10,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER PROCEDURE [MASTERDBA].[SP_GetComprasOfertas] 
+CREATE PROCEDURE [MASTERDBA].[SP_GetComprasOfertas] 
 	@IdUsuario int
 AS
 BEGIN
@@ -24,7 +24,7 @@ BEGIN
 		C.[IdUsuario],
 		P.[TipoDescripcion] AS TipoPublicacion,
 		C.[Descripcion] AS DescripcionPublicacion,
-		C.[NombreUsuario] AS Vendedor,
+		P.[NombreUsuario] AS Vendedor,
 		NULL AS Adjudicada,
 		P.[Precio]
 	FROM
@@ -44,8 +44,8 @@ BEGIN
 		O.[IdUsuario],
 		P.[TipoDescripcion] AS TipoPublicacion,
 		O.[Descripcion] AS DescripcionPublicacion,
-		O.[NombreUsuario] AS Vendedor,
-		NULL AS Adjudicada,
+		P.[NombreUsuario] AS Vendedor,
+		CASE WHEN O.[IdCompra] IS NOT NULL THEN 'Sí' ELSE 'No' END AS Adjudicada,
 		O.[Monto] AS Precio
 	FROM
 		[GD1C2016].[MASTERDBA].[VW_Ofertas] O,

@@ -20,7 +20,8 @@ SELECT
 	O.[Fecha],
 	O.[Monto],
 	O.[IdUsuario],
-	COALESCE(U.[Nombre] + ' ' + U.[Apellido], U.[RazonSocial]) AS NombreUsuario
+	COALESCE(U.[Nombre] + ' ' + U.[Apellido], U.[RazonSocial]) AS NombreUsuario,
+	O.[IdCompra]
 FROM
 	[GD1C2016].[MASTERDBA].[Ofertas] O,
 	[GD1C2016].[MASTERDBA].[Publicaciones] P,
