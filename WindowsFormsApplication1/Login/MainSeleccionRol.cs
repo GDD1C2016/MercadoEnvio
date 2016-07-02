@@ -33,7 +33,7 @@ namespace MercadoEnvio.Login
 
             Usuario.RolActivo = rolSeleccionado;
             ActualizacionServices.ConfigurarFechas();
-            ActualizacionServices.CerrarSubastas();
+            ActualizacionServices.CerrarPublicaciones();
             var menuDialog = new MainMenu {Usuario = Usuario};
 
             menuDialog.ShowDialog();

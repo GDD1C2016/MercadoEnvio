@@ -325,6 +325,7 @@
   <ItemGroup>
     <Content Include="Scripts\MASTERDBA-Drop.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_BloqUser.StoredProcedure.sql" />
+    <Content Include="Scripts\SP\MASTERDBA.SP_CerrarPublicaciones.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_DeleteRol.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_DeleteRolFuncionalidad.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_DeleteUsuario.StoredProcedure.sql" />
@@ -385,6 +386,7 @@
     <Content Include="Scripts\SP\MASTERDBA.SP_UpdatePublicacion.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_UpdateRol.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_UpdateVisibilidad.StoredProcedure.sql" />
+    <Content Include="Scripts\SP\MASTERDBA.TR_InsertCompraSubasta.Trigger.sql" />
     <Content Include="Scripts\SP\MASTERDBA.TR_InsertFacturaCompra.Trigger.sql" />
     <Content Include="Scripts\SP\MASTERDBA.VW_Calificaciones.View.sql" />
     <Content Include="Scripts\SP\MASTERDBA.VW_Compras.View.sql" />
@@ -392,8 +394,8 @@
     <Content Include="Scripts\SP\MASTERDBA.VW_Publicaciones.View.sql" />
     <Content Include="Scripts\SP\MASTERDBA.VW_Usuarios.View.sql" />
     <Content Include="Scripts\SP\Script.sql" />
-    <Content Include="Scripts\SP\SP_ConfigurarFechas.sql" />
-    <Content Include="Scripts\SP\VW_Ofertas.sql" />
+    <Content Include="Scripts\SP\MASTERDBA.SP_ConfigurarFechas.StoredProcedure.sql" />
+    <Content Include="Scripts\SP\MASTERDBA.VW_Ofertas.View.sql" />
     <None Include="Resources\fastreverse.JPG" />
     <None Include="Resources\Back.jpg" />
     <None Include="Resources\Forward.jpg" />

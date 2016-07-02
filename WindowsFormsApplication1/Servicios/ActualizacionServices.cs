@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace MercadoEnvio.Servicios
+﻿namespace MercadoEnvio.Servicios
 {
     public class ActualizacionServices
     {
@@ -13,9 +7,9 @@ namespace MercadoEnvio.Servicios
             DataManagers.DataManagerActualizacion.ConfigurarFechas();
         }
 
-        public static void CerrarSubastas()
+        public static void CerrarPublicaciones()
         {
-            DataManagers.DataManagerActualizacion.CerrarSubastas();
+            DataManagers.DataManagerActualizacion.CerrarPublicaciones();
         }
     }
 }

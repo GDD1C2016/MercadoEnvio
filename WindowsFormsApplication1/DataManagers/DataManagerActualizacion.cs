@@ -33,7 +33,7 @@ namespace MercadoEnvio.DataManagers
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_ConfigurarFechas",parameters);
         }
 
-        public static void CerrarSubastas()
+        public static void CerrarPublicaciones()
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
@@ -41,20 +41,20 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
-                CerrarSubastas(db);
+                CerrarPublicaciones(db);
 
                 db.EndConnection();
             }
         }
 
-        private static void CerrarSubastas(DataBaseHelper db)
+        private static void CerrarPublicaciones(DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
             SqlParameter fechaParameter = new SqlParameter("@Fecha", SqlDbType.DateTime);
             fechaParameter.Value = new FechaHelper().GetSystemDate();
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_CerrarSubastas", parameters);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_CerrarPublicaciones", parameters);
         }
     }
 }

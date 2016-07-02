@@ -121,7 +121,6 @@ namespace MercadoEnvio.ComprarOfertar
                     if (PublicacionSeleccionada.PrecioReserva == Convert.ToDecimal(TxtOfertar.Text))
                     {
                         numero = PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, string.Empty, false);
-                        PublicacionesServices.CerrarSubasta(PublicacionSeleccionada, UsuarioActivo); //TODO
                         MessageBox.Show(Resources.NroCompraPrecioReserva + numero.ToString(CultureInfo.CurrentCulture), Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         DialogResult = DialogResult.OK;
                     }
