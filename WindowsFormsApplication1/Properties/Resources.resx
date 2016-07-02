@@ -547,4 +547,10 @@
   <data name="StockInvalido" xml:space="preserve">
     <value>El Stock debe ser mayor a 0</value>
   </data>
+  <data name="ErrorFechaInicio" xml:space="preserve">
+    <value>La Fecha de Inicio no puede ser menor a la del sistema.</value>
+  </data>
+  <data name="ErrorFechaVencimiento" xml:space="preserve">
+    <value>La Fecha de Vencimiento no puede ser menor a la del sistema.</value>
+  </data>
 </root>
