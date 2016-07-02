@@ -35,7 +35,7 @@ namespace MercadoEnvio.DataManagers
 
             parameters.Add(idUsuarioParameter);
             
-            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetComprasPendientesCalificacion", parameters);
+            DataTable res = db.GetDataAsTable("MASTERDBA.SP_GetComprasOfertas", parameters); //TODO HACER SP
             List<Compra> compras = new List<Compra>();
             foreach (DataRow row in res.Rows)
             {
