@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Configuration;
+using System.Data;
 using System.Data.SqlClient;
 using MercadoEnvio.Helpers;
 
@@ -23,7 +24,13 @@ namespace MercadoEnvio.DataManagers
 
         private static void ConfigurarFechas(DataBaseHelper db)
         {
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_ConfigurarFechas",new List<SqlParameter>());
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter fechaParameter = new SqlParameter("@Fecha", SqlDbType.DateTime);
+            fechaParameter.Value = new FechaHelper().GetSystemDate();
+
+            parameters.Add(fechaParameter);
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_ConfigurarFechas",parameters);
         }
 
         public static void CerrarSubastas()
@@ -42,7 +49,12 @@ namespace MercadoEnvio.DataManagers
 
         private static void CerrarSubastas(DataBaseHelper db)
         {
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_CerrarSubastas", new List<SqlParameter>());
+            List<SqlParameter> parameters = new List<SqlParameter>();
+
+            SqlParameter fechaParameter = new SqlParameter("@Fecha", SqlDbType.DateTime);
+            fechaParameter.Value = new FechaHelper().GetSystemDate();
+
+            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_CerrarSubastas", parameters);
         }
     }
 }
