@@ -63,6 +63,14 @@ namespace MercadoEnvio.Generar_Publicación
 
             InicializarPantalla(publicacion);
             ReordenarPantallaDeAcuerdoAEstado(publicacion);
+
+            #region habilitacionGuardar
+            List<Rol> roles = new List<Rol>(RolesServices.GetAllData());
+            Rol rolAdmin = roles.Find(x => x.Descripcion.Equals(Resources.Administrativo, StringComparison.CurrentCultureIgnoreCase));
+
+            bool condGuardar = Usuario.Roles.Any(x => x.IdRol == rolAdmin.IdRol);
+            BtnGuardar.Enabled = !condGuardar;
+            #endregion
         }
 
         private void ComboTipoPublicacion_SelectionChangeCommitted(object sender, EventArgs e)
