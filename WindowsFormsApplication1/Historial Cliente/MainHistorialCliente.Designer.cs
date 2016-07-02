@@ -85,7 +85,7 @@
             // LabelFaltantesTxt
             // 
             this.LabelFaltantesTxt.AutoSize = true;
-            this.LabelFaltantesTxt.Location = new System.Drawing.Point(472, 28);
+            this.LabelFaltantesTxt.Location = new System.Drawing.Point(569, 28);
             this.LabelFaltantesTxt.Name = "LabelFaltantesTxt";
             this.LabelFaltantesTxt.Size = new System.Drawing.Size(0, 13);
             this.LabelFaltantesTxt.TabIndex = 5;
@@ -93,11 +93,11 @@
             // LabelFaltantes
             // 
             this.LabelFaltantes.AutoSize = true;
-            this.LabelFaltantes.Location = new System.Drawing.Point(348, 28);
+            this.LabelFaltantes.Location = new System.Drawing.Point(364, 28);
             this.LabelFaltantes.Name = "LabelFaltantes";
-            this.LabelFaltantes.Size = new System.Drawing.Size(118, 13);
+            this.LabelFaltantes.Size = new System.Drawing.Size(199, 13);
             this.LabelFaltantes.TabIndex = 4;
-            this.LabelFaltantes.Text = "Calificaciones Faltantes";
+            this.LabelFaltantes.Text = "Publicaciones pendientes de calificación";
             // 
             // LabelReputacionTxt
             // 
@@ -164,7 +164,7 @@
             this.toolStripPaging.Location = new System.Drawing.Point(15, 0);
             this.toolStripPaging.Name = "toolStripPaging";
             this.toolStripPaging.ShowItemToolTips = false;
-            this.toolStripPaging.Size = new System.Drawing.Size(241, 25);
+            this.toolStripPaging.Size = new System.Drawing.Size(210, 25);
             this.toolStripPaging.TabIndex = 0;
             this.toolStripPaging.Text = "toolStrip1";
             // 
