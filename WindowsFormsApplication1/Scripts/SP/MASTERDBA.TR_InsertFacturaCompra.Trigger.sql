@@ -10,7 +10,7 @@ GO
 -- Create date: <Create Date,,>
 -- Description:	<Description,,>
 -- =============================================
-ALTER TRIGGER [MASTERDBA].[TR_InsertFacturaCompra] 
+CREATE TRIGGER [MASTERDBA].[TR_InsertFacturaCompra] 
 ON [MASTERDBA].[Compras] AFTER INSERT
 AS
 BEGIN
