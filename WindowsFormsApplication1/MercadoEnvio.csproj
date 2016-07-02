@@ -340,6 +340,7 @@
     <Content Include="Scripts\SP\MASTERDBA.SP_GetCantidadCalificacionesDadas.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetClienteById.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetClienteByTipoDocNroDoc.StoredProcedure.sql" />
+    <Content Include="Scripts\SP\MASTERDBA.SP_GetComprasOfertas.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetComprasPendientesCalificacion.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetEmpresaByCUIT.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_GetEmpresaById.StoredProcedure.sql" />
