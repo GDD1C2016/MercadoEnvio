@@ -383,6 +383,7 @@
     <Content Include="Scripts\SP\MASTERDBA.SP_UpdatePublicacion.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_UpdateRol.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_UpdateVisibilidad.StoredProcedure.sql" />
+    <Content Include="Scripts\SP\MASTERDBA.TR_InsertFacturaCompra.Trigger.sql" />
     <Content Include="Scripts\SP\MASTERDBA.VW_Calificaciones.View.sql" />
     <Content Include="Scripts\SP\MASTERDBA.VW_Compras.View.sql" />
     <Content Include="Scripts\SP\MASTERDBA.VW_Facturas.View.sql" />
