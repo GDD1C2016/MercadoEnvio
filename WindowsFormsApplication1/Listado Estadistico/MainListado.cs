@@ -39,10 +39,10 @@ namespace MercadoEnvio.Listado_Estadistico
 
             #region cargarComboVisibilidades
             LabelRubro.Visible = true;
-            LabelRubro.Text = "Visibilidad";
+            LabelRubro.Text = Resources.Visibilidad;
             ComboRubro.Visible = true;
             
-            Visibilidad visibilidadTodos = new Visibilidad(){IdVisibilidad = 0, Descripcion = "--Todos--"};
+            Visibilidad visibilidadTodos = new Visibilidad{ IdVisibilidad = 0, Descripcion = "--Todos--" };
             List<Visibilidad> visibilidades = new List<Visibilidad>();
             visibilidades.Add(visibilidadTodos);
 
@@ -74,7 +74,7 @@ namespace MercadoEnvio.Listado_Estadistico
                 {
                     var listadoDialog = new ListadoNoVendidos
                     {
-                        Trimestre = (int) ComboTrimestres.SelectedItem,
+                        Trimestre = (int)ComboTrimestres.SelectedItem,
                         Anio = Convert.ToInt32(TxtAnio.Text),
                         IdVisibilidad = ((Visibilidad)ComboRubro.SelectedItem).IdVisibilidad
                     };
@@ -84,9 +84,9 @@ namespace MercadoEnvio.Listado_Estadistico
                 {
                     var listadoDialog = new ListadoComprados
                     {
-                        Trimestre = (int) ComboTrimestres.SelectedItem,
+                        Trimestre = (int)ComboTrimestres.SelectedItem,
                         Anio = Convert.ToInt32(TxtAnio.Text),
-                        Rubro = (Rubro) ComboRubro.SelectedItem
+                        Rubro = (Rubro)ComboRubro.SelectedItem
                     };
                     listadoDialog.ShowDialog();
                 }
@@ -94,7 +94,7 @@ namespace MercadoEnvio.Listado_Estadistico
                 {
                     var listadoDialog = new ListadoFacturas
                     {
-                        Trimestre = (int) ComboTrimestres.SelectedItem,
+                        Trimestre = (int)ComboTrimestres.SelectedItem,
                         Anio = Convert.ToInt32(TxtAnio.Text)
                     };
                     listadoDialog.ShowDialog();
@@ -103,7 +103,7 @@ namespace MercadoEnvio.Listado_Estadistico
                 {
                     var listadoDialog = new ListadoMontos
                     {
-                        Trimestre = (int) ComboTrimestres.SelectedItem,
+                        Trimestre = (int)ComboTrimestres.SelectedItem,
                         Anio = Convert.ToInt32(TxtAnio.Text)
                     };
                     listadoDialog.ShowDialog();
@@ -135,7 +135,7 @@ namespace MercadoEnvio.Listado_Estadistico
 
             if (tipoSeleccionado == null) return;
             
-            if (tipoSeleccionado.Equals(Resources.TipoListadoClientesMasProductos,StringComparison.CurrentCultureIgnoreCase))
+            if (tipoSeleccionado.Equals(Resources.TipoListadoClientesMasProductos, StringComparison.CurrentCultureIgnoreCase))
             {
                 LabelRubro.Visible = true;
                 ComboRubro.Visible = true;
@@ -158,7 +158,7 @@ namespace MercadoEnvio.Listado_Estadistico
                 ComboRubro.Visible = false;
             }
 
-            if (tipoSeleccionado.Equals(Resources.TipoListadoVendedoresProductosNoVendidos,StringComparison.CurrentCultureIgnoreCase))
+            if (tipoSeleccionado.Equals(Resources.TipoListadoVendedoresProductosNoVendidos, StringComparison.CurrentCultureIgnoreCase))
             {
                 LabelRubro.Visible = true;
                 LabelRubro.Text = Resources.Visibilidad;

@@ -41,9 +41,9 @@ namespace MercadoEnvio.Servicios
             DataManagers.DataManagerPublicaciones.UpdatePublicacion(idPublicacion, descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idEstado, idTipo, envio, idVisibilidad);
         }
 
-        public static void InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, bool envio, int idVisibilidad)
+        public static int InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, bool envio, int idVisibilidad)
         {
-            DataManagers.DataManagerPublicaciones.InsertPublicacion(descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo, envio, idVisibilidad);
+            return DataManagers.DataManagerPublicaciones.InsertPublicacion(descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo, envio, idVisibilidad);
         }
     }
 }

@@ -200,10 +200,30 @@ namespace MercadoEnvio.Generar_Publicación
             else
             {
                 if (Convert.ToInt32(labelCodPublicacion.Text) != 0)
-                    PublicacionesServices.UpdatePublicacion(labelCodPublicacion.Text, RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked, ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
+                {
+                    PublicacionesServices.UpdatePublicacion(labelCodPublicacion.Text, RichTextBoxDescripcion.Text,
+                        textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value,
+                        textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro,
+                        ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado,
+                        ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked,
+                        ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
+                    MessageBox.Show(Resources.PublicacionActualizada, Resources.OperacionExitosa, MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                }
                 else
-                    PublicacionesServices.InsertPublicacion(RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked, ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
-                Close();
+                {
+                    var IdPublicacion = PublicacionesServices.InsertPublicacion(RichTextBoxDescripcion.Text,
+                        textBoxStock.Text,
+                        DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text,
+                        textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario,
+                        ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado,
+                        ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked,
+                        ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
+                    MessageBox.Show(Resources.NroPublicacion + IdPublicacion, Resources.OperacionExitosa,
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Information);
+                    Close();
+                }
             }
         }
 
@@ -228,9 +248,9 @@ namespace MercadoEnvio.Generar_Publicación
             if (tipo.Descripcion.Equals(Resources.CompraInmediata, StringComparison.CurrentCultureIgnoreCase))
                 if (string.IsNullOrEmpty(textBoxStock.Text) || Convert.ToInt32(textBoxStock.Text) <= 0)
                     errors.Add(Resources.StockInvalido);
-            else
-                if (string.IsNullOrEmpty(textBoxPrecioReserva.Text) || Convert.ToInt32(textBoxPrecioReserva.Text) <= 0)
-                    errors.Add(Resources.PrecioReservaInvalido);
+                else
+                    if (string.IsNullOrEmpty(textBoxPrecioReserva.Text) || Convert.ToInt32(textBoxPrecioReserva.Text) <= 0)
+                        errors.Add(Resources.PrecioReservaInvalido);
 
             if (Usuario.Roles.Exists(x => x.Descripcion.Equals(Resources.Empresa, StringComparison.CurrentCultureIgnoreCase)))
                 if (!((Rubro)ComboRubro.SelectedItem).DescripcionLarga.Equals(Resources.Electronicos, StringComparison.CurrentCultureIgnoreCase))

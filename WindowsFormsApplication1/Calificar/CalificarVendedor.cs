@@ -32,10 +32,12 @@ namespace MercadoEnvio.Calificar
 
         private void BtnAceptar_Click(object sender, EventArgs e)
         {
-            Calificacion calificacion = new Calificacion();
-            calificacion.CantEstrellas = ((int) ComboEstrellas.SelectedItem);
-            calificacion.Observaciones = RichTextBoxObservaciones.Text;
-            calificacion.IdCompra = CompraSeleccionada.IdCompra;
+            Calificacion calificacion = new Calificacion
+            {
+                CantEstrellas = (int)ComboEstrellas.SelectedItem,
+                Observaciones = RichTextBoxObservaciones.Text,
+                IdCompra = CompraSeleccionada.IdCompra
+            };
 
             CalificacionesServices.InsertNewCalificacion(calificacion);
             DialogResult = DialogResult.OK;

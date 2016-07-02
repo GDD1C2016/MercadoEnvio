@@ -46,7 +46,7 @@ namespace MercadoEnvio.ABM_Rubro
             string filtroDescripcionLarga = TxtFiltroDescripcionLarga.Text;
 
             BindingList<Rubro> dataSource = new BindingList<Rubro>(RubrosServices.FindRubros(filtroDescripcionCorta,filtroDescripcionLarga));
-            BindingSource bs = new BindingSource {DataSource = dataSource};
+            BindingSource bs = new BindingSource { DataSource = dataSource };
 
             DgRubros.DataSource = bs;
         }

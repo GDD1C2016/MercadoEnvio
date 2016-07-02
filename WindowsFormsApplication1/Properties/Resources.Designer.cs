@@ -1064,11 +1064,29 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Se ha generado la compra N°.
+        ///   Looks up a localized string similar to Se ha generado la compra N° .
         /// </summary>
-        internal static string NroDeCompra {
+        internal static string NroCompra {
             get {
-                return ResourceManager.GetString("NroDeCompra", resourceCulture);
+                return ResourceManager.GetString("NroCompra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Se ha generado la oferta N°.
+        /// </summary>
+        internal static string NroOferta {
+            get {
+                return ResourceManager.GetString("NroOferta", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Se ha generado la publicación N° .
+        /// </summary>
+        internal static string NroPublicacion {
+            get {
+                return ResourceManager.GetString("NroPublicacion", resourceCulture);
             }
         }
         
@@ -1091,7 +1109,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Operacion Exitosa.
+        ///   Looks up a localized string similar to Operación Exitosa.
         /// </summary>
         internal static string OperacionExitosa {
             get {
@@ -1150,6 +1168,15 @@ namespace MercadoEnvio.Properties {
         internal static string PrecioReservaInvalido {
             get {
                 return ResourceManager.GetString("PrecioReservaInvalido", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to La publicación ha sido actualiza.
+        /// </summary>
+        internal static string PublicacionActualizada {
+            get {
+                return ResourceManager.GetString("PublicacionActualizada", resourceCulture);
             }
         }
         

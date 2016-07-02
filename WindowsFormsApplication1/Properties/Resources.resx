@@ -368,10 +368,10 @@
     <value>El autor de una publicación no puede Comprar/Ofertar sobre la misma.</value>
   </data>
   <data name="OperacionExitosa" xml:space="preserve">
-    <value>Operacion Exitosa</value>
+    <value>Operación Exitosa</value>
   </data>
-  <data name="NroDeCompra" xml:space="preserve">
-    <value>Se ha generado la compra N°</value>
+  <data name="NroCompra" xml:space="preserve">
+    <value>Se ha generado la compra N° </value>
   </data>
   <data name="CUIL" xml:space="preserve">
     <value>CUIL</value>
@@ -567,5 +567,14 @@
   </data>
   <data name="ErrorPublicacionEmpresa" xml:space="preserve">
     <value>Las empresas sólo pueden publicar productos del rubro "Componentes Electrónicos"</value>
+  </data>
+  <data name="NroPublicacion" xml:space="preserve">
+    <value>Se ha generado la publicación N° </value>
+  </data>
+  <data name="PublicacionActualizada" xml:space="preserve">
+    <value>La publicación ha sido actualiza</value>
+  </data>
+  <data name="NroOferta" xml:space="preserve">
+    <value>Se ha generado la oferta N°</value>
   </data>
 </root>

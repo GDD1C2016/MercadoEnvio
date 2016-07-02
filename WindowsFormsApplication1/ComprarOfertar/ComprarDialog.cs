@@ -25,8 +25,7 @@ namespace MercadoEnvio.ComprarOfertar
 
             #region armadoDatosVendedor
             
-            Cliente cliente = new Cliente();
-            cliente = UsuariosService.GetClienteById(PublicacionSeleccionada.IdUsuario);
+            Cliente cliente = UsuariosService.GetClienteById(PublicacionSeleccionada.IdUsuario);
 
             LabelNombreTxt.Text = cliente.Nombre;
             LabelEmailTxt.Text = cliente.Email;
@@ -114,13 +113,21 @@ namespace MercadoEnvio.ComprarOfertar
             }
             else
             {
-                var numero = PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.Subasta,
-                    StringComparison.CurrentCultureIgnoreCase)
-                    ? PublicacionesServices.Ofertar(PublicacionSeleccionada, UsuarioActivo, TxtOfertar.Text)
-                    : PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, TxtCantidad.Text,
-                        CheckBoxEnvio.Checked);
-                MessageBox.Show(Resources.NroDeCompra + numero, Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                DialogResult = DialogResult.OK;
+                var numero = String.Empty;
+
+                if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.Subasta,
+                    StringComparison.CurrentCultureIgnoreCase))
+                {
+                    PublicacionesServices.Ofertar(PublicacionSeleccionada, UsuarioActivo, TxtOfertar.Text);
+                    MessageBox.Show(Resources.NroOferta + numero, Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    DialogResult = DialogResult.OK;
+                }
+                else
+                {
+                    PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, TxtCantidad.Text, CheckBoxEnvio.Checked);
+                    MessageBox.Show(Resources.NroCompra + numero, Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    DialogResult = DialogResult.OK;                    
+                }
             }
         }
 

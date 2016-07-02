@@ -395,7 +395,7 @@ namespace MercadoEnvio.DataManagers
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_UpdatePublicacion", parameters);
         }
 
-        public static void InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, bool envio, int idVisibilidad)
+        public static int InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, bool envio, int idVisibilidad)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
@@ -403,13 +403,15 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
-                InsertPublicacion(descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo, envio, idVisibilidad, new FechaHelper().GetSystemDate(), db);
+                int idPublicacion = InsertPublicacion(descripcion, stock, fechaInicio, fechaVencimiento, precio, precioReserva, idRubro, idUsuario, idEstado, idTipo, envio, idVisibilidad, new FechaHelper().GetSystemDate(), db);
 
                 db.EndConnection();
+
+                return idPublicacion;
             }
         }
 
-        private static void InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, bool envio, int idVisibilidad, DateTime fechaActual, DataBaseHelper db)
+        private static int InsertPublicacion(string descripcion, string stock, DateTime fechaInicio, DateTime fechaVencimiento, string precio, string precioReserva, int idRubro, int idUsuario, int idEstado, int idTipo, bool envio, int idVisibilidad, DateTime fechaActual, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
@@ -466,7 +468,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idVisibilidadParameter);
             parameters.Add(fechaActualParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_InsertPublicacion", parameters);
+            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertPublicacion", parameters);
         }
     }
 }
