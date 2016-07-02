@@ -204,7 +204,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(envioParameter);
             parameters.Add(idUsuarioParameter);
 
-            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertCompra", parameters); // TODO Insertar factura
+            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertCompra", parameters);
         }
 
         public static List<EstadoPublicacion> GetEstados(string descripcionEstado)
