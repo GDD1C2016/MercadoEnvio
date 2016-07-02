@@ -98,6 +98,17 @@ namespace MercadoEnvio.Generar_Publicación
             const string fmt = "000000000000000000";
             const string espacio = " ";
 
+            ComboTipoPublicacion.Enabled = true;
+            RichTextBoxDescripcion.Enabled = true;
+            ComboRubro.Enabled = true;
+            ComboVisibilidad.Enabled = true;
+            DatePickerFechaInicio.Enabled = true;
+            DatePickerFechaVencimiento.Enabled = true;
+            textBoxStock.Enabled = true;
+            checkBoxAceptaEnvio.Enabled = true;
+            textBoxPrecio.Enabled = true;
+            textBoxPrecioReserva.Enabled = true;
+
             #region armadoComboEstado
             List<EstadoPublicacion> estados = new List<EstadoPublicacion>(PublicacionesServices.GetEstados(publicacion.EstadoPublicacion.Descripcion));
             estados = estados.OrderBy(x => x.Descripcion).ToList();
@@ -192,7 +203,7 @@ namespace MercadoEnvio.Generar_Publicación
                     PublicacionesServices.UpdatePublicacion(labelCodPublicacion.Text, RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked, ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
                 else
                     PublicacionesServices.InsertPublicacion(RichTextBoxDescripcion.Text, textBoxStock.Text, DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text, textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario, ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado, ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked, ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
-                this.Close();
+                Close();
             }
         }
 
@@ -208,22 +219,22 @@ namespace MercadoEnvio.Generar_Publicación
             if (string.IsNullOrEmpty(textBoxPrecio.Text) || Convert.ToDecimal(textBoxPrecio.Text) <= 0)
                 errors.Add(Resources.PrecioInvalido);
 
-            if(DatePickerFechaInicio.Value < helper.GetSystemDate())
+            if (DatePickerFechaInicio.Value < helper.GetSystemDate())
                 errors.Add(Resources.ErrorFechaInicio);
 
-            if(DatePickerFechaVencimiento.Value < helper.GetSystemDate())
+            if (DatePickerFechaVencimiento.Value < helper.GetSystemDate())
                 errors.Add(Resources.ErrorFechaVencimiento);
 
             if (tipo.Descripcion.Equals(Resources.CompraInmediata, StringComparison.CurrentCultureIgnoreCase))
-            {
                 if (string.IsNullOrEmpty(textBoxStock.Text) || Convert.ToInt32(textBoxStock.Text) <= 0)
                     errors.Add(Resources.StockInvalido);
-            }
             else
-            {
                 if (string.IsNullOrEmpty(textBoxPrecioReserva.Text) || Convert.ToInt32(textBoxPrecioReserva.Text) <= 0)
                     errors.Add(Resources.PrecioReservaInvalido);
-            }
+
+            if (Usuario.Roles.Exists(x => x.Descripcion.Equals(Resources.Empresa, StringComparison.CurrentCultureIgnoreCase)))
+                if (!((Rubro)ComboRubro.SelectedItem).DescripcionLarga.Equals(Resources.Electronicos, StringComparison.CurrentCultureIgnoreCase))
+                    errors.Add(Resources.ErrorPublicacionEmpresa);
 
             return errors;
         }
@@ -269,7 +280,6 @@ namespace MercadoEnvio.Generar_Publicación
                 checkBoxAceptaEnvio.Enabled = false;
                 textBoxPrecio.Enabled = false;
                 textBoxPrecioReserva.Enabled = false;
-                ButtonGenerar.Enabled = false;
             }
             else
             {
@@ -283,9 +293,7 @@ namespace MercadoEnvio.Generar_Publicación
                 checkBoxAceptaEnvio.Enabled = true;
                 textBoxPrecio.Enabled = true;
                 textBoxPrecioReserva.Enabled = true;
-                ButtonGenerar.Enabled = false;
             }
-            
         }
     }
 }

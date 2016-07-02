@@ -562,4 +562,10 @@
   <data name="MontoOferta" xml:space="preserve">
     <value>Monto/Oferta</value>
   </data>
+  <data name="Electronicos" xml:space="preserve">
+    <value>Componentes Electrónicos</value>
+  </data>
+  <data name="ErrorPublicacionEmpresa" xml:space="preserve">
+    <value>Las empresas sólo pueden publicar productos del rubro "Componentes Electrónicos"</value>
+  </data>
 </root>
