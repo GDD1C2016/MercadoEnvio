@@ -389,6 +389,7 @@
     <Content Include="Scripts\SP\MASTERDBA.VW_Publicaciones.View.sql" />
     <Content Include="Scripts\SP\MASTERDBA.VW_Usuarios.View.sql" />
     <Content Include="Scripts\SP\Script.sql" />
+    <Content Include="Scripts\SP\VW_Ofertas.sql" />
     <None Include="Resources\fastreverse.JPG" />
     <None Include="Resources\Back.jpg" />
     <None Include="Resources\Forward.jpg" />
