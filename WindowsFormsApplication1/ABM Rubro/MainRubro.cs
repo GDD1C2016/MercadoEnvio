@@ -11,7 +11,6 @@ namespace MercadoEnvio.ABM_Rubro
     public partial class MainRubro : Form
     {
         public Usuario Usuario { get; set; }
-
         public MainPublicacion FormPublicacion { get; set; }
         
         public MainRubro()

@@ -61,6 +61,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adjudicada.
+        /// </summary>
+        internal static string Adjudicada {
+            get {
+                return ResourceManager.GetString("Adjudicada", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to admin.
         /// </summary>
         internal static string Admin {
@@ -947,7 +956,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IdCompra/IdOferta.
+        ///   Looks up a localized string similar to ID Compra/ID Oferta.
         /// </summary>
         internal static string IdCompraIdOferta {
             get {
@@ -956,7 +965,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IdFactura.
+        ///   Looks up a localized string similar to Código Factura.
         /// </summary>
         internal static string IdFactura {
             get {
@@ -965,11 +974,20 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to IdPublicacion.
+        ///   Looks up a localized string similar to Código Publicacion.
         /// </summary>
         internal static string IdPublicacion {
             get {
                 return ResourceManager.GetString("IdPublicacion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ID Usuario.
+        /// </summary>
+        internal static string IdUsuario {
+            get {
+                return ResourceManager.GetString("IdUsuario", resourceCulture);
             }
         }
         
@@ -1037,6 +1055,15 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Monto Facturado.
+        /// </summary>
+        internal static string MontoFacturado {
+            get {
+                return ResourceManager.GetString("MontoFacturado", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Monto/Oferta.
         /// </summary>
         internal static string MontoOferta {
@@ -1064,11 +1091,29 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Nombre del usuario.
+        /// </summary>
+        internal static string NombreUsuario {
+            get {
+                return ResourceManager.GetString("NombreUsuario", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Se ha generado la compra N° .
         /// </summary>
         internal static string NroCompra {
             get {
                 return ResourceManager.GetString("NroCompra", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ha reservado la compra del producto./nSe ha generado la compra N°.
+        /// </summary>
+        internal static string NroCompraPrecioReserva {
+            get {
+                return ResourceManager.GetString("NroCompraPrecioReserva", resourceCulture);
             }
         }
         
@@ -1172,7 +1217,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to La publicación ha sido actualiza.
+        ///   Looks up a localized string similar to La publicación ha sido actualizada exitosamente..
         /// </summary>
         internal static string PublicacionActualizada {
             get {
@@ -1262,7 +1307,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El Stock debe ser mayor a 0.
+        ///   Looks up a localized string similar to El stock debe ser mayor a 0..
         /// </summary>
         internal static string StockInvalido {
             get {

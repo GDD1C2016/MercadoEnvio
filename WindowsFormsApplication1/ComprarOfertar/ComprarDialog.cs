@@ -29,17 +29,16 @@ namespace MercadoEnvio.ComprarOfertar
 
             LabelNombreTxt.Text = cliente.Nombre;
             LabelEmailTxt.Text = cliente.Email;
-            LabelReputacionTxt.Text = Math.Round(cliente.Reputacion, 2, MidpointRounding.AwayFromZero).ToString();
+            LabelReputacionTxt.Text = Math.Round(cliente.Reputacion, 2, MidpointRounding.AwayFromZero).ToString(CultureInfo.CurrentCulture);
             LabelTelefonoTxt.Text = cliente.Telefono;
 
             if (cliente.IdUsuario == 0)
             {
-                Empresa empresa = new Empresa();
-                empresa = UsuariosService.GetEmpresaById(PublicacionSeleccionada.IdUsuario);
+                Empresa empresa = UsuariosService.GetEmpresaById(PublicacionSeleccionada.IdUsuario);
 
                 LabelNombreTxt.Text = empresa.RazonSocial;
                 LabelEmailTxt.Text = empresa.Email;
-                LabelReputacionTxt.Text = Math.Round(empresa.Reputacion, 2, MidpointRounding.AwayFromZero).ToString();
+                LabelReputacionTxt.Text = Math.Round(empresa.Reputacion, 2, MidpointRounding.AwayFromZero).ToString(CultureInfo.CurrentCulture);
                 LabelTelefonoTxt.Text = empresa.Telefono;
             }
 
@@ -113,19 +112,30 @@ namespace MercadoEnvio.ComprarOfertar
             }
             else
             {
-                var numero = String.Empty;
+                int numero;
 
                 if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.Subasta,
                     StringComparison.CurrentCultureIgnoreCase))
                 {
-                    PublicacionesServices.Ofertar(PublicacionSeleccionada, UsuarioActivo, TxtOfertar.Text);
-                    MessageBox.Show(Resources.NroOferta + numero, Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    DialogResult = DialogResult.OK;
+                    numero = PublicacionesServices.Ofertar(PublicacionSeleccionada, UsuarioActivo, TxtOfertar.Text);
+                    if (PublicacionSeleccionada.PrecioReserva == Convert.ToDecimal(TxtOfertar.Text))
+                    {
+                        numero = PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, string.Empty, false);
+                        PublicacionesServices.CerrarSubasta(PublicacionSeleccionada, UsuarioActivo); //TODO
+                        MessageBox.Show(Resources.NroCompraPrecioReserva + numero.ToString(CultureInfo.CurrentCulture), Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        MessageBox.Show(Resources.NroOferta + numero.ToString(CultureInfo.CurrentCulture),
+                            Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        DialogResult = DialogResult.OK;
+                    }
                 }
                 else
                 {
-                    PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, TxtCantidad.Text, CheckBoxEnvio.Checked);
-                    MessageBox.Show(Resources.NroCompra + numero, Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    numero = PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, TxtCantidad.Text, CheckBoxEnvio.Checked);
+                    MessageBox.Show(Resources.NroCompra + numero.ToString(CultureInfo.CurrentCulture), Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     DialogResult = DialogResult.OK;                    
                 }
             }

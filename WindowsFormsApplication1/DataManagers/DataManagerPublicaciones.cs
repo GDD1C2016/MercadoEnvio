@@ -160,7 +160,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(montoParameter);
             parameters.Add(idUsuarioParameter);
 
-            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertOferta", parameters); //TODO ACTUALIZAR PRECIO PUBLICACION. CHEQUEAR QUE SI ES PRECIO DE RESERVA, SE CONVIERTA EN COMPRA
+            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertOferta", parameters);
         }
 
         public static int Comprar(Publicacion publicacionSeleccionada, Usuario usuarioActivo, string cantidad, bool envio)
@@ -190,7 +190,7 @@ namespace MercadoEnvio.DataManagers
             fechaParameter.Value = new FechaHelper().GetSystemDate();
 
             SqlParameter cantidadParameter = new SqlParameter("@Cantidad", SqlDbType.Decimal);
-            cantidadParameter.Value = Convert.ToInt32(cantidad);
+            cantidadParameter.Value = string.IsNullOrEmpty(cantidad) ? Convert.ToInt32(cantidad) : 1;
 
             SqlParameter envioParameter = new SqlParameter("@Envio", SqlDbType.Bit);
             envioParameter.Value = envio;

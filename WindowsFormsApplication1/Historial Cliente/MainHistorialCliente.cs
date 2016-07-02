@@ -37,7 +37,7 @@ namespace MercadoEnvio.Historial_Cliente
             DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Fecha", HeaderText = Resources.Fecha, Name = "Fecha" });
             DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "TipoPublicacion", HeaderText = Resources.TipoPublicacion, Name = "TipoPublicacion" });
             DgCompras.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Cantidad", HeaderText = Resources.Cantidad, Name = "Cantidad" });
-            DgCompras.Columns.Add(new DataGridViewTextBoxColumn {DataPropertyName = "Adjudicada", HeaderText = "Adjudicada", Name = "Adjudicada"});
+            DgCompras.Columns.Add(new DataGridViewTextBoxColumn {DataPropertyName = "Adjudicada", HeaderText = Resources.Adjudicada, Name = "Adjudicada"});
             DgCompras.Columns.Add(new DataGridViewTextBoxColumn {DataPropertyName = "Precio", HeaderText = Resources.MontoOferta, Name = "Precio"});
 
             _baselist = FillDataforGrid();
@@ -49,12 +49,10 @@ namespace MercadoEnvio.Historial_Cliente
             #endregion
 
             #region cargaDatosUsuario
-
-            Cliente cliente = new Cliente();
-            cliente = UsuariosService.GetClienteById(Usuario.IdUsuario);
+            Cliente cliente = UsuariosService.GetClienteById(Usuario.IdUsuario);
 
             LabelUsuarioTxt.Text = cliente.UserName;
-            LabelReputacionTxt.Text = Math.Round(cliente.Reputacion,2,MidpointRounding.AwayFromZero).ToString();
+            LabelReputacionTxt.Text = Math.Round(cliente.Reputacion,2,MidpointRounding.AwayFromZero).ToString(CultureInfo.CurrentCulture);
             LabelFaltantesTxt.Text = ComprasServices.GetComprasPendientesDeCalificacion(Usuario.IdUsuario).Count.ToString();
             #endregion
 
@@ -135,7 +133,6 @@ namespace MercadoEnvio.Historial_Cliente
 
             if (_currentPage == _pagesCount)
                 btnForward.Enabled = btnLast.Enabled = false;
-
             else
                 btnForward.Enabled = btnLast.Enabled = true;
         }
@@ -162,7 +159,6 @@ namespace MercadoEnvio.Historial_Cliente
 
             RebindGridForPageChange();
             RefreshPagination();
-
         }
         #endregion
     }

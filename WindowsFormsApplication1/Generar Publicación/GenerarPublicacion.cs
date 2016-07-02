@@ -212,14 +212,14 @@ namespace MercadoEnvio.Generar_Publicación
                 }
                 else
                 {
-                    var IdPublicacion = PublicacionesServices.InsertPublicacion(RichTextBoxDescripcion.Text,
+                    var idPublicacion = PublicacionesServices.InsertPublicacion(RichTextBoxDescripcion.Text,
                         textBoxStock.Text,
                         DatePickerFechaInicio.Value, DatePickerFechaVencimiento.Value, textBoxPrecio.Text,
                         textBoxPrecioReserva.Text, ((Rubro)ComboRubro.SelectedItem).IdRubro, Usuario.IdUsuario,
                         ((EstadoPublicacion)ComboEstado.SelectedItem).IdEstado,
                         ((TipoPublicacion)ComboTipoPublicacion.SelectedItem).IdTipo, checkBoxAceptaEnvio.Checked,
                         ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
-                    MessageBox.Show(Resources.NroPublicacion + IdPublicacion, Resources.OperacionExitosa,
+                    MessageBox.Show(Resources.NroPublicacion + idPublicacion, Resources.OperacionExitosa,
                         MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
                     Close();

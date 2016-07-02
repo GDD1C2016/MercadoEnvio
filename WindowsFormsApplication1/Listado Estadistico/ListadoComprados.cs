@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MercadoEnvio.Entidades;
 using MercadoEnvio.Properties;
@@ -25,7 +19,7 @@ namespace MercadoEnvio.Listado_Estadistico
 
         private void BtnVolver_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void ListadoComprados_Load(object sender, EventArgs e)
@@ -38,10 +32,10 @@ namespace MercadoEnvio.Listado_Estadistico
             bs.DataSource = dataSource;
 
             DgClientes.AutoGenerateColumns = false;
-            DgClientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdUsuario", HeaderText = "IdUsuario", Name = "IdUsuario" });
+            DgClientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "IdUsuario", HeaderText = Resources.IdUsuario, Name = "IdUsuario" });
             DgClientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "NombreUsuario", HeaderText = Resources.Nombre, Name = "NombreUsuario" });
-            DgClientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CantidadProductosComprados", HeaderText = "Cantidad", Name = "Cantidad" });
-            DgClientes.Columns.Add(new DataGridViewTextBoxColumn{DataPropertyName = "RubroDescripcion", HeaderText = "Rubro", Name = "RubroDescripcion"});
+            DgClientes.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "CantidadProductosComprados", HeaderText = Resources.Cantidad, Name = "Cantidad" });
+            DgClientes.Columns.Add(new DataGridViewTextBoxColumn{DataPropertyName = "RubroDescripcion", HeaderText = Resources.Rubro, Name = "RubroDescripcion"});
 
             DgClientes.DataSource = bs;
             #endregion

@@ -479,10 +479,10 @@
     <value>Tipo de Publicación</value>
   </data>
   <data name="IdFactura" xml:space="preserve">
-    <value>IdFactura</value>
+    <value>Código Factura</value>
   </data>
   <data name="IdPublicacion" xml:space="preserve">
-    <value>IdPublicacion</value>
+    <value>Código Publicacion</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>Total</value>
@@ -545,7 +545,7 @@
     <value>El precio de reserva de la subasta debe ser mayor a 0.</value>
   </data>
   <data name="StockInvalido" xml:space="preserve">
-    <value>El Stock debe ser mayor a 0</value>
+    <value>El stock debe ser mayor a 0.</value>
   </data>
   <data name="ErrorFechaInicio" xml:space="preserve">
     <value>La Fecha de Inicio no puede ser menor a la del sistema.</value>
@@ -557,7 +557,7 @@
     <value>Gracias por su visita, ¡lo esperamos de vuelta!</value>
   </data>
   <data name="IdCompraIdOferta" xml:space="preserve">
-    <value>IdCompra/IdOferta</value>
+    <value>ID Compra/ID Oferta</value>
   </data>
   <data name="MontoOferta" xml:space="preserve">
     <value>Monto/Oferta</value>
@@ -572,9 +572,24 @@
     <value>Se ha generado la publicación N° </value>
   </data>
   <data name="PublicacionActualizada" xml:space="preserve">
-    <value>La publicación ha sido actualiza</value>
+    <value>La publicación ha sido actualizada exitosamente.</value>
   </data>
   <data name="NroOferta" xml:space="preserve">
     <value>Se ha generado la oferta N°</value>
+  </data>
+  <data name="Adjudicada" xml:space="preserve">
+    <value>Adjudicada</value>
+  </data>
+  <data name="IdUsuario" xml:space="preserve">
+    <value>ID Usuario</value>
+  </data>
+  <data name="NombreUsuario" xml:space="preserve">
+    <value>Nombre del usuario</value>
+  </data>
+  <data name="MontoFacturado" xml:space="preserve">
+    <value>Monto Facturado</value>
+  </data>
+  <data name="NroCompraPrecioReserva" xml:space="preserve">
+    <value>Ha reservado la compra del producto./nSe ha generado la compra N°</value>
   </data>
 </root>
