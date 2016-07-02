@@ -620,7 +620,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No se ha podido encontrar un borrador para el código de publicación ingresado o el mismo no le pertenece..
+        ///   Looks up a localized string similar to El código ingresado no corresponde a ninguna publicación existente en el sistema o corresponde a una publicación generada por otro usuario..
         /// </summary>
         internal static string ErrorNoExisteCodPublicacion {
             get {
