@@ -553,4 +553,7 @@
   <data name="ErrorFechaVencimiento" xml:space="preserve">
     <value>La Fecha de Vencimiento no puede ser menor a la del sistema.</value>
   </data>
+  <data name="MensajeDespedida" xml:space="preserve">
+    <value>Gracias por su visita, ¡lo esperamos de vuelta!</value>
+  </data>
 </root>

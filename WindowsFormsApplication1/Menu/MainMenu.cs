@@ -123,7 +123,8 @@ namespace MercadoEnvio.Menu
 
         private void BtnCerrar_Click(object sender, EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
+            MessageBox.Show(Resources.MensajeDespedida, Resources.MercadoEnvio, MessageBoxButtons.OK);
+            DialogResult = DialogResult.Cancel;
         }
     }
 }
