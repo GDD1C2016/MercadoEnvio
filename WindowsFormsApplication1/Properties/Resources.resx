@@ -536,7 +536,7 @@
     <value>Borrador</value>
   </data>
   <data name="ErrorNoExisteCodPublicacion" xml:space="preserve">
-    <value>El código ingresado no corresponde a ninguna publicación existente en el sistema o corresponde a una publicación generada por otro usuario.</value>
+    <value>El código ingresado no corresponde a ninguna publicación existente en el sistema o corresponde a una generada por otro usuario.</value>
   </data>
   <data name="PrecioInvalido" xml:space="preserve">
     <value>El precio del producto debe ser mayor a 0.</value>

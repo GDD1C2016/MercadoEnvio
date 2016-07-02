@@ -620,7 +620,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to El código ingresado no corresponde a ninguna publicación existente en el sistema o corresponde a una publicación generada por otro usuario..
+        ///   Looks up a localized string similar to El código ingresado no corresponde a ninguna publicación existente en el sistema o corresponde a una generada por otro usuario..
         /// </summary>
         internal static string ErrorNoExisteCodPublicacion {
             get {
