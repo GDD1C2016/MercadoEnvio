@@ -6,9 +6,9 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 -- =============================================
--- Author:		<Author,,Name>
+-- Author:  <Author,,Name>
 -- Create date: <Create Date,,>
--- Description:	<Description,,>
+-- Description: <Description,,>
 -- =============================================
 CREATE TRIGGER [MASTERDBA].[TR_InsertFacturaCompra] 
 ON [MASTERDBA].[Compras] AFTER INSERT
