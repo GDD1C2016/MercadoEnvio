@@ -468,9 +468,8 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(envioParameter);
             parameters.Add(idVisibilidadParameter);
             parameters.Add(fechaActualParameter);
-            var res = db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertPublicacion", parameters);
 
-            return (int)res;
+            return Convert.ToInt32(db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertPublicacion", parameters));
         }
     }
 }
