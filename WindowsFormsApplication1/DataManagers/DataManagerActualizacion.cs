@@ -54,6 +54,8 @@ namespace MercadoEnvio.DataManagers
             SqlParameter fechaParameter = new SqlParameter("@Fecha", SqlDbType.DateTime);
             fechaParameter.Value = new FechaHelper().GetSystemDate();
 
+            parameters.Add(fechaParameter);
+
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_CerrarPublicaciones", parameters);
         }
     }
