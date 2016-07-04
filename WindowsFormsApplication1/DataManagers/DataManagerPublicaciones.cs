@@ -159,8 +159,10 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(fechaParameter);
             parameters.Add(montoParameter);
             parameters.Add(idUsuarioParameter);
-            var res = db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertOferta", parameters);
-            return (int)(res);
+
+            var resultado = db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertOferta", parameters);
+
+            return Convert.ToInt32(resultado);
         }
 
         public static int Comprar(Publicacion publicacionSeleccionada, Usuario usuarioActivo, string cantidad, bool envio)
@@ -204,8 +206,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(envioParameter);
             parameters.Add(idUsuarioParameter);
 
-            var res = db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertCompra", parameters);
-            return (int) res;
+            return Convert.ToInt32(db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertCompra", parameters));
         }
 
         public static List<EstadoPublicacion> GetEstados(string descripcionEstado)

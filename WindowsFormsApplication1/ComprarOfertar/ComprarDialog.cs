@@ -112,28 +112,26 @@ namespace MercadoEnvio.ComprarOfertar
             }
             else
             {
-                int numero;
-
                 if (PublicacionSeleccionada.TipoPublicacion.Descripcion.Equals(Resources.Subasta,
                     StringComparison.CurrentCultureIgnoreCase))
                 {
-                    numero = PublicacionesServices.Ofertar(PublicacionSeleccionada, UsuarioActivo, TxtOfertar.Text);
+                    int numero = PublicacionesServices.Ofertar(PublicacionSeleccionada, UsuarioActivo, TxtOfertar.Text);
+
                     if (PublicacionSeleccionada.PrecioReserva == Convert.ToDecimal(TxtOfertar.Text))
                     {
-                        //var idCompra = PublicacionesServices.CerrarSubasta(PublicacionSeleccionada, UsuarioActivo);
-                        //MessageBox.Show(Resources.NroCompraPrecioReserva + idCompra.ToString(CultureInfo.CurrentCulture), Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                        DialogResult = DialogResult.OK;
+//                        int idCompra = PublicacionesServices.CerrarSubasta(PublicacionSeleccionada, UsuarioActivo);
+//                        MessageBox.Show(Resources.NroCompraPrecioReserva + idCompra.ToString(CultureInfo.CurrentCulture), Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+//                        DialogResult = DialogResult.OK;
                     }
                     else
                     {
-                        MessageBox.Show(Resources.NroOferta + numero.ToString(CultureInfo.CurrentCulture),
-                            Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        MessageBox.Show(Resources.NroOferta + numero.ToString(CultureInfo.CurrentCulture), Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         DialogResult = DialogResult.OK;
                     }
                 }
                 else
                 {
-                    numero = PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, TxtCantidad.Text, CheckBoxEnvio.Checked);
+                    int numero = PublicacionesServices.Comprar(PublicacionSeleccionada, UsuarioActivo, TxtCantidad.Text, CheckBoxEnvio.Checked);
                     MessageBox.Show(Resources.NroCompra + numero.ToString(CultureInfo.CurrentCulture), Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     DialogResult = DialogResult.OK;                    
                 }
