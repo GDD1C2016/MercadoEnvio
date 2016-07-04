@@ -160,9 +160,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(montoParameter);
             parameters.Add(idUsuarioParameter);
 
-            var resultado = db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertOferta", parameters);
-
-            return Convert.ToInt32(resultado);
+            return Convert.ToInt32(db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertOferta", parameters));
         }
 
         public static int Comprar(Publicacion publicacionSeleccionada, Usuario usuarioActivo, string cantidad, bool envio)
