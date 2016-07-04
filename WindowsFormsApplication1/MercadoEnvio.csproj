@@ -371,9 +371,12 @@
     <Content Include="Scripts\SP\MASTERDBA.SP_InsertCliente.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_InsertCompra.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_InsertEmpresa.StoredProcedure.sql" />
+    <Content Include="Scripts\SP\MASTERDBA.SP_InsertFactura.StoredProcedure.sql" />
+    <Content Include="Scripts\SP\MASTERDBA.SP_InsertFacturaItem.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_InsertNewCalificacion.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_InsertOferta.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_InsertPublicacion.StoredProcedure.sql" />
+    <Content Include="Scripts\SP\MASTERDBA.SP_InsertPublicacionVisibilidad.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_InsertRol.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_InsertRolFuncionalidad.StoredProcedure.sql" />
     <Content Include="Scripts\SP\MASTERDBA.SP_InsertRubro.StoredProcedure.sql" />

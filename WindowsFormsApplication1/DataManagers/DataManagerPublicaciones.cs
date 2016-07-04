@@ -159,6 +159,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(fechaParameter);
             parameters.Add(montoParameter);
             parameters.Add(idUsuarioParameter);
+
             var res = db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertOferta", parameters);
             return (int)(res);
         }
