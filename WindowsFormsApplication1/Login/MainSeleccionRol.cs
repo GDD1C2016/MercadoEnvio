@@ -33,7 +33,12 @@ namespace MercadoEnvio.Login
 
             Usuario.RolActivo = rolSeleccionado;
             ActualizacionServices.ConfigurarFechas();
-            ActualizacionServices.CerrarPublicaciones();
+            List<Publicacion> publicacionesACerrar = new List<Publicacion>(ActualizacionServices.PublicacionesACerrar());
+
+            foreach (var publicacion in publicacionesACerrar)
+            {
+                ActualizacionServices.CerrarPublicacion(publicacion);
+            }
             var menuDialog = new MainMenu {Usuario = Usuario};
 
             menuDialog.ShowDialog();
