@@ -119,9 +119,9 @@ namespace MercadoEnvio.ComprarOfertar
 
                     if (PublicacionSeleccionada.PrecioReserva == Convert.ToDecimal(TxtOfertar.Text))
                     {
-//                        int idCompra = PublicacionesServices.CerrarSubasta(PublicacionSeleccionada, UsuarioActivo);
-//                        MessageBox.Show(Resources.NroCompraPrecioReserva + idCompra.ToString(CultureInfo.CurrentCulture), Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-//                        DialogResult = DialogResult.OK;
+                        int idCompra = ActualizacionServices.CerrarPublicacion(PublicacionSeleccionada.IdPublicacion);
+                        MessageBox.Show(Resources.NroCompraPrecioReserva + idCompra.ToString(CultureInfo.CurrentCulture), Resources.OperacionExitosa, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        DialogResult = DialogResult.OK;
                     }
                     else
                     {

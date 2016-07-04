@@ -10,9 +10,9 @@ namespace MercadoEnvio.Servicios
             DataManagers.DataManagerActualizacion.ConfigurarFechas();
         }
 
-        public static void CerrarPublicaciones()
+        public static int CerrarPublicacion(int idPublicacion)
         {
-            DataManagers.DataManagerActualizacion.CerrarPublicaciones();
+            return DataManagers.DataManagerActualizacion.CerrarPublicacion(idPublicacion);
         }
 
         public static List<Publicacion> PublicacionesACerrar()

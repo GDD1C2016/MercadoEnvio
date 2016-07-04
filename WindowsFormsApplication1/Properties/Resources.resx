@@ -590,6 +590,6 @@
     <value>Monto Facturado</value>
   </data>
   <data name="NroCompraPrecioReserva" xml:space="preserve">
-    <value>Ha reservado la compra del producto./nSe ha generado la compra N°</value>
+    <value>Ha reservado la compra del producto. Se ha generado la compra N° </value>
   </data>
 </root>

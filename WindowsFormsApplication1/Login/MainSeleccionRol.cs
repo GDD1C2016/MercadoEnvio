@@ -37,7 +37,7 @@ namespace MercadoEnvio.Login
 
             foreach (var publicacion in publicacionesACerrar)
             {
-                ActualizacionServices.CerrarPublicacion(publicacion);
+                ActualizacionServices.CerrarPublicacion(publicacion.IdPublicacion);
             }
             var menuDialog = new MainMenu {Usuario = Usuario};
 

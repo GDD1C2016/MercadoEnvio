@@ -1109,7 +1109,7 @@ namespace MercadoEnvio.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Ha reservado la compra del producto./nSe ha generado la compra N°.
+        ///   Looks up a localized string similar to Ha reservado la compra del producto. Se ha generado la compra N° .
         /// </summary>
         internal static string NroCompraPrecioReserva {
             get {

@@ -35,7 +35,7 @@ namespace MercadoEnvio.DataManagers
             db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_ConfigurarFechas",parameters);
         }
 
-        public static void CerrarPublicaciones()
+        public static int CerrarPublicacion(int idPublicacion)
         {
             DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
 
@@ -43,22 +43,24 @@ namespace MercadoEnvio.DataManagers
             {
                 db.BeginTransaction();
 
-                CerrarPublicaciones(db);
+                int idCompra = CerrarPublicacion(idPublicacion, db); // Devuelve el número de compra de la oferta adjudicada si la publicación es una subasta
 
                 db.EndConnection();
+
+                return idCompra;
             }
         }
 
-        private static void CerrarPublicaciones(DataBaseHelper db)
+        private static int CerrarPublicacion(int idPublicacion, DataBaseHelper db)
         {
             List<SqlParameter> parameters = new List<SqlParameter>();
 
-            SqlParameter fechaParameter = new SqlParameter("@Fecha", SqlDbType.DateTime);
-            fechaParameter.Value = new FechaHelper().GetSystemDate();
+            SqlParameter idPublicacionParameter = new SqlParameter("@IdPublicacion", SqlDbType.Decimal);
+            idPublicacionParameter.Value = idPublicacion;
 
-            parameters.Add(fechaParameter);
+            parameters.Add(idPublicacionParameter);
 
-            db.ExecInstruction(DataBaseHelper.ExecutionType.NonQuery, "MASTERDBA.SP_CerrarPublicaciones", parameters);
+            return Convert.ToInt32(db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_CerrarPublicacion", parameters));
         }
 
         public static List<Publicacion> PublicacionesACerrar()

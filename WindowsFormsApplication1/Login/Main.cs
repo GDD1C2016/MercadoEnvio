@@ -41,7 +41,7 @@ namespace MercadoEnvio.Login
 
                     foreach (var publicacion in publicacionesACerrar)
                     {
-                        ActualizacionServices.CerrarPublicacion(publicacion);
+                        ActualizacionServices.CerrarPublicacion(publicacion.IdPublicacion);
                     }
                     
                     var menuDialog = new MainMenu {Usuario = login.Usuario};
@@ -69,8 +69,7 @@ namespace MercadoEnvio.Login
             {
                 MessageBox.Show(Resources.ErrorFechaSistema, Resources.MercadoEnvio, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Application.Exit();
-            }
-           
+            }           
             #endregion
         }
     }
