@@ -91,10 +91,10 @@ namespace MercadoEnvio.ABM_Visibilidad
                 BindingSource bs = DgVisibilidad.DataSource as BindingSource;
                 if (bs != null)
                     visibilidadSeleccionada = (Visibilidad)bs.List[bs.Position];
-            }
 
-            var altaVisibilidad = new AltaVisibilidad(visibilidadSeleccionada) {Text = Resources.EdicionVisibilidad};
-            altaVisibilidad.ShowDialog();
+                var altaVisibilidad = new AltaVisibilidad(visibilidadSeleccionada) { Text = Resources.EdicionVisibilidad };
+                altaVisibilidad.ShowDialog();
+            }
         }
     }
 }

@@ -29,13 +29,14 @@ namespace MercadoEnvio.ABM_Visibilidad
             Estado estadoHabilitado = new Estado { Valor = true };
             Estado estadoDeshabilitado = new Estado { Valor = false };
             List<Estado> estados = new List<Estado>();
+            
             estados.Add(estadoHabilitado);
             estados.Add(estadoDeshabilitado);
 
             ComboEstado.DataSource = estados;
             ComboEstado.DisplayMember = "Descripcion";
             ComboEstado.DropDownStyle = ComboBoxStyle.DropDownList;
-            ComboEstado.SelectedItem = Visibilidad.Activa;
+            ComboEstado.SelectedIndex = ComboEstado.FindStringExact(Visibilidad.Estado);
             #endregion
 
         }

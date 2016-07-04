@@ -20,6 +20,7 @@ namespace MercadoEnvio.ABM_Rubro
 
         private void MainRubro_Load(object sender, EventArgs e)
         {
+            BtnSeleccionarRubro.Enabled = FormPublicacion != null;
             #region ArmadoGrillaRubros
             DgRubros.AutoGenerateColumns = false;
             BindingList<Rubro> dataSource = new BindingList<Rubro>(RubrosServices.GetAllData());

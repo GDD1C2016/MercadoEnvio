@@ -111,6 +111,8 @@ namespace MercadoEnvio.ABM_Usuario
                 BindingList<Cliente> dataSource = new BindingList<Cliente>(UsuariosService.FindClientes(filtroNombre, filtroApellido, filtroDni, filtroEmail));
                 BindingSource bs = new BindingSource {DataSource = dataSource};
 
+                DgUsuarios.Columns.Clear();
+
                 #region rearmadoDeGrilla
                 DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Nombre", HeaderText = Resources.Nombre, Name = "Nombre" });
                 DgUsuarios.Columns.Add(new DataGridViewTextBoxColumn { DataPropertyName = "Apellido", HeaderText = Resources.Apellido, Name = "Apellido" });

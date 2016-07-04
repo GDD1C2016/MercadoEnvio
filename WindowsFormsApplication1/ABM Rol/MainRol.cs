@@ -144,6 +144,7 @@ namespace MercadoEnvio.ABM_Rol
         private void BtnAgregar_Click(object sender, EventArgs e)
         {
             var altaRol = new AltaRol();
+            altaRol.Rol = Usuario.RolActivo != null ? Usuario.RolActivo : new Rol();
             var result = altaRol.ShowDialog();
 
             if (result.Equals(DialogResult.OK))
