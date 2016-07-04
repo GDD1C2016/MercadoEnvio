@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
+using MercadoEnvio.Entidades;
 using MercadoEnvio.Helpers;
 using MercadoEnvio.Properties;
 using MercadoEnvio.Servicios;
@@ -35,7 +37,13 @@ namespace MercadoEnvio.Login
                 else
                 {
                     ActualizacionServices.ConfigurarFechas();
-                    ActualizacionServices.CerrarPublicaciones(); 
+                    List<Publicacion> publicacionesACerrar = new List<Publicacion>(ActualizacionServices.PublicacionesACerrar());
+
+                    foreach (var publicacion in publicacionesACerrar)
+                    {
+                        ActualizacionServices.CerrarPublicacion(publicacion);
+                    }
+                    
                     var menuDialog = new MainMenu {Usuario = login.Usuario};
                     menuDialog.ShowDialog();
                 }
