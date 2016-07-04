@@ -192,6 +192,7 @@ namespace MercadoEnvio.Generar_Publicación
         private void BtnGuardar_Click(object sender, EventArgs e)
         {
             List<string> errors = new List<string>(ValidarDatosPublicacion());
+
             if (errors.Count > 0)
             {
                 var message = string.Join(Environment.NewLine, errors);
@@ -209,6 +210,7 @@ namespace MercadoEnvio.Generar_Publicación
                         ((Visibilidad)ComboVisibilidad.SelectedItem).IdVisibilidad);
                     MessageBox.Show(Resources.PublicacionActualizada, Resources.OperacionExitosa, MessageBoxButtons.OK,
                         MessageBoxIcon.Information);
+                    Close();
                 }
                 else
                 {

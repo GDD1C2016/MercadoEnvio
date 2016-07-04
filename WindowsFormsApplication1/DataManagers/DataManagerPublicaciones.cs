@@ -5,6 +5,7 @@ using MercadoEnvio.Helpers;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 
 namespace MercadoEnvio.DataManagers
@@ -125,18 +126,29 @@ namespace MercadoEnvio.DataManagers
 
         public static int Ofertar(Publicacion publicacionSeleccionada, Usuario usuarioActivo, string monto)
         {
-            DataBaseHelper db = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+            DataBaseHelper dbInsert = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+            DataBaseHelper dbUpdate = new DataBaseHelper(ConfigurationManager.AppSettings["connectionString"]);
+            int nroOferta;
 
-            using (db.Connection)
+            using (dbInsert.Connection)
             {
-                db.BeginTransaction();
+                dbInsert.BeginTransaction();
 
-                int nroOferta = Ofertar(publicacionSeleccionada, usuarioActivo, monto, db);
+                nroOferta = Ofertar(publicacionSeleccionada, usuarioActivo, monto, dbInsert);
 
-                db.EndConnection();
-
-                return nroOferta;
+                dbInsert.EndConnection();
             }
+
+            using (dbUpdate.Connection)
+            {
+                dbUpdate.BeginTransaction();
+
+                ActualizarPublicacion(publicacionSeleccionada, monto, dbUpdate);
+
+                dbUpdate.EndConnection();
+            }
+
+            return nroOferta;
         }
 
         private static int Ofertar(Publicacion publicacionSeleccionada, Usuario usuarioActivo, string monto, DataBaseHelper db)
@@ -161,6 +173,13 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(idUsuarioParameter);
 
             return Convert.ToInt32(db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertOferta", parameters));
+        }
+
+        private static void ActualizarPublicacion(Publicacion publicacionSeleccionada, string monto, DataBaseHelper db)
+        {
+            string precioNuevo = monto;
+
+            UpdatePublicacion(publicacionSeleccionada.IdPublicacion.ToString(CultureInfo.CurrentCulture), publicacionSeleccionada.Descripcion, publicacionSeleccionada.Stock.ToString(CultureInfo.CurrentCulture), publicacionSeleccionada.FechaInicio, publicacionSeleccionada.FechaVencimiento, precioNuevo.ToString(CultureInfo.CurrentCulture), publicacionSeleccionada.PrecioReserva.ToString(CultureInfo.CurrentCulture), publicacionSeleccionada.IdRubro, publicacionSeleccionada.EstadoPublicacion.IdEstado, publicacionSeleccionada.TipoPublicacion.IdTipo, publicacionSeleccionada.Envio, publicacionSeleccionada.Visibilidad.IdVisibilidad, new FechaHelper().GetSystemDate(), db);
         }
 
         public static int Comprar(Publicacion publicacionSeleccionada, Usuario usuarioActivo, string cantidad, bool envio)

@@ -315,7 +315,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(cantIntFallidosParameter);
             parameters.Add(activoParameter);
 
-            newUsuario.IdUsuario = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertUsuario", parameters);
+            newUsuario.IdUsuario = Convert.ToInt32(db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertUsuario", parameters));
         }
 
         private static void InsertUsuarioRol(int idUsuario, int idRol, bool activa, DataBaseHelper db)

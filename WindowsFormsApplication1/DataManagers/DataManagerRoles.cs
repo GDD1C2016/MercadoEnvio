@@ -228,7 +228,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(descripcionParameter);
             parameters.Add(activoParameter);
 
-            newRol.IdRol = (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertRol", parameters);
+            newRol.IdRol = Convert.ToInt32(db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_InsertRol", parameters));
         }
 
         private static Funcionalidad GetFuncionalidadByDescripcion(string descripcion, DataBaseHelper db)

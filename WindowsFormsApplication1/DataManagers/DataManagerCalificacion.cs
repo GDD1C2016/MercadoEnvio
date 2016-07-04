@@ -121,7 +121,7 @@ namespace MercadoEnvio.DataManagers
             parameters.Add(cantidadEstrellasParameter);
             parameters.Add(idUsuarioParameter);
 
-            return (int)db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_GetCantidadCalificacionesDadas", parameters);
+            return Convert.ToInt32(db.ExecInstruction(DataBaseHelper.ExecutionType.Scalar, "MASTERDBA.SP_GetCantidadCalificacionesDadas", parameters));
         }
     }
 }
